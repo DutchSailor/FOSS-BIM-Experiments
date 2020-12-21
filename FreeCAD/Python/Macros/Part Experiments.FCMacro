@@ -1,0 +1,54 @@
+import Part
+from FreeCAD import Base
+
+b = 200
+h = 190
+tf = 10
+tw = 15
+r = 5
+		
+p1 = [(-b/2),(-h/2)] #left bottom
+p2 = [(b/2),(-h/2)] #right bottom
+p3 = [(b/2),(-h/2+tf)]
+p4 = [(tw/2+r),(-h/2+tf)]#start arc
+p4_5 = [(tw/2+r),(-h/2+tf+r)] # center arc
+p5 = [(tw/2),(-h/2+tf+r)]#end arc
+p6 = [(tw/2),(h/2-tf-r)]#start arc
+p6_7 = [(tw/2+r),h/2-tf-r] # center arc
+p7 = [(tw/2+r),(h/2-tf)]#end arc
+p8 = [(b/2),(h/2-tf)]
+p9 = [(b/2),(h/2)] #right top
+p10 = [(-b/2),(h/2)] #left top
+p11 = [(-b/2),(h/2-tf)]
+p12 = [-(tw/2)-r,(h/2-tf)]#start arc
+p12_13 = [-(tw/2+r),h/2-tf-r] # center arc
+p13 = [-(tw/2),(h/2-tf-r)]#end arc
+p14 = [-(tw/2),-(h/2-tf-r)]#start arc
+p14_15 = [-(tw/2+r),-h/2+tf+r] # center arc
+p15 = [-(tw/2)-r,-(h/2-tf)]#end arc
+p16 = [-(b/2),-(h/2-tf)]
+
+l1 = Part.makeLine(Base.Vector((p1[0]),p1[1],0),Base.Vector(p2[0],p2[1],0))
+l2 = Part.makeLine(Base.Vector((p2[0]),p2[1],0),Base.Vector(p3[0],p3[1],0))
+l3 = Part.makeLine(Base.Vector((p3[0]),p3[1],0),Base.Vector(p4[0],p4[1],0))
+# makeCircle(radius,[pnt,dir,angle1,angle2])
+l4 = Part.makeCircle(r,Base.Vector(p4_5[0],p4_5[1],0),Base.Vector(0,1,0),180,270)
+l5 = Part.makeLine(Base.Vector((p5[0]),p5[1],0),Base.Vector(p6[0],p6[1],0))
+l6 = Part.makeCircle(r,Base.Vector(p6_7[0],p6_7[1],0),Base.Vector(0,1,0),90,180)
+l7 = Part.makeLine(Base.Vector((p7[0]),p7[1],0),Base.Vector(p8[0],p8[1],0))
+l8 = Part.makeLine(Base.Vector((p8[0]),p8[1],0),Base.Vector(p9[0],p9[1],0))
+l9 = Part.makeLine(Base.Vector((p9[0]),p9[1],0),Base.Vector(p10[0],p10[1],0))
+l10 = Part.makeLine(Base.Vector((p10[0]),p10[1],0),Base.Vector(p11[0],p11[1],0))
+l11 = Part.makeLine(Base.Vector((p11[0]),p11[1],0),Base.Vector(p12[0],p12[1],0))
+l12 = Part.makeCircle(r,Base.Vector(p12_13[0],p12_13[1],0),Base.Vector(0,1,0),0,90)
+l13 = Part.makeLine(Base.Vector((p13[0]),p13[1],0),Base.Vector(p14[0],p14[1],0))
+l14 = Part.makeCircle(r,Base.Vector(p14_15[0],p14_15[1],0),Base.Vector(0,1,0),270,360)
+l15 = Part.makeLine(Base.Vector((p15[0]),p15[1],0),Base.Vector(p16[0],p16[1],0))
+l16 = Part.makeLine(Base.Vector((p16[0]),p16[1],0),Base.Vector(p1[0],p1[1],0))
+		
+l20 = Part.makeLine(Base.Vector((p1[0]),p1[1],0),Base.Vector(p2[0],p2[1],0))
+l21 = Part.makeLine(Base.Vector((p2[0]),p2[1],0),Base.Vector(p10[0],p10[1],0))
+l22 = Part.makeLine(Base.Vector((p9[0]),p9[1],0),Base.Vector(p10[0],p10[1],0))
+l23 = Part.makeLine(Base.Vector((p10[0]),p10[1],0),Base.Vector(p1[0],p1[1],0))
+
+p = Part.Compound([l20,l21,l22])

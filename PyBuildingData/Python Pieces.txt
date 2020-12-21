@@ -1,0 +1,27 @@
+6632
+11066
+
+x=7650 y=-100 z=6632
+
+xabs.= 7650 y=10650 z= 11066
+
+x= 7650 y= 21400 z= 6632
+ 
+39300
+21300
+
+points = [FreeCAD.Vector(-100,-100.0,0.0),FreeCAD.Vector(-100,-100.0,6632.0),FreeCAD.Vector(-100,11650.0,11066.0),FreeCAD.Vector(-100,21400.0,6632.0),FreeCAD.Vector(-100,21400.0,0.0)]
+line = Draft.makeWire(points,placement=pl,closed=False,face=True,support=None)
+Draft.autogroup(line)
+
+pl.Base = FreeCAD.Vector(-100,-100,6632)
+points = [FreeCAD.Vector(-100,-100,6632),FreeCAD.Vector(-100,11650,11066)]
+line = Draft.makeWire(points,placement=pl,closed=False,face=True,support=None)
+
+import math
+math.sqrt(10750*10750+(11066-6632)*(11066-6632))
+
+dim = Draft.makeDimension(FreeCAD.Vector(-3500,0.0,0.0),FreeCAD.Vector(-3500.0,10650.0,0.0),FreeCAD.Vector(-3500,10650.0,0.0))
+Draft.autogroup(dim)
+dim = Draft.makeDimension(FreeCAD.Vector(-3500,10650.0,0.0),FreeCAD.Vector(-3500.0,21300.0,0.0),FreeCAD.Vector(-3500,21300.0,0.0))
+Draft.autogroup(dim)
