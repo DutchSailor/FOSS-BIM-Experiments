@@ -1,0 +1,31 @@
+{
+  "export_version": "0.10",
+  "framed_nodes": {},
+  "groups": {},
+  "nodes": {
+    "Scripted Node Lite.001": {
+      "bl_idname": "SvScriptNodeLite",
+      "color": [
+        0.0,
+        0.800000011920929,
+        0.949999988079071
+      ],
+      "custom_socket_props": {},
+      "height": 100.0,
+      "hide": false,
+      "label": "",
+      "location": [
+        336.8656005859375,
+        300.8645324707031
+      ],
+      "params": {
+        "n_id": "-7782220006091190502",
+        "script_name": "GIS BoundingBox",
+        "script_str": "\n'''\nin CoordinateX s\nin CoordinateY s\nin BoxWidth s\nin BoxHeight s\nin DecimalNumbers s\n\nout BoundingBoxString s \n'''\n \ndef GIS2BIM_CreateBoundingBox(CoordinateX,CoordinateY,BoxWidth,BoxHeight,DecimalNumbers):\n    XLeft = round(CoordinateX-0.5*BoxWidth,DecimalNumbers)\n    XRight = round(CoordinateX+0.5*BoxWidth,DecimalNumbers)\n    YBottom = round(CoordinateY-0.5*BoxHeight,DecimalNumbers)\n    YTop = round(CoordinateY+0.5*BoxHeight,DecimalNumbers)\n\n    boundingBoxString = str(XLeft) + \",\" + str(YBottom) + \",\" + str(XRight) + \",\" + str(YTop)\n    return BoundingBoxString"
+      },
+      "use_custom_color": true,
+      "width": 140.0
+    }
+  },
+  "update_lists": []
+}

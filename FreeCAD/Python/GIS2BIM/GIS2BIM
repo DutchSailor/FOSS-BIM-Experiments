@@ -2,7 +2,7 @@
 
 ## Webserverdata
 PDOKServerURL = "http://geodata.nationaalgeoregister.nl/locatieserver/v3/free?wt=json&rows=1&q="
-DutchGEOCadasterServer1 = "http://geodata.nationaalgeoregister.nl/kadastralekaartv3/wfs?&request=GetFeature&typeName=kadastralekaartv3:kadastralegrens&outputFormat=json&bbox="
+DutchGEOCadasterServer1 = "http://geodata.nationaalgeoregister.nl/kadastralekaartv4/wfs?&request=GetFeature&typeName=kadastralekaartv3:kadastralegrens&outputFormat=json&bbox="
 
 def GIS2BIM_CreateBoundingBox(CoordinateX,CoordinateY,BoxWidth,BoxHeight,DecimalNumbers):
     XLeft = round(CoordinateX-0.5*BoxWidth,DecimalNumbers)
@@ -13,11 +13,11 @@ def GIS2BIM_CreateBoundingBox(CoordinateX,CoordinateY,BoxWidth,BoxHeight,Decimal
     boundingBoxString1 = str(XLeft) + "," + str(YBottom) + "," + str(XRight) + "," + str(YTop)
     return boundingBoxString1
 
-def GIS2BIM_GetLocationDataNetherlands(city,streetname,housenumber):
+def GIS2BIM_GetLocationDataNetherlands(City,Streetname,Housenumber):
     PDOKServer = PDOKServerURL
     import urllib.request
     import json
-    requesturl =  PDOKServer + city +" and " + streetname + " and " + housenumber
+    requesturl =  PDOKServer + City +" and " + Streetname + " and " + Housenumber
     urlFile = urllib.request.urlopen(requesturl)
     jsonList = json.load(urlFile)
     jsonList = jsonList["response"]["docs"]
@@ -38,18 +38,20 @@ Rdy = float(a[1])
 
 b = GIS2BIM_CreateBoundingBox(Rdx,Rdy,width,width,2)
 
+import urllib.request
+import json
 myrequesturl = DutchGEOCadasterServer1 + b
-#urlFile = urllib.request.urlopen(myrequesturl)
-#my_jsondata = json.load(urlFile)
-#coordinate_data = jsonpath_rw_ext.match($.features..geometry..coordinates', my_jsondata)
+urlFile = urllib.request.urlopen(myrequesturl)
+my_jsondata = json.load(urlFile)
+#coordinate_data = jsonpath_rw_ext.match($.features..geometry..coordinates, my_jsondata)
 
 #coordinate_data = coordinate_data
 #coordinate_data_relative = []
 
 #for i in coordinate_data:
-    Rdx-i[0]
-    Rdy-i[1]
+#    Rdx-i[0]
+#    Rdy-i[1]
 
 #print(coordinate_data)
 
-print(myrequesturl)
+print(my_jsondata)
