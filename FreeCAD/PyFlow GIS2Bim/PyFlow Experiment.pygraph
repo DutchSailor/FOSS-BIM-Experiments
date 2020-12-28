@@ -6,20 +6,154 @@
         {
             "package": "GIStoBIM",
             "lib": "DemoLib",
-            "type": "GIS2BIM_CreateBoundingBox",
+            "type": "GIS2BIM_Test",
             "owningGraphName": "root",
-            "name": "GIS2BIM_CreateBoundingBox",
-            "uuid": "0924bc2e-a836-4b75-ac2c-40a14688376f",
+            "name": "GIS2BIM_Test",
+            "uuid": "ddb8e8e9-b3ca-4e3b-8f79-2276fc8a9da5",
             "inputs": [
                 {
-                    "name": "BoxWidth",
+                    "name": "X",
                     "package": "PyFlowBase",
-                    "fullName": "GIS2BIM_CreateBoundingBox_BoxWidth",
-                    "dataType": "FloatPin",
+                    "fullName": "GIS2BIM_Test_X",
+                    "dataType": "AnyPin",
                     "direction": 0,
-                    "value": "0.0",
-                    "uuid": "c1ef52f3-2499-46e7-821f-dd80652cba39",
-                    "linkedTo": [],
+                    "value": "100.0",
+                    "uuid": "05e2ceb9-78b8-4418-a083-fdf3a05d0e16",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "makeFloat",
+                            "outPinId": 1,
+                            "rhsNodeName": "GIS2BIM_Test",
+                            "inPinId": 1,
+                            "lhsNodeUid": "5a5adb3a-7b33-4161-9105-dd73e3070216",
+                            "rhsNodeUid": "ddb8e8e9-b3ca-4e3b-8f79-2276fc8a9da5"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        16,
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "X",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "b327fc8f-162c-40ec-9cbc-e39dd8509c1e",
+                                "destinationUUID": "05e2ceb9-78b8-4418-a083-fdf3a05d0e16",
+                                "sourceName": "makeFloat_out",
+                                "destinationName": "GIS2BIM_Test_X",
+                                "uuid": "77d6bfd3-35f2-4dc4-acf8-4dec03825bd3",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    },
+                    "currDataType": "FloatPin"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "out",
+                    "package": "PyFlowBase",
+                    "fullName": "GIS2BIM_Test_out",
+                    "dataType": "StringPin",
+                    "direction": 1,
+                    "value": "\"http://geodata.nationaalgeoregister.nl/luchtfoto/rgb/wms?&request=GetMap&VERSION=1.3.0&STYLES=&layers=2019_ortho25&width=3000&height=3000&format=image/png&crs=EPSG:28992&bbox=\"",
+                    "uuid": "f0f185a5-4f2e-445a-b598-03a560cfe436",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "GIS2BIM_Test",
+                            "outPinId": 1,
+                            "rhsNodeName": "GIS2BIM_WMSRequest",
+                            "inPinId": 1,
+                            "lhsNodeUid": "ddb8e8e9-b3ca-4e3b-8f79-2276fc8a9da5",
+                            "rhsNodeUid": "3fb46070-f99d-4c8c-aa41-6e2aaf9fe246"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "out",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "f0f185a5-4f2e-445a-b598-03a560cfe436",
+                                "destinationUUID": "ab840ccf-a885-4af9-a28b-1d7d6318e0f9",
+                                "sourceName": "GIS2BIM_Test_out",
+                                "destinationName": "GIS2BIM_WMSRequest_serverName",
+                                "uuid": "415d6099-0c1f-4bda-94a1-f2eb218d6e8d",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "GIS2BIM_Test"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">GIS2BIM_Test</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": 702.3985778431665,
+            "y": -266.95061165149764
+        },
+        {
+            "package": "GIStoBIM",
+            "lib": "DemoLib",
+            "type": "GIS2BIM_GetLocationDataNetherlands",
+            "owningGraphName": "root",
+            "name": "GIS2BIM_GetLocationDataNetherlands",
+            "uuid": "ffa5302c-ce5b-4cec-9b83-c83061460e67",
+            "inputs": [
+                {
+                    "name": "HouseNumber",
+                    "package": "PyFlowBase",
+                    "fullName": "GIS2BIM_GetLocationDataNetherlands_HouseNumber",
+                    "dataType": "StringPin",
+                    "direction": 0,
+                    "value": "\"315\"",
+                    "uuid": "33113ab8-0090-4a62-b849-0bfe2de8fc8b",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "makeString2",
+                            "outPinId": 1,
+                            "rhsNodeName": "GIS2BIM_GetLocationDataNetherlands",
+                            "inPinId": 3,
+                            "lhsNodeUid": "af8178ae-6340-4fee-a804-6155cbac6a4a",
+                            "rhsNodeUid": "ffa5302c-ce5b-4cec-9b83-c83061460e67"
+                        }
+                    ],
                     "pinIndex": 3,
                     "options": [
                         256
@@ -30,29 +164,45 @@
                     "alwaysDict": false,
                     "wrapper": {
                         "bLabelHidden": false,
-                        "displayName": "BoxWidth",
-                        "wires": {}
+                        "displayName": "HouseNumber",
+                        "wires": {
+                            "3": {
+                                "sourceUUID": "c23109b5-34e8-48a6-ac2e-b48f2c04bc90",
+                                "destinationUUID": "33113ab8-0090-4a62-b849-0bfe2de8fc8b",
+                                "sourceName": "makeString2_out",
+                                "destinationName": "GIS2BIM_GetLocationDataNetherlands_HouseNumber",
+                                "uuid": "f45af9e7-4ff0-41c6-88da-a67ae5b682cc",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
                     }
                 },
                 {
-                    "name": "DecimalNumbers",
+                    "name": "City",
                     "package": "PyFlowBase",
-                    "fullName": "GIS2BIM_CreateBoundingBox_DecimalNumbers",
-                    "dataType": "IntPin",
+                    "fullName": "GIS2BIM_GetLocationDataNetherlands_City",
+                    "dataType": "StringPin",
                     "direction": 0,
-                    "value": "0",
-                    "uuid": "905e8782-3ff1-451b-8ed7-d9c317ba495a",
+                    "value": "\"dordrecht\"",
+                    "uuid": "68620fad-d65c-4f9c-b329-5d68aeba5065",
                     "linkedTo": [
                         {
-                            "lhsNodeName": "makeInt1",
+                            "lhsNodeName": "makeString",
                             "outPinId": 1,
-                            "rhsNodeName": "GIS2BIM_CreateBoundingBox",
-                            "inPinId": 5,
-                            "lhsNodeUid": "cd294894-45ae-43d6-84d8-fb742dbe21cc",
-                            "rhsNodeUid": "0924bc2e-a836-4b75-ac2c-40a14688376f"
+                            "rhsNodeName": "GIS2BIM_GetLocationDataNetherlands",
+                            "inPinId": 1,
+                            "lhsNodeUid": "f607337e-3a6b-4e3b-bd32-fa97760d6f54",
+                            "rhsNodeUid": "ffa5302c-ce5b-4cec-9b83-c83061460e67"
                         }
                     ],
-                    "pinIndex": 5,
+                    "pinIndex": 1,
                     "options": [
                         256
                     ],
@@ -62,14 +212,537 @@
                     "alwaysDict": false,
                     "wrapper": {
                         "bLabelHidden": false,
-                        "displayName": "DecimalNumbers",
+                        "displayName": "City",
                         "wires": {
-                            "5": {
-                                "sourceUUID": "430efda9-d4e2-4809-802f-e75aa119727d",
-                                "destinationUUID": "905e8782-3ff1-451b-8ed7-d9c317ba495a",
-                                "sourceName": "makeInt1_out",
-                                "destinationName": "GIS2BIM_CreateBoundingBox_DecimalNumbers",
-                                "uuid": "c58e8067-c096-4de4-a725-8c8474b63bb0",
+                            "1": {
+                                "sourceUUID": "a9761009-65cf-4c58-a434-313b965892a1",
+                                "destinationUUID": "68620fad-d65c-4f9c-b329-5d68aeba5065",
+                                "sourceName": "makeString_out",
+                                "destinationName": "GIS2BIM_GetLocationDataNetherlands_City",
+                                "uuid": "88d9a08a-26a2-438e-8dee-fd7f737df851",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "StreetName",
+                    "package": "PyFlowBase",
+                    "fullName": "GIS2BIM_GetLocationDataNetherlands_StreetName",
+                    "dataType": "StringPin",
+                    "direction": 0,
+                    "value": "\"zuidendijk\"",
+                    "uuid": "f291f0bc-5542-4d93-8a7b-20a342d15a43",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "makeString1",
+                            "outPinId": 1,
+                            "rhsNodeName": "GIS2BIM_GetLocationDataNetherlands",
+                            "inPinId": 2,
+                            "lhsNodeUid": "946ad80d-b6fd-4e67-ad62-1a7d9c08ad75",
+                            "rhsNodeUid": "ffa5302c-ce5b-4cec-9b83-c83061460e67"
+                        }
+                    ],
+                    "pinIndex": 2,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "StreetName",
+                        "wires": {
+                            "2": {
+                                "sourceUUID": "d5d94c0a-f595-4f36-843a-5e9204194c26",
+                                "destinationUUID": "f291f0bc-5542-4d93-8a7b-20a342d15a43",
+                                "sourceName": "makeString1_out",
+                                "destinationName": "GIS2BIM_GetLocationDataNetherlands_StreetName",
+                                "uuid": "ad9265e7-412a-4d4f-8ac6-4b26f51203d2",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "out",
+                    "package": "PyFlowBase",
+                    "fullName": "GIS2BIM_GetLocationDataNetherlands_out",
+                    "dataType": "AnyPin",
+                    "direction": 1,
+                    "value": "[104748.931, 422855.148, \"http://geodata.nationaalgeoregister.nl/locatieserver/v3/free?wt=json&rows=1&q=dordrecht%20and%20zuidendijk%20and%20315\"]",
+                    "uuid": "d1c4fa77-6d4c-4ac3-9f6d-c14a56e4eec9",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "GIS2BIM_GetLocationDataNetherlands",
+                            "outPinId": 1,
+                            "rhsNodeName": "listGetItemAtIndex3",
+                            "inPinId": 1,
+                            "lhsNodeUid": "ffa5302c-ce5b-4cec-9b83-c83061460e67",
+                            "rhsNodeUid": "bbf06a98-5535-4fe3-b5ba-adefc232aaa0"
+                        },
+                        {
+                            "lhsNodeName": "GIS2BIM_GetLocationDataNetherlands",
+                            "outPinId": 1,
+                            "rhsNodeName": "listGetItemAtIndex",
+                            "inPinId": 1,
+                            "lhsNodeUid": "ffa5302c-ce5b-4cec-9b83-c83061460e67",
+                            "rhsNodeUid": "22b03f75-5496-4cee-9f6f-f8fff1885ade"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        16,
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "out",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "d1c4fa77-6d4c-4ac3-9f6d-c14a56e4eec9",
+                                "destinationUUID": "c4bb0217-ea14-446f-8939-1e281468372d",
+                                "sourceName": "GIS2BIM_GetLocationDataNetherlands_out",
+                                "destinationName": "listGetItemAtIndex_list",
+                                "uuid": "15706c78-87a9-48cb-a788-eef798adeb20",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    },
+                    "currDataType": "StringPin"
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "GIS2BIM_GetLocationDataNetherlands"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">GIS2BIM_GetLocationDataNetherlands</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": -89.7384618109624,
+            "y": 139.9539900059507
+        },
+        {
+            "package": "PyFlowBase",
+            "lib": "DefaultLib",
+            "type": "makeString",
+            "owningGraphName": "root",
+            "name": "makeString",
+            "uuid": "f607337e-3a6b-4e3b-bd32-fa97760d6f54",
+            "inputs": [
+                {
+                    "name": "s",
+                    "package": "PyFlowBase",
+                    "fullName": "makeString_s",
+                    "dataType": "StringPin",
+                    "direction": 0,
+                    "value": "\"dordrecht\"",
+                    "uuid": "142e49d2-7d06-495c-ae63-c47a41369f83",
+                    "linkedTo": [],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "s",
+                        "wires": {}
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "out",
+                    "package": "PyFlowBase",
+                    "fullName": "makeString_out",
+                    "dataType": "StringPin",
+                    "direction": 1,
+                    "value": "\"dordrecht\"",
+                    "uuid": "a9761009-65cf-4c58-a434-313b965892a1",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "makeString",
+                            "outPinId": 1,
+                            "rhsNodeName": "GIS2BIM_GetLocationDataNetherlands",
+                            "inPinId": 1,
+                            "lhsNodeUid": "f607337e-3a6b-4e3b-bd32-fa97760d6f54",
+                            "rhsNodeUid": "ffa5302c-ce5b-4cec-9b83-c83061460e67"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "out",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "a9761009-65cf-4c58-a434-313b965892a1",
+                                "destinationUUID": "68620fad-d65c-4f9c-b329-5d68aeba5065",
+                                "sourceName": "makeString_out",
+                                "destinationName": "GIS2BIM_GetLocationDataNetherlands_City",
+                                "uuid": "88d9a08a-26a2-438e-8dee-fd7f737df851",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "makeString"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">makeString</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": -435.916388003079,
+            "y": -36.77988301310519
+        },
+        {
+            "package": "PyFlowBase",
+            "lib": "DefaultLib",
+            "type": "makeString",
+            "owningGraphName": "root",
+            "name": "makeString1",
+            "uuid": "946ad80d-b6fd-4e67-ad62-1a7d9c08ad75",
+            "inputs": [
+                {
+                    "name": "s",
+                    "package": "PyFlowBase",
+                    "fullName": "makeString1_s",
+                    "dataType": "StringPin",
+                    "direction": 0,
+                    "value": "\"zuidendijk\"",
+                    "uuid": "48eb62fe-4efc-46d5-be8e-e87e383f5324",
+                    "linkedTo": [],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "s",
+                        "wires": {}
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "out",
+                    "package": "PyFlowBase",
+                    "fullName": "makeString1_out",
+                    "dataType": "StringPin",
+                    "direction": 1,
+                    "value": "\"zuidendijk\"",
+                    "uuid": "d5d94c0a-f595-4f36-843a-5e9204194c26",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "makeString1",
+                            "outPinId": 1,
+                            "rhsNodeName": "GIS2BIM_GetLocationDataNetherlands",
+                            "inPinId": 2,
+                            "lhsNodeUid": "946ad80d-b6fd-4e67-ad62-1a7d9c08ad75",
+                            "rhsNodeUid": "ffa5302c-ce5b-4cec-9b83-c83061460e67"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "out",
+                        "wires": {
+                            "2": {
+                                "sourceUUID": "d5d94c0a-f595-4f36-843a-5e9204194c26",
+                                "destinationUUID": "f291f0bc-5542-4d93-8a7b-20a342d15a43",
+                                "sourceName": "makeString1_out",
+                                "destinationName": "GIS2BIM_GetLocationDataNetherlands_StreetName",
+                                "uuid": "ad9265e7-412a-4d4f-8ac6-4b26f51203d2",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "makeString1"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">makeString1</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": -435.916388003079,
+            "y": 49.18881512144985
+        },
+        {
+            "package": "PyFlowBase",
+            "lib": "DefaultLib",
+            "type": "makeString",
+            "owningGraphName": "root",
+            "name": "makeString2",
+            "uuid": "af8178ae-6340-4fee-a804-6155cbac6a4a",
+            "inputs": [
+                {
+                    "name": "s",
+                    "package": "PyFlowBase",
+                    "fullName": "makeString2_s",
+                    "dataType": "StringPin",
+                    "direction": 0,
+                    "value": "\"315\"",
+                    "uuid": "95c1f871-8876-4ec0-9898-996d149be150",
+                    "linkedTo": [],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "s",
+                        "wires": {}
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "out",
+                    "package": "PyFlowBase",
+                    "fullName": "makeString2_out",
+                    "dataType": "StringPin",
+                    "direction": 1,
+                    "value": "\"315\"",
+                    "uuid": "c23109b5-34e8-48a6-ac2e-b48f2c04bc90",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "makeString2",
+                            "outPinId": 1,
+                            "rhsNodeName": "GIS2BIM_GetLocationDataNetherlands",
+                            "inPinId": 3,
+                            "lhsNodeUid": "af8178ae-6340-4fee-a804-6155cbac6a4a",
+                            "rhsNodeUid": "ffa5302c-ce5b-4cec-9b83-c83061460e67"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "out",
+                        "wires": {
+                            "3": {
+                                "sourceUUID": "c23109b5-34e8-48a6-ac2e-b48f2c04bc90",
+                                "destinationUUID": "33113ab8-0090-4a62-b849-0bfe2de8fc8b",
+                                "sourceName": "makeString2_out",
+                                "destinationName": "GIS2BIM_GetLocationDataNetherlands_HouseNumber",
+                                "uuid": "f45af9e7-4ff0-41c6-88da-a67ae5b682cc",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "makeString2"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">makeString2</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": -435.916388003079,
+            "y": 130.7234200146429
+        },
+        {
+            "package": "GIStoBIM",
+            "lib": "DemoLib",
+            "type": "GIS2BIM_CreateBoundingBox",
+            "owningGraphName": "root",
+            "name": "GIS2BIM_CreateBoundingBox",
+            "uuid": "24efe64d-ed77-41bd-baa8-2f620257fd1b",
+            "inputs": [
+                {
+                    "name": "BoxHeight",
+                    "package": "PyFlowBase",
+                    "fullName": "GIS2BIM_CreateBoundingBox_BoxHeight",
+                    "dataType": "FloatPin",
+                    "direction": 0,
+                    "value": "100.0",
+                    "uuid": "e9649c5d-7f56-4420-8c6e-45d4850151a3",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "makeFloat",
+                            "outPinId": 1,
+                            "rhsNodeName": "GIS2BIM_CreateBoundingBox",
+                            "inPinId": 4,
+                            "lhsNodeUid": "5a5adb3a-7b33-4161-9105-dd73e3070216",
+                            "rhsNodeUid": "24efe64d-ed77-41bd-baa8-2f620257fd1b"
+                        }
+                    ],
+                    "pinIndex": 4,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "BoxHeight",
+                        "wires": {
+                            "4": {
+                                "sourceUUID": "b327fc8f-162c-40ec-9cbc-e39dd8509c1e",
+                                "destinationUUID": "e9649c5d-7f56-4420-8c6e-45d4850151a3",
+                                "sourceName": "makeFloat_out",
+                                "destinationName": "GIS2BIM_CreateBoundingBox_BoxHeight",
+                                "uuid": "736f4f5d-37ea-417f-a232-76361f34630f",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "CoordinateX",
+                    "package": "PyFlowBase",
+                    "fullName": "GIS2BIM_CreateBoundingBox_CoordinateX",
+                    "dataType": "FloatPin",
+                    "direction": 0,
+                    "value": "104748.931",
+                    "uuid": "5bad7974-26fb-43be-9437-f748f73619e2",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "stringToFloat",
+                            "outPinId": 1,
+                            "rhsNodeName": "GIS2BIM_CreateBoundingBox",
+                            "inPinId": 1,
+                            "lhsNodeUid": "200a7bab-45de-4f73-8ace-ee3fb0957a93",
+                            "rhsNodeUid": "24efe64d-ed77-41bd-baa8-2f620257fd1b"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "CoordinateX",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "467ca97e-ff03-4d10-b65e-3a8c18178eb2",
+                                "destinationUUID": "5bad7974-26fb-43be-9437-f748f73619e2",
+                                "sourceName": "stringToFloat_out",
+                                "destinationName": "GIS2BIM_CreateBoundingBox_CoordinateX",
+                                "uuid": "4f25131e-ee85-4711-b877-65642af2cff5",
                                 "hOffsetL": "0.0",
                                 "hOffsetR": "0.0",
                                 "hOffsetLSShape": "0.0",
@@ -88,9 +761,18 @@
                     "fullName": "GIS2BIM_CreateBoundingBox_CoordinateY",
                     "dataType": "FloatPin",
                     "direction": 0,
-                    "value": "0.0",
-                    "uuid": "fa07fd81-fe4d-45fd-a31c-ca0ab977e49f",
-                    "linkedTo": [],
+                    "value": "422855.148",
+                    "uuid": "2b13d7f3-abf5-4544-a31a-456442b573de",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "stringToFloat5",
+                            "outPinId": 1,
+                            "rhsNodeName": "GIS2BIM_CreateBoundingBox",
+                            "inPinId": 2,
+                            "lhsNodeUid": "d0865335-8dbb-4a10-8552-b994a4149cd4",
+                            "rhsNodeUid": "24efe64d-ed77-41bd-baa8-2f620257fd1b"
+                        }
+                    ],
                     "pinIndex": 2,
                     "options": [
                         256
@@ -102,19 +784,44 @@
                     "wrapper": {
                         "bLabelHidden": false,
                         "displayName": "CoordinateY",
-                        "wires": {}
+                        "wires": {
+                            "2": {
+                                "sourceUUID": "0c07857f-0c5d-4170-840c-5420b2451518",
+                                "destinationUUID": "2b13d7f3-abf5-4544-a31a-456442b573de",
+                                "sourceName": "stringToFloat5_out",
+                                "destinationName": "GIS2BIM_CreateBoundingBox_CoordinateY",
+                                "uuid": "6ee27463-7cb0-4403-9d12-c8953bd85bb0",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
                     }
                 },
                 {
-                    "name": "BoxHeight",
+                    "name": "DecimalNumbers",
                     "package": "PyFlowBase",
-                    "fullName": "GIS2BIM_CreateBoundingBox_BoxHeight",
-                    "dataType": "FloatPin",
+                    "fullName": "GIS2BIM_CreateBoundingBox_DecimalNumbers",
+                    "dataType": "IntPin",
                     "direction": 0,
-                    "value": "0.0",
-                    "uuid": "c7b080f5-0cdf-489d-8f36-800d58f6f02f",
-                    "linkedTo": [],
-                    "pinIndex": 4,
+                    "value": "0",
+                    "uuid": "4856c002-d84d-4967-96a4-e51efb9a6615",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "makeInt6",
+                            "outPinId": 1,
+                            "rhsNodeName": "GIS2BIM_CreateBoundingBox",
+                            "inPinId": 5,
+                            "lhsNodeUid": "27c3a1b2-d894-4f6a-a0bb-69abaebe5626",
+                            "rhsNodeUid": "24efe64d-ed77-41bd-baa8-2f620257fd1b"
+                        }
+                    ],
+                    "pinIndex": 5,
                     "options": [
                         256
                     ],
@@ -124,20 +831,45 @@
                     "alwaysDict": false,
                     "wrapper": {
                         "bLabelHidden": false,
-                        "displayName": "BoxHeight",
-                        "wires": {}
+                        "displayName": "DecimalNumbers",
+                        "wires": {
+                            "5": {
+                                "sourceUUID": "b6e1ea28-c427-4428-9e83-f6e754edc798",
+                                "destinationUUID": "4856c002-d84d-4967-96a4-e51efb9a6615",
+                                "sourceName": "makeInt6_out",
+                                "destinationName": "GIS2BIM_CreateBoundingBox_DecimalNumbers",
+                                "uuid": "c0eeb42f-6942-4114-b8b2-bb5cc4533d14",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
                     }
                 },
                 {
-                    "name": "CoordinateX",
+                    "name": "BoxWidth",
                     "package": "PyFlowBase",
-                    "fullName": "GIS2BIM_CreateBoundingBox_CoordinateX",
+                    "fullName": "GIS2BIM_CreateBoundingBox_BoxWidth",
                     "dataType": "FloatPin",
                     "direction": 0,
-                    "value": "0.0",
-                    "uuid": "7f3c523d-00c9-4eae-8e03-9c67f72e5e27",
-                    "linkedTo": [],
-                    "pinIndex": 1,
+                    "value": "100.0",
+                    "uuid": "f3de29ae-432b-4d00-9b37-4b70f5a29211",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "makeFloat",
+                            "outPinId": 1,
+                            "rhsNodeName": "GIS2BIM_CreateBoundingBox",
+                            "inPinId": 3,
+                            "lhsNodeUid": "5a5adb3a-7b33-4161-9105-dd73e3070216",
+                            "rhsNodeUid": "24efe64d-ed77-41bd-baa8-2f620257fd1b"
+                        }
+                    ],
+                    "pinIndex": 3,
                     "options": [
                         256
                     ],
@@ -147,8 +879,24 @@
                     "alwaysDict": false,
                     "wrapper": {
                         "bLabelHidden": false,
-                        "displayName": "CoordinateX",
-                        "wires": {}
+                        "displayName": "BoxWidth",
+                        "wires": {
+                            "3": {
+                                "sourceUUID": "b327fc8f-162c-40ec-9cbc-e39dd8509c1e",
+                                "destinationUUID": "f3de29ae-432b-4d00-9b37-4b70f5a29211",
+                                "sourceName": "makeFloat_out",
+                                "destinationName": "GIS2BIM_CreateBoundingBox_BoxWidth",
+                                "uuid": "acd12225-f7f0-46c2-bfcf-625d9fada6ce",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
                     }
                 }
             ],
@@ -159,9 +907,18 @@
                     "fullName": "GIS2BIM_CreateBoundingBox_out",
                     "dataType": "StringPin",
                     "direction": 1,
-                    "value": "\"0.0,0.0,0.0,0.0\"",
-                    "uuid": "f61da077-ae2f-4ec9-a938-56a808017b71",
-                    "linkedTo": [],
+                    "value": "\"104699.0,422805.0,104799.0,422905.0\"",
+                    "uuid": "8a45eebc-be70-42ab-8c57-1a66d2165e31",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "GIS2BIM_CreateBoundingBox",
+                            "outPinId": 1,
+                            "rhsNodeName": "GIS2BIM_WMSRequest",
+                            "inPinId": 2,
+                            "lhsNodeUid": "24efe64d-ed77-41bd-baa8-2f620257fd1b",
+                            "rhsNodeUid": "3fb46070-f99d-4c8c-aa41-6e2aaf9fe246"
+                        }
+                    ],
                     "pinIndex": 1,
                     "options": [
                         256
@@ -173,7 +930,23 @@
                     "wrapper": {
                         "bLabelHidden": false,
                         "displayName": "out",
-                        "wires": {}
+                        "wires": {
+                            "2": {
+                                "sourceUUID": "8a45eebc-be70-42ab-8c57-1a66d2165e31",
+                                "destinationUUID": "2ecacbc4-b6ea-4094-a7a2-b3c09872e2df",
+                                "sourceName": "GIS2BIM_CreateBoundingBox_out",
+                                "destinationName": "GIS2BIM_WMSRequest_boundingBoxString",
+                                "uuid": "70b27d80-056a-4ab0-8e3b-614b518756c0",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
                     }
                 }
             ],
@@ -190,25 +963,200 @@
                     "output": {}
                 }
             },
-            "x": -46.23067402985179,
-            "y": -90.69714763626853
+            "x": 645.3682998462028,
+            "y": -25.283886758756296
+        },
+        {
+            "package": "PyFactory",
+            "lib": "DemoLib",
+            "type": "listGetItemAtIndex",
+            "owningGraphName": "root",
+            "name": "listGetItemAtIndex",
+            "uuid": "22b03f75-5496-4cee-9f6f-f8fff1885ade",
+            "inputs": [
+                {
+                    "name": "list",
+                    "package": "PyFlowBase",
+                    "fullName": "listGetItemAtIndex_list",
+                    "dataType": "AnyPin",
+                    "direction": 0,
+                    "value": "[104748.931, 422855.148, \"http://geodata.nationaalgeoregister.nl/locatieserver/v3/free?wt=json&rows=1&q=dordrecht%20and%20zuidendijk%20and%20315\"]",
+                    "uuid": "c4bb0217-ea14-446f-8939-1e281468372d",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "GIS2BIM_GetLocationDataNetherlands",
+                            "outPinId": 1,
+                            "rhsNodeName": "listGetItemAtIndex",
+                            "inPinId": 1,
+                            "lhsNodeUid": "ffa5302c-ce5b-4cec-9b83-c83061460e67",
+                            "rhsNodeUid": "22b03f75-5496-4cee-9f6f-f8fff1885ade"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        16,
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "list",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "d1c4fa77-6d4c-4ac3-9f6d-c14a56e4eec9",
+                                "destinationUUID": "c4bb0217-ea14-446f-8939-1e281468372d",
+                                "sourceName": "GIS2BIM_GetLocationDataNetherlands_out",
+                                "destinationName": "listGetItemAtIndex_list",
+                                "uuid": "15706c78-87a9-48cb-a788-eef798adeb20",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    },
+                    "currDataType": "StringPin"
+                },
+                {
+                    "name": "index",
+                    "package": "PyFlowBase",
+                    "fullName": "listGetItemAtIndex_index",
+                    "dataType": "IntPin",
+                    "direction": 0,
+                    "value": "0",
+                    "uuid": "79566d2e-5e9f-4502-b89c-209ad0e0b9bb",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "makeInt",
+                            "outPinId": 1,
+                            "rhsNodeName": "listGetItemAtIndex",
+                            "inPinId": 2,
+                            "lhsNodeUid": "795cf806-5eef-4ba8-a41f-7226fce9a67d",
+                            "rhsNodeUid": "22b03f75-5496-4cee-9f6f-f8fff1885ade"
+                        }
+                    ],
+                    "pinIndex": 2,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "index",
+                        "wires": {
+                            "2": {
+                                "sourceUUID": "bfab1154-b250-4e5a-8bc7-939ea31a98af",
+                                "destinationUUID": "79566d2e-5e9f-4502-b89c-209ad0e0b9bb",
+                                "sourceName": "makeInt_out",
+                                "destinationName": "listGetItemAtIndex_index",
+                                "uuid": "8d8f3880-932d-4260-acc7-a42c50c7ec3e",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "out",
+                    "package": "PyFlowBase",
+                    "fullName": "listGetItemAtIndex_out",
+                    "dataType": "AnyPin",
+                    "direction": 1,
+                    "value": "\"104748.931\"",
+                    "uuid": "ca1e1331-9220-4b55-b30d-49323a5c4cca",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "listGetItemAtIndex",
+                            "outPinId": 1,
+                            "rhsNodeName": "stringToFloat",
+                            "inPinId": 1,
+                            "lhsNodeUid": "22b03f75-5496-4cee-9f6f-f8fff1885ade",
+                            "rhsNodeUid": "200a7bab-45de-4f73-8ace-ee3fb0957a93"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        16,
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "out",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "ca1e1331-9220-4b55-b30d-49323a5c4cca",
+                                "destinationUUID": "38fbb60e-1d21-4f36-bd35-1bec968bd38e",
+                                "sourceName": "listGetItemAtIndex_out",
+                                "destinationName": "stringToFloat_string",
+                                "uuid": "600ec830-f2a3-49fa-80ed-b37c20aeac9d",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    },
+                    "currDataType": "StringPin"
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "listGetItemAtIndex"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">listGetItemAtIndex</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": 186.95944165289012,
+            "y": -11.555390785803741
         },
         {
             "package": "PyFlowBase",
             "lib": "DefaultLib",
             "type": "makeInt",
             "owningGraphName": "root",
-            "name": "makeInt1",
-            "uuid": "cd294894-45ae-43d6-84d8-fb742dbe21cc",
+            "name": "makeInt",
+            "uuid": "795cf806-5eef-4ba8-a41f-7226fce9a67d",
             "inputs": [
                 {
                     "name": "i",
                     "package": "PyFlowBase",
-                    "fullName": "makeInt1_i",
+                    "fullName": "makeInt_i",
                     "dataType": "IntPin",
                     "direction": 0,
-                    "value": "40",
-                    "uuid": "17472927-2828-4def-a1a9-91d38f7fe408",
+                    "value": "0",
+                    "uuid": "90ebba1f-6134-48ee-992d-1a6209626a44",
                     "linkedTo": [],
                     "pinIndex": 1,
                     "options": [
@@ -229,19 +1177,19 @@
                 {
                     "name": "out",
                     "package": "PyFlowBase",
-                    "fullName": "makeInt1_out",
+                    "fullName": "makeInt_out",
                     "dataType": "IntPin",
                     "direction": 1,
                     "value": "0",
-                    "uuid": "430efda9-d4e2-4809-802f-e75aa119727d",
+                    "uuid": "bfab1154-b250-4e5a-8bc7-939ea31a98af",
                     "linkedTo": [
                         {
-                            "lhsNodeName": "makeInt1",
+                            "lhsNodeName": "makeInt",
                             "outPinId": 1,
-                            "rhsNodeName": "GIS2BIM_CreateBoundingBox",
-                            "inPinId": 5,
-                            "lhsNodeUid": "cd294894-45ae-43d6-84d8-fb742dbe21cc",
-                            "rhsNodeUid": "0924bc2e-a836-4b75-ac2c-40a14688376f"
+                            "rhsNodeName": "listGetItemAtIndex",
+                            "inPinId": 2,
+                            "lhsNodeUid": "795cf806-5eef-4ba8-a41f-7226fce9a67d",
+                            "rhsNodeUid": "22b03f75-5496-4cee-9f6f-f8fff1885ade"
                         }
                     ],
                     "pinIndex": 1,
@@ -256,12 +1204,12 @@
                         "bLabelHidden": false,
                         "displayName": "out",
                         "wires": {
-                            "5": {
-                                "sourceUUID": "430efda9-d4e2-4809-802f-e75aa119727d",
-                                "destinationUUID": "905e8782-3ff1-451b-8ed7-d9c317ba495a",
-                                "sourceName": "makeInt1_out",
-                                "destinationName": "GIS2BIM_CreateBoundingBox_DecimalNumbers",
-                                "uuid": "c58e8067-c096-4de4-a725-8c8474b63bb0",
+                            "2": {
+                                "sourceUUID": "bfab1154-b250-4e5a-8bc7-939ea31a98af",
+                                "destinationUUID": "79566d2e-5e9f-4502-b89c-209ad0e0b9bb",
+                                "sourceName": "makeInt_out",
+                                "destinationName": "listGetItemAtIndex_index",
+                                "uuid": "8d8f3880-932d-4260-acc7-a42c50c7ec3e",
                                 "hOffsetL": "0.0",
                                 "hOffsetR": "0.0",
                                 "hOffsetLSShape": "0.0",
@@ -277,19 +1225,1408 @@
             ],
             "meta": {
                 "var": {},
-                "label": "makeInt1"
+                "label": "makeInt"
             },
             "wrapper": {
                 "collapsed": false,
-                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">makeInt1</p></body></html>",
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">makeInt</p></body></html>",
                 "exposeInputsToCompound": false,
                 "groups": {
                     "input": {},
                     "output": {}
                 }
             },
-            "x": -232.1811526073007,
-            "y": 9.088941917011752
+            "x": 39.24521661428455,
+            "y": 5.586983251427625
+        },
+        {
+            "package": "PyFactory",
+            "lib": "DemoLib",
+            "type": "listGetItemAtIndex",
+            "owningGraphName": "root",
+            "name": "listGetItemAtIndex3",
+            "uuid": "bbf06a98-5535-4fe3-b5ba-adefc232aaa0",
+            "inputs": [
+                {
+                    "name": "list",
+                    "package": "PyFlowBase",
+                    "fullName": "listGetItemAtIndex3_list",
+                    "dataType": "AnyPin",
+                    "direction": 0,
+                    "value": "[104748.931, 422855.148, \"http://geodata.nationaalgeoregister.nl/locatieserver/v3/free?wt=json&rows=1&q=dordrecht%20and%20zuidendijk%20and%20315\"]",
+                    "uuid": "1bf54d23-5995-4429-8755-67594e17892c",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "GIS2BIM_GetLocationDataNetherlands",
+                            "outPinId": 1,
+                            "rhsNodeName": "listGetItemAtIndex3",
+                            "inPinId": 1,
+                            "lhsNodeUid": "ffa5302c-ce5b-4cec-9b83-c83061460e67",
+                            "rhsNodeUid": "bbf06a98-5535-4fe3-b5ba-adefc232aaa0"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        16,
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "list",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "d1c4fa77-6d4c-4ac3-9f6d-c14a56e4eec9",
+                                "destinationUUID": "1bf54d23-5995-4429-8755-67594e17892c",
+                                "sourceName": "GIS2BIM_GetLocationDataNetherlands_out",
+                                "destinationName": "listGetItemAtIndex3_list",
+                                "uuid": "f71c9166-18ca-4f5b-99c3-9d64f88f0c64",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    },
+                    "currDataType": "StringPin"
+                },
+                {
+                    "name": "index",
+                    "package": "PyFlowBase",
+                    "fullName": "listGetItemAtIndex3_index",
+                    "dataType": "IntPin",
+                    "direction": 0,
+                    "value": "1",
+                    "uuid": "ed9cb278-2f55-4ace-bd32-6ed695766b3f",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "makeInt4",
+                            "outPinId": 1,
+                            "rhsNodeName": "listGetItemAtIndex3",
+                            "inPinId": 2,
+                            "lhsNodeUid": "e631ac77-d128-4ed4-8ad8-15f7865ec7d0",
+                            "rhsNodeUid": "bbf06a98-5535-4fe3-b5ba-adefc232aaa0"
+                        }
+                    ],
+                    "pinIndex": 2,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "index",
+                        "wires": {
+                            "2": {
+                                "sourceUUID": "faccc078-dc72-4afc-9264-a3e562f1b543",
+                                "destinationUUID": "ed9cb278-2f55-4ace-bd32-6ed695766b3f",
+                                "sourceName": "makeInt4_out",
+                                "destinationName": "listGetItemAtIndex3_index",
+                                "uuid": "2aa9b459-99fe-4b30-bbc2-22faa73cdd5a",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "out",
+                    "package": "PyFlowBase",
+                    "fullName": "listGetItemAtIndex3_out",
+                    "dataType": "AnyPin",
+                    "direction": 1,
+                    "value": "\"422855.148\"",
+                    "uuid": "b988b435-0685-45fd-b326-da2016ab4807",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "listGetItemAtIndex3",
+                            "outPinId": 1,
+                            "rhsNodeName": "stringToFloat5",
+                            "inPinId": 1,
+                            "lhsNodeUid": "bbf06a98-5535-4fe3-b5ba-adefc232aaa0",
+                            "rhsNodeUid": "d0865335-8dbb-4a10-8552-b994a4149cd4"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        16,
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "out",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "b988b435-0685-45fd-b326-da2016ab4807",
+                                "destinationUUID": "58c2705e-97a6-4656-8af8-6cb9832edff2",
+                                "sourceName": "listGetItemAtIndex3_out",
+                                "destinationName": "stringToFloat5_string",
+                                "uuid": "ea729dc6-9951-4e62-950e-be216cb71953",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    },
+                    "currDataType": "StringPin"
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "listGetItemAtIndex3"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">listGetItemAtIndex3</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": 190.0440994717269,
+            "y": 264.04529928500017
+        },
+        {
+            "package": "PyFlowBase",
+            "lib": "DefaultLib",
+            "type": "makeInt",
+            "owningGraphName": "root",
+            "name": "makeInt4",
+            "uuid": "e631ac77-d128-4ed4-8ad8-15f7865ec7d0",
+            "inputs": [
+                {
+                    "name": "i",
+                    "package": "PyFlowBase",
+                    "fullName": "makeInt4_i",
+                    "dataType": "IntPin",
+                    "direction": 0,
+                    "value": "1",
+                    "uuid": "3f64f6b1-5cd1-4273-ae4e-0f4c13f201eb",
+                    "linkedTo": [],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "i",
+                        "wires": {}
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "out",
+                    "package": "PyFlowBase",
+                    "fullName": "makeInt4_out",
+                    "dataType": "IntPin",
+                    "direction": 1,
+                    "value": "1",
+                    "uuid": "faccc078-dc72-4afc-9264-a3e562f1b543",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "makeInt4",
+                            "outPinId": 1,
+                            "rhsNodeName": "listGetItemAtIndex3",
+                            "inPinId": 2,
+                            "lhsNodeUid": "e631ac77-d128-4ed4-8ad8-15f7865ec7d0",
+                            "rhsNodeUid": "bbf06a98-5535-4fe3-b5ba-adefc232aaa0"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "out",
+                        "wires": {
+                            "2": {
+                                "sourceUUID": "faccc078-dc72-4afc-9264-a3e562f1b543",
+                                "destinationUUID": "ed9cb278-2f55-4ace-bd32-6ed695766b3f",
+                                "sourceName": "makeInt4_out",
+                                "destinationName": "listGetItemAtIndex3_index",
+                                "uuid": "2aa9b459-99fe-4b30-bbc2-22faa73cdd5a",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "makeInt4"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">makeInt4</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": 55.5279866649723,
+            "y": 278.2114204524028
+        },
+        {
+            "package": "PyFactory",
+            "lib": "DemoLib",
+            "type": "stringToFloat",
+            "owningGraphName": "root",
+            "name": "stringToFloat",
+            "uuid": "200a7bab-45de-4f73-8ace-ee3fb0957a93",
+            "inputs": [
+                {
+                    "name": "string",
+                    "package": "PyFlowBase",
+                    "fullName": "stringToFloat_string",
+                    "dataType": "StringPin",
+                    "direction": 0,
+                    "value": "\"104748.931\"",
+                    "uuid": "38fbb60e-1d21-4f36-bd35-1bec968bd38e",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "listGetItemAtIndex",
+                            "outPinId": 1,
+                            "rhsNodeName": "stringToFloat",
+                            "inPinId": 1,
+                            "lhsNodeUid": "22b03f75-5496-4cee-9f6f-f8fff1885ade",
+                            "rhsNodeUid": "200a7bab-45de-4f73-8ace-ee3fb0957a93"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "string",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "ca1e1331-9220-4b55-b30d-49323a5c4cca",
+                                "destinationUUID": "38fbb60e-1d21-4f36-bd35-1bec968bd38e",
+                                "sourceName": "listGetItemAtIndex_out",
+                                "destinationName": "stringToFloat_string",
+                                "uuid": "600ec830-f2a3-49fa-80ed-b37c20aeac9d",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "out",
+                    "package": "PyFlowBase",
+                    "fullName": "stringToFloat_out",
+                    "dataType": "FloatPin",
+                    "direction": 1,
+                    "value": "104748.931",
+                    "uuid": "467ca97e-ff03-4d10-b65e-3a8c18178eb2",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "stringToFloat",
+                            "outPinId": 1,
+                            "rhsNodeName": "GIS2BIM_CreateBoundingBox",
+                            "inPinId": 1,
+                            "lhsNodeUid": "200a7bab-45de-4f73-8ace-ee3fb0957a93",
+                            "rhsNodeUid": "24efe64d-ed77-41bd-baa8-2f620257fd1b"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "out",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "467ca97e-ff03-4d10-b65e-3a8c18178eb2",
+                                "destinationUUID": "5bad7974-26fb-43be-9437-f748f73619e2",
+                                "sourceName": "stringToFloat_out",
+                                "destinationName": "GIS2BIM_CreateBoundingBox_CoordinateX",
+                                "uuid": "4f25131e-ee85-4711-b877-65642af2cff5",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "stringToFloat"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">stringToFloat</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": 351.02619529559865,
+            "y": -10.998567259104622
+        },
+        {
+            "package": "PyFactory",
+            "lib": "DemoLib",
+            "type": "stringToFloat",
+            "owningGraphName": "root",
+            "name": "stringToFloat5",
+            "uuid": "d0865335-8dbb-4a10-8552-b994a4149cd4",
+            "inputs": [
+                {
+                    "name": "string",
+                    "package": "PyFlowBase",
+                    "fullName": "stringToFloat5_string",
+                    "dataType": "StringPin",
+                    "direction": 0,
+                    "value": "\"422855.148\"",
+                    "uuid": "58c2705e-97a6-4656-8af8-6cb9832edff2",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "listGetItemAtIndex3",
+                            "outPinId": 1,
+                            "rhsNodeName": "stringToFloat5",
+                            "inPinId": 1,
+                            "lhsNodeUid": "bbf06a98-5535-4fe3-b5ba-adefc232aaa0",
+                            "rhsNodeUid": "d0865335-8dbb-4a10-8552-b994a4149cd4"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "string",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "b988b435-0685-45fd-b326-da2016ab4807",
+                                "destinationUUID": "58c2705e-97a6-4656-8af8-6cb9832edff2",
+                                "sourceName": "listGetItemAtIndex3_out",
+                                "destinationName": "stringToFloat5_string",
+                                "uuid": "ea729dc6-9951-4e62-950e-be216cb71953",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "out",
+                    "package": "PyFlowBase",
+                    "fullName": "stringToFloat5_out",
+                    "dataType": "FloatPin",
+                    "direction": 1,
+                    "value": "422855.148",
+                    "uuid": "0c07857f-0c5d-4170-840c-5420b2451518",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "stringToFloat5",
+                            "outPinId": 1,
+                            "rhsNodeName": "GIS2BIM_CreateBoundingBox",
+                            "inPinId": 2,
+                            "lhsNodeUid": "d0865335-8dbb-4a10-8552-b994a4149cd4",
+                            "rhsNodeUid": "24efe64d-ed77-41bd-baa8-2f620257fd1b"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "out",
+                        "wires": {
+                            "2": {
+                                "sourceUUID": "0c07857f-0c5d-4170-840c-5420b2451518",
+                                "destinationUUID": "2b13d7f3-abf5-4544-a31a-456442b573de",
+                                "sourceName": "stringToFloat5_out",
+                                "destinationName": "GIS2BIM_CreateBoundingBox_CoordinateY",
+                                "uuid": "6ee27463-7cb0-4403-9d12-c8953bd85bb0",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "stringToFloat5"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">stringToFloat5</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": 344.96834044013104,
+            "y": 265.3088329014395
+        },
+        {
+            "package": "PyFlowBase",
+            "lib": "DefaultLib",
+            "type": "makeFloat",
+            "owningGraphName": "root",
+            "name": "makeFloat",
+            "uuid": "5a5adb3a-7b33-4161-9105-dd73e3070216",
+            "inputs": [
+                {
+                    "name": "f",
+                    "package": "PyFlowBase",
+                    "fullName": "makeFloat_f",
+                    "dataType": "FloatPin",
+                    "direction": 0,
+                    "value": "100.0",
+                    "uuid": "4ed80e59-e55c-4e80-b712-866f28aa9bdc",
+                    "linkedTo": [],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "f",
+                        "wires": {}
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "out",
+                    "package": "PyFlowBase",
+                    "fullName": "makeFloat_out",
+                    "dataType": "FloatPin",
+                    "direction": 1,
+                    "value": "100.0",
+                    "uuid": "b327fc8f-162c-40ec-9cbc-e39dd8509c1e",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "makeFloat",
+                            "outPinId": 1,
+                            "rhsNodeName": "GIS2BIM_CreateBoundingBox",
+                            "inPinId": 4,
+                            "lhsNodeUid": "5a5adb3a-7b33-4161-9105-dd73e3070216",
+                            "rhsNodeUid": "24efe64d-ed77-41bd-baa8-2f620257fd1b"
+                        },
+                        {
+                            "lhsNodeName": "makeFloat",
+                            "outPinId": 1,
+                            "rhsNodeName": "GIS2BIM_CreateBoundingBox",
+                            "inPinId": 3,
+                            "lhsNodeUid": "5a5adb3a-7b33-4161-9105-dd73e3070216",
+                            "rhsNodeUid": "24efe64d-ed77-41bd-baa8-2f620257fd1b"
+                        },
+                        {
+                            "lhsNodeName": "makeFloat",
+                            "outPinId": 1,
+                            "rhsNodeName": "GIS2BIM_Test",
+                            "inPinId": 1,
+                            "lhsNodeUid": "5a5adb3a-7b33-4161-9105-dd73e3070216",
+                            "rhsNodeUid": "ddb8e8e9-b3ca-4e3b-8f79-2276fc8a9da5"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "out",
+                        "wires": {
+                            "4": {
+                                "sourceUUID": "b327fc8f-162c-40ec-9cbc-e39dd8509c1e",
+                                "destinationUUID": "e9649c5d-7f56-4420-8c6e-45d4850151a3",
+                                "sourceName": "makeFloat_out",
+                                "destinationName": "GIS2BIM_CreateBoundingBox_BoxHeight",
+                                "uuid": "736f4f5d-37ea-417f-a232-76361f34630f",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            },
+                            "3": {
+                                "sourceUUID": "b327fc8f-162c-40ec-9cbc-e39dd8509c1e",
+                                "destinationUUID": "f3de29ae-432b-4d00-9b37-4b70f5a29211",
+                                "sourceName": "makeFloat_out",
+                                "destinationName": "GIS2BIM_CreateBoundingBox_BoxWidth",
+                                "uuid": "acd12225-f7f0-46c2-bfcf-625d9fada6ce",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            },
+                            "1": {
+                                "sourceUUID": "b327fc8f-162c-40ec-9cbc-e39dd8509c1e",
+                                "destinationUUID": "05e2ceb9-78b8-4418-a083-fdf3a05d0e16",
+                                "sourceName": "makeFloat_out",
+                                "destinationName": "GIS2BIM_Test_X",
+                                "uuid": "77d6bfd3-35f2-4dc4-acf8-4dec03825bd3",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "makeFloat"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">makeFloat</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": -435.916388003079,
+            "y": 200.63451728597354
+        },
+        {
+            "package": "PyFlowBase",
+            "lib": "DefaultLib",
+            "type": "makeInt",
+            "owningGraphName": "root",
+            "name": "makeInt6",
+            "uuid": "27c3a1b2-d894-4f6a-a0bb-69abaebe5626",
+            "inputs": [
+                {
+                    "name": "i",
+                    "package": "PyFlowBase",
+                    "fullName": "makeInt6_i",
+                    "dataType": "IntPin",
+                    "direction": 0,
+                    "value": "0",
+                    "uuid": "6bdd15bd-038d-4c70-a558-67356dc8c849",
+                    "linkedTo": [],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "i",
+                        "wires": {}
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "out",
+                    "package": "PyFlowBase",
+                    "fullName": "makeInt6_out",
+                    "dataType": "IntPin",
+                    "direction": 1,
+                    "value": "0",
+                    "uuid": "b6e1ea28-c427-4428-9e83-f6e754edc798",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "makeInt6",
+                            "outPinId": 1,
+                            "rhsNodeName": "GIS2BIM_CreateBoundingBox",
+                            "inPinId": 5,
+                            "lhsNodeUid": "27c3a1b2-d894-4f6a-a0bb-69abaebe5626",
+                            "rhsNodeUid": "24efe64d-ed77-41bd-baa8-2f620257fd1b"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "out",
+                        "wires": {
+                            "5": {
+                                "sourceUUID": "b6e1ea28-c427-4428-9e83-f6e754edc798",
+                                "destinationUUID": "4856c002-d84d-4967-96a4-e51efb9a6615",
+                                "sourceName": "makeInt6_out",
+                                "destinationName": "GIS2BIM_CreateBoundingBox_DecimalNumbers",
+                                "uuid": "c0eeb42f-6942-4114-b8b2-bb5cc4533d14",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "makeInt6"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">makeInt6</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": 665.5996945514959,
+            "y": 313.8447793712517
+        },
+        {
+            "package": "GIStoBIM",
+            "lib": "DemoLib",
+            "type": "GIS2BIM_WMSRequest",
+            "owningGraphName": "root",
+            "name": "GIS2BIM_WMSRequest",
+            "uuid": "3fb46070-f99d-4c8c-aa41-6e2aaf9fe246",
+            "inputs": [
+                {
+                    "name": "boundingBoxString",
+                    "package": "PyFlowBase",
+                    "fullName": "GIS2BIM_WMSRequest_boundingBoxString",
+                    "dataType": "StringPin",
+                    "direction": 0,
+                    "value": "\"104699.0,422805.0,104799.0,422905.0\"",
+                    "uuid": "2ecacbc4-b6ea-4094-a7a2-b3c09872e2df",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "GIS2BIM_CreateBoundingBox",
+                            "outPinId": 1,
+                            "rhsNodeName": "GIS2BIM_WMSRequest",
+                            "inPinId": 2,
+                            "lhsNodeUid": "24efe64d-ed77-41bd-baa8-2f620257fd1b",
+                            "rhsNodeUid": "3fb46070-f99d-4c8c-aa41-6e2aaf9fe246"
+                        }
+                    ],
+                    "pinIndex": 2,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "boundingBoxString",
+                        "wires": {
+                            "2": {
+                                "sourceUUID": "8a45eebc-be70-42ab-8c57-1a66d2165e31",
+                                "destinationUUID": "2ecacbc4-b6ea-4094-a7a2-b3c09872e2df",
+                                "sourceName": "GIS2BIM_CreateBoundingBox_out",
+                                "destinationName": "GIS2BIM_WMSRequest_boundingBoxString",
+                                "uuid": "70b27d80-056a-4ab0-8e3b-614b518756c0",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "serverName",
+                    "package": "PyFlowBase",
+                    "fullName": "GIS2BIM_WMSRequest_serverName",
+                    "dataType": "StringPin",
+                    "direction": 0,
+                    "value": "\"http://geodata.nationaalgeoregister.nl/luchtfoto/rgb/wms?&request=GetMap&VERSION=1.3.0&STYLES=&layers=2019_ortho25&width=3000&height=3000&format=image/png&crs=EPSG:28992&bbox=\"",
+                    "uuid": "ab840ccf-a885-4af9-a28b-1d7d6318e0f9",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "GIS2BIM_Test",
+                            "outPinId": 1,
+                            "rhsNodeName": "GIS2BIM_WMSRequest",
+                            "inPinId": 1,
+                            "lhsNodeUid": "ddb8e8e9-b3ca-4e3b-8f79-2276fc8a9da5",
+                            "rhsNodeUid": "3fb46070-f99d-4c8c-aa41-6e2aaf9fe246"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "serverName",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "f0f185a5-4f2e-445a-b598-03a560cfe436",
+                                "destinationUUID": "ab840ccf-a885-4af9-a28b-1d7d6318e0f9",
+                                "sourceName": "GIS2BIM_Test_out",
+                                "destinationName": "GIS2BIM_WMSRequest_serverName",
+                                "uuid": "415d6099-0c1f-4bda-94a1-f2eb218d6e8d",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "fileLocation",
+                    "package": "PyFlowBase",
+                    "fullName": "GIS2BIM_WMSRequest_fileLocation",
+                    "dataType": "StringPin",
+                    "direction": 0,
+                    "value": "\"C:\\\\TEMP\\\\test6.jpg\"",
+                    "uuid": "510fbd0e-a1f7-426f-96d3-1facafe99d98",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "makeString7",
+                            "outPinId": 1,
+                            "rhsNodeName": "GIS2BIM_WMSRequest",
+                            "inPinId": 3,
+                            "lhsNodeUid": "591b1379-6ce7-4a21-a390-5b2ec54be16d",
+                            "rhsNodeUid": "3fb46070-f99d-4c8c-aa41-6e2aaf9fe246"
+                        }
+                    ],
+                    "pinIndex": 3,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "fileLocation",
+                        "wires": {
+                            "3": {
+                                "sourceUUID": "6a97df49-b6ef-49fa-8476-18c39586bbc5",
+                                "destinationUUID": "510fbd0e-a1f7-426f-96d3-1facafe99d98",
+                                "sourceName": "makeString7_out",
+                                "destinationName": "GIS2BIM_WMSRequest_fileLocation",
+                                "uuid": "4054915a-27d3-4c91-9682-38297f63e54b",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "out",
+                    "package": "PyFlowBase",
+                    "fullName": "GIS2BIM_WMSRequest_out",
+                    "dataType": "StringPin",
+                    "direction": 1,
+                    "value": "\"empty\"",
+                    "uuid": "8c45d418-f925-4657-8ce5-49f4a9a9f584",
+                    "linkedTo": [],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "out",
+                        "wires": {}
+                    }
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "GIS2BIM_WMSRequest"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">GIS2BIM_WMSRequest</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": 1010.455553214493,
+            "y": -248.58692055015626
+        },
+        {
+            "package": "PyFlowBase",
+            "lib": "DefaultLib",
+            "type": "makeString",
+            "owningGraphName": "root",
+            "name": "makeString7",
+            "uuid": "591b1379-6ce7-4a21-a390-5b2ec54be16d",
+            "inputs": [
+                {
+                    "name": "s",
+                    "package": "PyFlowBase",
+                    "fullName": "makeString7_s",
+                    "dataType": "StringPin",
+                    "direction": 0,
+                    "value": "\"C:\\\\TEMP\\\\test6.jpg\"",
+                    "uuid": "73824cc0-68cd-471e-981b-69c489923b29",
+                    "linkedTo": [],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "s",
+                        "wires": {}
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "out",
+                    "package": "PyFlowBase",
+                    "fullName": "makeString7_out",
+                    "dataType": "StringPin",
+                    "direction": 1,
+                    "value": "\"C:\\\\TEMP\\\\test6.jpg\"",
+                    "uuid": "6a97df49-b6ef-49fa-8476-18c39586bbc5",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "makeString7",
+                            "outPinId": 1,
+                            "rhsNodeName": "imageDisplay",
+                            "inPinId": 2,
+                            "lhsNodeUid": "591b1379-6ce7-4a21-a390-5b2ec54be16d",
+                            "rhsNodeUid": "87c7d90e-92df-464f-9574-df9c3a0188f2"
+                        },
+                        {
+                            "lhsNodeName": "makeString7",
+                            "outPinId": 1,
+                            "rhsNodeName": "GIS2BIM_WMSRequest",
+                            "inPinId": 3,
+                            "lhsNodeUid": "591b1379-6ce7-4a21-a390-5b2ec54be16d",
+                            "rhsNodeUid": "3fb46070-f99d-4c8c-aa41-6e2aaf9fe246"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "out",
+                        "wires": {
+                            "2": {
+                                "sourceUUID": "6a97df49-b6ef-49fa-8476-18c39586bbc5",
+                                "destinationUUID": "00b6e6f0-9762-474f-86c5-f7e4713c8851",
+                                "sourceName": "makeString7_out",
+                                "destinationName": "imageDisplay_path",
+                                "uuid": "a4b9905e-929c-4d96-9d1d-664042a8a8b9",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            },
+                            "3": {
+                                "sourceUUID": "6a97df49-b6ef-49fa-8476-18c39586bbc5",
+                                "destinationUUID": "510fbd0e-a1f7-426f-96d3-1facafe99d98",
+                                "sourceName": "makeString7_out",
+                                "destinationName": "GIS2BIM_WMSRequest_fileLocation",
+                                "uuid": "4054915a-27d3-4c91-9682-38297f63e54b",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "makeString7"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">makeString7</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": 695.8670326253873,
+            "y": -207.11737527995024
+        },
+        {
+            "package": "PyFlowBase",
+            "lib": null,
+            "type": "imageDisplay",
+            "owningGraphName": "root",
+            "name": "imageDisplay",
+            "uuid": "87c7d90e-92df-464f-9574-df9c3a0188f2",
+            "inputs": [
+                {
+                    "name": "path",
+                    "package": "PyFlowBase",
+                    "fullName": "imageDisplay_path",
+                    "dataType": "StringPin",
+                    "direction": 0,
+                    "value": "\"C:\\\\TEMP\\\\test6.jpg\"",
+                    "uuid": "00b6e6f0-9762-474f-86c5-f7e4713c8851",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "makeString7",
+                            "outPinId": 1,
+                            "rhsNodeName": "imageDisplay",
+                            "inPinId": 2,
+                            "lhsNodeUid": "591b1379-6ce7-4a21-a390-5b2ec54be16d",
+                            "rhsNodeUid": "87c7d90e-92df-464f-9574-df9c3a0188f2"
+                        }
+                    ],
+                    "pinIndex": 2,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "path",
+                        "wires": {
+                            "2": {
+                                "sourceUUID": "6a97df49-b6ef-49fa-8476-18c39586bbc5",
+                                "destinationUUID": "00b6e6f0-9762-474f-86c5-f7e4713c8851",
+                                "sourceName": "makeString7_out",
+                                "destinationName": "imageDisplay_path",
+                                "uuid": "a4b9905e-929c-4d96-9d1d-664042a8a8b9",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "inExec",
+                    "package": "PyFlowBase",
+                    "fullName": "imageDisplay_inExec",
+                    "dataType": "ExecPin",
+                    "direction": 0,
+                    "value": "null",
+                    "uuid": "041f88fb-795e-4a40-9c33-6a4cb42e9af4",
+                    "linkedTo": [],
+                    "pinIndex": 1,
+                    "options": [
+                        8,
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "inExec",
+                        "wires": {}
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "outExec",
+                    "package": "PyFlowBase",
+                    "fullName": "imageDisplay_outExec",
+                    "dataType": "ExecPin",
+                    "direction": 1,
+                    "value": "null",
+                    "uuid": "fad27fb5-010e-47c0-9190-0ccb4ea100c3",
+                    "linkedTo": [],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "outExec",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "failed",
+                    "package": "PyFlowBase",
+                    "fullName": "imageDisplay_failed",
+                    "dataType": "ExecPin",
+                    "direction": 1,
+                    "value": "null",
+                    "uuid": "d9388fee-ce20-48ac-800d-f1e263b6b129",
+                    "linkedTo": [],
+                    "pinIndex": 2,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "failed",
+                        "wires": {}
+                    }
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "imageDisplay"
+            },
+            "wrapper": {
+                "resize": {
+                    "w": 379.92809115585874,
+                    "h": 386.03741178447336
+                },
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">imageDisplay</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": 882.8162122945072,
+            "y": -12.760781046021082
+        },
+        {
+            "package": "PyFlowBase",
+            "lib": null,
+            "type": "commentNode",
+            "owningGraphName": "root",
+            "name": "Enter City, Streetname and Housenumber and bouwndingboxWidth in The Nehterlands",
+            "uuid": "0fad435f-cf66-43d2-ae78-24b175bd4281",
+            "inputs": [],
+            "outputs": [],
+            "meta": {
+                "var": {},
+                "label": "Enter City, Streetname and Housenumber and bouwndingboxWidth in The Nehterlands"
+            },
+            "wrapper": {
+                "resize": {
+                    "w": 204.4379339005092,
+                    "h": 368.5265554439742
+                },
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Enter City, Streetname and Housenumber and bouwndingboxWidth in The Nehterlands</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                },
+                "owningNodes": [
+                    "makeString2",
+                    "makeString",
+                    "makeFloat",
+                    "makeString1"
+                ],
+                "color": 1342177280
+            },
+            "x": -441.81787014876085,
+            "y": -110.09763289038241
+        },
+        {
+            "package": "PyFlowBase",
+            "lib": null,
+            "type": "stickyNote",
+            "owningGraphName": "root",
+            "name": "stickyNote",
+            "uuid": "2e3beeb7-31cd-4171-bf56-e041f16732b8",
+            "inputs": [],
+            "outputs": [],
+            "meta": {
+                "var": {},
+                "label": "stickyNote"
+            },
+            "wrapper": {
+                "resize": {
+                    "w": 66.0,
+                    "h": 74.0
+                },
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">stickyNote</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                },
+                "color": 4294967176,
+                "textColor": 4278190080,
+                "currentText": "City"
+            },
+            "x": -535.7160691503406,
+            "y": -72.47157501480194
+        },
+        {
+            "package": "PyFlowBase",
+            "lib": null,
+            "type": "stickyNote",
+            "owningGraphName": "root",
+            "name": "stickyNote9",
+            "uuid": "9fd87a63-3d15-4775-971b-a339d6be158c",
+            "inputs": [],
+            "outputs": [],
+            "meta": {
+                "var": {},
+                "label": "stickyNote9"
+            },
+            "wrapper": {
+                "resize": {
+                    "w": 66.0,
+                    "h": 74.0
+                },
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">stickyNote9</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                },
+                "color": 4294967176,
+                "textColor": 4278190080,
+                "currentText": "Streetname"
+            },
+            "x": -537.3904389858002,
+            "y": 19.364107721241112
+        },
+        {
+            "package": "PyFlowBase",
+            "lib": null,
+            "type": "stickyNote",
+            "owningGraphName": "root",
+            "name": "stickyNote10",
+            "uuid": "52a840ea-7605-4cfb-af72-93d363bc7ec6",
+            "inputs": [],
+            "outputs": [],
+            "meta": {
+                "var": {},
+                "label": "stickyNote10"
+            },
+            "wrapper": {
+                "resize": {
+                    "w": 66.0,
+                    "h": 74.0
+                },
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">stickyNote10</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                },
+                "color": 4294967176,
+                "textColor": 4278190080,
+                "currentText": "HouseNumber"
+            },
+            "x": -537.2549301258038,
+            "y": 105.57858356754514
+        },
+        {
+            "package": "PyFlowBase",
+            "lib": null,
+            "type": "stickyNote",
+            "owningGraphName": "root",
+            "name": "stickyNote11",
+            "uuid": "7a8d92d7-3fb6-4cf7-899b-0263eed9cb18",
+            "inputs": [],
+            "outputs": [],
+            "meta": {
+                "var": {},
+                "label": "stickyNote11"
+            },
+            "wrapper": {
+                "resize": {
+                    "w": 66.0,
+                    "h": 74.0
+                },
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">stickyNote11</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                },
+                "color": 4294967176,
+                "textColor": 4278190080,
+                "currentText": "BoundingboxWidth"
+            },
+            "x": -537.5388144617651,
+            "y": 196.58992879566472
         }
     ],
     "depth": 1,
