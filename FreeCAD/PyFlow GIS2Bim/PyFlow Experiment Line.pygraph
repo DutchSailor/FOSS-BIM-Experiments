@@ -1,0 +1,676 @@
+{
+    "name": "root",
+    "category": "",
+    "vars": [],
+    "nodes": [
+        {
+            "package": "PyFactory",
+            "lib": "DemoLib",
+            "type": "FreeCAD_DocumentActive",
+            "owningGraphName": "root",
+            "name": "FreeCAD_DocumentActive",
+            "uuid": "667739cf-d412-429d-a084-1609075a57af",
+            "inputs": [
+                {
+                    "name": "test",
+                    "package": "PyFlowBase",
+                    "fullName": "FreeCAD_DocumentActive_test",
+                    "dataType": "AnyPin",
+                    "direction": 0,
+                    "value": "\"5\"",
+                    "uuid": "82d0c372-e4ba-41a9-be30-1160e36be821",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "makeString",
+                            "outPinId": 1,
+                            "rhsNodeName": "FreeCAD_DocumentActive",
+                            "inPinId": 1,
+                            "lhsNodeUid": "9d3dead2-b2e0-4621-954c-c1eaadbe25fa",
+                            "rhsNodeUid": "667739cf-d412-429d-a084-1609075a57af"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        16,
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "test",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "f15d229a-ec3c-4919-89c6-0e72fb7be2ad",
+                                "destinationUUID": "82d0c372-e4ba-41a9-be30-1160e36be821",
+                                "sourceName": "makeString_out",
+                                "destinationName": "FreeCAD_DocumentActive_test",
+                                "uuid": "47889767-6729-433e-9b90-9fea1a6f514c",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    },
+                    "currDataType": "StringPin"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "out",
+                    "package": "PyFlowBase",
+                    "fullName": "FreeCAD_DocumentActive_out",
+                    "dataType": "AnyPin",
+                    "direction": 1,
+                    "value": "0",
+                    "uuid": "01b5a301-2d8d-453f-8a24-0e860358c31a",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "FreeCAD_DocumentActive",
+                            "outPinId": 1,
+                            "rhsNodeName": "consoleOutput",
+                            "inPinId": 2,
+                            "lhsNodeUid": "667739cf-d412-429d-a084-1609075a57af",
+                            "rhsNodeUid": "93ee7718-4f3f-4855-b7a6-b753c9ec9eff"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        16,
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "out",
+                        "wires": {
+                            "2": {
+                                "sourceUUID": "01b5a301-2d8d-453f-8a24-0e860358c31a",
+                                "destinationUUID": "b459c7a1-239d-4c98-9699-76b8912e1d48",
+                                "sourceName": "FreeCAD_DocumentActive_out",
+                                "destinationName": "consoleOutput_entity",
+                                "uuid": "869c7695-93b6-4528-bb29-ef982085f465",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    },
+                    "currDataType": "IntPin"
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "FreeCAD_DocumentActive"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">FreeCAD_DocumentActive</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": -185.82114603890716,
+            "y": -57.49949289034625
+        },
+        {
+            "package": "PyFactory",
+            "lib": "DemoLib",
+            "type": "FreeCAD_DocumentFileName",
+            "owningGraphName": "root",
+            "name": "FreeCAD_DocumentFileName",
+            "uuid": "117329ed-8392-4ab0-9d1a-36c8b88214e2",
+            "inputs": [
+                {
+                    "name": "FreeCADDocument",
+                    "package": "PyFlowBase",
+                    "fullName": "FreeCAD_DocumentFileName_FreeCADDocument",
+                    "dataType": "AnyPin",
+                    "direction": 0,
+                    "value": null,
+                    "uuid": "cb7783c2-ee8d-4acd-86b3-0b5cf0b22d2f",
+                    "linkedTo": [],
+                    "pinIndex": 1,
+                    "options": [
+                        16,
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "FreeCADDocument",
+                        "wires": {}
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "out",
+                    "package": "PyFlowBase",
+                    "fullName": "FreeCAD_DocumentFileName_out",
+                    "dataType": "AnyPin",
+                    "direction": 1,
+                    "value": "0",
+                    "uuid": "43ecef0a-be51-47b5-85a4-828a6a8da901",
+                    "linkedTo": [],
+                    "pinIndex": 1,
+                    "options": [
+                        16,
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "out",
+                        "wires": {}
+                    },
+                    "currDataType": "IntPin"
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "FreeCAD_DocumentFileName"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">FreeCAD_DocumentFileName</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": -18.43756338870672,
+            "y": -180.68812120932586
+        },
+        {
+            "package": "PyFlowBase",
+            "lib": "DefaultLib",
+            "type": "makeString",
+            "owningGraphName": "root",
+            "name": "makeString",
+            "uuid": "9d3dead2-b2e0-4621-954c-c1eaadbe25fa",
+            "inputs": [
+                {
+                    "name": "s",
+                    "package": "PyFlowBase",
+                    "fullName": "makeString_s",
+                    "dataType": "StringPin",
+                    "direction": 0,
+                    "value": "\"5\"",
+                    "uuid": "9e26cd79-0ced-4165-8a2b-b9b38c131808",
+                    "linkedTo": [],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "s",
+                        "wires": {}
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "out",
+                    "package": "PyFlowBase",
+                    "fullName": "makeString_out",
+                    "dataType": "StringPin",
+                    "direction": 1,
+                    "value": "\"5\"",
+                    "uuid": "f15d229a-ec3c-4919-89c6-0e72fb7be2ad",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "makeString",
+                            "outPinId": 1,
+                            "rhsNodeName": "FreeCAD_DocumentActive",
+                            "inPinId": 1,
+                            "lhsNodeUid": "9d3dead2-b2e0-4621-954c-c1eaadbe25fa",
+                            "rhsNodeUid": "667739cf-d412-429d-a084-1609075a57af"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "out",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "f15d229a-ec3c-4919-89c6-0e72fb7be2ad",
+                                "destinationUUID": "82d0c372-e4ba-41a9-be30-1160e36be821",
+                                "sourceName": "makeString_out",
+                                "destinationName": "FreeCAD_DocumentActive_test",
+                                "uuid": "47889767-6729-433e-9b90-9fea1a6f514c",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "makeString"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">makeString</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": -333.4565035728959,
+            "y": -68.48237830091067
+        },
+        {
+            "package": "PyFlowBase",
+            "lib": null,
+            "type": "consoleOutput",
+            "owningGraphName": "root",
+            "name": "consoleOutput",
+            "uuid": "93ee7718-4f3f-4855-b7a6-b753c9ec9eff",
+            "inputs": [
+                {
+                    "name": "entity",
+                    "package": "PyFlowBase",
+                    "fullName": "consoleOutput_entity",
+                    "dataType": "AnyPin",
+                    "direction": 0,
+                    "value": "0",
+                    "uuid": "b459c7a1-239d-4c98-9699-76b8912e1d48",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "FreeCAD_DocumentActive",
+                            "outPinId": 1,
+                            "rhsNodeName": "consoleOutput",
+                            "inPinId": 2,
+                            "lhsNodeUid": "667739cf-d412-429d-a084-1609075a57af",
+                            "rhsNodeUid": "93ee7718-4f3f-4855-b7a6-b753c9ec9eff"
+                        }
+                    ],
+                    "pinIndex": 2,
+                    "options": [
+                        16,
+                        256,
+                        512
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "entity",
+                        "wires": {
+                            "2": {
+                                "sourceUUID": "01b5a301-2d8d-453f-8a24-0e860358c31a",
+                                "destinationUUID": "b459c7a1-239d-4c98-9699-76b8912e1d48",
+                                "sourceName": "FreeCAD_DocumentActive_out",
+                                "destinationName": "consoleOutput_entity",
+                                "uuid": "869c7695-93b6-4528-bb29-ef982085f465",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    },
+                    "currDataType": "IntPin"
+                },
+                {
+                    "name": "inExec",
+                    "package": "PyFlowBase",
+                    "fullName": "consoleOutput_inExec",
+                    "dataType": "ExecPin",
+                    "direction": 0,
+                    "value": "null",
+                    "uuid": "86436c23-faab-46ac-84de-d63f45d6e1bd",
+                    "linkedTo": [],
+                    "pinIndex": 1,
+                    "options": [
+                        8,
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "inExec",
+                        "wires": {}
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "outExec",
+                    "package": "PyFlowBase",
+                    "fullName": "consoleOutput_outExec",
+                    "dataType": "ExecPin",
+                    "direction": 1,
+                    "value": "null",
+                    "uuid": "82fcd2a2-2766-4b7d-850f-4de05703653e",
+                    "linkedTo": [],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "outExec",
+                        "wires": {}
+                    }
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "consoleOutput"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">consoleOutput</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": 149.0808696858284,
+            "y": -69.00916582630236
+        },
+        {
+            "package": "PyFlowFreeCAD",
+            "lib": "Vector",
+            "type": "vecCreate",
+            "owningGraphName": "root",
+            "name": "vecCreate",
+            "uuid": "20c1ffc5-a12d-4015-b18a-979b9cb54814",
+            "inputs": [
+                {
+                    "name": "X",
+                    "package": "PyFlowFreeCAD",
+                    "fullName": "vecCreate_X",
+                    "dataType": "Float",
+                    "direction": 0,
+                    "value": "0.0",
+                    "uuid": "d88ec67e-0647-49db-af35-015a57bbcf86",
+                    "linkedTo": [],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "X",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "Z",
+                    "package": "PyFlowFreeCAD",
+                    "fullName": "vecCreate_Z",
+                    "dataType": "Float",
+                    "direction": 0,
+                    "value": "0.0",
+                    "uuid": "b6fb0179-c576-402b-b4c8-0af3f07c5ad7",
+                    "linkedTo": [],
+                    "pinIndex": 3,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Z",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "Y",
+                    "package": "PyFlowFreeCAD",
+                    "fullName": "vecCreate_Y",
+                    "dataType": "Float",
+                    "direction": 0,
+                    "value": "0.0",
+                    "uuid": "56e38f6b-36b9-467b-aaeb-8a4726b13cdc",
+                    "linkedTo": [],
+                    "pinIndex": 2,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Y",
+                        "wires": {}
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "out",
+                    "package": "PyFlowFreeCAD",
+                    "fullName": "vecCreate_out",
+                    "dataType": "VectorPin",
+                    "direction": 1,
+                    "value": "{\"Vector\": [0.0, 0.0, 0.0]}",
+                    "uuid": "db7325d1-b304-457a-a3dd-c47b0489f3ec",
+                    "linkedTo": [],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "out",
+                        "wires": {}
+                    }
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "vecCreate"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">vecCreate</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": -150.70135834305398,
+            "y": 31.469490408096526
+        },
+        {
+            "package": "PyFlowFreeCAD",
+            "lib": "Vector",
+            "type": "vecCreate",
+            "owningGraphName": "root",
+            "name": "vecCreate1",
+            "uuid": "261a2917-9b73-4dbb-ac69-c2a08e49cb56",
+            "inputs": [
+                {
+                    "name": "X",
+                    "package": "PyFlowFreeCAD",
+                    "fullName": "vecCreate1_X",
+                    "dataType": "Float",
+                    "direction": 0,
+                    "value": "0.0",
+                    "uuid": "a1e14428-efc5-42eb-9cab-4a5e8132a370",
+                    "linkedTo": [],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "X",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "Y",
+                    "package": "PyFlowFreeCAD",
+                    "fullName": "vecCreate1_Y",
+                    "dataType": "Float",
+                    "direction": 0,
+                    "value": "0.0",
+                    "uuid": "a2553d1d-6754-45b1-a469-e05dd508ffac",
+                    "linkedTo": [],
+                    "pinIndex": 2,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Y",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "Z",
+                    "package": "PyFlowFreeCAD",
+                    "fullName": "vecCreate1_Z",
+                    "dataType": "Float",
+                    "direction": 0,
+                    "value": "0.0",
+                    "uuid": "13bbbbd1-e7d7-49c6-9bd3-213d65e155c6",
+                    "linkedTo": [],
+                    "pinIndex": 3,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Z",
+                        "wires": {}
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "out",
+                    "package": "PyFlowFreeCAD",
+                    "fullName": "vecCreate1_out",
+                    "dataType": "VectorPin",
+                    "direction": 1,
+                    "value": "{\"Vector\": [0.0, 0.0, 0.0]}",
+                    "uuid": "ec1fa645-363f-4c77-b1d9-0a165070dfb0",
+                    "linkedTo": [],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "out",
+                        "wires": {}
+                    }
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "vecCreate1"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">vecCreate1</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": -125.36497561470648,
+            "y": 131.23000371364012
+        }
+    ],
+    "depth": 1,
+    "isRoot": true,
+    "parentGraphName": "None",
+    "fileVersion": "2.0.1",
+    "activeGraph": "root"
+}
