@@ -1,0 +1,48 @@
+var map = L.map('map').setView([51.505, -0.09], 13);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+L.marker([51.5, -0.09]).addTo(map)
+    .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+    .openPopup();
+	
+	
+https://srinikom.github.io/pyside-docs/PySide/QtWebKit/index.html
+
+
+
+layer1 = Draft.make_layer()
+layer1.Label = "GIS 2D Cadastral Parcels"
+layer1 = Draft.make_layer()
+layer1.Label = "GIS 2D Building Outlines"
+layer1 = Draft.make_layer()
+layer1.Label = "GIS 2D Building Countour Destination Plan"
+layer1 = Draft.make_layer()
+layer1.Label = "GIS Annotations"
+layer1 = Draft.make_layer()
+layer1.Label = "GIS 3D Builings"
+layer1 = Draft.make_layer()
+layer1.Label = "GIS Aerialphoto"
+
+FreeCAD.ActiveDocument.recompute()
+
+
+
+import FreeCAD
+
+doc = FreeCAD.ActiveDocument
+
+pcube = doc.addObject("Part::Box")
+
+pcube.Length = 10000
+pcube.Width = 10000
+pcube.Height = 50000
+
+obj = doc.addObject("App::DocumentObjectGroup", "Group2")
+
+obj.addObjects([pcube])
+
+FreeCAD.ActiveDocument.recompute()
+
