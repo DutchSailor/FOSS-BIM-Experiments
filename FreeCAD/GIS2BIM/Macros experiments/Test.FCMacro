@@ -1,0 +1,134 @@
+	# import statements
+import FreeCADGui
+from PySide2 import QtCore
+from PySide2 import QtGui
+from PySide2 import QtWidgets
+from PySide2.QtWebEngineWidgets import QWebEngineView
+
+# UI Class definitions
+dy = 500
+page = "https://www.linkedin.com"
+
+class GIS2BIM_Dialog(QtWidgets.QDialog):
+	""""""
+	def __init__(self):
+		super(GIS2BIM_Dialog, self).__init__()
+		self.initUI()
+	def initUI(self):
+		self.result = userCancelled
+		# create our window
+		# define window		xLoc,yLoc,xDim,yDim
+		self.setGeometry(250, 100, 800, 800)
+		self.setWindowTitle("Location")
+		self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
+		# create web view
+		self.win = QtWidgets.QWidget()
+		self.win.setGeometry(100,50,700,500)	
+		self.win2.webView = QWebEngineView()
+		self.win2.layout = QtWidgets.QVBoxLayout(self.win)
+		self.win2.layout.addLayout(QtWidgets.QHBoxLayout())
+		self.win2.layout.addWidget(self.win.webView)
+		self.win2.webView.load(QtCore.QUrl(page))
+		self.win.setWidget(win2)
+
+		# create some Labels
+		self.label1 = QtWidgets.QLabel("Rdx(EPSG 28992)", self)
+		self.label1.move(20, 20+dy)
+		#
+		self.numericInput1Rdx = QtWidgets.QLineEdit(self)
+		self.numericInput1Rdx.setInputMask("")
+		self.numericInput1Rdx.setText("102857.637")
+		self.numericInput1Rdx.setFixedWidth(100)
+		self.numericInput1Rdx.move(250, 20+dy)
+		#
+		self.label2 = QtWidgets.QLabel("Rdy(EPSG 28992)", self)
+		self.label2.move(20, 50+dy)
+		#
+		self.numericInput2Rdy = QtWidgets.QLineEdit(self)
+		self.numericInput2Rdy.setInputMask("")
+		self.numericInput2Rdy.setText("425331.936")
+		self.numericInput2Rdy.setFixedWidth(100)
+		self.numericInput2Rdy.move(250, 50+dy)
+		#
+		self.label3 = QtWidgets.QLabel("Boundingbox Width(m)", self)
+		self.label3.move(20, 80+dy)
+		#
+		self.numericInput3Width = QtWidgets.QLineEdit(self)
+		self.numericInput3Width.setInputMask("")
+		self.numericInput3Width.setText("500")
+		self.numericInput3Width.setFixedWidth(100)
+		self.numericInput3Width.move(250, 80+dy)
+		#
+		self.label4 = QtWidgets.QLabel("Boundingbox Height(m)", self)
+		self.label4.move(20, 110+dy)
+		#
+		self.numericInput4Height = QtWidgets.QLineEdit(self)
+		self.numericInput4Height.setInputMask("")
+		self.numericInput4Height.setText("500")
+		self.numericInput4Height.setFixedWidth(100)
+		self.numericInput4Height.move(250, 110+dy)
+		# checkboxes
+		self.checkbox1 = QtWidgets.QCheckBox("Cadastral Parcels 2D", self)
+		self.checkbox1.move(20,140+dy)
+		#
+		self.checkbox2 = QtWidgets.QCheckBox("Building Outline 2D", self)
+		self.checkbox2.move(20,170+dy)
+		#
+		self.checkbox3 = QtWidgets.QCheckBox("3D Buildings", self)
+		self.checkbox3.move(20,200+dy)
+		#
+		self.checkbox4 = QtWidgets.QCheckBox("2D Aerialphoto", self)
+		self.checkbox4.move(20,230+dy)
+		#
+		self.checkbox5 = QtWidgets.QCheckBox("GIS 2D Annotation", self)
+		self.checkbox5.move(20,260+dy)
+		#
+		self.checkbox6 = QtWidgets.QCheckBox("Bestemmingsplan", self)
+		self.checkbox6.move(20,290+dy)
+		#
+		# cancel button
+		cancelButton = QtWidgets.QPushButton('Cancel', self)
+		cancelButton.clicked.connect(self.onCancel)
+		cancelButton.setAutoDefault(True)
+		cancelButton.move(150, 300+dy)
+		# OK button
+		okButton = QtWidgets.QPushButton('OK', self)
+		okButton.clicked.connect(self.onOk)
+		okButton.move(260, 300+dy)
+		# now make the window visible
+		self.show()
+		#
+	def onCancel(self):
+		self.result			= userCancelled
+		self.close()
+	def onOk(self):
+		self.result			= userOK
+		self.close()
+
+# Class definitions
+
+# Function definitions
+
+# Constant definitions
+userCancelled		= "Cancelled"
+userOK			= "OK"
+
+# code ***********************************************************************************
+
+form = GIS2BIM_Dialog()
+form.exec_()
+
+if form.result==userCancelled:
+	pass # steps to handle user clicking Cancel
+if form.result==userOK:
+	# steps to handle user clicking OK
+	Rdx = float(form.numericInput1Rdx.text())
+	Rdy = float(form.numericInput2Rdy.text())
+	width = float(form.numericInput3Width.text())
+	height = float(form.numericInput4Height.text())
+	CadastralParcels2D = form.checkbox1.isChecked()
+	BuildingOutline2D = form.checkbox2.isChecked()
+	Buildings3D = form.checkbox3.isChecked()
+	Aerialphoto2D = form.checkbox4.isChecked()
+	GIS2DAnnotation = form.checkbox5.isChecked()
+	Bestemmingsplan = form.checkbox6.isChecked()

@@ -1,0 +1,103 @@
+# WMS Importer
+
+import PySide2
+from PySide2 import QtCore, QtGui, QtWidgets
+
+####import for WebPage
+from PySide2 import  QtUiTools, QtNetwork
+from PySide2.QtCore import QUrl
+import functools
+
+class GISWMS_Dialog(QtWidgets.QDialog):
+
+	def __init__(self):
+		super(GISWMS_Dialog, self).__init__()
+		self.initUI()
+
+	def initUI(self):
+		self.result = userCancelled
+		self.setWindowTitle("Load Raster Data with WMS(Web Map Server)")
+		self.setGeometry(100, 100, 920, 760)
+ 
+		self.exampleimage = QtWidgets.QWidget(self)
+		self.exampleimage.setObjectName("example")
+		
+		# webservernameAndRequest
+		self.webserverName1 = QtWidgets.QPlainTextEdit (self)
+#		self.webserverName1.setText("www.test.nl")
+		self.webserverName1.setFixedWidth(300)
+		self.webserverName1.move(200, 300)
+		self.label1 = QtWidgets.QLabel("Webserveraddress & Request", self)
+		self.label1.move(20, 300)
+
+		# boundingbox width
+		self.boundingboxwidth = QtWidgets.QLineEdit(self)
+		self.boundingboxwidth.setInputMask("")
+		self.boundingboxwidth.setText("500")
+		self.boundingboxwidth.setFixedWidth(100)
+		self.boundingboxwidth.move(200, 500)
+		self.label2 = QtWidgets.QLabel(" Boundingbox Width [m]", self)
+		self.label2.move(20, 500)
+
+		# boundingbox height
+		self.boundingboxheight = QtWidgets.QLineEdit(self)
+		self.boundingboxheight.setInputMask("")
+		self.boundingboxheight.setText("500")
+		self.boundingboxheight.setFixedWidth(100)
+		self.boundingboxheight.move(200, 530)
+		self.label3 = QtWidgets.QLabel("Boundingbox Height [m]", self)
+		self.label3.move(20, 530)
+
+		# dx 
+		self.boundingboxheight = QtWidgets.QLineEdit(self)
+		self.boundingboxheight.setInputMask("")
+		self.boundingboxheight.setText("0")
+		self.boundingboxheight.setFixedWidth(100)
+		self.boundingboxheight.move(200, 560)
+		self.label4 = QtWidgets.QLabel("dx placement [m]", self)
+		self.label4.move(20, 560)
+
+		# dy 
+		self.boundingboxheight = QtWidgets.QLineEdit(self)
+		self.boundingboxheight.setInputMask("")
+		self.boundingboxheight.setText("0")
+		self.boundingboxheight.setFixedWidth(100)
+		self.boundingboxheight.move(200, 590)
+		self.label5 = QtWidgets.QLabel("dy placement [m]", self)
+		self.label5.move(20, 590)
+
+		# filelocation
+		self.boundingboxheight = QtWidgets.QLineEdit(self)
+		self.boundingboxheight.setInputMask("")
+		self.boundingboxheight.setText("C:/TEMP/test.jpg")
+		self.boundingboxheight.setFixedWidth(100)
+		self.boundingboxheight.move(200, 620)
+		self.label5 = QtWidgets.QLabel("temporary filelocation", self)
+		self.label5.move(20, 620)
+
+		# load WMS button
+		loadWMSButton = QtWidgets.QPushButton('load WMS', self)
+		loadWMSButton.move(50, 650)
+
+		# cancel button
+		cancelButton = QtWidgets.QPushButton('Cancel', self)
+		cancelButton.clicked.connect(self.onCancel)
+		cancelButton.setAutoDefault(True)
+		cancelButton.move(50, 710)
+
+		# import WMS button
+		importWMSButton = QtWidgets.QPushButton('import WMS to FreeCAD', self)
+		importWMSButton.move(250, 710)
+		self.show()
+
+	def onCancel(self):
+		self.result= userCancelled
+		self.close()
+
+
+userCancelled		= "Cancelled"
+
+form = GISWMS_Dialog()
+form.exec_()
+
+time.sleep(2)

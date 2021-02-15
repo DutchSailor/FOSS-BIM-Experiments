@@ -1,0 +1,24 @@
+<html>
+<head>
+    <script type="text/javascript" src="./qwebchannel.js"></script>
+</head>
+<header><title>This is title</title></header>
+<body>
+
+<p id="output"></p>
+
+<script type="text/javascript">
+    window.onload = function() {
+        new QWebChannel(qt.webChannelTransport, function (channel) {
+            window.app_manager = channel.objects.app_manager;
+            console.log(app_manager);
+
+            app_manager.textChanged.connect(function(message) {
+                document.getElementById("output").innerHTML = "Received message: " + message;
+            });
+
+        });
+    }
+</script> 
+</body>
+</html>

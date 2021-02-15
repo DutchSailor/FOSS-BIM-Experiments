@@ -1,0 +1,48 @@
+import sys
+
+from PySide2 import QtCore, QtGui, QtWidgets, QtWebEngineWidgets, QtWebChannel
+#from PyQt5 import QtWebChannel
+#from PyQt5.QtWidgets import *
+
+class Ui_tmy3page(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(900, 620)
+        MainWindow.setMinimumSize(QtCore.QSize(900, 620))
+        MainWindow.setMaximumSize(QtCore.QSize(900, 620))
+        MainWindow.setWindowTitle("")
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setObjectName("centralwidget")
+        self.html_code = QtWebEngineWidgets.QWebEngineView(self.centralwidget)
+        self.html_code.setGeometry(QtCore.QRect(0, 0, 901, 621))
+        self.html_code.setUrl(QtCore.QUrl("about:blank"))
+        self.html_code.setObjectName("html_code")
+        MainWindow.setCentralWidget(self.centralwidget)
+
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+    def retranslateUi(self, MainWindow):
+        pass
+
+class ShowMap_fun(object):
+    def __init__(self):
+        super().__init__()
+        self.map_ui = Ui_tmy3page()  # The name of my top level object is MainWindow
+        self.map_ui.setupUi(self)
+        channel = QtWebChannel.QWebChannel(self.map_ui.html_code.page())
+        self.map_ui.html_code.page().setWebChannel(channel)
+        channel.registerObject("jshelper", self)
+        self.map_ui.html_code.load(QtCore.QUrl.fromLocalFile(QtCore.QDir.current().filePath("C:/useless.html")))
+
+    @QtCore.pyqtSlot(float, float)
+    def markerMoved(self, lat, lng):
+        print(lat, lng)
+
+
+if __name__ == '__main__':
+    sys.argv.append("--remote-debugging-port=8000")
+    app = QApplication(sys.argv)
+    ex = ShowMap_fun()
+    ex.show()
+    sys.exit(app.exec_())

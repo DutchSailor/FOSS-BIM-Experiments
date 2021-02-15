@@ -1,0 +1,117 @@
+import PySide2
+from PySide2 import QtCore, QtGui, QtWidgets
+
+####import for WebPage
+from PySide2.QtWebEngineWidgets import QWebEngineView
+from PySide2 import  QtUiTools, QtNetwork
+from PySide2.QtCore import QUrl
+import functools
+
+class GISLocation_Dialog(QtWidgets.QDialog):
+
+	def __init__(self):
+		super(GISLocation_Dialog, self).__init__()
+		self.initUI()
+
+	def initUI(self):
+		self.result = userCancelled
+		self.setWindowTitle("Set Geographic Location")
+		self.setGeometry(100, 100, 920, 760)
+ 
+		self.centralwidget = QtWidgets.QWidget(self)
+		self.centralwidget.setObjectName("map")
+
+		self.webView = QWebEngineView(self.centralwidget)
+		self.webView.setGeometry(QtCore.QRect(50, 40, 820, 620))
+
+		self.webView.setUrl(QtCore.QUrl("C:/map.html")) # url your question
+		self.webView.setObjectName("webView")
+		#self.webView.page()..addToJavaScriptWindowObject("MainWindow", self)
+		
+		lat = 51.814191
+		lon = 4.660176
+
+		QtCore.QMetaObject.connectSlotsByName(self)
+		#Lat/Lon
+		self.label1 = QtWidgets.QLabel("lat: " + str(lat) , self)
+		self.label1.move(50, 25)
+		self.label2 = QtWidgets.QLabel("lon: " + str(lon) , self)
+		self.label2.move(150, 25)
+
+		#Search 
+		self.label3 = QtWidgets.QLabel("Project Address:", self)
+		self.label3.move(50, 675)
+
+		#
+		self.searchline1 = QtWidgets.QLineEdit(self)
+		self.searchline1.setInputMask("")
+		self.searchline1.setText("Dordrecht")
+		self.searchline1.setFixedWidth(1000)
+		self.searchline1.move(150, 670)
+
+		# search button
+		searchButton = QtWidgets.QPushButton('Search', self)
+		searchButton.clicked.connect(self.onSearch)
+		searchButton.setAutoDefault(True)
+		searchButton.move(275, 665)
+
+		# boundingbox 
+		self.boundingboxwidth = QtWidgets.QLineEdit(self)
+		self.boundingboxwidth.setInputMask("")
+		self.boundingboxwidth.setText("500")
+		self.boundingboxwidth.setFixedWidth(100)
+		self.boundingboxwidth.move(450, 670)
+
+		self.label1 = QtWidgets.QLabel("[m] Boundingbox Width", self)
+		self.label1.move(500, 675)
+
+		# cancel button
+		cancelButton = QtWidgets.QPushButton('Cancel', self)
+		cancelButton.clicked.connect(self.onCancel)
+		cancelButton.setAutoDefault(True)
+		cancelButton.move(50, 710)
+		# OK button
+		okButton = QtWidgets.QPushButton('OK', self)
+		okButton.clicked.connect(self.onOk)
+		okButton.move(150, 710)
+		self.show()
+		# CrossLines
+#		pen = QtGui.QPen(QtCore.Qt.red)
+#		painter = QtGui.QPainter()
+#		painter.setRenderHint(QPainter.Antialiasing)
+#		painter.begin(self)
+#		painter.setPen(pen)
+#		painter.drawLine(0,0,100,100)
+		#Pan
+#		panToParis = functools.partial(self.panMap, 2.3272, 48.8620)
+
+
+	def onCancel(self):
+		self.result= userCancelled
+		self.close()
+
+	def onSearch(self):
+		self.result= userOK
+
+	def onOk(self):
+		self.result= userOK
+		self.close()
+
+	def panMap(self, lng, lat):
+		frame = self.webView.page().mainFrame()
+		frame.evaluateJavaScript('map.panTo(L.latLng({}, {}));'.format(lat, lng))
+
+
+#	def onLoadFinished(self):
+#		with open('map.js', 'r') as f:
+#			frame = self.view.page().mainFrame()
+#			frame.evaluateJavaScript(f.read())
+
+# Constant definitions
+userCancelled		= "Cancelled"
+userOK			= "OK"
+
+form = GISLocation_Dialog()
+form.exec_()
+
+time.sleep(2)
