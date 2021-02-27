@@ -1,38 +1,6 @@
-## GIS2BIM Library
+## snapGIS Library
 
-## Webserverdata
-DutchGEO_PDOKServerURL = "http://geodata.nationaalgeoregister.nl/locatieserver/v3/free?wt=json&rows=1&q="
-
-DutchGEOCadastreServerRequest1 = "http://geodata.nationaalgeoregister.nl/kadastralekaart/wfs/v4_0?service=WFS&version=2.0.0&request=GetFeature&typeName=perceel&bbox="
-#For curves of Cadastral Parcels
-
-DutchGEOCadastreServerRequest2 = "http://geodata.nationaalgeoregister.nl/kadastralekaart/wfs/v4_0?service=WFS&version=2.0.0&request=GetFeature&typeName=kadastralekaartv4:nummeraanduidingreeks&bbox="
-#For 'nummeraanduidingreeks' of Cadastral Parcels
-
-DutchGEOCadastreServerRequest3 = "http://geodata.nationaalgeoregister.nl/kadastralekaart/wfs/v4_0?service=WFS&version=2.0.0&request=GetFeature&typeName=kadastralekaartv4:openbareruimtenaam&bbox="
-#For 'openbareruimtenaam' of Cadastral Parcels
-
-DutchGEOBAG = "http://geodata.nationaalgeoregister.nl/bag/wfs/v1_1?service=wfs&version=2.0.0&request=GetFeature&typeName=bag:pand&bbox="
-#Building Contour of BAG
-
-DutchGEOBAG3D = "http://3dbag.bk.tudelft.nl/data/wfs?&request=GetFeature&typeName=BAG3D:pand3d&outputFormat=GML3&bbox="
-#3D Buildings of BAG
-
-DutchGEOLuchtfoto2019WMS = "http://geodata.nationaalgeoregister.nl/luchtfoto/rgb/wms?&request=GetMap&VERSION=1.3.0&STYLES=&layers=2019_ortho25&width=3000&height=3000&format=image/png&crs=EPSG:28992&bbox="
-
-DutchGEORuimtelijkeplannenBouwvlakServerRequest = "http://afnemers.ruimtelijkeplannen.nl/afnemers/services?&service=WFS&version=1.1.0&request=GetFeature&typeName=app:Bouwvlak&bbox="
-
-xPathCadastre1 = ".//{http://www.opengis.net/gml/3.2}posList"
-xPathCadastre2 = ".//{http://www.opengis.net/gml/3.2}pos"
-xPathStringsCadastreTextAngle = [".//{http://kadastralekaartv4.geonovum.nl}hoek", ".//{http://kadastralekaartv4.geonovum.nl}tekst"]
-xPathRuimtelijkePlannen = ".//{http://www.opengis.net/gml}posList"
-xPathStrings3DBag = [".//{3dbag}ground-0.50", ".//{3dbag}roof-0.50"]
-xPath3DBag3 = ".//{http://www.opengis.net/gml}posList"
-#Xpath for several Web Feature Servers
-
-GeoserviceLibrariesNetherlands = {"DutchGEOLuchtfoto2019WMS": DutchGEOLuchtfoto2019WMS,"DutchGEOCadastreServerRequest1":DutchGEOCadastreServerRequest1}
-
-def GIS2BIM_GML_poslistData(tree, xPathString,dx,dy,scale,DecimalNumbers,XYZCountDimensions):
+def snapGIS_GML_poslistData(tree, xPathString,dx,dy,scale,DecimalNumbers,XYZCountDimensions):
 #group X and Y Coordinates of polylines
     posLists = tree.findall(xPathString)
     xyPosList = []
@@ -48,7 +16,7 @@ def GIS2BIM_GML_poslistData(tree, xPathString,dx,dy,scale,DecimalNumbers,XYZCoun
         xyPosList.append(coordSplitXY)
     return xyPosList
 
-def GIS2BIM_CreateBoundingBox(CoordinateX,CoordinateY,BoxWidth,BoxHeight,DecimalNumbers):
+def snapGIS_CreateBoundingBox(CoordinateX,CoordinateY,BoxWidth,BoxHeight,DecimalNumbers):
 #Create Boundingboxstring for use in webrequests.
     XLeft = round(CoordinateX-0.5*BoxWidth,DecimalNumbers)
     XRight = round(CoordinateX+0.5*BoxWidth,DecimalNumbers)
@@ -57,7 +25,7 @@ def GIS2BIM_CreateBoundingBox(CoordinateX,CoordinateY,BoxWidth,BoxHeight,Decimal
     boundingBoxString = str(XLeft) + "," + str(YBottom) + "," + str(XRight) + "," + str(YTop)
     return boundingBoxString
 
-def GIS2BIM_GetLocationDataNetherlands(City,Streetname,Housenumber):
+def snapGIS_GetLocationDataNetherlands(City,Streetname,Housenumber):
 # Use PDOK location server to get X & Y data
     PDOKServer = DutchGEO_PDOKServerURL
     requestURL =  PDOKServer + City +"%20and%20" + Streetname + "%20and%20" + Housenumber
@@ -73,20 +41,20 @@ def GIS2BIM_GetLocationDataNetherlands(City,Streetname,Housenumber):
     result = [RDx,RDy,requestURL]
     return result
 
-def GIS2BIM_PointsFromWFS(serverName,boundingBoxString,xPathString,dx,dy,scale,DecimalNumbers,XYZCountDimensions):
+def snapGIS_PointsFromWFS(serverName,boundingBoxString,xPathString,dx,dy,scale,DecimalNumbers,XYZCountDimensions):
 # group X and Y Coordinates
     myrequesturl = serverName + boundingBoxString
     urlFile = urllib.request.urlopen(myrequesturl)
     tree = ET.parse(urlFile)
-    xyPosList = GIS2BIM_GML_poslistData(tree,xPathString,dx,dy,scale,DecimalNumbers,XYZCountDimensions)
+    xyPosList = snapGIS_GML_poslistData(tree,xPathString,dx,dy,scale,DecimalNumbers,XYZCountDimensions)
     return xyPosList
 
-def GIS2BIM_DataFromWFS(serverName,boundingBoxString,xPathStringCoord,xPathStrings,dx,dy,scale,DecimalNumbers,XYZCountDimensions):
+def snapGIS_DataFromWFS(serverName,boundingBoxString,xPathStringCoord,xPathStrings,dx,dy,scale,DecimalNumbers,XYZCountDimensions):
 # group textdata from WFS
     myrequesturl = serverName + boundingBoxString
     urlFile = urllib.request.urlopen(myrequesturl)
     tree = ET.parse(urlFile)
-    xyPosList = GIS2BIM_GML_poslistData(tree,xPathStringCoord,dx,dy,scale,DecimalNumbers,XYZCountDimensions)
+    xyPosList = snapGIS_GML_poslistData(tree,xPathStringCoord,dx,dy,scale,DecimalNumbers,XYZCountDimensions)
     xPathResults = []
     for xPathString in xPathStrings:
         a = tree.findall(xPathString)
@@ -97,7 +65,7 @@ def GIS2BIM_DataFromWFS(serverName,boundingBoxString,xPathStringCoord,xPathStrin
     xPathResults.insert(0,xyPosList)
     return xPathResults
 
-def GIS2BIM_WMSRequest(serverName,boundingBoxString,fileLocation):
+def snapGIS_WMSRequest(serverName,boundingBoxString,fileLocation):
     # perform a WMS OGC webrequest( Web Map Service). This is loading images.
     myrequestURL = serverName + boundingBoxString
     resource = urllib.request.urlopen(myrequestURL)
@@ -106,9 +74,9 @@ def GIS2BIM_WMSRequest(serverName,boundingBoxString,fileLocation):
     output1.close()
     return fileLocation, resource
 
-## GIS2BIM within FreeCAD
+## snapGIS within FreeCAD
 
-#import GIS2BIM_Lib
+#import snapGIS_Lib
 import urllib.request
 import urllib
 import xml.etree.ElementTree as ET
@@ -116,14 +84,14 @@ import json
 import Draft
 import Part
 
-def GIS2BIM_FreeCAD_ImportImage(fileLocation,width,height,scale):
+def snapGIS_FreeCAD_ImportImage(fileLocation,width,height,scale):
     App.activeDocument().addObject('Image::ImagePlane','ImagePlane')
     App.activeDocument().ImagePlane.ImageFile = fileLocation
     App.activeDocument().ImagePlane.XSize = width*scale
     App.activeDocument().ImagePlane.YSize = height*scale
     App.activeDocument().ImagePlane.Placement = App.Placement(App.Vector(0.000000,0.000000,0.000000),App.Rotation(0.000000,0.000000,0.000000,1.000000))
 
-def GIS2BIM_FreeCAD_3DBuildings(curves3DBAG,heightData3DBAG):
+def snapGIS_FreeCAD_3DBuildings(curves3DBAG,heightData3DBAG):
     for i,j,k in zip(curves3DBAG,heightData3DBAG[1],heightData3DBAG[2]):
         pointlist = []
         for curve in i:
@@ -134,8 +102,8 @@ def GIS2BIM_FreeCAD_3DBuildings(curves3DBAG,heightData3DBAG):
         Part.show(solid)
     return solid
 
-def GIS2BIM_FreeCAD_CurvesFromWFS(serverName,boundingBoxString,xPathString,dx,dy,scale,DecimalNumbers,XYZCountDimensions,closedValue,DrawStyle,LineColor):
-    curves = GIS2BIM_PointsFromWFS(serverName,boundingBoxString,xPathString,dx,dy,scale,DecimalNumbers,XYZCountDimensions)
+def snapGIS_FreeCAD_CurvesFromWFS(serverName,boundingBoxString,xPathString,dx,dy,scale,DecimalNumbers,XYZCountDimensions,closedValue,DrawStyle,LineColor):
+    curves = snapGIS_PointsFromWFS(serverName,boundingBoxString,xPathString,dx,dy,scale,DecimalNumbers,XYZCountDimensions)
     for i in curves:
         pointlist = []
         for j in i:
@@ -146,7 +114,7 @@ def GIS2BIM_FreeCAD_CurvesFromWFS(serverName,boundingBoxString,xPathString,dx,dy
         a.ViewObject.LineColor = LineColor
     return a
 
-def GIS2BIM_FreeCAD_PlaceText(textData,fontSize):
+def snapGIS_FreeCAD_PlaceText(textData,fontSize):
     for i, j, k in zip(textData[0], textData[1], textData[2]):
         ZAxis = FreeCAD.Vector(0, 0, 1)
         p1 = FreeCAD.Vector(i[0][0], i[0][1], 0)
@@ -161,10 +129,10 @@ from PySide import QtGui, QtCore
 
 # UI Class definitions
 
-class GIS2BIM_Dialog(QtGui.QDialog):
+class snapGIS_Dialog(QtGui.QDialog):
 	""""""
 	def __init__(self):
-		super(GIS2BIM_Dialog, self).__init__()
+		super(snapGIS_Dialog, self).__init__()
 		self.initUI()
 	def initUI(self):
 		self.result = userCancelled
@@ -257,7 +225,7 @@ userOK			= "OK"
 
 # code ***********************************************************************************
 
-form = GIS2BIM_Dialog()
+form = snapGIS_Dialog()
 form.exec_()
 
 if form.result==userCancelled:
@@ -275,38 +243,38 @@ if form.result==userOK:
 	GIS2DAnnotation = form.checkbox5.isChecked()
 	Bestemmingsplan = form.checkbox6.isChecked()
 
-Bbox = GIS2BIM_CreateBoundingBox(Rdx,Rdy,width,height,2)
+Bbox = snapGIS_CreateBoundingBox(Rdx,Rdy,width,height,2)
 
 fileLocationWMS = 'C:\\TEMP\\test8.jpg'
 
 #Create Cadastral Parcels 2D
 if CadastralParcels2D is True:
-	CadastralParcelCurves = GIS2BIM_FreeCAD_CurvesFromWFS(DutchGEOCadastreServerRequest1,Bbox,xPathCadastre1,-Rdx,-Rdy,1000,3,2,False,u"Dashdot",(0.0,0.0,0.0))
+	CadastralParcelCurves = snapGIS_FreeCAD_CurvesFromWFS(DutchGEOCadastreServerRequest1,Bbox,xPathCadastre1,-Rdx,-Rdy,1000,3,2,False,u"Dashdot",(0.0,0.0,0.0))
 
 #Create Building outline 2D
 if BuildingOutline2D is True:
-	BAGCurves = GIS2BIM_FreeCAD_CurvesFromWFS(DutchGEOBAG,Bbox,xPathCadastre1,-Rdx,-Rdy,1000,3,2,True,u"Solid",(0.7,0.0,0.0))
+	BAGCurves = snapGIS_FreeCAD_CurvesFromWFS(DutchGEOBAG,Bbox,xPathCadastre1,-Rdx,-Rdy,1000,3,2,True,u"Solid",(0.7,0.0,0.0))
 
 #Create 3D Building
 if Buildings3D is True:
-	curves3DBAG = GIS2BIM_PointsFromWFS(DutchGEOBAG3D,Bbox,xPath3DBag3,-Rdx,-Rdy,1000,3,3)
-	heightData3DBAG = GIS2BIM_DataFromWFS(DutchGEOBAG3D,Bbox,xPath3DBag3,xPathStrings3DBag,-Rdx,-Rdy,1000,3,3)
-	BAG3DSolids = GIS2BIM_FreeCAD_3DBuildings(curves3DBAG,heightData3DBAG)
+	curves3DBAG = snapGIS_PointsFromWFS(DutchGEOBAG3D,Bbox,xPath3DBag3,-Rdx,-Rdy,1000,3,3)
+	heightData3DBAG = snapGIS_DataFromWFS(DutchGEOBAG3D,Bbox,xPath3DBag3,xPathStrings3DBag,-Rdx,-Rdy,1000,3,3)
+	BAG3DSolids = snapGIS_FreeCAD_3DBuildings(curves3DBAG,heightData3DBAG)
 
 # Import Aerialphoto in view
 if Aerialphoto2D is True:
-	GIS2BIM_WMSRequest(DutchGEOLuchtfoto2019WMS,Bbox,fileLocationWMS)
-	ImageAerialPhoto = GIS2BIM_FreeCAD_ImportImage(fileLocationWMS,width,height,1000)
+	snapGIS_WMSRequest(DutchGEOLuchtfoto2019WMS,Bbox,fileLocationWMS)
+	ImageAerialPhoto = snapGIS_FreeCAD_ImportImage(fileLocationWMS,width,height,1000)
 
 #Create Textdata Cadastral Parcels
 if GIS2DAnnotation is True:
-	textDataCadastralParcels = GIS2BIM_DataFromWFS(DutchGEOCadastreServerRequest2,Bbox,xPathCadastre2,xPathStringsCadastreTextAngle,-Rdx,-Rdy,1000,3,2)
-	textDataOpenbareRuimtenaam = GIS2BIM_DataFromWFS(DutchGEOCadastreServerRequest3,Bbox,xPathCadastre2,xPathStringsCadastreTextAngle,-Rdx,-Rdy,1000,3,2)
-	placeTextFreeCAD = GIS2BIM_FreeCAD_PlaceText(textDataCadastralParcels,50)
-	placeTextFreeCAD = GIS2BIM_FreeCAD_PlaceText(textDataOpenbareRuimtenaam,200)
+	textDataCadastralParcels = snapGIS_DataFromWFS(DutchGEOCadastreServerRequest2,Bbox,xPathCadastre2,xPathStringsCadastreTextAngle,-Rdx,-Rdy,1000,3,2)
+	textDataOpenbareRuimtenaam = snapGIS_DataFromWFS(DutchGEOCadastreServerRequest3,Bbox,xPathCadastre2,xPathStringsCadastreTextAngle,-Rdx,-Rdy,1000,3,2)
+	placeTextFreeCAD = snapGIS_FreeCAD_PlaceText(textDataCadastralParcels,50)
+	placeTextFreeCAD = snapGIS_FreeCAD_PlaceText(textDataOpenbareRuimtenaam,200)
 
 #Create Ruimtelijke plannen outline 2D
 if Bestemmingsplan is True:
-	RuimtelijkePlannenBouwvlakCurves = GIS2BIM_FreeCAD_CurvesFromWFS(DutchGEORuimtelijkeplannenBouwvlakServerRequest,Bbox,xPathRuimtelijkePlannen,-Rdx,-Rdy,1000,3,2,False,u"Solid",(0.0,0.0,1.0))
+	RuimtelijkePlannenBouwvlakCurves = snapGIS_FreeCAD_CurvesFromWFS(DutchGEORuimtelijkeplannenBouwvlakServerRequest,Bbox,xPathRuimtelijkePlannen,-Rdx,-Rdy,1000,3,2,False,u"Solid",(0.0,0.0,1.0))
 
 FreeCAD.ActiveDocument.recompute()

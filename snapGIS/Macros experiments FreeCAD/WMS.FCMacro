@@ -24,7 +24,7 @@ class GISWMS_Dialog(QtWidgets.QDialog):
 		
 		# webservernameAndRequest
 		self.webserverName1 = QtWidgets.QPlainTextEdit (self)
-#		self.webserverName1.setText("www.test.nl")
+		self.webserverName1.insertPlainText("http://geodata.nationaalgeoregister.nl/luchtfoto/rgb/wms?&request=GetMap&VERSION=1.3.0&STYLES=&layers=2019_ortho25&width=3000&height=3000&format=image/png&crs=EPSG:28992&bbox=")
 		self.webserverName1.setFixedWidth(300)
 		self.webserverName1.move(200, 300)
 		self.label1 = QtWidgets.QLabel("Webserveraddress & Request", self)
@@ -75,9 +75,10 @@ class GISWMS_Dialog(QtWidgets.QDialog):
 		self.label5 = QtWidgets.QLabel("temporary filelocation", self)
 		self.label5.move(20, 620)
 
-		# load WMS button
-		loadWMSButton = QtWidgets.QPushButton('load WMS', self)
-		loadWMSButton.move(50, 650)
+		# test WMS button
+		testWMSButton = QtWidgets.QPushButton('load WMS', self)
+		testWMSButton.clicked.connect(self.testWMS)
+		testWMSButton.move(50, 650)
 
 		# cancel button
 		cancelButton = QtWidgets.QPushButton('Cancel', self)
@@ -85,19 +86,37 @@ class GISWMS_Dialog(QtWidgets.QDialog):
 		cancelButton.setAutoDefault(True)
 		cancelButton.move(50, 710)
 
-		# import WMS button
-		importWMSButton = QtWidgets.QPushButton('import WMS to FreeCAD', self)
-		importWMSButton.move(250, 710)
+		# Ok WMS button
+		okButton = QtWidgets.QPushButton('OK', self)
+		okButton.clicked.connect(self.onOk)
+		okButton.move(250, 710)
 		self.show()
 
 	def onCancel(self):
 		self.result= userCancelled
 		self.close()
 
+	def testWMS(self):
+		self.result	= userTest
 
-userCancelled		= "Cancelled"
+	def onOk(self):
+		self.result	= userOK
+		self.close()
+
+# Constant definitions
+userCancelled = "Cancelled"
+userOK = "OK"
+userTest = "TestWMS"
 
 form = GISWMS_Dialog()
 form.exec_()
+
+if form.result==userCancelled:
+	pass # steps to handle user clicking Cancel
+if form.result==userOK:
+	pass # steps to handle user clicking Cancel
+if form.result==userTest:
+	GIS2BIM_WMSRequest(DutchGEOLuchtfoto2019WMS,Bbox,fileLocationWMS)
+	ImageAerialPhoto = GIS2BIM_FreeCAD_ImportImage(fileLocationWMS,width,height,1000,"luchtfoto2019")
 
 time.sleep(2)
