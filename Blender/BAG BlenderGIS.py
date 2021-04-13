@@ -83,28 +83,12 @@ def GIS2BIM_DataFromWFS(serverName,boundingBoxString,xPathStringCoord,xPathStrin
 
 ## GIS2BIM within BLENDER
 
-
 import urllib.request
 import urllib
 import xml.etree.ElementTree as ET
 import json
 import bpy
 import bmesh
-
-crsx = bpy.data.scenes["Scene"].get("crs x", "fallback value")
-crsy = bpy.data.scenes["Scene"].get("crs y", "fallback value")
-latitude = bpy.data.scenes["Scene"].get("latitude", "fallback value")
-longitude = bpy.data.scenes["Scene"].get("longitude", "fallback value")
-
-Rdx = crsx
-Rdy = crsy
-width = 500
-height = 500
-scalefactor = 1.6
-
-Bbox = GIS2BIM_CreateBoundingBox(Rdx,Rdy,width,height,2)
-
-curves = GIS2BIM_PointsFromWFS(DutchGEOBAG,Bbox,xPathCadastre1,-Rdx,-Rdy,scalefactor,3,2)
 
 def GIS2BIM_BLENDER_CurvestoBlenderCurves(curves):
     blenderCurves = []
@@ -147,10 +131,49 @@ def GIS2BIM_BLENDER_PlaceText(textData,fontSize):
         bpy.context.scene.collection.objects.link(loc_obj)
     return loc_obj   
 
-BAGCurves = GIS2BIM_BLENDER_CurvesToMesh(GIS2BIM_BLENDER_CurvestoBlenderCurves(curves),'BAG')
+crsx = bpy.data.scenes["Scene"].get("crs x", "fallback value")
+crsy = bpy.data.scenes["Scene"].get("crs y", "fallback value")
+latitude = bpy.data.scenes["Scene"].get("latitude", "fallback value")
+longitude = bpy.data.scenes["Scene"].get("longitude", "fallback value")
+
+Rdx = crsx
+Rdy = crsy
+width = 500
+height = 500
+scalefactor = 1.6
+
+Bbox = GIS2BIM_CreateBoundingBox(Rdx,Rdy,width,height,2)
+
+BAGcurves = GIS2BIM_PointsFromWFS(DutchGEOBAG,Bbox,xPathCadastre1,-Rdx,-Rdy,scalefactor,3,2)
 
 textDataCadastralParcels = GIS2BIM_DataFromWFS(DutchGEOCadastreServerRequest2,Bbox,xPathCadastre2,xPathStringsCadastreTextAngle,-Rdx,-Rdy,scalefactor,3,2)
 textDataOpenbareRuimtenaam = GIS2BIM_DataFromWFS(DutchGEOCadastreServerRequest3,Bbox,xPathCadastre2,xPathStringsCadastreTextAngle,-Rdx,-Rdy,scalefactor,3,2)
 
-placeBlenderTextCadastralParcels = GIS2BIM_BLENDER_PlaceText(textDataCadastralParcels,50)
-placeBlenderTextOpenbareRuimtenaam = GIS2BIM_BLENDER_PlaceText(textDataOpenbareRuimtenaam,50)
+#BAGSurface = GIS2BIM_BLENDER_CurvesToMesh(GIS2BIM_BLENDER_CurvestoBlenderCurves(BAGcurves),'BAG')
+#placeBlenderTextCadastralParcels = GIS2BIM_BLENDER_PlaceText(textDataCadastralParcels,50)
+#placeBlenderTextOpenbareRuimtenaam = GIS2BIM_BLENDER_PlaceText(textDataOpenbareRuimtenaam,50)
+
+
+def GIS2BIM_BLENDER_add_mesh(name, verts, faces, edges=None, col_name="Collection"):    
+    if edges is None:
+        edges = []
+    mesh = bpy.data.meshes.new(name)
+    obj = bpy.data.objects.new(mesh.name, mesh)
+    col = bpy.data.collections.get(col_name)
+    col.objects.link(obj)
+    bpy.context.view_layer.objects.active = obj
+    mesh.from_pydata(verts, edges, faces)
+
+def GIS2BIM_BLENDER_draw_line(Coordinate1, Coordinate2, Name):
+    #Name is string
+    #Coordinate is list of 3 floats
+    verts = [Coordinate1,Coordinate2,]
+    vlength = len(verts)
+    result = list(range(vlength))   
+    faces = [result]
+    GIS2BIM_BLENDER_add_mesh(Name, verts, faces)
+
+C1 = (1000.0,  5000.0,  0.0)
+C2 = (0, 0, 0)
+
+GIS2BIM_BLENDER_draw_line(C1,C2,"test")

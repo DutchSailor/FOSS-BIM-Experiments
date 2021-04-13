@@ -102,10 +102,10 @@ class GISLocation_Dialog(QtWidgets.QDialog):
 		frame.evaluateJavaScript('map.panTo(L.latLng({}, {}));'.format(lat, lng))
 
 
-#	def onLoadFinished(self):
-#		with open('map.js', 'r') as f:
-#			frame = self.view.page().mainFrame()
-#			frame.evaluateJavaScript(f.read())
+	def onLoadFinished(self):
+		with open('map.js', 'r') as f:
+			frame = self.view.page().mainFrame()
+			frame.evaluateJavaScript(f.read())
 
 # Constant definitions
 userCancelled		= "Cancelled"
