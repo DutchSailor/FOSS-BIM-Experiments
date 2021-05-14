@@ -1,7 +1,7 @@
 ## GIS2BIM Library
 
 #Common functions
-def GIS2BIM_GetServerData(servertitle):
+def GetWebServerData(servertitle):
 	Serverlocation = "https://raw.githubusercontent.com/DutchSailor/GIS2BIM/master/GIS2BIM_Data.json"
 	import urllib.request, json
 	url = urllib.request.urlopen(Serverlocation)
@@ -14,7 +14,7 @@ def GIS2BIM_GetServerData(servertitle):
 
 #GIS2BIM functions
 
-def GIS2BIM_GML_poslistData(tree, xPathString,dx,dy,scale,DecimalNumbers,XYZCountDimensions):
+def GML_poslistData(tree, xPathString,dx,dy,scale,DecimalNumbers,XYZCountDimensions):
 #group X and Y Coordinates of polylines
     posLists = tree.findall(xPathString)
     xyPosList = []
@@ -30,7 +30,7 @@ def GIS2BIM_GML_poslistData(tree, xPathString,dx,dy,scale,DecimalNumbers,XYZCoun
         xyPosList.append(coordSplitXY)
     return xyPosList
 
-def GIS2BIM_CreateBoundingBox(CoordinateX,CoordinateY,BoxWidth,BoxHeight,DecimalNumbers):
+def CreateBoundingBox(CoordinateX,CoordinateY,BoxWidth,BoxHeight,DecimalNumbers):
 #Create Boundingboxstring for use in webrequests.
     XLeft = round(CoordinateX-0.5*BoxWidth,DecimalNumbers)
     XRight = round(CoordinateX+0.5*BoxWidth,DecimalNumbers)
@@ -39,7 +39,7 @@ def GIS2BIM_CreateBoundingBox(CoordinateX,CoordinateY,BoxWidth,BoxHeight,Decimal
     boundingBoxString = str(XLeft) + "," + str(YBottom) + "," + str(XRight) + "," + str(YTop)
     return boundingBoxString
 
-def GIS2BIM_PointsFromWFS(serverName,boundingBoxString,xPathString,dx,dy,scale,DecimalNumbers,XYZCountDimensions):
+def PointsFromWFS(serverName,boundingBoxString,xPathString,dx,dy,scale,DecimalNumbers,XYZCountDimensions):
 # group X and Y Coordinates
     myrequesturl = serverName + boundingBoxString
     urlFile = urllib.request.urlopen(myrequesturl)
@@ -47,7 +47,7 @@ def GIS2BIM_PointsFromWFS(serverName,boundingBoxString,xPathString,dx,dy,scale,D
     xyPosList = GIS2BIM_GML_poslistData(tree,xPathString,dx,dy,scale,DecimalNumbers,XYZCountDimensions)
     return xyPosList
 
-def GIS2BIM_DataFromWFS(serverName,boundingBoxString,xPathStringCoord,xPathStrings,dx,dy,scale,DecimalNumbers,XYZCountDimensions):
+def DataFromWFS(serverName,boundingBoxString,xPathStringCoord,xPathStrings,dx,dy,scale,DecimalNumbers,XYZCountDimensions):
 # group textdata from WFS
     myrequesturl = serverName + boundingBoxString
     urlFile = urllib.request.urlopen(myrequesturl)
@@ -63,7 +63,7 @@ def GIS2BIM_DataFromWFS(serverName,boundingBoxString,xPathStringCoord,xPathStrin
     xPathResults.insert(0,xyPosList)
     return xPathResults
 
-def GIS2BIM_WMSRequest(serverName,boundingBoxString,fileLocation):
+def WMSRequest(serverName,boundingBoxString,fileLocation):
     # perform a WMS OGC webrequest( Web Map Service). This is loading images.
     myrequestURL = serverName + boundingBoxString
     resource = urllib.request.urlopen(myrequestURL)
@@ -71,21 +71,4 @@ def GIS2BIM_WMSRequest(serverName,boundingBoxString,fileLocation):
     output1.write(resource.read())
     output1.close()
     return fileLocation, resource
-	
-#Country specific
 
-#NL Netherlands
-def GIS2BIM_NL_GetLocationData(PDOKServer,City,Streetname,Housenumber):
-# Use PDOK location server to get X & Y data
-    requestURL =  PDOKServer + City +"%20and%20" + Streetname + "%20and%20" + Housenumber
-    urlFile = urllib.request.urlopen(requestURL)
-    jsonList = json.load(urlFile)
-    jsonList = jsonList["response"]["docs"]
-    jsonList1 = jsonList[0]
-    RD = jsonList1['centroide_rd']
-    RD = RD.replace("("," ").replace(")"," ")
-    RD = RD.split()
-    RDx = float(RD[1])
-    RDy = float(RD[2])
-    result = [RDx,RDy,requestURL]
-    return result

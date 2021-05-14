@@ -1,29 +1,89 @@
-## Webserverdata
-DutchGEO_PDOKServerURL = "http://geodata.nationaalgeoregister.nl/locatieserver/v3/free?wt=json&rows=1&q="
+from GIS2BIM_Lib import *
+import urllib.request, json
 
-DutchGEOCadastreServerRequest1 = "http://geodata.nationaalgeoregister.nl/kadastralekaart/wfs/v4_0?service=WFS&version=2.0.0&request=GetFeature&typeName=perceel&bbox="
-#For curves of Cadastral Parcels
+#jsonpath = "$.GIS2BIMserversRequests.webserverRequests[?(@.title==NetherlandsPDOKServerURL)].serverrequestprefix"
 
-DutchGEOCadastreServerRequest2 = "http://geodata.nationaalgeoregister.nl/kadastralekaart/wfs/v4_0?service=WFS&version=2.0.0&request=GetFeature&typeName=kadastralekaartv4:nummeraanduidingreeks&bbox="
-#For 'nummeraanduidingreeks' of Cadastral Parcels
+## Webserverdata NL
+NLPDOKServerURL = GetWebServerData('NLPDOKServerURL')
+NLPDOKCadastreCadastralParcels = GetWebServerData('NLPDOKCadastreCadastralParcels') #For curves of Cadastral Parcels
+NLPDOKCadastreCadastralParcelsNummeraanduiding = GetWebServerData('NLPDOKCadastreCadastralParcelsNummeraanduiding') #For 'nummeraanduidingreeks' of Cadastral Parcels
+NLPDOKCadastreOpenbareruimtenaam = GetWebServerData('NLPDOKCadastreOpenbareruimtenaam')#For 'openbareruimtenaam' of Cadastral Parcels
+NLPDOKBAGBuildingCountour = GetWebServerData('NLPDOKBAGBuildingCountour')  #Building Contour of BAG
+NLTUDelftBAG3DV1 = GetWebServerData('NLTUDelftBAG3DV1')  #3D Buildings of BAG
+NLRuimtelijkeplannenBouwvlak = GetWebServerData('NLRuimtelijkeplannenBouwvlak')
+NLPDOKLuchtfoto2016 = GetWebServerData('NLPDOKLuchtfoto2016')
+NLPDOKLuchtfoto2017 = GetWebServerData('NLPDOKLuchtfoto2017')
+NLPDOKLuchtfoto2018 = GetWebServerData('NLPDOKLuchtfoto2018')
+NLPDOKLuchtfoto2019 = GetWebServerData('NLPDOKLuchtfoto2019')
+NLPDOKLuchtfoto2020 = GetWebServerData('NLPDOKLuchtfoto2020')
 
-DutchGEOCadastreServerRequest3 = "http://geodata.nationaalgeoregister.nl/kadastralekaart/wfs/v4_0?service=WFS&version=2.0.0&request=GetFeature&typeName=kadastralekaartv4:openbareruimtenaam&bbox="
-#For 'openbareruimtenaam' of Cadastral Parcels
+## Xpath for several Web Feature Servers
+NLPDOKxPathOpenGISposList = GetWebServerData('NLPDOKxPathOpenGISposList')
+NLPDOKxPathOpenGISPos = GetWebServerData('NLPDOKxPathOpenGISPos')
+NLPDOKxPathStringsCadastreTextAngle = GetWebServerData('NLPDOKxPathStringsCadastreTextAngle')
+NLPDOKxPathStringsCadastreTextValue = GetWebServerData('NLPDOKxPathStringsCadastreTextValue')
+NLPDOKxPathOpenGISPosList2 = GetWebServerData('NLPDOKxPathOpenGISPosList2')
+NLTUDelftxPathString3DBagGround = GetWebServerData('NLTUDelftxPathString3DBagGround')
+NLTUDelftxPathString3DBagRoof = GetWebServerData('NLTUDelftxPathString3DBagRoof')
 
-DutchGEOBAG = "http://geodata.nationaalgeoregister.nl/bag/wfs/v1_1?service=wfs&version=2.0.0&request=GetFeature&typeName=bag:pand&bbox="
-#Building Contour of BAG
+xPathStrings3DBag = [NLTUDelftxPathString3DBagGround, NLTUDelftxPathString3DBagRoof]
+xPathStringsCadastreTextAngle = [NLPDOKxPathStringsCadastreTextAngle, NLPDOKxPathStringsCadastreTextValue]
 
-DutchGEOBAG3D = "http://3dbag.bk.tudelft.nl/data/wfs?&request=GetFeature&typeName=BAG3D:pand3d&outputFormat=GML3&bbox="
-#3D Buildings of BAG
+#Country specific
 
-DutchGEOLuchtfoto2019WMS = "http://geodata.nationaalgeoregister.nl/luchtfoto/rgb/wms?&request=GetMap&VERSION=1.3.0&STYLES=&layers=2019_ortho25&width=3000&height=3000&format=image/png&crs=EPSG:28992&bbox="
+#NL Netherlands
+def NL_GetLocationData(PDOKServer,City,Streetname,Housenumber):
+# Use PDOK location server to get X & Y data
+    requestURL =  PDOKServer + City +"%20and%20" + Streetname + "%20and%20" + Housenumber
+    urlFile = urllib.request.urlopen(requestURL)
+    jsonList = json.load(urlFile)
+    jsonList = jsonList["response"]["docs"]
+    jsonList1 = jsonList[0]
+    RD = jsonList1['centroide_rd']
+    RD = RD.replace("("," ").replace(")"," ")
+    RD = RD.split()
+    RDx = float(RD[1])
+    RDy = float(RD[2])
+    result = [RDx,RDy,requestURL]
+    return result
 
-DutchGEORuimtelijkeplannenBouwvlakServerRequest = "http://afnemers.ruimtelijkeplannen.nl/afnemers/services?&service=WFS&version=1.1.0&request=GetFeature&typeName=app:Bouwvlak&bbox="
 
-xPathCadastre1 = ".//{http://www.opengis.net/gml/3.2}posList"
-xPathCadastre2 = ".//{http://www.opengis.net/gml/3.2}pos"
-xPathStringsCadastreTextAngle = [".//{http://kadastralekaartv4.geonovum.nl}hoek", ".//{http://kadastralekaartv4.geonovum.nl}tekst"]
-xPathRuimtelijkePlannen = ".//{http://www.opengis.net/gml}posList"
-xPathStrings3DBag = [".//{3dbag}ground-0.50", ".//{3dbag}roof-0.50"]
-xPath3DBag3 = ".//{http://www.opengis.net/gml}posList"
-#Xpath for several Web Feature Servers
+#Get Rdx/Rdy
+a = NL_GetLocationData("dordrecht","Lange%20Geldersekade","2")
+width = 500
+height = 500
+Rdx = float(a[0])
+Rdy = float(a[1])
+
+Rdx = 102857.637
+Rdy = 425331.936
+Bbox = GIS2BIM_CreateBoundingBox(Rdx,Rdy,width,height,2)
+
+fileLocationWMS = 'C:\\TEMP\\test8.jpg'
+
+# Import Aerialphoto in view
+GIS2BIM_WMSRequest(DutchGEOLuchtfoto2019WMS,Bbox,fileLocationWMS)
+ImageAerialPhoto = GIS2BIM_FreeCAD_ImportImage(fileLocationWMS,width,height,1000)
+
+#Create 3D Building
+curves3DBAG = GIS2BIM_PointsFromWFS(DutchGEOBAG3D,Bbox,xPath3DBag3,-Rdx,-Rdy,1000,3,3)
+heightData3DBAG = GIS2BIM_DataFromWFS(DutchGEOBAG3D,Bbox,xPath3DBag3,xPathStrings3DBag,-Rdx,-Rdy,1000,3,3)
+BAG3DSolids = GIS2BIM_FreeCAD_3DBuildings(curves3DBAG,heightData3DBAG)
+
+#Create Cadastral Parcels 2D
+CadastralParcerCurves = GIS2BIM_FreeCAD_CurvesFromWFS(DutchGEOCadastreServerRequest1,Bbox,xPathCadastre1,-Rdx,-Rdy,1000,3,2,False)
+
+#Create Building outline 2D
+BAGBuildingCurves = GIS2BIM_FreeCAD_CurvesFromWFS(DutchGEOBAG,Bbox,xPathCadastre1,-Rdx,-Rdy,1000,3,2,True)
+
+#Create Ruimtelijke plannen outline 2D
+RuimtelijkePlannenBouwvlakCurves = GIS2BIM_FreeCAD_CurvesFromWFS(DutchGEORuimtelijkeplannenBouwvlakServerRequest,Bbox,xPathRuimtelijkePlannen,-Rdx,-Rdy,1000,3,2,True)
+
+#Create Textdata Cadastral Parcels
+textDataCadastralParcels = GIS2BIM_DataFromWFS(DutchGEOCadastreServerRequest2,Bbox,xPathCadastre2,xPathStringsCadastreTextAngle,-Rdx,-Rdy,1000,3,2)
+textDataOpenbareRuimtenaam = GIS2BIM_DataFromWFS(DutchGEOCadastreServerRequest3,Bbox,xPathCadastre2,xPathStringsCadastreTextAngle,-Rdx,-Rdy,1000,3,2)
+
+placeTextCadastralParcels = GIS2BIM_FreeCAD_PlaceText(textDataCadastralParcels,200)
+placeTextOpenbareRuimteNaam = GIS2BIM_FreeCAD_PlaceText(textDataOpenbareRuimtenaam,200)
+
+FreeCAD.ActiveDocument.recompute()
