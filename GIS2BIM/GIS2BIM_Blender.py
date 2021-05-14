@@ -1,6 +1,6 @@
-## snapGIS Library
+## GIS2BIM Library
 
-## snapGIS within BLENDER
+## GIS2BIM within BLENDER
 
 import urllib.request
 import urllib
@@ -14,7 +14,7 @@ crsy = bpy.data.scenes["Scene"].get("crs y", "fallback value")
 latitude = bpy.data.scenes["Scene"].get("latitude", "fallback value")
 longitude = bpy.data.scenes["Scene"].get("longitude", "fallback value")
 
-def snapGIS_BLENDER_CurvestoBlenderCurves(curves):
+def CurvestoBlenderCurves(curves):
     blenderCurves = []
     for i in curves:
         verts = []
@@ -23,7 +23,7 @@ def snapGIS_BLENDER_CurvestoBlenderCurves(curves):
         blenderCurves.append(verts)
     return blenderCurves
 
-def snapGIS_BLENDER_add_mesh(name, verts, faces, edges=None, col_name="Collection"):    
+def add_mesh(name, verts, faces, edges=None, col_name="Collection"):    
     if edges is None:
         edges = []
     mesh = bpy.data.meshes.new(name) #mesh bouwen/vlak
@@ -34,7 +34,7 @@ def snapGIS_BLENDER_add_mesh(name, verts, faces, edges=None, col_name="Collectio
     mesh = mesh.from_pydata(verts, edges, faces)
     return mesh
 
-def snapGIS_BLENDER_CurvesToMesh(BlenderCurves,Prefix):
+def CurvesToMesh(BlenderCurves,Prefix):
     a = 0
     for i in BlenderCurves:
         a = a + 1 
@@ -43,10 +43,10 @@ def snapGIS_BLENDER_CurvesToMesh(BlenderCurves,Prefix):
         vlength = len(i)
         result = list(range(vlength))
         faces = [result]
-        snapGIS_BLENDER_add_mesh(Prefix + str(a), i, faces)
+        add_mesh(Prefix + str(a), i, faces)
     return faces
 
-def snapGIS_BLENDER_PlaceText(textData,fontSize):
+def PlaceText(textData,fontSize):
     for i, j, k in zip(textData[0], textData[1], textData[2]):
         loc_txt = bpy.data.curves.new(type="FONT",name="txt") 
         loc_txt.body = k

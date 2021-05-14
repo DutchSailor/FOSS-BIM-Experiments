@@ -1,23 +1,38 @@
+SiteName = "GIS-Site"
+
+def filldata(SiteGIS):
+	#buildin
+	SiteGIS.Longitude = -46.38
+	SiteGIS.Latitude = -23.33
+	SiteGIS.Orientation = 1 #True North
+	SiteGIS.Address = ""
+	SiteGIS.Country = ""
+	SiteGIS.City = ""
+	SiteGIS.Postal Code = ""
+
+	#added data
+	SiteGIS.CRS EPSG SRID = "28992"
+	SiteGIS.CRS EPSG Description = "RD"
+	SiteGIS.CRS_x = 104000
+	SiteGIS.CRS_y = 498000
+	SiteGIS.BoundingboxWidth = 400
+	SiteGIS.BoundingboxHeight = 400
+
+lstObjects = []
+for obj in App.ActiveDocument.Objects:
+    lstObjects.append(obj.Label)
+if SiteName in lstObjects:
+	
+else:
+    SiteGIS = Arch.makeSite([],[],SiteName)
+		
 import FreeCAD, Draft, Arch
 
-SiteGIS = Arch.makeSite([],[],"GIS-Site")
 
-SiteGIS.Longitude = -46.38
-SiteGIS.Latitude = -23.33
-SiteGIS.CRS EPSG SRID = 
-SiteGIS.CRS EPSG Description = 
-SiteGIS.CRS_x = 
-SiteGIS.CRS_y = 
-SiteGIS.Address = ""
-SiteGIS.Country = ""
-SiteGIS.City Code = ""
-SiteGIS.Postal Code = ""
-SiteGIS.GIS-data:
-	BoundingboxWidth
-	BoundingboxHeight
-	
 
-SiteGIS.Url = ""
+
+
+
 
 GIS2BIM_NominatimAPIwebRequestPart1 = "https://nominatim.openstreetmap.org/search/"
 GIS2BIM_NominatimAPIwebRequestLastPart = "?format=xml&addressdetails=1&limit=1&polygon_svg=1"
@@ -271,3 +286,10 @@ SW_loc, NE_loc = loc.bounding_locations(distance)
 
 #Assign your output to the OUT variable.
 OUT = SW_loc, NE_loc
+
+
+import Draft
+a = [FreeCAD.Vector(0,0,0),FreeCAD.Vector(0,1000,0)]
+b = Draft.makeWire(a, closed=false)
+		
+		

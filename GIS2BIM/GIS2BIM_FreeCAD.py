@@ -1,21 +1,20 @@
 ## GIS2BIM within FreeCAD
 
-#import GIS2BIM_Lib
-import urllib.request
-import urllib
-import xml.etree.ElementTree as ET
-import json
+import GIS2BIM
 import Draft
 import Part
+import FreeCAD
 
-def GIS2BIM_FreeCAD_ImportImage(fileLocation,width,height,scale):
-    App.activeDocument().addObject('Image::ImagePlane','ImagePlane')
-    App.activeDocument().ImagePlane.ImageFile = fileLocation
-    App.activeDocument().ImagePlane.XSize = width*scale
-    App.activeDocument().ImagePlane.YSize = height*scale
-    App.activeDocument().ImagePlane.Placement = App.Placement(App.Vector(0.000000,0.000000,0.000000),App.Rotation(0.000000,0.000000,0.000000,1.000000))
+def ImportImage(fileLocation,width,height,scale,name):
+    Img = FreeCAD.activeDocument().addObject('Image::ImagePlane',name)
+    Img.ImageFile = fileLocation
+    Img.XSize = width*scale
+    Img.YSize = height*scale
+    Img.Placement = FreeCAD.Placement(FreeCAD.Vector(0.000000,0.000000,0.000000),FreeCAD.Rotation(0.000000,0.000000,0.000000,1.000000))
+    return Img
 
-def GIS2BIM_FreeCAD_3DBuildings(curves3DBAG,heightData3DBAG):
+def Buildings3D(curves3DBAG,heightData3DBAG):
+    solids = []
     for i,j,k in zip(curves3DBAG,heightData3DBAG[1],heightData3DBAG[2]):
         pointlist = []
         for curve in i:
@@ -23,11 +22,13 @@ def GIS2BIM_FreeCAD_3DBuildings(curves3DBAG,heightData3DBAG):
         a = Part.makePolygon(pointlist)
         face = Part.Face(a)
         solid = face.extrude(FreeCAD.Vector(0, 0, float(k) * 1000))
-        Part.show(solid)
-    return solid
+        sld = Part.show(solid)
+        solids.append(sld)
+    return solids
 
-def GIS2BIM_FreeCAD_CurvesFromWFS(serverName,boundingBoxString,xPathString,dx,dy,scale,DecimalNumbers,XYZCountDimensions,closedValue,DrawStyle,LineColor):
-    curves = snapGIS_PointsFromWFS(serverName,boundingBoxString,xPathString,dx,dy,scale,DecimalNumbers,XYZCountDimensions)
+def CurvesFromWFS(serverName,boundingBoxString,xPathString,dx,dy,scale,DecimalNumbers,XYZCountDimensions,closedValue,DrawStyle,LineColor):
+    curves = GIS2BIM.PointsFromWFS(serverName,boundingBoxString,xPathString,dx,dy,scale,DecimalNumbers,XYZCountDimensions)
+    curvesWFS = []
     for i in curves:
         pointlist = []
         for j in i:
@@ -36,14 +37,20 @@ def GIS2BIM_FreeCAD_CurvesFromWFS(serverName,boundingBoxString,xPathString,dx,dy
         a.MakeFace = closedValue
         a.ViewObject.DrawStyle = DrawStyle
         a.ViewObject.LineColor = LineColor
-    return a
+        curvesWFS.append(a)
+    return curvesWFS
 
-def GIS2BIM_FreeCAD_PlaceText(textData,fontSize):
+def PlaceText(textData,fontSize, upper):
+    Texts = []
     for i, j, k in zip(textData[0], textData[1], textData[2]):
         ZAxis = FreeCAD.Vector(0, 0, 1)
         p1 = FreeCAD.Vector(i[0][0], i[0][1], 0)
         Place1 = FreeCAD.Placement(p1, FreeCAD.Rotation(ZAxis, -float(j)))
-        Text1 = Draft.make_text(k, point=p1)
+        if upper:
+           k = k.upper()
+        else: k = k
+        Text1 = Draft.makeText(k, point=p1)
         Text1.ViewObject.FontSize = fontSize
         Text1.Placement = Place1
-    return Text1
+        Texts.append(Text1)
+    return Texts

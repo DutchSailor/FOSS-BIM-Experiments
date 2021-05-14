@@ -1,0 +1,29 @@
+SiteName = "GIS-Site"
+
+def filldata():
+	#buildin
+	SiteGIS.Longitude = -46.38
+	SiteGIS.Latitude = -23.33
+	SiteGIS.Orientation = 1 #True North
+	SiteGIS.Address = ""
+	SiteGIS.Country = ""
+	SiteGIS.City = ""
+	SiteGIS.Postal Code = ""
+
+	#added data
+	SiteGIS.CRS EPSG SRID = "28992"
+	SiteGIS.CRS EPSG Description = "RD"
+	SiteGIS.CRS_x = 104000
+	SiteGIS.CRS_y = 498000
+	SiteGIS.BoundingboxWidth = 400
+	SiteGIS.BoundingboxHeight = 400
+
+lstObjects = []
+for obj in App.ActiveDocument.Objects:
+    lstObjects.append(obj.Label)
+if SiteName in lstObjects:
+
+else:
+    SiteGIS = Arch.makeSite([],[],SiteName)
+		
+import FreeCAD, Draft, Arch
