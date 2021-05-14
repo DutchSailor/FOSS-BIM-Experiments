@@ -12,6 +12,10 @@ SiteGIS.Address = ""
 SiteGIS.Country = ""
 SiteGIS.City Code = ""
 SiteGIS.Postal Code = ""
+SiteGIS.GIS-data:
+	BoundingboxWidth
+	BoundingboxHeight
+	
 
 SiteGIS.Url = ""
 
@@ -25,14 +29,11 @@ def GIS2BIM_NominatimAPI(streetname, housenumber, city, country):
     webRequestPart2 = "%20"
     webRequestLastPart = GIS2BIM_NominatimAPIwebRequestLastPart
     myrequestURL = webRequestPart1 + city + webRequestPart2 + streetname + webRequestPart2 + housenumber + webRequestPart2 + country + webRequestLastPart
-#    urlFile = urllib.request.urlopen(myrequestURL)
-#    tree = ET.parse(urlFile)
-    return myrequestURL
+    urlFile = urllib.request.urlopen(myrequestURL)
+    tree = ET.parse(urlFile)
+	return myrequestURL
 
-
-
-
-a = GIS2BIM_NominatimAPI("warmoeskade", "2", "", "")
+a = GIS2BIM_NominatimAPI("wattstraat", "17", "", "")
 response = requests.get(a)
 
 #urlFile = urllib.request.urlopen(a)
@@ -138,9 +139,7 @@ panel = BoxTaskPanel()
 FreeCADGui.Control.showDialog(panel)
 
 
-import clr
-clr.AddReference('ProtoGeometry')
-from Autodesk.DesignScript.Geometry import *
+
 import math
 
 #The inputs to this node will be stored as a list in the IN variables.
