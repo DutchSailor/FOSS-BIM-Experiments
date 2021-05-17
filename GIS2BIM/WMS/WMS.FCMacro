@@ -12,15 +12,25 @@ import Part
 
 import GIS2BIM
 import GIS2BIM_FreeCAD
-import GIS2BIM_NL
+#import GIS2BIM_NL
 
 import PySide2
 from PySide2 import QtCore, QtGui, QtWidgets
 
 ####import for WebPage
+from PySide2.QtWebEngineWidgets import QWebEngineView
 from PySide2 import  QtUiTools, QtNetwork
 from PySide2.QtCore import QUrl
 import functools
+
+SiteName = "GIS2BIM-Sitedata"
+X = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).CRS_x)
+Y = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).CRS_y)
+BoundingboxWidth = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).BoundingboxWidth)
+BoundingboxHeight = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).BoundingboxHeight)
+TempFolderName = "GIStemp/"
+Tempfolder = GIS2BIM_FreeCAD.CreateTempFolder(TempFolderName)
+TempfileName = Tempfolder + "wms.jpg" 
 
 class GISWMS_Dialog(QtWidgets.QDialog):
 
@@ -31,97 +41,103 @@ class GISWMS_Dialog(QtWidgets.QDialog):
 	def initUI(self):
 		self.result = userCancelled
 		self.setWindowTitle("Load Raster Data with WMS(Web Map Server)")
-		self.setGeometry(100, 100, 920, 760)
+		self.setGeometry(50, 50, 920, 940)
  
-		self.exampleimage = QtWidgets.QWidget(self)
-		self.exampleimage.setObjectName("example")
-		
+		#image example
+		self.centralwidget = QtWidgets.QWidget(self)
+		self.centralwidget.setObjectName("image")
+		self.webView = QWebEngineView(self.centralwidget)
+		self.webView.setGeometry(QtCore.QRect(40, 40, 840, 600))
+		self.webView.setUrl(QtCore.QUrl("C:/Users/mikev/OneDrive/Documenten/GitHub/FOSS-BIM-Experiments/GIS2BIM/WMS/image.html")) # url your question
+		self.webView.setObjectName("webView2")
+
 		# webservernameAndRequest
 		self.webserverName1 = QtWidgets.QPlainTextEdit(self)
 		self.webserverName1.insertPlainText("http://geodata.nationaalgeoregister.nl/luchtfoto/rgb/wms?&request=GetMap&VERSION=1.3.0&STYLES=&layers=2019_ortho25&width=3000&height=3000&format=image/png&crs=EPSG:28992&bbox=")
 		self.webserverName1.setFixedWidth(300)
-		self.webserverName1.move(195, 240)
-		self.label1 = QtWidgets.QLabel("Webserveraddress & Request", self)
-		self.label1.move(20, 240)
+		self.webserverName1.move(520, 670)
+		self.label1 = QtWidgets.QLabel("Webserver Address & Request", self)
+		self.label1.move(350, 675)
 
 		#X-coordinate
 		self.numericInput1X = QtWidgets.QLineEdit(self)
 		self.numericInput1X.setInputMask("")
-		self.numericInput1X.setText("102857.637")
+
+		self.numericInput1X.setText(X)
 		self.numericInput1X.setFixedWidth(100)
-		self.numericInput1X.move(200, 440)
+		self.numericInput1X.move(200, 670)
 		self.label2 = QtWidgets.QLabel("X-coordinate", self)
-		self.label2.move(20, 440)
+		self.label2.move(40, 675)
 		
 		#Y-coordinate		
 		self.numericInput2Y = QtWidgets.QLineEdit(self)
 		self.numericInput2Y.setInputMask("")
-		self.numericInput2Y.setText("425331.936")
+		self.numericInput2Y.setText(Y)
 		self.numericInput2Y.setFixedWidth(100)
-		self.numericInput2Y.move(200, 470)
+		self.numericInput2Y.move(200, 700)
 		self.label3 = QtWidgets.QLabel("Y-coordinate", self)
-		self.label3.move(20, 470)
+		self.label3.move(40, 705)
 		
 		# boundingbox width
 		self.boundingboxwidth = QtWidgets.QLineEdit(self)
 		self.boundingboxwidth.setInputMask("")
-		self.boundingboxwidth.setText("500")
+		self.boundingboxwidth.setText(BoundingboxWidth)
 		self.boundingboxwidth.setFixedWidth(100)
-		self.boundingboxwidth.move(200, 500)
+		self.boundingboxwidth.move(200, 730)
 		self.label4 = QtWidgets.QLabel("Boundingbox Width [m]", self)
-		self.label4.move(20, 500)
+		self.label4.move(40, 735)
 
 		# boundingbox height
 		self.boundingboxheight = QtWidgets.QLineEdit(self)
 		self.boundingboxheight.setInputMask("")
-		self.boundingboxheight.setText("500")
+		self.boundingboxheight.setText(BoundingboxHeight)
 		self.boundingboxheight.setFixedWidth(100)
-		self.boundingboxheight.move(200, 530)
+		self.boundingboxheight.move(200, 760)
 		self.label5 = QtWidgets.QLabel("Boundingbox Height [m]", self)
-		self.label5.move(20, 530)
+		self.label5.move(40, 765)
 
 		# dx 
 		self.dx = QtWidgets.QLineEdit(self)
 		self.dx.setInputMask("")
 		self.dx.setText("0")
 		self.dx.setFixedWidth(100)
-		self.dx.move(200, 560)
+		self.dx.move(200, 790)
 		self.label6 = QtWidgets.QLabel("dx placement [m]", self)
-		self.label6.move(20, 560)
+		self.label6.move(40, 795)
 
 		# dy 
 		self.dy = QtWidgets.QLineEdit(self)
 		self.dy.setInputMask("")
 		self.dy.setText("0")
 		self.dy.setFixedWidth(100)
-		self.dy.move(200, 590)
+		self.dy.move(200, 820)
 		self.label7 = QtWidgets.QLabel("dy placement [m]", self)
-		self.label7.move(20, 590)
+		self.label7.move(40, 825)
 
 		# filelocation
 		self.filelocation = QtWidgets.QLineEdit(self)
 		self.filelocation.setInputMask("")
-		self.filelocation.setText("C:/TEMP/test.jpg")
-		self.filelocation.setFixedWidth(100)
-		self.filelocation.move(200, 620)
+		self.filelocation.setText(TempfileName)
+		self.filelocation.setFixedWidth(500)
+		self.filelocation.move(200, 850)
 		self.label8 = QtWidgets.QLabel("temporary filelocation", self)
-		self.label8.move(20, 620)
+		self.label8.move(40, 855)
 
 		# test WMS button
-		testWMSButton = QtWidgets.QPushButton('load WMS', self)
+		testWMSButton = QtWidgets.QPushButton('test request and show result', self)
 		testWMSButton.clicked.connect(self.testWMS)
-		testWMSButton.move(50, 650)
+		testWMSButton.move(220, 900)
 
 		# cancel button
 		cancelButton = QtWidgets.QPushButton('Cancel', self)
 		cancelButton.clicked.connect(self.onCancel)
 		cancelButton.setAutoDefault(True)
-		cancelButton.move(50, 710)
+		cancelButton.move(120, 900)
 
 		# Ok WMS button
 		okButton = QtWidgets.QPushButton('OK', self)
 		okButton.clicked.connect(self.onOk)
-		okButton.move(250, 710)
+		okButton.move(35, 900)
 		self.show()
 
 	def onCancel(self):
@@ -129,10 +145,20 @@ class GISWMS_Dialog(QtWidgets.QDialog):
 		self.close()
 
 	def testWMS(self):
-		self.result	= userTest
+		URL = str(self.webserverName1.toPlainText())
+		X = float(self.numericInput1X.text())
+		Y = float(self.numericInput2Y.text())
+		dx = float(self.dx.text())
+		dy = float(self.dy.text())
+		width = float(self.boundingboxwidth.text())
+		height = float(self.boundingboxheight.text())
+		fileLocationWMS = str(self.filelocation.text())
+		Bbox = GIS2BIM.CreateBoundingBox(X,Y,width,height,2)
+		GIS2BIM.WMSRequest(URL,Bbox,"C:/Users/mikev/OneDrive/Documenten/GitHub/FOSS-BIM-Experiments/GIS2BIM/WMS/testmap.jpg")
+		self.webView.reload()
 
 	def onOk(self):
-		self.result	= userOK
+		self.result= userOK
 		self.close()
 
 # Constant definitions
@@ -159,6 +185,6 @@ if form.result==userOK:
 	ImageAerialPhoto = GIS2BIM_FreeCAD.ImportImage(fileLocationWMS,width,height,1000,"luchtfoto2019")
 
 if form.result==userTest:
-	pass # steps to handle user clicking Cancel
+	print("test")
 
 FreeCAD.ActiveDocument.recompute()

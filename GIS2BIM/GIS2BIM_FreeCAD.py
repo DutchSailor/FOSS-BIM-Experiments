@@ -4,6 +4,16 @@ import GIS2BIM
 import Draft
 import Part
 import FreeCAD
+import Arch
+
+SiteName = "GIS2BIM-Sitedata"
+TempFolderName = "GIStemp/"
+
+def CreateTempFolder(Name):
+	FileName = FreeCAD.ActiveDocument.FileName
+	NewFolder = str.split(FileName,str.split(FileName,"/")[-1])[0] + Name
+	#if new folder exist then skip other
+	return NewFolder
 
 def ImportImage(fileLocation,width,height,scale,name):
     Img = FreeCAD.activeDocument().addObject('Image::ImagePlane',name)
@@ -54,3 +64,45 @@ def PlaceText(textData,fontSize, upper):
         Text1.Placement = Place1
         Texts.append(Text1)
     return Texts
+
+def ArchSiteCreateCheck(SiteName):
+#Create an ArchSiteobject which is used to store data nessecary for GIS2BIM. 
+	lstObjects = []
+	for obj in FreeCAD.ActiveDocument.Objects: #Check is SiteObject already exists and fill parameters
+	    lstObjects.append(obj.Label)
+	if SiteName in lstObjects: 
+		ArchSiteObject = FreeCAD.ActiveDocument.Objects[lstObjects.index(SiteName)]
+	else: #Create Siteobject and add parameters
+	    ArchSiteObject = Arch.makeSite([],[],SiteName)
+	    ArchSiteAddparameters(ArchSiteObject)
+	return ArchSiteObject
+
+def ArchSiteFilldata(SiteObject,Longitude,Latitude,TrueNorth,Address,Country,City,PostalCode,CRS_EPSG_SRID,CRS_EPSG_Description,CRS_x,CRS_y,BoundingboxWidth,BoundingboxHeight):
+	#buildin
+	SiteObject.Longitude = Longitude
+	SiteObject.Latitude = Latitude
+	#SiteObject.Orientation = "True North"
+	SiteObject.Address = Address
+	SiteObject.Country = Country
+	SiteObject.City = City
+	SiteObject.PostalCode = ""
+	SiteObject.CRS_EPSG_SRID = CRS_EPSG_SRID
+	SiteObject.CRS_EPSG_Description = CRS_EPSG_Description
+	SiteObject.CRS_x = CRS_x
+	SiteObject.CRS_y = CRS_y
+	SiteObject.BoundingboxWidth = BoundingboxWidth
+	SiteObject.BoundingboxHeight = BoundingboxHeight
+
+def ArchSiteAddparameters(SiteObject):
+	SiteObject.addProperty("App::PropertyString","CRS_EPSG_SRID")
+	SiteObject.addProperty("App::PropertyString","CRS_EPSG_Description")
+	SiteObject.addProperty("App::PropertyFloat","CRS_x")
+	SiteObject.addProperty("App::PropertyFloat","CRS_y")
+	SiteObject.addProperty("App::PropertyFloat","BoundingboxWidth")
+	SiteObject.addProperty("App::PropertyFloat","BoundingboxHeight")
+	SiteObject.CRS_EPSG_SRID = "28992"
+	SiteObject.CRS_EPSG_Description = "RD-coordinaten"
+	SiteObject.CRS_x = 104500
+	SiteObject.CRS_y = 450000
+	SiteObject.BoundingboxWidth = 500
+	SiteObject.BoundingboxHeight = 500

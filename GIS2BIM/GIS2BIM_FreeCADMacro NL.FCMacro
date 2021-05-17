@@ -57,8 +57,8 @@ class GIS2BIM_Dialog(QtGui.QDialog):
 		self.result = userCancelled
 		# create our window
 		# define window		xLoc,yLoc,xDim,yDim
-		self.setGeometry(250, 250, 400, 350)
-		self.setWindowTitle("Load GIS-data")
+		self.setGeometry(250, 250, 400, 400)
+		self.setWindowTitle("Load GIS-data PDOK Netherlands")
 		self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
 		# create some Labels
 		self.label1 = QtGui.QLabel("Rdx(EPSG 28992)", self)
@@ -112,18 +112,18 @@ class GIS2BIM_Dialog(QtGui.QDialog):
 		self.checkbox5 = QtGui.QCheckBox("GIS 2D Annotation", self)
 		self.checkbox5.move(20,260)
 		#
-		self.checkbox6 = QtGui.QCheckBox("Bestemmingsplan", self)
+		self.checkbox6 = QtGui.QCheckBox("2D Bestemmingsplan Bouwvlak Vector", self)
 		self.checkbox6.move(20,290)
 		#
 		# cancel button
 		cancelButton = QtGui.QPushButton('Cancel', self)
 		cancelButton.clicked.connect(self.onCancel)
 		cancelButton.setAutoDefault(True)
-		cancelButton.move(150, 280)
+		cancelButton.move(100, 330)
 		# OK button
 		okButton = QtGui.QPushButton('OK', self)
 		okButton.clicked.connect(self.onOk)
-		okButton.move(260, 280)
+		okButton.move(20, 330)
 		# now make the window visible
 		self.show()
 		#

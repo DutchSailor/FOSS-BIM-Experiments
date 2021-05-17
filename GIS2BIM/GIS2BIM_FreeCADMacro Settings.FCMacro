@@ -1,0 +1,15 @@
+# WMS Importer
+
+import sys
+sys.path.insert(1, 'C:/Users/mikev/OneDrive/Documenten/GitHub/FOSS-BIM-Experiments/GIS2BIM')
+
+import GIS2BIM
+import GIS2BIM_FreeCAD
+#import GIS2BIM_NL
+
+SiteName = "GIS2BIM-Sitedata"
+
+
+
+
+print(NewFolder)

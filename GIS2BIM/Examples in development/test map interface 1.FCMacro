@@ -7,6 +7,17 @@ from PySide2 import  QtUiTools, QtNetwork
 from PySide2.QtCore import QUrl
 import functools
 
+import GIS2BIM
+import GIS2BIM_FreeCAD
+
+SiteName = "GIS2BIM-Sitedata"
+X = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).CRS_x)
+Y = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).CRS_y)
+Lat = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).Latitude)
+Long = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).Longitude)
+BoundingboxWidth = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).BoundingboxWidth)
+BoundingboxHeight = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).BoundingboxHeight)
+
 class GISLocation_Dialog(QtWidgets.QDialog):
 
 	def __init__(self):
@@ -16,15 +27,15 @@ class GISLocation_Dialog(QtWidgets.QDialog):
 	def initUI(self):
 		self.result = userCancelled
 		self.setWindowTitle("Set Geographic Location")
-		self.setGeometry(100, 100, 920, 760)
+		self.setGeometry(100, 100, 920, 870)
  
 		self.centralwidget = QtWidgets.QWidget(self)
 		self.centralwidget.setObjectName("map")
 
 		self.webView = QWebEngineView(self.centralwidget)
-		self.webView.setGeometry(QtCore.QRect(50, 40, 820, 620))
+		self.webView.setGeometry(QtCore.QRect(40, 40, 840, 620))
 
-		self.webView.setUrl(QtCore.QUrl("C:/map.html")) # url your question
+		self.webView.setUrl(QtCore.QUrl("C:/Users/mikev/OneDrive/Documenten/GitHub/FOSS-BIM-Experiments/GIS2BIM/Examples in development/map.html")) # url your question
 		self.webView.setObjectName("webView")
 		#self.webView.page()..addToJavaScriptWindowObject("MainWindow", self)
 		
@@ -37,43 +48,66 @@ class GISLocation_Dialog(QtWidgets.QDialog):
 		self.label1.move(50, 25)
 		self.label2 = QtWidgets.QLabel("lon: " + str(lon) , self)
 		self.label2.move(150, 25)
+		self.labelX = QtWidgets.QLabel("X: " + str(X), self)
+		self.labelX.move(250, 25)
+		self.labelY = QtWidgets.QLabel("Y: " + str(Y), self)
+		self.labelY.move(350, 25)
 
 		#Search 
 		self.label3 = QtWidgets.QLabel("Project Address:", self)
-		self.label3.move(50, 675)
+		self.label3.move(40, 675)
 
 		#
-		self.searchline1 = QtWidgets.QLineEdit(self)
-		self.searchline1.setInputMask("")
-		self.searchline1.setText("Dordrecht")
-		self.searchline1.setFixedWidth(1000)
-		self.searchline1.move(150, 670)
+		self.searchline1 = QtWidgets.QPlainTextEdit(self)
+		self.searchline1.insertPlainText("Dordrecht")
+		self.searchline1.setFixedWidth(400)
+		self.searchline1.setFixedHeight(60)
+		self.searchline1.move(195, 670)
 
 		# search button
 		searchButton = QtWidgets.QPushButton('Search', self)
 		searchButton.clicked.connect(self.onSearch)
 		searchButton.setAutoDefault(True)
-		searchButton.move(275, 665)
+		searchButton.move(600, 670)
 
-		# boundingbox 
+		#list of CRS
+		self.label4 = QtWidgets.QLabel("Coordinate Reference System", self)
+		self.label4.move(40, 735)
+		#
+		self.searchline1 = QtWidgets.QLineEdit(self)
+		self.searchline1.setInputMask("")
+		self.searchline1.setText("28992")
+		self.searchline1.setFixedWidth(1000)
+		self.searchline1.move(200, 730)
+
+		# boundingbox width
 		self.boundingboxwidth = QtWidgets.QLineEdit(self)
 		self.boundingboxwidth.setInputMask("")
-		self.boundingboxwidth.setText("500")
+		self.boundingboxwidth.setText(BoundingboxWidth)
 		self.boundingboxwidth.setFixedWidth(100)
-		self.boundingboxwidth.move(450, 670)
+		self.boundingboxwidth.move(200, 760)
+		self.label1 = QtWidgets.QLabel("Boundingbox Width [m]", self)
+		self.label1.move(40, 765)
 
-		self.label1 = QtWidgets.QLabel("[m] Boundingbox Width", self)
-		self.label1.move(500, 675)
+		# boundingbox height
+		self.boundingboxheight = QtWidgets.QLineEdit(self)
+		self.boundingboxheight.setInputMask("")
+		self.boundingboxheight.setText(BoundingboxHeight)
+		self.boundingboxheight.setFixedWidth(100)
+		self.boundingboxheight.move(200, 790)
+
+		self.label2 = QtWidgets.QLabel("Boundingbox Height [m]", self)
+		self.label2.move(40, 795)
 
 		# cancel button
 		cancelButton = QtWidgets.QPushButton('Cancel', self)
 		cancelButton.clicked.connect(self.onCancel)
 		cancelButton.setAutoDefault(True)
-		cancelButton.move(50, 710)
+		cancelButton.move(120, 820)
 		# OK button
 		okButton = QtWidgets.QPushButton('OK', self)
 		okButton.clicked.connect(self.onOk)
-		okButton.move(150, 710)
+		okButton.move(35, 820)
 		self.show()
 		# CrossLines
 #		pen = QtGui.QPen(QtCore.Qt.red)
@@ -114,4 +148,15 @@ userOK			= "OK"
 form = GISLocation_Dialog()
 form.exec_()
 
-time.sleep(2)
+
+if form.result==userOK:
+	SiteName = "GIS2BIM-Sitedata"
+	SiteObject = GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName)
+	#SiteObject.Longitude = 52.5
+	#SiteObject.Latitude = 52.5
+	#SiteObject.CRS_x = 104500
+	#SiteObject.CRS_y = 405000
+	SiteObject.BoundingboxWidth = float(form.boundingboxwidth.text())
+	SiteObject.BoundingboxHeight = float(form.boundingboxheight.text())
+	#SiteObject.CRS_EPSG_Description = "RD coord"
+	#SiteObject.CRS_EPSG_SRID = "28992"
