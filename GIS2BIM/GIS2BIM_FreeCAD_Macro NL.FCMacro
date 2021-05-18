@@ -43,8 +43,14 @@ import Part
 
 import GIS2BIM
 import GIS2BIM_FreeCAD
-import GIS2BIM_NL
+#import GIS2BIM_NL
 from PySide import QtGui, QtCore
+
+SiteName = "GIS2BIM-Sitedata"
+X = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).CRS_x)
+Y = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).CRS_y)
+BoundingboxWidth = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).BoundingboxWidth)
+BoundingboxHeight = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).BoundingboxHeight)
 
 # UI Class definitions
 
@@ -66,7 +72,7 @@ class GIS2BIM_Dialog(QtGui.QDialog):
 		#
 		self.numericInput1Rdx = QtGui.QLineEdit(self)
 		self.numericInput1Rdx.setInputMask("")
-		self.numericInput1Rdx.setText("102857.637")
+		self.numericInput1Rdx.setText(X)
 		self.numericInput1Rdx.setFixedWidth(100)
 		self.numericInput1Rdx.move(250, 20)
 		#
@@ -75,7 +81,7 @@ class GIS2BIM_Dialog(QtGui.QDialog):
 		#
 		self.numericInput2Rdy = QtGui.QLineEdit(self)
 		self.numericInput2Rdy.setInputMask("")
-		self.numericInput2Rdy.setText("425331.936")
+		self.numericInput2Rdy.setText(Y)
 		self.numericInput2Rdy.setFixedWidth(100)
 		self.numericInput2Rdy.move(250, 50)
 		#
@@ -84,7 +90,7 @@ class GIS2BIM_Dialog(QtGui.QDialog):
 		#
 		self.numericInput3Width = QtGui.QLineEdit(self)
 		self.numericInput3Width.setInputMask("")
-		self.numericInput3Width.setText("500")
+		self.numericInput3Width.setText(BoundingboxWidth)
 		self.numericInput3Width.setFixedWidth(100)
 		self.numericInput3Width.move(250, 80)
 		#
@@ -93,7 +99,7 @@ class GIS2BIM_Dialog(QtGui.QDialog):
 		#
 		self.numericInput4Height = QtGui.QLineEdit(self)
 		self.numericInput4Height.setInputMask("")
-		self.numericInput4Height.setText("500")
+		self.numericInput4Height.setText(BoundingboxHeight)
 		self.numericInput4Height.setFixedWidth(100)
 		self.numericInput4Height.move(250, 110)
 		# checkboxes

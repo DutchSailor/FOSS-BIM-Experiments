@@ -11,6 +11,8 @@ TempFolderName = "GIStemp/"
 
 def CreateTempFolder(Name):
 	FileName = FreeCAD.ActiveDocument.FileName
+		if FreeCAD.ActiveDocument.FileName is ""
+#			"Melding please save file first
 	NewFolder = str.split(FileName,str.split(FileName,"/")[-1])[0] + Name
 	#if new folder exist then skip other
 	return NewFolder
@@ -81,7 +83,7 @@ def ArchSiteFilldata(SiteObject,Longitude,Latitude,TrueNorth,Address,Country,Cit
 	#buildin
 	SiteObject.Longitude = Longitude
 	SiteObject.Latitude = Latitude
-	#SiteObject.Orientation = "True North"
+	SiteObject.Orientation = u"True North"
 	SiteObject.Address = Address
 	SiteObject.Country = Country
 	SiteObject.City = City
@@ -106,3 +108,4 @@ def ArchSiteAddparameters(SiteObject):
 	SiteObject.CRS_y = 450000
 	SiteObject.BoundingboxWidth = 500
 	SiteObject.BoundingboxHeight = 500
+	SiteObject.Orientation = u"True North"
