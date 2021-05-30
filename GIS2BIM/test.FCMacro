@@ -1,0 +1,5 @@
+import sys
+sys.path.insert(1, 'C:/Users/mikev/OneDrive/Documenten/GitHub/FOSS-BIM-Experiments/GIS2BIM')
+import GIS2BIM_CRS 
+
+print(GIS2BIM_CRS.inputChars[5405])

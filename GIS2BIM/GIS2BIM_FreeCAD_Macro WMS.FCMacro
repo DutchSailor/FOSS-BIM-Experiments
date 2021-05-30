@@ -28,9 +28,10 @@ X = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).CRS_x)
 Y = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).CRS_y)
 BoundingboxWidth = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).BoundingboxWidth)
 BoundingboxHeight = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).BoundingboxHeight)
-TempFolderName = "GIStemp/"
-Tempfolder = GIS2BIM_FreeCAD.CreateTempFolder(TempFolderName)
-TempfileName = Tempfolder + "wms.jpg" 
+#TempFolderName = "GIStemp/"
+#Tempfolder = GIS2BIM_FreeCAD.CreateTempFolder(TempFolderName)
+#TempfileName = Tempfolder + "wms.jpg" 
+TempfileName = "C:/TEMP/test.jpg" 
 
 class GISWMS_Dialog(QtWidgets.QDialog):
 

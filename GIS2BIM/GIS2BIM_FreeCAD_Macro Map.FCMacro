@@ -3,16 +3,17 @@ from PySide2 import QtCore, QtGui, QtWidgets
 
 ####import for WebPage
 from PySide2.QtWebEngineWidgets import QWebEngineView
+from PySide2.QtWebEngineWidgets import QWebEnginePage 
 from PySide2 import  QtUiTools, QtNetwork
 from PySide2.QtCore import QUrl
 import functools
+import requests
 
 import GIS2BIM
 import GIS2BIM_FreeCAD
+import GIS2BIM_CRS 
 
 SiteName = "GIS2BIM-Sitedata"
-X = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).CRS_x)
-Y = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).CRS_y)
 Lat = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).Latitude)
 Long = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).Longitude)
 BoundingboxWidth = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).BoundingboxWidth)
@@ -34,13 +35,20 @@ class GISLocation_Dialog(QtWidgets.QDialog):
 
 		self.webView = QWebEngineView(self.centralwidget)
 		self.webView.setGeometry(QtCore.QRect(40, 40, 840, 620))
+		self.webPage = QWebEnginePage()
+		self.webPage.load(QUrl(QtCore.QUrl("C:/Users/mikev/OneDrive/Documenten/GitHub/FOSS-BIM-Experiments/GIS2BIM/Datafiles/map.html")))
 
-		self.webView.setUrl(QtCore.QUrl("C:/Users/mikev/OneDrive/Documenten/GitHub/FOSS-BIM-Experiments/GIS2BIM/Examples in development/map.html")) # url your question
-		self.webView.setObjectName("webView")
-		#self.webView.page()..addToJavaScriptWindowObject("MainWindow", self)
-		
+		self.webView.setPage(self.webPage)
+
+
+		#self.webView.setObjectName("webView")
+		#self.webView.evaluateJavaScript(JS, self)
+
 		lat = 51.814191
 		lon = 4.660176
+
+		self.lat = 51.814191
+		self.lon = 4.660176
 
 		QtCore.QMetaObject.connectSlotsByName(self)
 		#Lat/Lon
@@ -48,10 +56,10 @@ class GISLocation_Dialog(QtWidgets.QDialog):
 		self.label1.move(50, 25)
 		self.label2 = QtWidgets.QLabel("lon: " + str(lon) , self)
 		self.label2.move(150, 25)
-		self.labelX = QtWidgets.QLabel("X: " + str(X), self)
-		self.labelX.move(250, 25)
-		self.labelY = QtWidgets.QLabel("Y: " + str(Y), self)
-		self.labelY.move(350, 25)
+		#self.labelX = QtWidgets.QLabel("X: " + str(X), self)
+		#self.labelX.move(250, 25)
+		#self.labelY = QtWidgets.QLabel("Y: " + str(Y), self)
+		#self.labelY.move(350, 25)
 
 		#Search 
 		self.label3 = QtWidgets.QLabel("Project Address:", self)
@@ -71,14 +79,18 @@ class GISLocation_Dialog(QtWidgets.QDialog):
 		searchButton.move(600, 670)
 
 		#list of CRS
-		self.label4 = QtWidgets.QLabel("Coordinate Reference System", self)
-		self.label4.move(40, 735)
+		self.dropdownCRSlabel = QtWidgets.QLabel("Coordinate Reference System", self)
+		self.dropdownCRSlabel.move(40, 735)
 		#
-		self.searchline1 = QtWidgets.QLineEdit(self)
-		self.searchline1.setInputMask("")
-		self.searchline1.setText("28992")
-		self.searchline1.setFixedWidth(1000)
-		self.searchline1.move(200, 730)
+		self.dropdownCRS = QtWidgets.QComboBox(self)
+		self.dropdownCRS.addItems(GIS2BIM_CRS.inputChars)
+		self.dropdownCRS.setCurrentText("28992")
+		self.dropdownCRS.setFixedWidth(300)
+		self.dropdownCRS.move(200, 730)
+		CRS_EPSG_SRID = GIS2BIM_CRS.inputChars[self.dropdownCRS.currentIndex()]
+		CRS_EPSG_Description = GIS2BIM_CRS.getCRSdata(CRS_EPSG_SRID)		
+		self.dropdownCRSlabel = QtWidgets.QLabel(CRS_EPSG_Description, self)
+		self.dropdownCRSlabel.move(350, 735)
 
 		# boundingbox width
 		self.boundingboxwidth = QtWidgets.QLineEdit(self)
@@ -109,6 +121,7 @@ class GISLocation_Dialog(QtWidgets.QDialog):
 		okButton.clicked.connect(self.onOk)
 		okButton.move(35, 820)
 		self.show()
+
 		# CrossLines
 #		pen = QtGui.QPen(QtCore.Qt.red)
 #		painter = QtGui.QPainter()
@@ -126,6 +139,25 @@ class GISLocation_Dialog(QtWidgets.QDialog):
 
 	def onSearch(self):
 		self.result= userOK
+		#JS = "mymap.setView([51.8146586, 4.6609429], 12);"
+		urlJS = GIS2BIM.GetWebServerData('HTMLLocationDataJS1','Other','URL')	
+		response = requests.get(urlJS)
+		JS = response.text
+		JS ="[var textToSave = String(lat);
+		var lat = mymap.getCenter();
+var hiddenElement = document.createElement('a');
+
+hiddenElement.href = 'data:attachment/text,' + encodeURI(textToSave);
+hiddenElement.target = '_blank';
+hiddenElement.download = 'C:/3BM/myFiles2.txt';
+hiddenElement.click();
+		
+
+var boundsJS = mymap.getBounds().getSouthWest().lat, \
+			
+		#JS = 'return 1+4'
+		view = self.webPage.runJavaScript(JS)
+		print(view)	
 
 	def onOk(self):
 		self.result= userOK
@@ -148,15 +180,15 @@ userOK			= "OK"
 form = GISLocation_Dialog()
 form.exec_()
 
-
 if form.result==userOK:
 	SiteName = "GIS2BIM-Sitedata"
 	SiteObject = GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName)
-	#SiteObject.Longitude = 52.5
-	#SiteObject.Latitude = 52.5
-	#SiteObject.CRS_x = 104500
-	#SiteObject.CRS_y = 405000
+	CRS_EPSG_SRID = SiteObject.CRS_EPSG_SRID = GIS2BIM_CRS.inputChars[form.dropdownCRS.currentIndex()]
+	SiteObject.Longitude = form.lon
+	SiteObject.Latitude = form.lat
+	Transformation = GIS2BIM.TransformCRS_epsg("4326",CRS_EPSG_SRID,form.lat,form.lon)
+	SiteObject.CRS_x = float(Transformation[0])
+	SiteObject.CRS_y = float(Transformation[1])
 	SiteObject.BoundingboxWidth = float(form.boundingboxwidth.text())
 	SiteObject.BoundingboxHeight = float(form.boundingboxheight.text())
-	#SiteObject.CRS_EPSG_Description = "RD coord"
-	#SiteObject.CRS_EPSG_SRID = "28992"
+	SiteObject.CRS_EPSG_Description = GIS2BIM_CRS.getCRSdata(CRS_EPSG_SRID)

@@ -13056,16 +13056,14 @@ inputNumbers = (
 'Madrid 1870 (Madrid) (deg)'
 )
 
-# define Dictionary with the conversion step
-myDict = {}
+CRSdict = {}
 
-# fill the dictionary
 for x in range(0, len(inputChars)):
-    myDict[inputChars[x]] = inputNumbers[x]
+    CRSdict[inputChars[x]] = inputNumbers[x]
 
 # convert each item in the list step by step
-output = []
-for c in input:
-    output.append(myDict.get(c))
+def getCRSdata(input):
+	output = (CRSdict.get(input))
+	return(output)
 
 totallist = zip(inputChars, inputNumbers)

@@ -5,6 +5,7 @@ import urllib.request
 import xml.etree.ElementTree as ET
 import json
 import math
+import requests
 
 #Common functions
 def GetWebServerData(servertitle, category, parameter):
@@ -31,6 +32,17 @@ def GetWebServerData(servertitle, category, parameter):
 
 
 #GIS2BIM functions
+
+def TransformCRS_epsg(SourceCRS, TargetCRS, X, Y):
+    # transform coordinates between different Coordinate Reference Systems using EPSG-server
+    X = str(X)
+    Y = str(Y)
+    requestURL = "https://epsg.io/trans?" + "&s_srs=" + SourceCRS + "&t_srs=" + TargetCRS + "&x=" + X + "&y=" + Y + "&format=json"
+    rqst = requests.get(requestURL).content
+    data = json.loads(rqst)
+    X = data["x"]
+    Y = data["y"]
+    return X,Y
 
 def GML_poslistData(tree, xPathString,dx,dy,scale,DecimalNumbers,XYZCountDimensions):
 #group X and Y Coordinates of polylines

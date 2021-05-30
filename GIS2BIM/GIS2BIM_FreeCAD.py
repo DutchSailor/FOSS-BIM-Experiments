@@ -9,13 +9,13 @@ import Arch
 SiteName = "GIS2BIM-Sitedata"
 TempFolderName = "GIStemp/"
 
-def CreateTempFolder(Name):
-	FileName = FreeCAD.ActiveDocument.FileName
-		if FreeCAD.ActiveDocument.FileName is ""
+#def CreateTempFolder(Name):
+#	FileName = FreeCAD.ActiveDocument.FileName
+#		if FreeCAD.ActiveDocument.FileName is ""
 #			"Melding please save file first
-	NewFolder = str.split(FileName,str.split(FileName,"/")[-1])[0] + Name
-	#if new folder exist then skip other
-	return NewFolder
+#	NewFolder = str.split(FileName,str.split(FileName,"/")[-1])[0] + Name
+#	#if new folder exist then skip other
+#	return NewFolder
 
 def ImportImage(fileLocation,width,height,scale,name):
     Img = FreeCAD.activeDocument().addObject('Image::ImagePlane',name)
@@ -94,6 +94,7 @@ def ArchSiteFilldata(SiteObject,Longitude,Latitude,TrueNorth,Address,Country,Cit
 	SiteObject.CRS_y = CRS_y
 	SiteObject.BoundingboxWidth = BoundingboxWidth
 	SiteObject.BoundingboxHeight = BoundingboxHeight
+	return SiteObject
 
 def ArchSiteAddparameters(SiteObject):
 	SiteObject.addProperty("App::PropertyString","CRS_EPSG_SRID")
@@ -102,10 +103,4 @@ def ArchSiteAddparameters(SiteObject):
 	SiteObject.addProperty("App::PropertyFloat","CRS_y")
 	SiteObject.addProperty("App::PropertyFloat","BoundingboxWidth")
 	SiteObject.addProperty("App::PropertyFloat","BoundingboxHeight")
-	SiteObject.CRS_EPSG_SRID = "28992"
-	SiteObject.CRS_EPSG_Description = "RD-coordinaten"
-	SiteObject.CRS_x = 104500
-	SiteObject.CRS_y = 450000
-	SiteObject.BoundingboxWidth = 500
-	SiteObject.BoundingboxHeight = 500
-	SiteObject.Orientation = u"True North"
+	return SiteObject
