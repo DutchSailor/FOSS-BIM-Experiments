@@ -3,7 +3,7 @@ Experiments with Open Source BIM Software
 
 Map in FreeCAD using PySide2 and Leaflet map
 
-![](GIS2BIM.gif)
+![](GIS2BIM_map_FreeCAD.gif)
 
 Experiment 2D/3D GIS in FreeCAD
 
