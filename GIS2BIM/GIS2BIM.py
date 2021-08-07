@@ -5,10 +5,15 @@ import urllib.request
 import xml.etree.ElementTree as ET
 import json
 import math
+import sys
 import requests
+import re
+import os
+from PySide2 import QtCore, QtWidgets, QtGui
 
 #Common functions
 def GetWebServerData(servertitle, category, parameter):
+	#Get webserverdata from github repository of GIS2BIM(up to date list of GIS-servers & requests)
 	Serverlocation = "https://raw.githubusercontent.com/DutchSailor/GIS2BIM/master/GIS2BIM_Data.json"
 	import urllib.request, json
 	url = urllib.request.urlopen(Serverlocation)
@@ -19,20 +24,39 @@ def GetWebServerData(servertitle, category, parameter):
 	result = data[test.index(servertitle)][parameter]
 	return result
 
-#def GetDataFiles(folder):
-#	Serverlocation = "https://raw.githubusercontent.com/DutchSailor/GIS2BIM/master/datafiles/map.html"
-#	import urllib.request, json
-#	url = urllib.request.urlopen(Serverlocation)
-#	data = json.loads(url.read())['GIS2BIMserversRequests'][category]
-#	test = []
-#	for i in data:
-#		test.append(i["title"])
-#	result = data[test.index(servertitle)][parameter]
-#	return result
+def DownloadURL(folder,url,filename):
+	#Download a file to a folder from a given url
+	url = url
+	path = folder + filename
+	urllib.request.urlretrieve(url,path)
+	return path
+	
+def GetDataFiles(folder):
+	Serverlocation = "https://raw.githubusercontent.com/DutchSailor/GIS2BIM/master/datafiles/map.html"
+	import urllib.request, json
+	url = urllib.request.urlopen(Serverlocation)
+	data = json.loads(url.read())['GIS2BIMserversRequests'][category]
+	test = []
+	for i in data:
+		test.append(i["title"])
+	result = data[test.index(servertitle)][parameter]
+	return result
 
 
 #GIS2BIM functions
 
+def checkIfCoordIsInsideBoundingBox(coord, bounding_box):
+	#check if coordinate is inside rectangle boundingbox
+    min_x = bounding_box[0] - (bounding_box[2] / 2)
+    min_y = bounding_box[1] - (bounding_box[2] / 2)
+    max_x = bounding_box[0] + (bounding_box[2] / 2)
+    max_y = bounding_box[1] + (bounding_box[2] / 2)
+
+    if min_x <= float(coord[0]) <= max_x and min_y <= float(coord[1]) <= max_y:
+        return True
+    else:
+        return False
+		
 def TransformCRS_epsg(SourceCRS, TargetCRS, X, Y):
     # transform coordinates between different Coordinate Reference Systems using EPSG-server
     X = str(X)
@@ -100,9 +124,10 @@ def WMSRequest(serverName,boundingBoxString,fileLocation):
     output1 = open(fileLocation, "wb")
     output1.write(resource.read())
     output1.close()
-    return fileLocation, resource
+    return fileLocation, resource, myrequestURL
 
 def MortonCode(X,Y,Xmod,Ymod,TileDimension):
+	# convert a x and y coordinate to a mortoncode
 	x = bin(int(math.floor(((X - Xmod)/TileDimension))))
 	y = bin(int(math.floor(((Y - Ymod)/TileDimension))))
 	x = str(x[2:])
@@ -111,6 +136,24 @@ def MortonCode(X,Y,Xmod,Ymod,TileDimension):
 	z=(res)
 	z = int(z, 2)
 	return z
+
+def GIS2BIM_NominatimAPI(inputlist):
+    #get lat/lon via an adress using Nominatim API
+	URLpart1 = "https://nominatim.openstreetmap.org/search/"
+	URLpart2 = "%20".join(inputlist)
+	URLpart3 = "?format=xml&addressdetails=1&limit=1&polygon_svg=1"
+
+	URL = URLpart1 + URLpart2 + URLpart3
+
+	req = urllib.request.Request(URL)
+	resp = urllib.request.urlopen(req)
+	content = resp.read().decode('utf8')
+
+	lst = re.split('lat=| lon=| display_name=',content)
+	lat = lst[1][1:-1]
+	lon = lst[2][1:-1]
+	
+	return lat, lon
 
 class GeoLocation:
     '''

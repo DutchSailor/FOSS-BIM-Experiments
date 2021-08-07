@@ -1,23 +1,43 @@
-import PySide2
-from PySide2 import QtCore, QtGui, QtWidgets
-
-####import for WebPage
+####imports
+import PySide
 from PySide2.QtWebEngineWidgets import QWebEngineView
 from PySide2.QtWebEngineWidgets import QWebEnginePage 
-from PySide2 import  QtUiTools, QtNetwork
+from PySide2 import  QtUiTools, QtNetwork,QtCore, QtGui, QtWidgets, QtWebChannel
 from PySide2.QtCore import QUrl
 import functools
 import requests
-
+import sys,os
 import GIS2BIM
 import GIS2BIM_FreeCAD
 import GIS2BIM_CRS 
+import time
+import re
+
+sys.path.append(os.path.join(sys.path[0]))
 
 SiteName = "GIS2BIM-Sitedata"
-Lat = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).Latitude)
-Long = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).Longitude)
+TempFolderName = "GIStemp/"
+Lat = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).WGS84_Latitude)
+Long = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).WGS84_Longitude)
 BoundingboxWidth = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).BoundingboxWidth)
 BoundingboxHeight = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).BoundingboxHeight)
+
+#Create temp folders/files
+URLmap = GIS2BIM.GetWebServerData("HTMLLocationData", "Other", "URL")
+URLSearch = GIS2BIM.GetWebServerData("HTMLLocationDataJSmapfilesearch", "Other", "URL")
+URLUpdate = GIS2BIM.GetWebServerData("HTMLLocationDataJSmapbboxupdate", "Other", "URL")
+filepathBaseMap = GIS2BIM.DownloadURL(GIS2BIM_FreeCAD.CreateTempFolder(TempFolderName),URLmap,"basemap.html")
+filepathNewMap = GIS2BIM.DownloadURL(GIS2BIM_FreeCAD.CreateTempFolder(TempFolderName),URLmap,"map.html")
+filepathJSSearch = GIS2BIM.DownloadURL(GIS2BIM_FreeCAD.CreateTempFolder(TempFolderName),URLSearch,"map_filesearch.js")
+filepathJSUpdate = GIS2BIM.DownloadURL(GIS2BIM_FreeCAD.CreateTempFolder(TempFolderName),URLUpdate,"map_bboxupdate.js")
+#filepathBaseMap = "C:/Users/mikev/OneDrive/Bureaublad/TEMP/GIStemp/basemap.html"	
+tempFolderPath = GIS2BIM_FreeCAD.CreateTempFolder(TempFolderName)	
+temptxtPath = tempFolderPath + "/temp.txt"
+
+for file in os.listdir(tempFolderPath): # Cleanup of txt-files
+	if file.endswith(".txt"):
+		filename = tempFolderPath + "/" + file
+		os.remove(filename)
 
 class GISLocation_Dialog(QtWidgets.QDialog):
 
@@ -28,48 +48,52 @@ class GISLocation_Dialog(QtWidgets.QDialog):
 	def initUI(self):
 		self.result = userCancelled
 		self.setWindowTitle("Set Geographic Location")
-		self.setGeometry(100, 100, 920, 870)
- 
+		self.setGeometry(100, 100, 920, 900)
+
+		# CrossLines
 		self.centralwidget = QtWidgets.QWidget(self)
 		self.centralwidget.setObjectName("map")
 
 		self.webView = QWebEngineView(self.centralwidget)
 		self.webView.setGeometry(QtCore.QRect(40, 40, 840, 620))
 		self.webPage = QWebEnginePage()
-		self.webPage.load(QUrl(QtCore.QUrl("C:/Users/mikev/OneDrive/Documenten/GitHub/FOSS-BIM-Experiments/GIS2BIM/Datafiles/map.html")))
+		
+		#Download map.html from GIS2BIM Repository and set projectlocation
+		os.remove(filepathNewMap)
+		BaseMap = open(filepathBaseMap,"r")
+		BaseMapstr = BaseMap.read()
+		Newstr = BaseMapstr.replace("51LAT",str(Lat))
+		Newstr = Newstr.replace("4LONG", str(Long))
+		Newstr = Newstr.replace("FOLDERNAME", temptxtPath)
+		Newstr = Newstr.replace("WBBOX",BoundingboxWidth)
+		Newstr = Newstr.replace("HBBOX",BoundingboxHeight)
+		f1 = open(filepathNewMap, "x")
+		f1 = open(filepathNewMap, "w")
+		f1.write(Newstr)
+		f1.close()
 
+		#Load map.html		
+		self.webPage.load(QUrl(QtCore.QUrl(filepathNewMap)))
 		self.webView.setPage(self.webPage)
 
-
-		#self.webView.setObjectName("webView")
-		#self.webView.evaluateJavaScript(JS, self)
-
-		lat = 51.814191
-		lon = 4.660176
-
-		self.lat = 51.814191
-		self.lon = 4.660176
+		lat = Lat
+		lon = Long
+		self.lat = Lat
+		self.lon = Long
 
 		QtCore.QMetaObject.connectSlotsByName(self)
-		#Lat/Lon
-		self.label1 = QtWidgets.QLabel("lat: " + str(lat) , self)
+		self.label1 = QtWidgets.QLabel("Click on the map to set the center of the boundingbox" , self)
 		self.label1.move(50, 25)
-		self.label2 = QtWidgets.QLabel("lon: " + str(lon) , self)
-		self.label2.move(150, 25)
-		#self.labelX = QtWidgets.QLabel("X: " + str(X), self)
-		#self.labelX.move(250, 25)
-		#self.labelY = QtWidgets.QLabel("Y: " + str(Y), self)
-		#self.labelY.move(350, 25)
 
 		#Search 
-		self.label3 = QtWidgets.QLabel("Project Address:", self)
+		self.label3 = QtWidgets.QLabel("Search Place/Address", self)
 		self.label3.move(40, 675)
 
-		#
+		#search line
 		self.searchline1 = QtWidgets.QPlainTextEdit(self)
 		self.searchline1.insertPlainText("Dordrecht")
 		self.searchline1.setFixedWidth(400)
-		self.searchline1.setFixedHeight(60)
+		self.searchline1.setFixedHeight(30)
 		self.searchline1.move(195, 670)
 
 		# search button
@@ -98,8 +122,10 @@ class GISLocation_Dialog(QtWidgets.QDialog):
 		self.boundingboxwidth.setText(BoundingboxWidth)
 		self.boundingboxwidth.setFixedWidth(100)
 		self.boundingboxwidth.move(200, 760)
+		self.boundingboxwidth.editingFinished.connect(self.onboundingboxwidth)
 		self.label1 = QtWidgets.QLabel("Boundingbox Width [m]", self)
 		self.label1.move(40, 765)
+
 
 		# boundingbox height
 		self.boundingboxheight = QtWidgets.QLineEdit(self)
@@ -107,7 +133,7 @@ class GISLocation_Dialog(QtWidgets.QDialog):
 		self.boundingboxheight.setText(BoundingboxHeight)
 		self.boundingboxheight.setFixedWidth(100)
 		self.boundingboxheight.move(200, 790)
-
+		self.boundingboxheight.editingFinished.connect(self.onboundingboxheight)
 		self.label2 = QtWidgets.QLabel("Boundingbox Height [m]", self)
 		self.label2.move(40, 795)
 
@@ -115,54 +141,67 @@ class GISLocation_Dialog(QtWidgets.QDialog):
 		cancelButton = QtWidgets.QPushButton('Cancel', self)
 		cancelButton.clicked.connect(self.onCancel)
 		cancelButton.setAutoDefault(True)
-		cancelButton.move(120, 820)
+		cancelButton.move(120, 840)
 		# OK button
 		okButton = QtWidgets.QPushButton('OK', self)
 		okButton.clicked.connect(self.onOk)
-		okButton.move(35, 820)
+		okButton.move(35, 840)
 		self.show()
+	def onboundingboxwidth(self):
+		JS2 = open(filepathJSUpdate,"r")
+		JS2 = JS2.read()
+		JS2 = JS2.replace("WBBOX", self.boundingboxwidth.text())
+		JS2 = JS2.replace("HBBOX", self.boundingboxheight.text())
+		self.webPage.runJavaScript(JS2) # update boundingboxwidth in mapview
 
-		# CrossLines
-#		pen = QtGui.QPen(QtCore.Qt.red)
-#		painter = QtGui.QPainter()
-#		painter.setRenderHint(QPainter.Antialiasing)
-#		painter.begin(self)
-#		painter.setPen(pen)
-#		painter.drawLine(0,0,100,100)
-		#Pan
-#		panToParis = functools.partial(self.panMap, 2.3272, 48.8620)
-
+	def onboundingboxheight(self):
+		JS3 = open(filepathJSUpdate,"r")
+		JS3 = JS3.read()
+		JS3 = JS3.replace("WBBOX", self.boundingboxwidth.text())
+		JS3 = JS3.replace("HBBOX", self.boundingboxheight.text())
+		self.webPage.runJavaScript(JS3) # update boundingboxheight in mapview
 
 	def onCancel(self):
 		self.result= userCancelled
 		self.close()
 
-	def onSearch(self):
-		self.result= userOK
-		#JS = "mymap.setView([51.8146586, 4.6609429], 12);"
-		urlJS = GIS2BIM.GetWebServerData('HTMLLocationDataJS1','Other','URL')	
-		response = requests.get(urlJS)
-		JS = response.text
-		JS ="[var textToSave = String(lat);
-		var lat = mymap.getCenter();
-var hiddenElement = document.createElement('a');
-
-hiddenElement.href = 'data:attachment/text,' + encodeURI(textToSave);
-hiddenElement.target = '_blank';
-hiddenElement.download = 'C:/3BM/myFiles2.txt';
-hiddenElement.click();
-		
-
-var boundsJS = mymap.getBounds().getSouthWest().lat, \
-			
-		#JS = 'return 1+4'
-		view = self.webPage.runJavaScript(JS)
-		print(view)	
+	def onSearch(self):	
+		#self.result= userOK
+		searchterm = self.searchline1.toPlainText().split()
+		lat = (GIS2BIM.GIS2BIM_NominatimAPI(searchterm))[0] #Use Nominatim for geocoding
+		lon = (GIS2BIM.GIS2BIM_NominatimAPI(searchterm))[1]
+		JS = open(filepathJSSearch,"r")
+		JS = JS.read()
+		JS = JS.replace("51LAT",str(lat))
+		JS = JS.replace("4LONG", str(lon))
+		JS = JS.replace("FOLDERNAME", temptxtPath)
+		self.webPage.runJavaScript(JS) # set view
 
 	def onOk(self):
+		# Find latest version of temp.txt which contains the chosen coordinates
+		filenames = []
+		filestamps = []
+		for filename in os.listdir(tempFolderPath):
+			if filename.endswith(".txt"):
+				filenames.append(filename)
+				i = os.path.getmtime(tempFolderPath + "/" + filename)
+				filestamps.append(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(i)))
+		latest = max(filestamps)
+		indexof = filestamps.index(latest)
+		latestfile = filenames[indexof]
+		filepathTempfileLATLONData = tempFolderPath + "/" + latestfile #most recent file
+	
+		tempFileCoordinates = open(filepathTempfileLATLONData,"r")
+		CoordinatesString = tempFileCoordinates.read()
+		tempFileCoordinates.close()
+
+		strsplit = re.split("[(, )]", CoordinatesString)
+		self.lat = strsplit[1]
+		self.lon = strsplit[3]
+		self.webView.stop()	
 		self.result= userOK
 		self.close()
-
+		
 	def panMap(self, lng, lat):
 		frame = self.webView.page().mainFrame()
 		frame.evaluateJavaScript('map.panTo(L.latLng({}, {}));'.format(lat, lng))
@@ -172,7 +211,7 @@ var boundsJS = mymap.getBounds().getSouthWest().lat, \
 		with open('map.js', 'r') as f:
 			frame = self.view.page().mainFrame()
 			frame.evaluateJavaScript(f.read())
-
+	
 # Constant definitions
 userCancelled		= "Cancelled"
 userOK			= "OK"
@@ -184,9 +223,9 @@ if form.result==userOK:
 	SiteName = "GIS2BIM-Sitedata"
 	SiteObject = GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName)
 	CRS_EPSG_SRID = SiteObject.CRS_EPSG_SRID = GIS2BIM_CRS.inputChars[form.dropdownCRS.currentIndex()]
-	SiteObject.Longitude = form.lon
-	SiteObject.Latitude = form.lat
-	Transformation = GIS2BIM.TransformCRS_epsg("4326",CRS_EPSG_SRID,form.lat,form.lon)
+	SiteObject.WGS84_Longitude = form.lon
+	SiteObject.WGS84_Latitude = form.lat
+	Transformation = GIS2BIM.TransformCRS_epsg("4326",CRS_EPSG_SRID,form.lon,form.lat)
 	SiteObject.CRS_x = float(Transformation[0])
 	SiteObject.CRS_y = float(Transformation[1])
 	SiteObject.BoundingboxWidth = float(form.boundingboxwidth.text())

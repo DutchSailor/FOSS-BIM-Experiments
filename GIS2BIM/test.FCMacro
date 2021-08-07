@@ -1,5 +1,19 @@
-import sys
-sys.path.insert(1, 'C:/Users/mikev/OneDrive/Documenten/GitHub/FOSS-BIM-Experiments/GIS2BIM')
-import GIS2BIM_CRS 
+####imports
+import requests
+import GIS2BIM
+import GIS2BIM_FreeCAD
 
-print(GIS2BIM_CRS.inputChars[5405])
+#Create temp folders/files
+URLmap = GIS2BIM.GetWebServerData("HTMLLocationData", "Other", "URL")
+URLSearch = GIS2BIM.GetWebServerData("HTMLLocationDataJSmapfilesearch", "Other", "URL")
+URLUpdate = GIS2BIM.GetWebServerData("HTMLLocationDataJSmapbboxupdate", "Other", "URL")
+
+TempFolderName = "GIStemp/"
+
+#Create temp folders/files
+filepathBaseMap = GIS2BIM.DownloadURL(GIS2BIM_FreeCAD.CreateTempFolder(TempFolderName),URLmap,"basemap.html")
+filepathNewMap = GIS2BIM.DownloadURL(GIS2BIM_FreeCAD.CreateTempFolder(TempFolderName),URLmap,"map.html")
+filepathJSSearch = GIS2BIM.DownloadURL(GIS2BIM_FreeCAD.CreateTempFolder(TempFolderName),URLSearch,"map_filesearch.JS")
+filepathJSUpdate = GIS2BIM.DownloadURL(GIS2BIM_FreeCAD.CreateTempFolder(TempFolderName),URLUpdate,"map_bboxupdate.JS")
+
+print(URLUpdate)

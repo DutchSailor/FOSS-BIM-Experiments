@@ -31,8 +31,8 @@ __url__ = "https://www.freecadweb.org"
 ## GIS2BIM Library
 
 #import statements
-import sys
-sys.path.insert(1, 'C:/Users/mikev/OneDrive/Documenten/GitHub/FOSS-BIM-Experiments/GIS2BIM')
+import sys,os
+sys.path.append(os.path.join(sys.path[0]))
 
 import urllib.request
 import urllib
@@ -43,7 +43,7 @@ import Part
 
 import GIS2BIM
 import GIS2BIM_FreeCAD
-#import GIS2BIM_NL
+import GIS2BIM_NL
 from PySide import QtGui, QtCore
 
 SiteName = "GIS2BIM-Sitedata"
@@ -51,6 +51,8 @@ X = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).CRS_x)
 Y = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).CRS_y)
 BoundingboxWidth = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).BoundingboxWidth)
 BoundingboxHeight = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).BoundingboxHeight)
+TempFolderName = "GIStemp/"
+TempFolderPath = GIS2BIM_FreeCAD.CreateTempFolder(TempFolderName)
 
 # UI Class definitions
 
@@ -112,7 +114,7 @@ class GIS2BIM_Dialog(QtGui.QDialog):
 		self.checkbox3 = QtGui.QCheckBox("3D Buildings", self)
 		self.checkbox3.move(20,200)
 		#
-		self.checkbox4 = QtGui.QCheckBox("2D Aerialphoto", self)
+		self.checkbox4 = QtGui.QCheckBox("2D Aerialphoto 2019", self)
 		self.checkbox4.move(20,230)
 		#
 		self.checkbox5 = QtGui.QCheckBox("GIS 2D Annotation", self)
@@ -170,7 +172,7 @@ if form.result==userOK:
 
 Bbox = GIS2BIM.CreateBoundingBox(Rdx,Rdy,width,height,2)
 
-fileLocationWMS = 'C:\\TEMP\\test9.jpg'
+fileLocationWMS = TempFolderPath + "wms.jpg"
 
 #Create Cadastral Parcels 2D
 if CadastralParcels2D is True:
@@ -193,9 +195,11 @@ if Buildings3D is True:
 	GIS_3D.addObjects(BAG3DSolids)
 
 # Import Aerialphoto in view
+
 if Aerialphoto2D is True:
 	GIS_Raster = App.activeDocument().addObject("App::DocumentObjectGroup", "GIS Raster")	
-	GIS2BIM.WMSRequest(GIS2BIM_NL.NLPDOKLuchtfoto2019,Bbox,fileLocationWMS)
+	a = GIS2BIM.WMSRequest(GIS2BIM.GetWebServerData("NLPDOKLuchtfoto2019", "webserverRequests", "serverrequestprefix"),Bbox,fileLocationWMS)
+	print(a)
 	ImageAerialPhoto = GIS2BIM_FreeCAD.ImportImage(fileLocationWMS,width,height,1000,"luchtfoto2019")
 	GIS_Raster.addObject(App.activeDocument().getObject("luchtfoto2019"))
 

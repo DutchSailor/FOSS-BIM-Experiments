@@ -1,7 +1,7 @@
 # WMS Importer
 
-import sys
-sys.path.insert(1, 'C:/Users/mikev/OneDrive/Documenten/GitHub/FOSS-BIM-Experiments/GIS2BIM')
+import sys,os
+sys.path.append(os.path.join(sys.path[0]))
 
 import urllib.request
 import urllib
@@ -12,7 +12,7 @@ import Part
 
 import GIS2BIM
 import GIS2BIM_FreeCAD
-#import GIS2BIM_NL
+import GIS2BIM_NL
 
 import PySide2
 from PySide2 import QtCore, QtGui, QtWidgets
