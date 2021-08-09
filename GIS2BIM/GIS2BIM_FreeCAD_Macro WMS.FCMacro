@@ -24,14 +24,21 @@ from PySide2.QtCore import QUrl
 import functools
 
 SiteName = "GIS2BIM-Sitedata"
+TempFolderName = "GIStemp/"
 X = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).CRS_x)
 Y = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).CRS_y)
 BoundingboxWidth = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).BoundingboxWidth)
 BoundingboxHeight = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).BoundingboxHeight)
-#TempFolderName = "GIStemp/"
-#Tempfolder = GIS2BIM_FreeCAD.CreateTempFolder(TempFolderName)
-#TempfileName = Tempfolder + "wms.jpg" 
-TempfileName = "C:/TEMP/test.jpg" 
+Tempfolder = GIS2BIM_FreeCAD.CreateTempFolder(TempFolderName)
+TempfileName = Tempfolder + "name.jpg" 
+
+#URLimageHTML = GIS2BIM.GetWebServerData("HTMLWMS", "Other", "URL")
+URLimageHTML = "https://raw.githubusercontent.com/DutchSailor/GIS2BIM/master/datafiles/image.html"
+#filepathImageHTML= GIS2BIM.DownloadURL(GIS2BIM_FreeCAD.CreateTempFolder(TempFolderName),URLimageHTML,"image.html")
+#filepathImageHTMLNew= GIS2BIM.DownloadURL(GIS2BIM_FreeCAD.CreateTempFolder(TempFolderName),URLimageHTML,"imageNew.html")
+filepathImageHTML= "C:/Users/mikev/OneDrive/Bureaublad/TEMP/Nieuwe map (13)/GIStemp/image.html"
+filepathImageHTMLNew= "C:/Users/mikev/OneDrive/Bureaublad/TEMP/Nieuwe map (13)/GIStemp/imageNew.html"
+
 
 class GISWMS_Dialog(QtWidgets.QDialog):
 
@@ -42,19 +49,20 @@ class GISWMS_Dialog(QtWidgets.QDialog):
 	def initUI(self):
 		self.result = userCancelled
 		self.setWindowTitle("Load Raster Data with WMS(Web Map Server)")
-		self.setGeometry(50, 50, 920, 940)
+		self.setGeometry(50, 50, 920, 970)
  
 		#image example
 		self.centralwidget = QtWidgets.QWidget(self)
 		self.centralwidget.setObjectName("image")
 		self.webView = QWebEngineView(self.centralwidget)
 		self.webView.setGeometry(QtCore.QRect(40, 40, 840, 600))
-		self.webView.setUrl(QtCore.QUrl("C:/Users/mikev/OneDrive/Documenten/GitHub/FOSS-BIM-Experiments/GIS2BIM/WMS/image.html")) # url your question
-		self.webView.setObjectName("webView2")
+		self.webView.setUrl(QtCore.QUrl(filepathImageHTMLNew)) # url your question
+		self.webView.setObjectName("webView")
+		self.webView.reload()
 
 		# webservernameAndRequest
 		self.webserverName1 = QtWidgets.QPlainTextEdit(self)
-		self.webserverName1.insertPlainText("http://geodata.nationaalgeoregister.nl/luchtfoto/rgb/wms?&request=GetMap&VERSION=1.3.0&STYLES=&layers=2019_ortho25&width=3000&height=3000&format=image/png&crs=EPSG:28992&bbox=")
+		self.webserverName1.insertPlainText("https://service.pdok.nl/hwh/luchtfotorgb/wms/v1_0?&request=GetMap&VERSION=1.3.0&STYLES=&layers=2019_ortho25&width=3000&height=3000&format=image/png&crs=EPSG:28992&bbox="),
 		self.webserverName1.setFixedWidth(300)
 		self.webserverName1.move(520, 670)
 		self.label1 = QtWidgets.QLabel("Webserver Address & Request", self)
@@ -124,21 +132,30 @@ class GISWMS_Dialog(QtWidgets.QDialog):
 		self.label8 = QtWidgets.QLabel("temporary filelocation", self)
 		self.label8.move(40, 855)
 
+		#Name of Image
+		self.imageName = QtWidgets.QLineEdit(self)
+		self.imageName.setInputMask("")
+		self.imageName.setText("name")
+		self.imageName.setFixedWidth(100)
+		self.imageName.move(200, 885)
+		self.imageNameLabel = QtWidgets.QLabel("Image Name", self)
+		self.imageNameLabel.move(40, 885)
+
 		# test WMS button
 		testWMSButton = QtWidgets.QPushButton('test request and show result', self)
 		testWMSButton.clicked.connect(self.testWMS)
-		testWMSButton.move(220, 900)
+		testWMSButton.move(220, 930)
 
 		# cancel button
 		cancelButton = QtWidgets.QPushButton('Cancel', self)
 		cancelButton.clicked.connect(self.onCancel)
 		cancelButton.setAutoDefault(True)
-		cancelButton.move(120, 900)
+		cancelButton.move(120, 930)
 
 		# Ok WMS button
-		okButton = QtWidgets.QPushButton('OK', self)
+		okButton = QtWidgets.QPushButton('OK and import image in view', self)
 		okButton.clicked.connect(self.onOk)
-		okButton.move(35, 900)
+		okButton.move(35, 930)
 		self.show()
 
 	def onCancel(self):
@@ -155,8 +172,19 @@ class GISWMS_Dialog(QtWidgets.QDialog):
 		height = float(self.boundingboxheight.text())
 		fileLocationWMS = str(self.filelocation.text())
 		Bbox = GIS2BIM.CreateBoundingBox(X,Y,width,height,2)
-		GIS2BIM.WMSRequest(URL,Bbox,"C:/Users/mikev/OneDrive/Documenten/GitHub/FOSS-BIM-Experiments/GIS2BIM/WMS/testmap.jpg")
+		GIS2BIM.WMSRequest(URL,Bbox,TempfileName)
+		print(GIS2BIM.WMSRequest(URL,Bbox,TempfileName))
 		self.webView.reload()
+		self.result= userTest
+		#Change HTML
+#		HTMLImage = open(filepathImageHTML,"r")
+#		ImageHTMLstr = HTMLImage.read()
+#		Newstr = ImageHTMLstr.replace("FILEPATHIMAGE",TempfileName)
+#		f1 = open(filepathImageHTMLNew, "x")
+#		f1 = open(filepathImageHTMLNew, "w")
+#		f1.write(Newstr)
+#		f1.close()
+
 
 	def onOk(self):
 		self.result= userOK
@@ -183,8 +211,8 @@ if form.result==userOK:
 	fileLocationWMS = str(form.filelocation.text())
 	Bbox = GIS2BIM.CreateBoundingBox(X,Y,width,height,2)
 	GIS2BIM.WMSRequest(URL,Bbox,fileLocationWMS)
-	ImageAerialPhoto = GIS2BIM_FreeCAD.ImportImage(fileLocationWMS,width,height,1000,"luchtfoto2019")
-
+	ImageAerialPhoto = GIS2BIM_FreeCAD.ImportImage(fileLocationWMS,width,height,1000, str(form.imageName.text()))
+	
 if form.result==userTest:
 	print("test")
 
