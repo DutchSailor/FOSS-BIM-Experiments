@@ -168,7 +168,7 @@ def DataFromWFS(serverName,boundingBoxString,xPathStringCoord,xPathStrings,dx,dy
 
 def WMSRequest(serverName,boundingBoxString,fileLocation,pixWidth,pixHeight):
     # perform a WMS OGC webrequest( Web Map Service). This is loading images.
-	myrequestURL = serverName + boundingBoxString
+    myrequestURL = serverName + boundingBoxString
     myrequestURL = myrequestURL.replace("width=3000", "width=" + str(pixWidth))
     myrequestURL = myrequestURL.replace("height=3000", "height=" + str(pixHeight))
     resource = urllib.request.urlopen(myrequestURL)

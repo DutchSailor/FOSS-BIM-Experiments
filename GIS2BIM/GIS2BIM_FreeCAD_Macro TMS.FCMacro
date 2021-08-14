@@ -174,9 +174,9 @@ class GIS_TMS_Dialog(QtWidgets.QDialog):
 		picture = QPixmap(self.filelocation)
 		picture = picture.scaledToWidth(800)
 		pictheight = picture.height()
-		if pictheight > 600:
-			scale = 600/pictheight
-			pictheight = 600
+		if pictheight > 700:
+			scale = 700/pictheight
+			pictheight = 700
 			pictwidth = 800*scale
 			picture = picture.scaledToWidth(pictwidth)
 		else:
