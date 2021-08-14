@@ -11,7 +11,7 @@ Web Map Service(WMS) in FreeCAD
 
 Geographic Location in FreeCAD
 
-![](GIS2BIM_Geographic Location.png)
+![](GIS2BIM_Geographic%20Location.png)
 
 Map in FreeCAD using PySide2 and Leaflet map
 
