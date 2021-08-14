@@ -1,4 +1,41 @@
-## GIS2BIM Library
+# -*- coding: utf8 -*-
+#***************************************************************************
+#*   Copyright (c) 2021 Maarten Vroegindeweij <maarten@3bm.co.nl>              *
+#*                                                                         *
+#*   This program is free software; you can redistribute it and/or modify  *
+#*   it under the terms of the GNU Lesser General Public License (LGPL)    *
+#*   as published by the Free Software Foundation; either version 2 of     *
+#*   the License, or (at your option) any later version.                   *
+#*   for detail see the LICENCE text file.                                 *
+#*                                                                         *
+#*   This program is distributed in the hope that it will be useful,       *
+#*   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+#*   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+#*   GNU Library General Public License for more details.                  *
+#*                                                                         *
+#*   You should have received a copy of the GNU Library General Public     *
+#*   License along with this program; if not, write to the Free Software   *
+#*   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  *
+#*   USA                                                                   *
+#*                                                                         *
+#***************************************************************************
+
+#Regarding class GeoLocation:
+#    This class is based from the code smaple in this paper:
+#        http://janmatuschek.de/LatitudeLongitudeBoundingCoordinates
+#    The owner of that website, Jan Philip Matuschek, is the full owner of
+#    his intellectual property. This class is simply a Python port of his very
+#    useful Java code. All code written by Jan Philip Matuschek and ported by me
+#    (which is all of this class) is owned by Jan Philip Matuschek.
+#    '''
+
+"""This module provides tools to load GIS information
+"""
+
+__title__= "GIS2BIM"
+__author__ = "Maarten Vroegindeweij"
+__url__ = "https://github.com/DutchSailor/GIS2BIM"
+
 
 import urllib
 import urllib.request
@@ -10,7 +47,8 @@ import requests
 import re
 import os
 from PySide2 import QtCore, QtWidgets, QtGui
-
+from PIL import Image
+	
 #Common functions
 def GetWebServerData(servertitle, category, parameter):
 	#Get webserverdata from github repository of GIS2BIM(up to date list of GIS-servers & requests)
@@ -24,6 +62,18 @@ def GetWebServerData(servertitle, category, parameter):
 	result = data[test.index(servertitle)][parameter]
 	return result
 
+def GetWebServerDataService(category,service):
+	#Get a list with webserverdata from github repository of GIS2BIM(up to date list of GIS-servers & requests)
+	Serverlocation = "https://raw.githubusercontent.com/DutchSailor/GIS2BIM/master/GIS2BIM_Data.json"
+	import urllib.request, json
+	url = urllib.request.urlopen(Serverlocation)
+	data = json.loads(url.read())['GIS2BIMserversRequests'][category]
+	listOfData = []
+	for i in data:
+		if i["service"] == service:
+			listOfData.append(i)
+	return listOfData
+	
 def DownloadURL(folder,url,filename):
 	#Download a file to a folder from a given url
 	url = url
@@ -41,7 +91,6 @@ def GetDataFiles(folder):
 		test.append(i["title"])
 	result = data[test.index(servertitle)][parameter]
 	return result
-
 
 #GIS2BIM functions
 
@@ -117,9 +166,11 @@ def DataFromWFS(serverName,boundingBoxString,xPathStringCoord,xPathStrings,dx,dy
     xPathResults.insert(0,xyPosList)
     return xPathResults
 
-def WMSRequest(serverName,boundingBoxString,fileLocation):
+def WMSRequest(serverName,boundingBoxString,fileLocation,pixWidth,pixHeight):
     # perform a WMS OGC webrequest( Web Map Service). This is loading images.
-    myrequestURL = serverName + boundingBoxString
+	myrequestURL = serverName + boundingBoxString
+    myrequestURL = myrequestURL.replace("width=3000", "width=" + str(pixWidth))
+    myrequestURL = myrequestURL.replace("height=3000", "height=" + str(pixHeight))
     resource = urllib.request.urlopen(myrequestURL)
     output1 = open(fileLocation, "wb")
     output1.write(resource.read())
@@ -137,7 +188,7 @@ def MortonCode(X,Y,Xmod,Ymod,TileDimension):
 	z = int(z, 2)
 	return z
 
-def GIS2BIM_NominatimAPI(inputlist):
+def NominatimAPI(inputlist):
     #get lat/lon via an adress using Nominatim API
 	URLpart1 = "https://nominatim.openstreetmap.org/search/"
 	URLpart2 = "%20".join(inputlist)
@@ -155,18 +206,169 @@ def GIS2BIM_NominatimAPI(inputlist):
 	
 	return lat, lon
 
+def LatLonZoomToTileXY(lat,lon,zoom):
+	lat_rad = math.radians(lat)
+	n = 2.0 ** zoom
+	TileX = int((lon + 180.0) / 360.0 * n)
+	TileY = int((1.0 - math.log(math.tan(lat_rad) + (1 / math.cos(lat_rad))) / math.pi) / 2.0 * n)
+
+	return TileX, TileY
+
+def TMSBboxFromTileXY(TileX,TileY,zoom):
+	n = 2.0 ** zoom
+	W_deg = TileX / n * 360.0 - 180.0
+	N_rad = math.atan(math.sinh(math.pi * (1 - 2 * TileY / n)))
+	N_deg = math.degrees(N_rad)
+	E_deg = (TileX+1) / n * 360.0 - 180.0
+	S_rad = math.atan(math.sinh(math.pi * (1 - 2 * (TileY+1) / n)))
+	S_deg = math.degrees(S_rad)
+
+	return S_deg,W_deg,N_deg,E_deg
+
+def TMS_WMTSCombinedMapFromLatLonBbox(lat,lon,bboxWidth,bboxHeight,zoomL,pixels,TMS_WMTS,ServerName):
+	#With lat/lon and bbox tilenumbers are calculated then downloaded from given server and merged into 1 images and cropped afterwards to given boundingbox
+
+	#Create Boundingbox lat/lon
+	loc = GeoLocation.from_degrees(lat,lon)
+	radiusWidth = bboxWidth/2000 
+	SW_locWidth = loc.bounding_locations(radiusWidth)[0]
+	NE_locWidth = loc.bounding_locations(radiusWidth)[1]
+	radiusHeight = bboxHeight/2000 
+	SW_locHeight = loc.bounding_locations(radiusHeight)[0]
+	NE_locHeight = loc.bounding_locations(radiusHeight)[1]
+
+	#GetUniqueTileX/TileY list
+	TileXYBottomLeft = LatLonZoomToTileXY(SW_locHeight[0],SW_locWidth[1],zoomL)
+	TileXYTopRight = LatLonZoomToTileXY(NE_locHeight[0],NE_locWidth[1],zoomL)
+
+	#Get TileX/TileY orderlist for URLlists
+	rangex = list(range(TileXYBottomLeft[0], TileXYTopRight[0]+1))
+	rangey1 = list(range(TileXYTopRight[1], TileXYBottomLeft[1]+1))
+	rangey = rangey1[::-1]
+	minx = min(rangex)
+	miny = min(rangey)
+	maxx = max(rangex)
+	maxy = max(rangey) 
+
+	#Get Bbox from TopRight/BottomLeft
+	BboxTileBottomLeft = TMSBboxFromTileXY(minx,maxy,zoomL)
+	BboxTileTopRight = TMSBboxFromTileXY(maxx,miny,zoomL)
+
+	# Calculate total width of tiles and deltax/y of boundingbox 
+	GeoLocationBottomLeft = GeoLocation.from_degrees(BboxTileBottomLeft[0],BboxTileBottomLeft[1]) 
+	GeoLocationTopLeft = GeoLocation.from_degrees(BboxTileTopRight[2],BboxTileBottomLeft[1])
+	GeoLocationTopRight = GeoLocation.from_degrees(BboxTileTopRight[2],BboxTileTopRight[3])
+
+	TotalWidthOfTiles = 1000*GeoLocation.distance_to(GeoLocationTopLeft,GeoLocationTopRight,GeoLocation.EARTH_RADIUS)
+	TotalHeightOfTiles = 1000*GeoLocation.distance_to(GeoLocationBottomLeft,GeoLocationTopLeft,GeoLocation.EARTH_RADIUS)
+
+	#deltax Left, Width difference between bbox and TotalWidthOfTiles
+	GeoLocationBottomLeftBbox = GeoLocation.from_degrees(SW_locHeight[0],SW_locWidth[1]) 
+	GeoLocationBottomBboxLeftTiles = GeoLocation.from_degrees(SW_locHeight[0],BboxTileBottomLeft[1]) 
+	dx = 1000*GeoLocation.distance_to(GeoLocationBottomBboxLeftTiles,GeoLocationBottomLeftBbox,GeoLocation.EARTH_RADIUS)
+
+	#deltay Bottom, Height difference between bbox and TotalHeightOfTiles
+	GeoLocationBottomTilesLeftBbox = GeoLocation.from_degrees(BboxTileBottomLeft[0],SW_locWidth[1]) 
+	dy = 1000*GeoLocation.distance_to(GeoLocationBottomTilesLeftBbox,GeoLocationBottomLeftBbox,GeoLocation.EARTH_RADIUS)
+
+	x = rangex
+	y = rangey
+	n = len(rangey)
+	xl1=[]
+	for i in x:
+		xl1.append([i]*n)
+
+	xl2=[]
+	for sublist in xl1:
+		for item in sublist:
+			xl2.append(item)
+	yl1=[]
+	for i in x:
+		yl1.append(y)
+
+	yl2=[]
+	for sublist in yl1:
+		for item in sublist:
+			yl2.append(item)
+
+	tilesX = xl2
+	tileY = yl2
+
+	#Create URLs for image
+	ServerName = ServerName.replace("{z}",str(zoomL))
+	URLlist = []
+
+	for i,j in zip(xl2,yl2):
+		URLlist.append(ServerName.replace("{y}",str(j)).replace("{x}",str(i)))
+
+	#Download TileImages
+	TileImages = []
+	for i in URLlist:
+		TileImages.append(Image.open(requests.get(i, stream=True).raw))
+
+	#Create new image to concatenate the tileimages in.
+	widthImg = len(rangex)*pixels
+	heightImg = len(rangey)*pixels
+
+	img = Image.new('RGB', (widthImg,heightImg))
+
+	LPx=[]
+	n=0
+	for i in rangex:
+		LPx.append(n*pixels)
+		n=n+1
+
+	LPy=[]
+	n=0
+	for i in rangey:
+		LPy.append(n*pixels)
+		n=n+1
+
+	LPx2=[]
+	n=len(LPy)
+	for i in LPx:
+		LPx2.append([i]*n)
+
+	LPx3=[]
+	for sublist in LPx2:
+		for item in sublist:
+			LPx3.append(item)
+
+	LPy2=[]
+	#n=len(LPy)
+	for i in LPx:
+		LPy2.append(LPy)
+
+	LPy3=[]
+	for sublist in LPy2:
+		for item in sublist:
+			LPy3.append(item)
+			
+	LPy4=LPy3[::-1]
+
+	if TMS_WMTS:
+		for i,j,k in zip(TileImages,LPy3,LPx3):
+			img.paste(i,(j,k))
+	else:
+		for i,j,k in zip(TileImages,LPx3,LPy4):
+			img.paste(i,(j,k))
+
+	#Crop Image
+	deltaWidth =TotalWidthOfTiles- bboxWidth
+	deltaHeight = TotalHeightOfTiles- bboxHeight
+	dxM = dx
+	dyM = deltaHeight-dy
+	ImageWidthNew=(bboxWidth/TotalWidthOfTiles)*widthImg
+	ImageHeightNew=(bboxHeight/TotalHeightOfTiles)*heightImg
+	dxImage=-int((dxM/TotalWidthOfTiles)*widthImg)
+	dyImage=-int((dyM/TotalHeightOfTiles)*heightImg)
+
+	imgNew = Image.new('RGB', (int(ImageWidthNew),int(ImageHeightNew)))
+	imgNew.paste(img,(dxImage,dyImage))
+	
+	return imgNew,widthImg,heightImg
+
 class GeoLocation:
-    '''
-
-#    Class representing a coordinate on a sphere, most likely Earth.
-#    This class is based from the code smaple in this paper:
-#        http://janmatuschek.de/LatitudeLongitudeBoundingCoordinates
-#    The owner of that website, Jan Philip Matuschek, is the full owner of
-#    his intellectual property. This class is simply a Python port of his very
-#    useful Java code. All code written by Jan Philip Matuschek and ported by me
-#    (which is all of this class) is owned by Jan Philip Matuschek.
-#    '''
-
     MIN_LAT = math.radians(-90)
     MAX_LAT = math.radians(90)
     MIN_LON = math.radians(-180)
@@ -183,7 +385,7 @@ class GeoLocation:
     def from_radians(cls, rad_lat, rad_lon):
         deg_lat = math.degrees(rad_lat)
         deg_lon = math.degrees(rad_lon)
-        return GeoLocation(rad_lat, rad_lon, deg_lat, deg_lon)
+        return deg_lat, deg_lon
 
     def __init__(
             self,
@@ -271,4 +473,3 @@ class GeoLocation:
 
         return [GeoLocation.from_radians(min_lat, min_lon),
                 GeoLocation.from_radians(max_lat, max_lon)]
-

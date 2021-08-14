@@ -1,4 +1,31 @@
-## GIS2BIM within FreeCAD
+# -*- coding: utf8 -*-
+#***************************************************************************
+#*   Copyright (c) 2021 Maarten Vroegindeweij <maarten@3bm.co.nl>              *
+#*                                                                         *
+#*   This program is free software; you can redistribute it and/or modify  *
+#*   it under the terms of the GNU Lesser General Public License (LGPL)    *
+#*   as published by the Free Software Foundation; either version 2 of     *
+#*   the License, or (at your option) any later version.                   *
+#*   for detail see the LICENCE text file.                                 *
+#*                                                                         *
+#*   This program is distributed in the hope that it will be useful,       *
+#*   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+#*   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+#*   GNU Library General Public License for more details.                  *
+#*                                                                         *
+#*   You should have received a copy of the GNU Library General Public     *
+#*   License along with this program; if not, write to the Free Software   *
+#*   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  *
+#*   USA                                                                   *
+#*                                                                         *
+#***************************************************************************
+
+"""This module provides tools to load GIS information into FreeCAD
+"""
+
+__title__= "GIS2BIM_FreeCAD"
+__author__ = "Maarten Vroegindeweij"
+__url__ = "https://github.com/DutchSailor/GIS2BIM"
 
 import GIS2BIM
 import Draft
@@ -8,7 +35,7 @@ import Arch
 import os
 from PySide2 import QtCore, QtWidgets, QtGui
 
-SiteName = "GIS2BIM-Sitedata"
+SiteName = "Geo-Sitedata"
 TempFolderName = "GIStemp/"
 
 def CreateTempFolder(Name):
@@ -27,13 +54,13 @@ def CreateTempFolder(Name):
 			os.mkdir(NewFolder)
 	return NewFolder
 
-def ImportImage(fileLocation,width,height,scale,name):
+def ImportImage(fileLocation,width,height,scale,name,dx,dy):
 #Import image in view
     Img = FreeCAD.activeDocument().addObject('Image::ImagePlane',name)
     Img.ImageFile = fileLocation
     Img.XSize = width*scale
     Img.YSize = height*scale
-    Img.Placement = FreeCAD.Placement(FreeCAD.Vector(0.000000,0.000000,0.000000),FreeCAD.Rotation(0.000000,0.000000,0.000000,1.000000))
+    Img.Placement = FreeCAD.Placement(FreeCAD.Vector(dx,dy,0.000000),FreeCAD.Rotation(0.000000,0.000000,0.000000,1.000000))
     return Img
 
 def Buildings3D(curves3DBAG,heightData3DBAG):
@@ -78,6 +105,15 @@ def PlaceText(textData,fontSize, upper):
         Texts.append(Text1)
     return Texts
 
+def CreateLayer(layerName):
+	layerName = layerName.replace(" ","_")
+	lstObjects = []
+	for obj in FreeCAD.ActiveDocument.Objects: #Check is layername already exists
+		lstObjects.append(obj.Label)
+	if not layerName in lstObjects:
+		layerObj = FreeCAD.activeDocument().addObject("App::DocumentObjectGroup", layerName)
+	return layerName
+
 def ArchSiteCreateCheck(SiteName):
 #Create an ArchSiteobject which is used to store data nessecary for GIS2BIM. 
 	lstObjects = []
@@ -90,23 +126,6 @@ def ArchSiteCreateCheck(SiteName):
 	    ArchSiteAddparameters(ArchSiteObject)
 		
 	return ArchSiteObject
-
-def ArchSiteFilldata(SiteObject,Longitude,Latitude,TrueNorth,Address,Country,City,PostalCode,CRS_EPSG_SRID,CRS_EPSG_Description,CRS_x,CRS_y,BoundingboxWidth,BoundingboxHeight):
-	#buildin
-	SiteObject.WGS84_Longitude = Longitude
-	SiteObject.WGS84_Latitude = Latitude
-	SiteObject.Orientation = u"True North"
-	SiteObject.Address = Address
-	SiteObject.Country = Country
-	SiteObject.City = City
-	SiteObject.PostalCode = ""
-	SiteObject.CRS_EPSG_SRID = CRS_EPSG_SRID
-	SiteObject.CRS_EPSG_Description = CRS_EPSG_Description
-	SiteObject.CRS_x = CRS_x
-	SiteObject.CRS_y = CRS_y
-	SiteObject.BoundingboxWidth = BoundingboxWidth
-	SiteObject.BoundingboxHeight = BoundingboxHeight
-	return SiteObject
 
 def ArchSiteAddparameters(SiteObject):
 	SiteObject.addProperty("App::PropertyString","CRS_EPSG_SRID")

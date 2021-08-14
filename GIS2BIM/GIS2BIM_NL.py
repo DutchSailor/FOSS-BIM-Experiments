@@ -1,3 +1,32 @@
+# -*- coding: utf8 -*-
+#***************************************************************************
+#*   Copyright (c) 2021 Maarten Vroegindeweij <maarten@3bm.co.nl>              *
+#*                                                                         *
+#*   This program is free software; you can redistribute it and/or modify  *
+#*   it under the terms of the GNU Lesser General Public License (LGPL)    *
+#*   as published by the Free Software Foundation; either version 2 of     *
+#*   the License, or (at your option) any later version.                   *
+#*   for detail see the LICENCE text file.                                 *
+#*                                                                         *
+#*   This program is distributed in the hope that it will be useful,       *
+#*   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+#*   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+#*   GNU Library General Public License for more details.                  *
+#*                                                                         *
+#*   You should have received a copy of the GNU Library General Public     *
+#*   License along with this program; if not, write to the Free Software   *
+#*   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  *
+#*   USA                                                                   *
+#*                                                                         *
+#***************************************************************************
+
+"""This module provides tools to load GIS information from the Netherlands
+"""
+
+__title__= "GIS2BIM_NL"
+__author__ = "Maarten Vroegindeweij"
+__url__ = "https://github.com/DutchSailor/GIS2BIM"
+
 import GIS2BIM
 #import urllib.request, json
 
@@ -11,11 +40,11 @@ NLPDOKCadastreOpenbareruimtenaam = GIS2BIM.GetWebServerData('NLPDOKCadastreOpenb
 NLPDOKBAGBuildingCountour = GIS2BIM.GetWebServerData('NLPDOKBAGBuildingCountour','webserverRequests','serverrequestprefix')  #Building Contour of BAG
 NLTUDelftBAG3DV1 = GIS2BIM.GetWebServerData('NLTUDelftBAG3DV1','webserverRequests','serverrequestprefix')  #3D Buildings of BAG
 NLRuimtelijkeplannenBouwvlak = GIS2BIM.GetWebServerData('NLRuimtelijkeplannenBouwvlak','webserverRequests','serverrequestprefix')
-NLPDOKLuchtfoto2016 = GIS2BIM.GetWebServerData('NLPDOKLuchtfoto2016','webserverRequests','serverrequestprefix')
-NLPDOKLuchtfoto2017 = GIS2BIM.GetWebServerData('NLPDOKLuchtfoto2017','webserverRequests','serverrequestprefix')
-NLPDOKLuchtfoto2018 = GIS2BIM.GetWebServerData('NLPDOKLuchtfoto2018','webserverRequests','serverrequestprefix')
-NLPDOKLuchtfoto2019 = GIS2BIM.GetWebServerData('NLPDOKLuchtfoto2019','webserverRequests','serverrequestprefix')
-NLPDOKLuchtfoto2020 = GIS2BIM.GetWebServerData('NLPDOKLuchtfoto2020','webserverRequests','serverrequestprefix')
+NLPDOKLuchtfoto2016 = GIS2BIM.GetWebServerData('NL_PDOK_Luchtfoto_2016','webserverRequests','serverrequestprefix')
+NLPDOKLuchtfoto2017 = GIS2BIM.GetWebServerData('NL_PDOK_Luchtfoto_2017','webserverRequests','serverrequestprefix')
+NLPDOKLuchtfoto2018 = GIS2BIM.GetWebServerData('NL_PDOK_Luchtfoto_2018','webserverRequests','serverrequestprefix')
+NLPDOKLuchtfoto2019 = GIS2BIM.GetWebServerData('NL_PDOK_Luchtfoto_2019','webserverRequests','serverrequestprefix')
+NLPDOKLuchtfoto2020 = GIS2BIM.GetWebServerData('NL_PDOK_Luchtfoto_2020','webserverRequests','serverrequestprefix')
 
 ## Xpath for several Web Feature Servers
 NLPDOKxPathOpenGISposList = GIS2BIM.GetWebServerData('NLPDOKxPathOpenGISposList','Querystrings','querystring')

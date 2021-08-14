@@ -1,19 +1,22 @@
-####imports
-import requests
+import importlib
 import GIS2BIM
-import GIS2BIM_FreeCAD
+importlib.reload(GIS2BIM)
 
-#Create temp folders/files
-URLmap = GIS2BIM.GetWebServerData("HTMLLocationData", "Other", "URL")
-URLSearch = GIS2BIM.GetWebServerData("HTMLLocationDataJSmapfilesearch", "Other", "URL")
-URLUpdate = GIS2BIM.GetWebServerData("HTMLLocationDataJSmapbboxupdate", "Other", "URL")
 
-TempFolderName = "GIStemp/"
+#Download list of predefined WMTS/TMS Requests
+category = "webserverRequests"
+service = "WMS"
+data = GIS2BIM.GetWebServerDataService(category,service)
 
-#Create temp folders/files
-filepathBaseMap = GIS2BIM.DownloadURL(GIS2BIM_FreeCAD.CreateTempFolder(TempFolderName),URLmap,"basemap.html")
-filepathNewMap = GIS2BIM.DownloadURL(GIS2BIM_FreeCAD.CreateTempFolder(TempFolderName),URLmap,"map.html")
-filepathJSSearch = GIS2BIM.DownloadURL(GIS2BIM_FreeCAD.CreateTempFolder(TempFolderName),URLSearch,"map_filesearch.JS")
-filepathJSUpdate = GIS2BIM.DownloadURL(GIS2BIM_FreeCAD.CreateTempFolder(TempFolderName),URLUpdate,"map_bboxupdate.JS")
+TitleList  = []
+for i in data:
+	TitleList.append(i["title"])
 
-print(URLUpdate)
+ServerRequestPrefix  = []
+for i in data:
+	ServerRequestPrefix.append(i["serverrequestprefix"])
+yx = sorted(zip(TitleList,ServerRequestPrefix))
+TitleList = [x[0] for x in yx]
+ServerRequestPrefix = [x[1] for x in yx]
+
+print(TitleList)

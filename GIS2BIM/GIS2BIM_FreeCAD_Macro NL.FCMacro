@@ -1,35 +1,3 @@
-# -*- coding: utf8 -*-
-#***************************************************************************
-#*   Copyright (c) 2021 Maarten Vroegindeweij <maarten@3bm.co.nl>              *
-#*                                                                         *
-#*   This program is free software; you can redistribute it and/or modify  *
-#*   it under the terms of the GNU Lesser General Public License (LGPL)    *
-#*   as published by the Free Software Foundation; either version 2 of     *
-#*   the License, or (at your option) any later version.                   *
-#*   for detail see the LICENCE text file.                                 *
-#*                                                                         *
-#*   This program is distributed in the hope that it will be useful,       *
-#*   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
-#*   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
-#*   GNU Library General Public License for more details.                  *
-#*                                                                         *
-#*   You should have received a copy of the GNU Library General Public     *
-#*   License along with this program; if not, write to the Free Software   *
-#*   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  *
-#*   USA                                                                   *
-#*                                                                         *
-#***************************************************************************
-
-"""This module provides tools to load GIS information
-"""
-
-__title__= "FreeCAD GIS"
-__author__ = "Maarten Vroegindeweij"
-__url__ = "https://www.freecadweb.org"
-
-
-## GIS2BIM Library
-
 #import statements
 import sys,os
 sys.path.append(os.path.join(sys.path[0]))
@@ -46,7 +14,7 @@ import GIS2BIM_FreeCAD
 import GIS2BIM_NL
 from PySide import QtGui, QtCore
 
-SiteName = "GIS2BIM-Sitedata"
+SiteName = "GIS-Sitedata"
 X = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).CRS_x)
 Y = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).CRS_y)
 BoundingboxWidth = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).BoundingboxWidth)
@@ -176,19 +144,19 @@ fileLocationWMS = TempFolderPath + "wms.jpg"
 
 #Create Cadastral Parcels 2D
 if CadastralParcels2D is True:
-	GIS_2D_Cadastral_Parcel = App.activeDocument().addObject("App::DocumentObjectGroup", "GIS 2D Cadastral Parcel")	
+	GIS_2D_Cadastral_Parcel = GIS2BIM_FreeCAD.CreateLayer("GIS_2D_Cadastral_Parcel")	
 	CadastralParcelCurves = GIS2BIM_FreeCAD.CurvesFromWFS(GIS2BIM_NL.NLPDOKCadastreCadastralParcels,Bbox,GIS2BIM_NL.NLPDOKxPathOpenGISposList,-Rdx,-Rdy,1000,3,2,False,u"Dashdot",(0.0,0.0,0.0))
 	GIS_2D_Cadastral_Parcel.addObjects(CadastralParcelCurves)
 
 #Create Building outline 2D
 if BuildingOutline2D is True:
-	GIS_2D_Building_Outline = App.activeDocument().addObject("App::DocumentObjectGroup", "GIS 2D Building Outline")	
+	GIS_2D_Building_Outline = GIS2BIM_FreeCAD.CreateLayer("GIS_2D_Building_Outline")	
 	BAGCurves = GIS2BIM_FreeCAD.CurvesFromWFS(GIS2BIM_NL.NLPDOKBAGBuildingCountour,Bbox,GIS2BIM_NL.NLPDOKxPathOpenGISposList,-Rdx,-Rdy,1000,3,2,True,u"Solid",(0.7,0.0,0.0))
 	GIS_2D_Building_Outline.addObjects(BAGCurves)
 
 #Create 3D Building
 if Buildings3D is True:
-	GIS_3D = App.activeDocument().addObject("App::DocumentObjectGroup", "GIS 3D")	
+	GIS_3D = GIS2BIM_FreeCAD.CreateLayer("GIS_3D")	
 	curves3DBAG = GIS2BIM.PointsFromWFS(GIS2BIM_NL.NLTUDelftBAG3DV1,Bbox,GIS2BIM_NL.NLPDOKxPathOpenGISPosList2,-Rdx,-Rdy,1000,3,3)
 	heightData3DBAG = GIS2BIM.DataFromWFS(GIS2BIM_NL.NLTUDelftBAG3DV1,Bbox,GIS2BIM_NL.NLPDOKxPathOpenGISPosList2,GIS2BIM_NL.xPathStrings3DBag,-Rdx,-Rdy,1000,3,3)
 	BAG3DSolids = GIS2BIM_FreeCAD.Buildings3D(curves3DBAG,heightData3DBAG)
@@ -197,15 +165,16 @@ if Buildings3D is True:
 # Import Aerialphoto in view
 
 if Aerialphoto2D is True:
-	GIS_Raster = App.activeDocument().addObject("App::DocumentObjectGroup", "GIS Raster")	
+	GIS-Raster = GIS2BIM_FreeCAD.CreateLayer("GIS_Raster")	
 	a = GIS2BIM.WMSRequest(GIS2BIM.GetWebServerData("NLPDOKLuchtfoto2019", "webserverRequests", "serverrequestprefix"),Bbox,fileLocationWMS)
 	print(a)
 	ImageAerialPhoto = GIS2BIM_FreeCAD.ImportImage(fileLocationWMS,width,height,1000,"luchtfoto2019")
 	GIS_Raster.addObject(App.activeDocument().getObject("luchtfoto2019"))
+	App.activeDocument().getObject("GIS_Raster").addObject(App.activeDocument().getObject(ImageAerialPhoto.Label))
 
 #Create Textdata Cadastral Parcels
 if GIS2DAnnotation is True:
-	GIS_Annotation = App.activeDocument().addObject("App::DocumentObjectGroup", "GIS Annotation")	
+	GIS_Annotation = GIS2BIM_FreeCAD.CreateLayer("GIS_Annotation")	
 	textDataCadastralParcels = GIS2BIM.DataFromWFS(GIS2BIM_NL.NLPDOKCadastreCadastralParcelsNummeraanduiding,Bbox,GIS2BIM_NL.NLPDOKxPathOpenGISPos,GIS2BIM_NL.xPathStringsCadastreTextAngle,-Rdx,-Rdy,1000,3,2)
 	textDataOpenbareRuimtenaam = GIS2BIM.DataFromWFS(GIS2BIM_NL.NLPDOKCadastreOpenbareruimtenaam,Bbox,GIS2BIM_NL.NLPDOKxPathOpenGISPos,GIS2BIM_NL.xPathStringsCadastreTextAngle,-Rdx,-Rdy,1000,3,2)
 	placeTextFreeCAD1 = GIS2BIM_FreeCAD.PlaceText(textDataCadastralParcels,500,0)
@@ -215,7 +184,7 @@ if GIS2DAnnotation is True:
 
 #Create Ruimtelijke plannen outline 2D
 if Bestemmingsplan is True:
-	GIS_2D_Ruimtelijke_Plannen = App.activeDocument().addObject("App::DocumentObjectGroup", "GIS 2D Ruimtelijke Plannen")	
+	GIS_2D_Ruimtelijke_Plannen = GIS2BIM_FreeCAD.CreateLayer("GIS 2D Ruimtelijke Plannen")	
 	RuimtelijkePlannenBouwvlakCurves = GIS2BIM_FreeCAD.CurvesFromWFS(GIS2BIM_NL.NLRuimtelijkeplannenBouwvlak,Bbox,GIS2BIM_NL.NLPDOKxPathOpenGISposList,-Rdx,-Rdy,1000,3,2,False,u"Solid",(0.0,0.0,1.0))
 	GIS_2D_Ruimtelijke_Plannen.addObjects(RuimtelijkePlannenBouwvlakCurves)
 	

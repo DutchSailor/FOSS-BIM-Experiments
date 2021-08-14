@@ -13058,6 +13058,8 @@ inputNumbers = (
 
 CRSdict = {}
 
+CRSNumberAndName = list(map(str.__add__, inputChars, inputNumbers))
+
 for x in range(0, len(inputChars)):
     CRSdict[inputChars[x]] = inputNumbers[x]
 
