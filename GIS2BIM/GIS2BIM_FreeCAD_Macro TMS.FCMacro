@@ -1,71 +1,86 @@
-# WMTS TMS Importer
+# -*- coding: utf8 -*-
+#***************************************************************************
+#*   Copyright (c) 2021 Maarten Vroegindeweij <maarten@3bm.co.nl>              *
+#*                                                                         *
+#*   This program is free software; you can redistribute it and/or modify  *
+#*   it under the terms of the GNU Lesser General Public License (LGPL)    *
+#*   as published by the Free Software Foundation; either version 2 of     *
+#*   the License, or (at your option) any later version.                   *
+#*   for detail see the LICENCE text file.                                 *
+#*                                                                         *
+#*   This program is distributed in the hope that it will be useful,       *
+#*   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+#*   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+#*   GNU Library General Public License for more details.                  *
+#*                                                                         *
+#*   You should have received a copy of the GNU Library General Public     *
+#*   License along with this program; if not, write to the Free Software   *
+#*   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  *
+#*   USA                                                                   *
+#*                                                                         *
+#***************************************************************************
 
-import urllib.request
-import urllib
-import xml.etree.ElementTree as ET
-import json
-import Draft
-import Part
-from PIL import Image
-import requests
+"""This module provides tools to load GIS information into FreeCAD
+"""
 
-import importlib
+__title__= "GIS2BIM_FreeCAD_import_tms"
+__author__ = "Maarten Vroegindeweij"
+__url__ = "https://github.com/DutchSailor/GIS2BIM"
+
+# TMS Importer
+
+from PySide2 import QtCore, QtWidgets
+from PySide2.QtGui import*
+
+import FreeCAD
+
 import GIS2BIM
 import GIS2BIM_FreeCAD
-import GIS2BIM_NL
-importlib.reload(GIS2BIM)
-
-import PySide2
-from PySide2 import QtCore, QtGui, QtWidgets
-from PySide2.QtGui import*
-from PySide2 import  QtUiTools, QtNetwork
-from PySide2.QtCore import Qt
-import functools
-
-SiteName = "GIS-Sitedata"
-TempFolderName = "GIStemp/"
-Lat = float(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).WGS84_Latitude)
-Lon = float(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).WGS84_Longitude)
-BoundingboxWidth = float(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).BoundingboxWidth)
-BoundingboxHeight = float(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).BoundingboxHeight)
-Tempfolder = GIS2BIM_FreeCAD.CreateTempFolder(TempFolderName)
-TempfileName = Tempfolder + "initialTMS.jpg" 
-
-zoomL = 17
-pixels = 256
-TMS_WMTS = 0
-
-#Download list of predefined WMTS/TMS Requests
-category = "webserverRequests"
-service = "WMTS_TMS"
-data = GIS2BIM.GetWebServerDataService(category,service)
-
-TitleList  = []
-for i in data:
-	TitleList.append(i["title"])
-
-ServerRequestPrefix  = []
-for i in data:
-	ServerRequestPrefix.append(i["serverrequestprefix"])
-yx = sorted(zip(TitleList,ServerRequestPrefix))
-TitleList = [x[0] for x in yx]
-ServerRequestPrefix = [x[1] for x in yx]
 
 class GIS_TMS_Dialog(QtWidgets.QDialog):
 
 	def __init__(self):
 		super(GIS_TMS_Dialog, self).__init__()
+		self.sitename = "GIS-Sitedata"
+		self.tempFolderName = "GIStemp/"
+		self.lat = float(GIS2BIM_FreeCAD.ArchSiteCreateCheck(self.sitename).WGS84_Latitude)
+		self.lon = float(GIS2BIM_FreeCAD.ArchSiteCreateCheck(self.sitename).WGS84_Longitude)
+		self.bboxWidth = float(GIS2BIM_FreeCAD.ArchSiteCreateCheck(self.sitename).BoundingboxWidth)
+		self.bboxHeight = float(GIS2BIM_FreeCAD.ArchSiteCreateCheck(self.sitename).BoundingboxHeight)
+		self.tempFolder = GIS2BIM_FreeCAD.CreateTempFolder(self.tempFolderName)
+		self.tempFileName = self.tempFolder + "initialTMS.jpg" 
+		
+		self.zoomL = 17
+		self.pixels = 256
+		self.TMS_WMTS = 0
+		
+		#Download list of predefined WMTS/TMS Requests
+		category = "webserverRequests"
+		service = "WMTS_TMS"
+		data = GIS2BIM.GetWebServerDataService(category,service)
+		
+		TitleList  = []
+		for i in data:
+			TitleList.append(i["title"])
+		
+		ServerRequestPrefix  = []
+		for i in data:
+			ServerRequestPrefix.append(i["serverrequestprefix"])
+		yx = sorted(zip(TitleList,ServerRequestPrefix))
+		self.TitleList = [x[0] for x in yx]
+		self.ServerRequestPrefix = [x[1] for x in yx]		
 		self.initUI()
 		
 	def initUI(self):
 		self.result = userCancelled
-		self.setWindowTitle("Load Raster Data with WTMS/TMS")
+		self.setWindowTitle("Load Raster Data with TMS(Tile Map Service)")
 		self.setGeometry(50, 50, 920, 910)
-	
+		self.setFixedSize(self.size())
+		
 		self.centralwidget = QtWidgets.QWidget(self)
 		self.centralwidget.setObjectName("WMTS")
 		self.pictlabel = QtWidgets.QLabel(self)
-		self.zoomLevel = zoomL
+		self.zoomLevel = self.zoomL
 
 		# dx 
 		self.dx = QtWidgets.QLineEdit(self)
@@ -88,7 +103,7 @@ class GIS_TMS_Dialog(QtWidgets.QDialog):
 		#Name of Image
 		self.imageName = QtWidgets.QLineEdit(self)
 		self.imageName.setInputMask("")
-		self.imageName.setText(TitleList[0])
+		self.imageName.setText(self.TitleList[0])
 		self.imageName.setFixedWidth(100)
 		self.imageName.move(200, 730)
 		self.imageNameLabel = QtWidgets.QLabel("Image Name", self)
@@ -104,10 +119,10 @@ class GIS_TMS_Dialog(QtWidgets.QDialog):
 		self.zoomLevelLab.move(350, 735)
 
 		#Filelocation 
-		self.filelocation = TempfileName
-		self.foldername = Tempfolder
+		self.filelocation = self.tempFileName
+		self.foldername = self.tempFolder
 		def do_file():
-			self.fname = QtWidgets.QFileDialog.getExistingDirectory(self, "Open Directory",Tempfolder,QtWidgets.QFileDialog.ShowDirsOnly | QtWidgets.QFileDialog.DontResolveSymlinks)
+			self.fname = QtWidgets.QFileDialog.getExistingDirectory(self, "Open Directory",self.tempFolder,QtWidgets.QFileDialog.ShowDirsOnly | QtWidgets.QFileDialog.DontResolveSymlinks)
 			self.foldername = fname	
 			self.filelocation = self.foldername + "/" + self.imageName.text() + ".jpg"
 		self.button = QtWidgets.QPushButton("Browse",self)
@@ -121,14 +136,14 @@ class GIS_TMS_Dialog(QtWidgets.QDialog):
 		self.cbo = QtWidgets.QComboBox(self)
 		self.cbo.autoCompletion()
 		self.cbo.move(520,760)
-		self.cbo.addItems(TitleList)
+		self.cbo.addItems(self.TitleList)
 		self.labelWMS = QtWidgets.QLabel("Predifined TMS Requests", self)
 		self.labelWMS.move(350, 765)
 		self.cbo.currentIndexChanged.connect(self.selectionchange)
 		
 		# webservernameAndRequest
 		self.webserverName1 = QtWidgets.QPlainTextEdit(self)
-		self.webserverName1.insertPlainText(ServerRequestPrefix[0])
+		self.webserverName1.insertPlainText(self.ServerRequestPrefix[0])
 		self.webserverName1.setFixedWidth(300)
 		self.webserverName1.setFixedHeight(80)
 		self.webserverName1.move(515, 790)
@@ -151,7 +166,12 @@ class GIS_TMS_Dialog(QtWidgets.QDialog):
 		okButton.clicked.connect(self.onOk)
 		okButton.move(35, 870)
 		self.show()
-		self.test_TMS()
+		if self.bboxWidth > 1000 or self.bboxHeight > 1000:
+			dialog = QtWidgets.QMessageBox()
+			dialog.setText("Boundingbox is larger then 1000 meters. Set zoomlevel far lower then 18 to prevent extreem large imagefiles")
+			dialog.setWindowTitle("Warning")
+			dialog.exec_() 
+		else: self.test_TMS()
 
 	def onCancel(self):
 		self.result= userCancelled
@@ -162,15 +182,15 @@ class GIS_TMS_Dialog(QtWidgets.QDialog):
 
 	def selectionchange(self): 
 		self.webserverName1.clear()		
-		self.webserverName1.insertPlainText(ServerRequestPrefix[self.cbo.currentIndex()])
+		self.webserverName1.insertPlainText(self.ServerRequestPrefix[self.cbo.currentIndex()])
 		self.imageName.clear()
 		self.imageName.setText(self.cbo.currentText())
 
 	def test_TMS(self):
-		ServerName = self.webserverName1.toPlainText()
-		TMS = GIS2BIM.TMS_WMTSCombinedMapFromLatLonBbox(Lat,Lon,BoundingboxWidth,BoundingboxHeight,int(self.zoomLevel.text()),pixels,TMS_WMTS,ServerName)
+		self.ServerName = self.webserverName1.toPlainText()
+		TMS = GIS2BIM.TMS_WMTSCombinedMapFromLatLonBbox(self.lat,self.lon,self.bboxWidth,self.bboxHeight,int(self.zoomLevel.text()),self.pixels,self.TMS_WMTS,self.ServerName)
 		self.filelocation = self.foldername + "/" + self.imageName.text() + ".jpg"		
-		TMSImage = TMS[0].save(self.filelocation)		
+		TMS[0].save(self.filelocation)		
 		picture = QPixmap(self.filelocation)
 		picture = picture.scaledToWidth(800)
 		pictheight = picture.height()
@@ -181,7 +201,6 @@ class GIS_TMS_Dialog(QtWidgets.QDialog):
 			picture = picture.scaledToWidth(pictwidth)
 		else:
 			pictwidth = 800			
-			pictheight = pictheight
 			picture = picture.scaledToWidth(pictwidth)
 		self.pictlabel.setPixmap(picture)
 		self.pictlabel.setGeometry(QtCore.QRect(40, 40, pictwidth-40, pictheight-40))
@@ -190,6 +209,17 @@ class GIS_TMS_Dialog(QtWidgets.QDialog):
 		self.result= userTest
 
 	def onOk(self):
+		self.result= userOK
+		dx = float(self.dx.text())*1000
+		dy = float(self.dy.text())*1000
+		fileLocationTMS = str(self.filelocation)
+		TMS = GIS2BIM.TMS_WMTSCombinedMapFromLatLonBbox(self.lat,self.lon,self.bboxWidth,self.bboxHeight,int(self.zoomLevel.text()),self.pixels,self.TMS_WMTS,self.ServerName)
+		TMS[0].save(fileLocationTMS)		
+		ImageMap = GIS2BIM_FreeCAD.ImportImage(fileLocationTMS,self.bboxWidth,self.bboxHeight,1000, str(self.imageName.text()), dx,dy)
+		GIS2BIM_FreeCAD.CreateLayer("GIS_Raster")
+		FreeCAD.ActiveDocument.recompute()
+		FreeCAD.activeDocument().getObject("GIS_Raster").addObject(FreeCAD.activeDocument().getObject(ImageMap.Label))
+		FreeCAD.ActiveDocument.recompute()
 		self.result= userOK
 		self.close()
 
@@ -200,18 +230,3 @@ userTest = "test_TMS"
 
 form = GIS_TMS_Dialog()
 form.exec_()
-
-if form.result==userCancelled:
-	pass # steps to handle user clicking Cancel
-if form.result==userOK:
-	URL = str(form.webserverName1.toPlainText())
-	dx = float(form.dx.text())*1000
-	dy = float(form.dy.text())*1000
-	fileLocationTMS = str(form.filelocation)
-	ServerName = form.webserverName1.toPlainText()
-	TMS = GIS2BIM.TMS_WMTSCombinedMapFromLatLonBbox(Lat,Lon,BoundingboxWidth,BoundingboxHeight,int(form.zoomLevel.text()),pixels,TMS_WMTS,ServerName)
-	TMSImage = TMS[0].save(fileLocationTMS)		
-	ImageMap = GIS2BIM_FreeCAD.ImportImage(fileLocationTMS,BoundingboxWidth,BoundingboxHeight,1000, str(form.imageName.text()), dx,dy)
-	TMS_layer = GIS2BIM_FreeCAD.CreateLayer("GIS_Raster")
-	App.activeDocument().getObject("GIS_Raster").addObject(App.activeDocument().getObject(ImageMap.Label))
-	FreeCAD.ActiveDocument.recompute()

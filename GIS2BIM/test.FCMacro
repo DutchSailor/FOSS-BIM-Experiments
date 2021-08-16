@@ -1,22 +1,7 @@
-import importlib
-import GIS2BIM
-importlib.reload(GIS2BIM)
+from freecad.trails import geo_origin
+import FreeCAD
 
+obj = geo_origin.get()	
+obj.Origin = FreeCAD.Vector(15000, 15000, 0)
 
-#Download list of predefined WMTS/TMS Requests
-category = "webserverRequests"
-service = "WMS"
-data = GIS2BIM.GetWebServerDataService(category,service)
-
-TitleList  = []
-for i in data:
-	TitleList.append(i["title"])
-
-ServerRequestPrefix  = []
-for i in data:
-	ServerRequestPrefix.append(i["serverrequestprefix"])
-yx = sorted(zip(TitleList,ServerRequestPrefix))
-TitleList = [x[0] for x in yx]
-ServerRequestPrefix = [x[1] for x in yx]
-
-print(TitleList)
+print(geo_origin.get())

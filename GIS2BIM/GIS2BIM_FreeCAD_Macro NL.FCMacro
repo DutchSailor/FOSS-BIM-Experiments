@@ -82,7 +82,7 @@ class GIS2BIM_Dialog(QtGui.QDialog):
 		self.checkbox3 = QtGui.QCheckBox("3D Buildings", self)
 		self.checkbox3.move(20,200)
 		#
-		self.checkbox4 = QtGui.QCheckBox("2D Aerialphoto 2019", self)
+		self.checkbox4 = QtGui.QCheckBox("2D Aerialphoto 2020", self)
 		self.checkbox4.move(20,230)
 		#
 		self.checkbox5 = QtGui.QCheckBox("GIS 2D Annotation", self)
@@ -146,13 +146,13 @@ fileLocationWMS = TempFolderPath + "wms.jpg"
 if CadastralParcels2D is True:
 	GIS_2D_Cadastral_Parcel = GIS2BIM_FreeCAD.CreateLayer("GIS_2D_Cadastral_Parcel")	
 	CadastralParcelCurves = GIS2BIM_FreeCAD.CurvesFromWFS(GIS2BIM_NL.NLPDOKCadastreCadastralParcels,Bbox,GIS2BIM_NL.NLPDOKxPathOpenGISposList,-Rdx,-Rdy,1000,3,2,False,u"Dashdot",(0.0,0.0,0.0))
-	GIS_2D_Cadastral_Parcel.addObjects(CadastralParcelCurves)
+	App.activeDocument().getObject("GIS_2D_Cadastral_Parcel").addObjects(CadastralParcelCurves)
 
 #Create Building outline 2D
 if BuildingOutline2D is True:
 	GIS_2D_Building_Outline = GIS2BIM_FreeCAD.CreateLayer("GIS_2D_Building_Outline")	
 	BAGCurves = GIS2BIM_FreeCAD.CurvesFromWFS(GIS2BIM_NL.NLPDOKBAGBuildingCountour,Bbox,GIS2BIM_NL.NLPDOKxPathOpenGISposList,-Rdx,-Rdy,1000,3,2,True,u"Solid",(0.7,0.0,0.0))
-	GIS_2D_Building_Outline.addObjects(BAGCurves)
+	App.activeDocument().getObject("GIS_2D_Building_Outline").addObjects(BAGCurves)
 
 #Create 3D Building
 if Buildings3D is True:
@@ -165,13 +165,14 @@ if Buildings3D is True:
 # Import Aerialphoto in view
 
 if Aerialphoto2D is True:
-	GIS-Raster = GIS2BIM_FreeCAD.CreateLayer("GIS_Raster")	
-	a = GIS2BIM.WMSRequest(GIS2BIM.GetWebServerData("NLPDOKLuchtfoto2019", "webserverRequests", "serverrequestprefix"),Bbox,fileLocationWMS)
+	GIS_Raster = GIS2BIM_FreeCAD.CreateLayer("GIS_Raster")	
+	a = GIS2BIM.WMSRequest(GIS2BIM.GetWebServerData("NL_PDOK_Luchtfoto_2020", "webserverRequests", "serverrequestprefix"),Bbox,fileLocationWMS,3000,3000)
 	print(a)
-	ImageAerialPhoto = GIS2BIM_FreeCAD.ImportImage(fileLocationWMS,width,height,1000,"luchtfoto2019")
-	GIS_Raster.addObject(App.activeDocument().getObject("luchtfoto2019"))
+	ImageAerialPhoto = GIS2BIM_FreeCAD.ImportImage(fileLocationWMS,width,height,1000,"luchtfoto2020",0,0)
+	ImageAerialPhoto.addProperty("App::PropertyString","WMSRequestURL")
+	ImageAerialPhoto.WMSRequestURL = a[2]
 	App.activeDocument().getObject("GIS_Raster").addObject(App.activeDocument().getObject(ImageAerialPhoto.Label))
-
+	
 #Create Textdata Cadastral Parcels
 if GIS2DAnnotation is True:
 	GIS_Annotation = GIS2BIM_FreeCAD.CreateLayer("GIS_Annotation")	
@@ -179,13 +180,13 @@ if GIS2DAnnotation is True:
 	textDataOpenbareRuimtenaam = GIS2BIM.DataFromWFS(GIS2BIM_NL.NLPDOKCadastreOpenbareruimtenaam,Bbox,GIS2BIM_NL.NLPDOKxPathOpenGISPos,GIS2BIM_NL.xPathStringsCadastreTextAngle,-Rdx,-Rdy,1000,3,2)
 	placeTextFreeCAD1 = GIS2BIM_FreeCAD.PlaceText(textDataCadastralParcels,500,0)
 	placeTextFreeCAD2 = GIS2BIM_FreeCAD.PlaceText(textDataOpenbareRuimtenaam,2000,1)
-	GIS_Annotation.addObjects(placeTextFreeCAD1)
-	GIS_Annotation.addObjects(placeTextFreeCAD2)
+	App.activeDocument().getObject("GIS_Annotation").addObjects(placeTextFreeCAD1)
+	App.activeDocument().getObject("GIS_Annotation").addObjects(placeTextFreeCAD2)
 
 #Create Ruimtelijke plannen outline 2D
 if Bestemmingsplan is True:
-	GIS_2D_Ruimtelijke_Plannen = GIS2BIM_FreeCAD.CreateLayer("GIS 2D Ruimtelijke Plannen")	
+	GIS_2D_Ruimtelijke_Plannen = GIS2BIM_FreeCAD.CreateLayer("GIS_2D_Ruimtelijke_Plannen")	
 	RuimtelijkePlannenBouwvlakCurves = GIS2BIM_FreeCAD.CurvesFromWFS(GIS2BIM_NL.NLRuimtelijkeplannenBouwvlak,Bbox,GIS2BIM_NL.NLPDOKxPathOpenGISposList,-Rdx,-Rdy,1000,3,2,False,u"Solid",(0.0,0.0,1.0))
-	GIS_2D_Ruimtelijke_Plannen.addObjects(RuimtelijkePlannenBouwvlakCurves)
+	App.activeDocument().getObject("GIS_2D_Ruimtelijke_Plannen").addObjects(RuimtelijkePlannenBouwvlakCurves)
 	
 FreeCAD.ActiveDocument.recompute()
