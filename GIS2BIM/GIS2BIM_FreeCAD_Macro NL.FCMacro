@@ -1,38 +1,64 @@
+# -*- coding: utf8 -*-
+#***************************************************************************
+#*   Copyright (c) 2021 Maarten Vroegindeweij <maarten@3bm.co.nl>          *
+#*                                                                         *
+#*   This program is free software; you can redistribute it and/or modify  *
+#*   it under the terms of the GNU Lesser General Public License (LGPL)    *
+#*   as published by the Free Software Foundation; either version 2 of     *
+#*   the License, or (at your option) any later version.                   *
+#*   for detail see the LICENCE text file.                                 *
+#*                                                                         *
+#*   This program is distributed in the hope that it will be useful,       *
+#*   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+#*   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+#*   GNU Library General Public License for more details.                  *
+#*                                                                         *
+#*   You should have received a copy of the GNU Library General Public     *
+#*   License along with this program; if not, write to the Free Software   *
+#*   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  *
+#*   USA                                                                   *
+#*                                                                         *
+#***************************************************************************
+
+"""This module provides tools to load GIS information into FreeCAD
+"""
+
+__title__= "GIS2BIM_FreeCAD_import_pdok"
+__author__ = "Maarten Vroegindeweij"
+__url__ = "https://github.com/DutchSailor/GIS2BIM"
+
+# PDOK Importer
+
 #import statements
-import sys,os
-sys.path.append(os.path.join(sys.path[0]))
 
-import urllib.request
-import urllib
-import xml.etree.ElementTree as ET
-import json
-import Draft
-import Part
-
-import GIS2BIM
-import GIS2BIM_FreeCAD
-import GIS2BIM_NL
 from PySide import QtGui, QtCore
 
-SiteName = "GIS-Sitedata"
-X = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).CRS_x)
-Y = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).CRS_y)
-BoundingboxWidth = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).BoundingboxWidth)
-BoundingboxHeight = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).BoundingboxHeight)
-TempFolderName = "GIStemp/"
-TempFolderPath = GIS2BIM_FreeCAD.CreateTempFolder(TempFolderName)
+import FreeCAD
+
+from . import GIS2BIM
+from . import GIS2BIM_FreeCAD
+from . import GIS2BIM_CRS 
+
+
 
 # UI Class definitions
 
-class GIS2BIM_Dialog(QtGui.QDialog):
+class PDOK_Dialog(QtGui.QDialog):
 	""""""
 	def __init__(self):
-		super(GIS2BIM_Dialog, self).__init__()
+		super(PDOK_Dialog, self).__init__()
 		self.initUI()
+		SiteName = "GIS-Sitedata"
+		X = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).CRS_x)
+		Y = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).CRS_y)
+		BoundingboxWidth = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).BoundingboxWidth)
+		BoundingboxHeight = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(SiteName).BoundingboxHeight)
+		TempFolderName = "GIStemp/"
+		TempFolderPath = GIS2BIM_FreeCAD.CreateTempFolder(TempFolderName)
+
 	def initUI(self):
 		self.result = userCancelled
 		# create our window
-		# define window		xLoc,yLoc,xDim,yDim
 		self.setGeometry(250, 250, 400, 400)
 		self.setWindowTitle("Load GIS-data PDOK Netherlands")
 		self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
