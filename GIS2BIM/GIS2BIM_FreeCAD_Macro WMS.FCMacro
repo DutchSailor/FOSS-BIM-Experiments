@@ -98,7 +98,9 @@ class GISWMS_Dialog(QtWidgets.QDialog):
 		self.numericInput1X.move(200, 670)
 		self.label2 = QtWidgets.QLabel("X-coordinate", self)
 		self.label2.move(40, 675)
-		
+		self.label2.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Plain)
+		self.label2.setLineWidth(3)
+
 		#Y-coordinate		
 		self.numericInput2Y = QtWidgets.QLineEdit(self)
 		self.numericInput2Y.setInputMask("")
@@ -107,7 +109,7 @@ class GISWMS_Dialog(QtWidgets.QDialog):
 		self.numericInput2Y.move(200, 700)
 		self.label3 = QtWidgets.QLabel("Y-coordinate", self)
 		self.label3.move(40, 705)
-		
+
 		# boundingbox width
 		self.bboxWidthLab = QtWidgets.QLineEdit(self)
 		self.bboxWidthLab.setInputMask("")

@@ -33,9 +33,11 @@ from PySide2 import QtCore, QtWidgets
 from PySide2.QtGui import*
 
 import FreeCAD
+import importlib
 
 import GIS2BIM
 import GIS2BIM_FreeCAD
+importlib.reload(GIS2BIM)
 
 class GIS_TMS_Dialog(QtWidgets.QDialog):
 

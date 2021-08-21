@@ -34,10 +34,12 @@ from PySide2.QtWebEngineWidgets import QWebEnginePage
 from PySide2 import QtCore, QtWidgets
 from PySide2.QtCore import QUrl
 
+import importlib
 import GIS2BIM
 import GIS2BIM_FreeCAD
 import GIS2BIM_CRS 
 import FreeCAD
+importlib.reload(GIS2BIM)
 
 import os
 import time
@@ -78,7 +80,7 @@ class GISLocation_Dialog(QtWidgets.QDialog):
 		self.result = userCancelled
 		self.setWindowTitle("Set Geographic Location")
 		self.setGeometry(100, 100, 920, 900)
-		self.setFixedSize(self.size())
+		#self.setFixedSize(self.size())
 		
 		# CrossLines
 		self.centralwidget = QtWidgets.QWidget(self)

@@ -1,7 +1,212 @@
-from freecad.trails import geo_origin
+from PySide2 import QtCore, QtWidgets
+from PySide2.QtWidgets import *
+from PySide2.QtWebEngineWidgets import QWebEngineView
+from PySide2.QtWebEngineWidgets import QWebEnginePage 
+from PySide2.QtCore import QUrl
+
+import GIS2BIM
+import GIS2BIM_FreeCAD
+import GIS2BIM_CRS 
 import FreeCAD
 
-obj = geo_origin.get()	
-obj.Origin = FreeCAD.Vector(15000, 15000, 0)
+#       self.setStyleSheet("QGroupBox { background-color: \rgb(100, 100, 100); border: 4px solid rgb(255, 0, 0); }")
+		#   self.setStyleSheet("QGroupBox { border: 4px solid rgb(100, 100, 100); }")
+class Window(QtWidgets.QWidget):
+	def __init__(self, parent=None):
+		super(Window, self).__init__(parent)
+		
+		self.sitename = "GIS-Sitedata"
+		
+		self.tempFolderName = "GIStemp/"
+		self.X = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(self.sitename).CRS_x)
+		self.Y = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(self.sitename).CRS_y)	
+		self.lat = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(self.sitename).WGS84_Latitude)
+		self.lon = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(self.sitename).WGS84_Longitude)
+		self.bboxWidth = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(self.sitename).BoundingboxWidth)
+		self.bboxHeight = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(self.sitename).BoundingboxHeight)
+		self.CRS = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(self.sitename).CRS_EPSG_SRID)
+		self.CRSDescription = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(self.sitename).CRS_EPSG_Description)
+		
+		self.setStyleSheet("QWidget {background-color: rgb(68, 68, 68)} QPushButton { background-color: black } QGroupBox {border: 1px solid grey; }") #margin: 2px;
+		self.filepathBaseMap = "C:/Users/mikev/OneDrive/Bureaublad/TEMP/GIStemp/basemapWFS.html"	
+		self.filepathNewMap = "C:/Users/mikev/OneDrive/Bureaublad/TEMP/GIStemp/mapWFS.html"	
+		self.tempFolderPath = GIS2BIM_FreeCAD.CreateTempFolder(self.tempFolderName)	
 
-print(geo_origin.get())
+		#Download list of predefined WFS Requests
+		category = "webserverRequests"
+		service = "WFS"
+		data = GIS2BIM.GetWebServerDataService(category,service)
+		
+		TitleList  = []
+		for i in data:
+			TitleList.append(i["title"])
+		
+		ServerRequestPrefix  = []
+		for i in data:
+			ServerRequestPrefix.append(i["serverrequestprefix"])
+		yx = sorted(zip(TitleList,ServerRequestPrefix))
+		self.TitleList = [x[0] for x in yx]
+		self.ServerRequestPrefix = [x[1] for x in yx]
+		
+		#Widget Right Bottom Combined
+		gridRB = QtWidgets.QGridLayout()
+		gridRB.addWidget(self.webserverGroup(), 0, 0, QtCore.Qt.AlignTop)
+		gridRB.addWidget(self.freeCADGroup(), 1, 0, QtCore.Qt.AlignTop)
+		
+		#Overall Grid
+		grid = QtWidgets.QGridLayout()
+		grid.addWidget(self.webViewGroup(), 0, 0, 1, 2)
+		grid.addWidget(self.locationGroup(), 3, 0, QtCore.Qt.AlignTop)	
+		grid.addLayout(gridRB, 3, 1)
+		grid.addLayout(self.buttonGroup(),4,0,1,2)
+		grid.setRowStretch(0,2)
+		self.setLayout(grid)
+		
+		self.setWindowTitle("Load 2D Vector Data with WFS(Web Feature Server)")
+		self.resize(920, 910)
+
+	def webViewGroup(self):
+		groupBox = QtWidgets.QGroupBox("Map")
+		groupBox.setStyleSheet("QGroupBox {border: 1px solid grey;}")
+		radio1 = QtWidgets.QRadioButton("&Radio button 1")
+		radio1.setChecked(True)
+		webFrame = QFrame()
+		webFrame.setFrameShape(QFrame.StyledPanel)
+
+		vbox = QtWidgets.QVBoxLayout()
+	
+		groupBox.setLayout(vbox)
+		webView = QWebEngineView()
+		webView.load(QUrl(QtCore.QUrl(self.filepathNewMap)))
+		vbox.addWidget(webView)	
+	
+		webView.show()
+
+		return groupBox
+
+	def locationGroup(self):
+		groupBox = QtWidgets.QGroupBox("Location / Boundingbox")
+		latLonLab = QtWidgets.QLabel("lat/lon (WGS-84)")
+		latLon = QtWidgets.QLabel("lat: " + self.lat + ", lon: " + self.lon)
+		CRSLab = QtWidgets.QLabel("CRS")
+		CRSText = QtWidgets.QLabel(self.CRS + " " + self.CRSDescription)
+
+		xCoordLab = QtWidgets.QLabel("X-coordinate")
+		xCoord = QtWidgets.QLineEdit()
+		xCoord.setText(self.X)
+		yCoordLab = QtWidgets.QLabel("Y-coordinate")
+		yCoord = QtWidgets.QLineEdit()
+		yCoord.setText(self.Y)
+		bboxWidthLab = QtWidgets.QLabel("Boundingbox Width [m]")
+		bboxWidth = QtWidgets.QLineEdit()
+		bboxWidth.setText(self.bboxWidth)
+		bboxHeightLab = QtWidgets.QLabel("Boundingbox Height [m]")
+		bboxHeight = QtWidgets.QLineEdit()
+		bboxHeight.setText(self.bboxHeight)
+		
+		grid = QtWidgets.QGridLayout()
+		grid.addWidget(latLonLab,0,0)
+		grid.addWidget(latLon,0,1)
+		grid.addWidget(CRSLab,1,0)
+		grid.addWidget(CRSText,1,1)
+		grid.addWidget(xCoordLab,2,0)
+		grid.addWidget(xCoord,2,1)
+		grid.addWidget(yCoordLab,3,0)
+		grid.addWidget(yCoord,3,1)
+		grid.addWidget(bboxWidthLab,4,0)
+		grid.addWidget(bboxWidth,4,1)
+		grid.addWidget(bboxHeightLab,5,0)
+		grid.addWidget(bboxHeight,5,1)
+
+		groupBox.setLayout(grid)
+		groupBox.setStyleSheet("QGroupBox {border: 1px solid grey;}")
+
+		return groupBox
+
+	def webserverGroup(self):
+		groupBox = QtWidgets.QGroupBox("Input Webserver / Request")
+
+		cboDefWFSLab = QtWidgets.QLabel("Predifined WFS Requests", self)		
+		cboDefWFS = QtWidgets.QComboBox(self)
+		cboDefWFS.addItems(self.TitleList)
+		#cboDefWFS.currentIndexChanged.connect(self.selectionchange)
+
+		requestLab = QtWidgets.QLabel("Webserver Address & Request", self)
+		self.request= QtWidgets.QLineEdit(self)		
+		self.request.setText(self.ServerRequestPrefix[cboDefWFS.currentIndex()])
+
+		xPathStrLab = QtWidgets.QLabel("xPath String")
+		xPathStr = QtWidgets.QLineEdit()
+		
+		grid = QtWidgets.QGridLayout()
+		grid.addWidget(cboDefWFSLab,0,0)
+		grid.addWidget(cboDefWFS,0,1)
+		grid.addWidget(requestLab,1,0)
+		grid.addWidget(self.request,1,1)
+		grid.setRowStretch(1,1)
+		grid.addWidget(xPathStrLab,2,0)
+		grid.addWidget(xPathStr,2,1)
+
+		groupBox.setLayout(grid)
+		
+		return groupBox
+
+	def freeCADGroup(self):
+		groupBox = QtWidgets.QGroupBox("FreeCAD Import Settings")
+		
+		clsPolygonLab = QtWidgets.QLabel("Close Polygon")
+		clsPolygon = QtWidgets.QCheckBox()
+		clsPolygon.setChecked(1)
+
+		clsCreateFaceLab = QtWidgets.QLabel("Create Face")
+		clsCreateFace = QtWidgets.QCheckBox()
+		clsCreateFace.setChecked(1)
+		
+		groupNameLab = QtWidgets.QLabel("Group Name")
+		groupName = QtWidgets.QLineEdit()
+		groupName.setText("GIS_WFS")
+
+		lineColorLab = QtWidgets.QLabel("Line Color", self)	
+		lineColor = QtWidgets.QComboBox(self)
+		colorlst = ("red","black")		
+		lineColor.addItems(colorlst)
+		#lineColor = QtWidgets.QPushButton("Color")
+		#lineColor = QtWidgets.QColorDialog()	
+
+		linePatternLab = QtWidgets.QLabel("Draw Style", self)	
+		linePattern = QtWidgets.QComboBox(self)
+		patternlst = ("Solid","Dashed","Dotted","Dashdot")		
+		linePattern.addItems(patternlst)
+
+		grid = QtWidgets.QGridLayout()
+		grid.addWidget(clsPolygonLab,0,0)
+		grid.addWidget(clsPolygon,0,1)
+		grid.addWidget(clsCreateFaceLab,0,2)
+		grid.addWidget(clsCreateFace,0,3)
+		grid.addWidget(lineColorLab,0,4)
+		grid.addWidget(lineColor,0,5)
+		grid.addWidget(linePatternLab,1,2)
+		grid.addWidget(linePattern,1,3)
+		grid.addWidget(groupNameLab,1,0)
+		grid.addWidget(groupName,1,1)
+	#	groupBox.setStyleSheet("QGroupBox {border: 1px solid grey; margin: 10px;}")
+		groupBox.setLayout(grid)
+		
+		return groupBox
+
+	def buttonGroup(self):
+		importbtn = QtWidgets.QPushButton("Import")
+		testbtn = QtWidgets.QPushButton("Test")
+		cancelbtn = QtWidgets.QPushButton("Cancel")	
+		hbox = QtWidgets.QHBoxLayout()
+		hbox.addWidget(importbtn)
+		hbox.addWidget(testbtn)
+		hbox.addWidget(cancelbtn)
+	#	hbox.setContentsMargins(-5, -5, -5, -5)		
+				
+		return hbox
+
+
+clock = Window()
+clock.show()
+  #  sys.exit(app.exec_())
