@@ -1,6 +1,10 @@
 # FOSS-BIM-Experiments
 Experiments with Open Source BIM Software
 
+Web Feature Service(WFS) PoC in FreeCAD
+
+![](GIS2BIM_WFS.png)
+
 Tile Map Service(TMS) in FreeCAD
 
 ![](GIS2BIM_TMS.png)
