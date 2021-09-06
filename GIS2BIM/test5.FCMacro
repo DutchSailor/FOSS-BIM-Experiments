@@ -1,0 +1,27 @@
+import json
+import FreeCAD
+import Mesh
+import GIS2BIM_FreeCAD
+
+jsonFile = 'C:/Users/mikev/Downloads/3dbag_v21031_7425c21b_3432.json'
+
+data = json.load(open(jsonFile,))
+vert = data['vertices']
+cityobj = data['CityObjects']
+translate = data['transform']['translate']
+
+layer = GIS2BIM_FreeCAD.CreateLayer("CityJSON")
+
+translatex 
+#for i in cityobj:
+#	objName = i
+#	for j in data['CityObjects'][objName]['geometry'][2]['boundaries']:	
+#		facets = []
+#		for k in j:
+#			facets.append((vert[k[0][0]], vert[k[0][1]], vert[k[0][2]]))
+#		m = Mesh.Mesh(facets)
+#		f = FreeCAD.activeDocument().addObject("Mesh::Feature", "Mesh") 
+#		f.Mesh = m 
+#		FreeCAD.activeDocument().getObject("CityJSON").addObject(f)
+
+print(translate)

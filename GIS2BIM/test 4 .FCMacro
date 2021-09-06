@@ -1,0 +1,6 @@
+import requests
+requestURL = "https://data.3dbag.nl/cityjson/v21031_7425c21b/3dbag_v21031_7425c21b_6271.json"
+r = requests.get(requestURL)
+open('C:/TEMP/3dbag_v21031_7425c21b_6271.json', 'wb').write(r.content)
+
+print(r)

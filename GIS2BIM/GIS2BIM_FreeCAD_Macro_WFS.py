@@ -38,7 +38,6 @@ from PySide2.QtCore import QUrl
 import os
 import FreeCAD
 
-
 import GIS2BIM
 import GIS2BIM_FreeCAD
 import GIS2BIM_CRS 

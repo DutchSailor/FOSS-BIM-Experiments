@@ -1,3 +1,5 @@
+# Expirement of icon 
+
 import GIS2BIM_FreeCAD
 from pivy import coin
 global path

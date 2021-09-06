@@ -1,3 +1,5 @@
+# BGT Import meshy
+
 import GIS2BIM
 import GIS2BIM_FreeCAD
 import importlib
