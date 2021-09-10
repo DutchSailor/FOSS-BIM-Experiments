@@ -1,0 +1,8 @@
+import GIS2BIM_FreeCAD
+import FreeCAD
+
+GIS2BIM_FreeCAD.CreateLayer("BGTtest")
+
+GIS2BIM_FreeCAD.CreateLayer("test")
+
+FreeCAD.activeDocument().getObject("BGTtest").addObject(FreeCAD.activeDocument().getObject("test"))

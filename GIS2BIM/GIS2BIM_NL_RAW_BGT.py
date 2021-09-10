@@ -13,7 +13,7 @@ import xml.etree.ElementTree as ET
 import importlib
 importlib.reload(GIS2BIM)
 importlib.reload(GIS2BIM_NL)
-
+importlib.reload(GIS2BIM_FreeCAD)
 
 sitename = "GIS-Sitedata"
 tempFolderName = "GIStemp/"
@@ -32,30 +32,55 @@ GIS2BIM.downloadUnzip(URL,filepathZIP,folderBGT)
 
 #Create Curves
 
-bgt_curves = ["bgt_begroeidterreindeel",
-"bgt_functioneelgebied",
-"bgt_gebouwinstallatie",
-"bgt_kunstwerkdeel",
+bgt_curves_faces = ["bgt_begroeidterreindeel",
 "bgt_onbegroeidterreindeel",
 "bgt_ondersteunendwaterdeel",
 "bgt_ondersteunendwegdeel",
 "bgt_overbruggingsdeel",
 "bgt_overigbouwwerk",
-"bgt_overigescheiding",
 "bgt_pand",
-"bgt_scheiding",
-"bgt_spoor",
-"bgt_tunneldeel",
 "bgt_waterdeel",
 "bgt_wegdeel"]
 
+bgt_curves_faces_color = [(223/255,230/255,208/255),
+(223/255,230/255,208/255),
+(205/255,230/255,237/255),
+(226/255,226/255,226/255),
+(234/255,234/255,234/255),
+(220/255,155/255,140/255),
+(220/255,155/255,140/255),
+(205/255,230/255,237/255),
+(234/255,234/255,234/255)]
+
+bgt_curves_lines = ["bgt_functioneelgebied",
+"bgt_gebouwinstallatie",
+"bgt_kunstwerkdeel",
+"bgt_overbruggingsdeel",
+"bgt_overigbouwwerk",
+"bgt_overigescheiding",
+"bgt_scheiding",
+"bgt_spoor",
+"bgt_tunneldeel"]
+
 xpath = './/{http://www.opengis.net/gml}posList'
 
-file_paths = []
-for i in bgt_curves:
+GIS2BIM_FreeCAD.CreateLayer("BGT")
+
+#Draw bgt_curves_lines
+for i in bgt_curves_lines:
 	path = folderBGT + '/' + i + '.gml'
 	tree = ET.parse(path)
-	Curves = GIS2BIM_FreeCAD.CurvesFromGML(tree,xpath,-X,-Y,bboxWidth,bboxHeight,1000,2,0,0,"Solid",(0.7,0.0,0.0))
+	Curves = GIS2BIM_FreeCAD.CurvesFromGML(tree,xpath,-X,-Y,bboxWidth,bboxHeight,1000,0,0,0,"Solid",(0.7,0.0,0.0),(0.0,0.0,0.0))
 	GIS2BIM_FreeCAD.CreateLayer(i)
 	FreeCAD.activeDocument().getObject(i).addObjects(Curves)
+	FreeCAD.activeDocument().getObject("BGT").addObject(FreeCAD.activeDocument().getObject(i))
+	FreeCAD.ActiveDocument.recompute()
+
+for i,j in zip(bgt_curves_faces,bgt_curves_faces_color):
+	path = folderBGT + '/' + i + '.gml'
+	tree = ET.parse(path)
+	Curves = GIS2BIM_FreeCAD.CurvesFromGML(tree,xpath,-X,-Y,bboxWidth,bboxHeight,1000,2,1,1,"Solid",(0.7,0.0,0.0),j)
+	GIS2BIM_FreeCAD.CreateLayer(i)
+	FreeCAD.activeDocument().getObject(i).addObjects(Curves)
+	FreeCAD.activeDocument().getObject("BGT").addObject(FreeCAD.activeDocument().getObject(i))
 	FreeCAD.ActiveDocument.recompute()

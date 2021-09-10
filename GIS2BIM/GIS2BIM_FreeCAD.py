@@ -36,8 +36,10 @@ import Part
 import Arch
 import os
 import re
+import json
 
 import FreeCAD
+import Mesh
 
 from PySide2 import QtWidgets
 
@@ -105,7 +107,7 @@ def checkIfCoordIsInsideBoundingBox(coord, min_x, min_y, max_x, max_y):
 		else:
 		    return False
 			
-def CurvesFromGML(tree,xPathString,dx,dy,BoxWidth,BoxHeight,scale,DecimalNumbers,closedValue,Face,DrawStyle,LineColor):
+def CurvesFromGML(tree,xPathString,dx,dy,BoxWidth,BoxHeight,scale,DecimalNumbers,closedValue,Face,DrawStyle,LineColor,ShapeColor):
     bbx = -dx
     bby = -dy
 	
@@ -151,6 +153,7 @@ def CurvesFromGML(tree,xPathString,dx,dy,BoxWidth,BoxHeight,scale,DecimalNumbers
                     a.MakeFace = Face
                     a.ViewObject.DrawStyle = DrawStyle
                     a.ViewObject.LineColor = LineColor
+                    a.ViewObject.ShapeColor = ShapeColor
                     FCcurves.append(a)
             except:
                 FCcurves.append("_none_")
@@ -196,6 +199,37 @@ def ArchSiteCreateCheck(SiteName):
 		
 	return ArchSiteObject
 
+def CityJSONImport(jsonFile,dX,dY,LODnumber,bboxWidth,bboxHeight):
+	#Import CityJSON File, jsonfilename, dx and dy in string/meters. Proof of Concept, very buggy and incomplete.
+	layer = CreateLayer("CityJSON")	
+	data = json.load(open(jsonFile,))
+	vert = data['vertices']
+	cityobj = data['CityObjects']
+	translate = data['transform']['translate']
+	scaleX = data['transform']['scale'][0]
+	scaleY = data['transform']['scale'][1]
+	scaleZ = data['transform']['scale'][2]
+	translatex = (translate[0] -float(dX))/scaleX
+	translatey = (translate[1] -float(dY))/scaleY
+	translatez = -translate[2]/scaleZ
+	
+	meshes = []
+	for i in cityobj:
+		objName = i
+		for j in data['CityObjects'][objName]['geometry'][2]['boundaries']:	
+			facets = []
+			for k in j:
+				coord = (str(vert[k[0][0]][0]+translatex), str(vert[k[0][0]][1]+translatey))					
+				if checkIfCoordIsInsideBoundingBox(coord,-500*float(bboxWidth),-500*float(bboxHeight),500*float(bboxWidth),500*float(bboxHeight)):				
+					facets.append(((vert[k[0][0]][0]+translatex, vert[k[0][0]][1]+translatey, vert[k[0][0]][2]+translatez),(vert[k[0][1]][0]+translatex, vert[k[0][1]][1]+translatey, vert[k[0][1]][2]+translatez),(vert[k[0][2]][0]+translatex, vert[k[0][2]][1]+translatey, vert[k[0][2]][2]+translatez)))
+				else: pass
+			m = Mesh.Mesh(facets)
+			f = FreeCAD.activeDocument().addObject("Mesh::Feature", objName)
+			f.Mesh = m
+			meshes.append(f)
+			FreeCAD.activeDocument().getObject("CityJSON").addObject(f)
+	return meshes
+	
 def ArchSiteAddparameters(SiteObject):
 	SiteObject.addProperty("App::PropertyString","CRS_EPSG_SRID")
 	SiteObject.addProperty("App::PropertyString","CRS_EPSG_Description")

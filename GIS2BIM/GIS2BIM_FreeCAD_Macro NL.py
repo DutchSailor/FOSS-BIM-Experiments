@@ -184,7 +184,7 @@ class PDOK_Dialog(QtGui.QDialog):
 			placeTextFreeCAD2 = GIS2BIM_FreeCAD.PlaceText(textDataOpenbareRuimtenaam,2000,1)
 			FreeCAD.activeDocument().getObject("GIS_Annotation").addObjects(placeTextFreeCAD1)
 			FreeCAD.activeDocument().getObject("GIS_Annotation").addObjects(placeTextFreeCAD2)
-
+		
 		#Create Ruimtelijke plannen outline 2D
 		#if Bestemmingsplan is True:
 		#	GIS_2D_Ruimtelijke_Plannen = GIS2BIM_FreeCAD.CreateLayer("GIS_2D_Ruimtelijke_Plannen")	
