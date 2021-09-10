@@ -3,7 +3,7 @@ Experiments with Open Source BIM Software
 
 BAG 3D + BGT 2D in Den Haag(Netherlands) in FreeCAD
 
-!(https://github.com/DutchSailor/FOSS-BIM-Experiments/blob/main/GIS2BIM/Images/GIS2BIM_BGT_BAG3D.png)
+[[https://github.com/DutchSailor/FOSS-BIM-Experiments/blob/main/GIS2BIM/Images/GIS2BIM_BGT_BAG3D.png]]
 
 WMS from Vlaarderen(Belgium) in FreeCAD
 
