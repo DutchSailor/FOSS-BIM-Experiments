@@ -35,15 +35,12 @@ from PIL import Image, ImageOps
 
 import FreeCAD
 
-#from . import GIS2BIM
-#from . import GIS2BIM_FreeCAD
-#from . import GIS2BIM_GUI
+from PyPackages import GIS2BIM
+from PyPackages import GIS2BIM_FreeCAD
+from PyPackages import GIS2BIM_GUI
 
-import GIS2BIM
-import GIS2BIM_FreeCAD
-import GIS2BIM_GUI
-import importlib
-importlib.reload(GIS2BIM_GUI)
+#import importlib
+#importlib.reload(GIS2BIM_GUI)
 
 class GISWMS_Dialog(QtWidgets.QDialog):
 
@@ -225,6 +222,7 @@ class GISWMS_Dialog(QtWidgets.QDialog):
 			gray_image = ImageOps.grayscale(img)
 			gray_image.save(fileLocationWMS2)
 		else: fileLocationWMS2 = fileLocationWMS
+		print(fileLocationWMS2)
 		picture = QPixmap(fileLocationWMS2)
 		picture = picture.scaledToWidth(800)
 		pictheight = picture.height()

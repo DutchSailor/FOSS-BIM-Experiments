@@ -35,14 +35,10 @@ from PIL import Image, ImageOps
 
 import FreeCAD
 
-#from . import GIS2BIM
-#from . import GIS2BIM_FreeCAD
-#from . import GIS2BIM_GUI
-
-import GIS2BIM
-import GIS2BIM_FreeCAD
-import GIS2BIM_GUI
-import importlib
+from PyPackages import GIS2BIM
+from PyPackages import GIS2BIM_FreeCAD
+from PyPackages import GIS2BIM_GUI
+from PyPackages import importlib
 importlib.reload(GIS2BIM_GUI)
 
 class GIS_TMS_Dialog(QtWidgets.QDialog):

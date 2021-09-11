@@ -38,14 +38,14 @@ from PySide2.QtCore import QUrl
 import os
 import FreeCAD
 
-import GIS2BIM
-import GIS2BIM_FreeCAD
-import GIS2BIM_CRS 
-import GIS2BIM_GUI
+from PyPackages import GIS2BIM
+from PyPackages import GIS2BIM_FreeCAD
+from PyPackages import GIS2BIM_CRS 
+from PyPackages import GIS2BIM_GUI
 
 import importlib
-importlib.reload(GIS2BIM_GUI)
-importlib.reload(GIS2BIM_FreeCAD)
+#importlib.reload(GIS2BIM_GUI)
+#importlib.reload(GIS2BIM_FreeCAD)
 
 class GISWFS_Dialog(QtWidgets.QDialog):
 	def __init__(self, parent=None):
@@ -220,7 +220,7 @@ class GISWFS_Dialog(QtWidgets.QDialog):
 		JS2 = JS2.replace("WBBOX", self.bboxWidth.text())
 		JS2 = JS2.replace("HBBOX", self.bboxHeight.text())
 		self.webPage.runJavaScript(JS2) # update bboxWidth in mapview
-		self.testWFS()
+		self.onTest()
 
 	def onbboxHeight(self):
 		JS3 = open(self.filepathJSUpdate,"r")
@@ -228,13 +228,13 @@ class GISWFS_Dialog(QtWidgets.QDialog):
 		JS3 = JS3.replace("WBBOX", self.bboxWidth.text())
 		JS3 = JS3.replace("HBBOX", self.bboxHeight.text())
 		self.webPage.runJavaScript(JS3) # update bboxHeight in mapview
-		self.testWFS()
+		self.onTest()
 	
 	def selectionchange(self): 
 		#Update serverRequest
 		self.request.clear()		
 		self.request.setText(self.ServerRequestPrefix[self.cboDefWFS.currentIndex()])
-		self.testWFS()
+		self.onTest()
 
 	def onTest(self):
 		JS4 = open(self.filepathJSwfs,"r")
@@ -249,7 +249,9 @@ class GISWFS_Dialog(QtWidgets.QDialog):
 	def onImport(self):
 		self.bboxString = GIS2BIM.CreateBoundingBox(float(GIS2BIM_FreeCAD.ArchSiteCreateCheck(self.sitename).CRS_x),float(GIS2BIM_FreeCAD.ArchSiteCreateCheck(self.sitename).CRS_y),float(self.bboxWidth.text()),float(self.bboxHeight.text()),2)
 		url = self.request.text()
-		
+		print(self.bboxString)
+		print(url)
+
 		xpathstr = self.xPathStr.text()
 		closedValue = self.clsPolygon.isChecked()
 		makeFaceValue = self.clsCreateFace.isChecked()

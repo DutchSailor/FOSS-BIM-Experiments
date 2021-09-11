@@ -27,7 +27,7 @@ __title__= "GIS2BIM_FreeCAD"
 __author__ = "Maarten Vroegindeweij"
 __url__ = "https://github.com/DutchSailor/GIS2BIM"
 
-import GIS2BIM
+from . import GIS2BIM
 import importlib
 importlib.reload(GIS2BIM)
 
@@ -43,8 +43,24 @@ import Mesh
 
 from PySide2 import QtWidgets
 
-SiteName = "GIS"
+SiteName = "GIS-Sitedata"
 TempFolderName = "GIStemp/"
+
+def getFreeCADGISData(self):
+	self.sitename = SiteName
+
+	#Get/set parameters for GIS
+	self.tempFolderName = "GIStemp/"
+	self.X = GIS2BIM_FreeCAD.ArchSiteCreateCheck(self.sitename).CRS_x
+	self.Y = GIS2BIM_FreeCAD.ArchSiteCreateCheck(self.sitename).CRS_y
+	self.lat = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(self.sitename).WGS84_Latitude)
+	self.lon = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(self.sitename).WGS84_Longitude)
+	self.bboxWidthStart = GIS2BIM_FreeCAD.ArchSiteCreateCheck(self.sitename).BoundingboxWidth
+	self.bboxHeightStart = GIS2BIM_FreeCAD.ArchSiteCreateCheck(self.sitename).BoundingboxHeight
+	self.CRS = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(self.sitename).CRS_EPSG_SRID)
+	self.CRSDescription = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(self.sitename).CRS_EPSG_Description)
+	self.bboxString = GIS2BIM.CreateBoundingBox(GIS2BIM_FreeCAD.ArchSiteCreateCheck(self.sitename).CRS_x,GIS2BIM_FreeCAD.ArchSiteCreateCheck(self.sitename).CRS_y,self.bboxWidthStart,self.bboxHeightStart,0)
+	
 
 def CreateTempFolder(Name):
 #Create a temporary subfolder in the folder of the projectfile to store temporary GIS-files
