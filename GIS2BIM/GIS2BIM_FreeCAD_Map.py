@@ -40,7 +40,7 @@ from PyPackages import GIS2BIM_FreeCAD
 from PyPackages import GIS2BIM_CRS 
 from PyPackages import GIS2BIM_GUI
 import FreeCAD
-#importlib.reload(GIS2BIM_GUI)
+importlib.reload(GIS2BIM_FreeCAD)
 
 import os
 import time

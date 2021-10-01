@@ -1,0 +1,16 @@
+osm2geojson-0.1.29.dist-info/INSTALLER,sha256=zuuue4knoyJ-UwPPXg8fezS7VCrXJQrAP7zeNuwvFQg,4
+osm2geojson-0.1.29.dist-info/METADATA,sha256=Qtq-tNV3hPiemijMCVQYREFfqNhmF3MABuRRmIM5jlE,3042
+osm2geojson-0.1.29.dist-info/RECORD,,
+osm2geojson-0.1.29.dist-info/REQUESTED,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+osm2geojson-0.1.29.dist-info/WHEEL,sha256=YUYzQ6UQdoqxXjimOitTqynltBCkwY6qlTfTh2IzqQU,97
+osm2geojson-0.1.29.dist-info/top_level.txt,sha256=usJza8YOTARsUvTf2jBD_SCnyeSHdJOKTKvc9nfBY_8,12
+osm2geojson/__init__.py,sha256=VW6hHtzhA6RwG4zmG7LRGHrxYe4zXrnkFNwKAsJf03k,180
+osm2geojson/__pycache__/__init__.cpython-37.pyc,,
+osm2geojson/__pycache__/helpers.cpython-37.pyc,,
+osm2geojson/__pycache__/main.cpython-37.pyc,,
+osm2geojson/__pycache__/parse_xml.cpython-37.pyc,,
+osm2geojson/areaKeys.json,sha256=xITR41erVcbTJzeLG1PWucGFtyMPT_j_5yn82voWQyE,3886
+osm2geojson/helpers.py,sha256=SE43kM8KVeHT41n4mg4xK_Zc64jnWJRc4JQbfp4Kaug,1394
+osm2geojson/main.py,sha256=aLTSt7iqIBD_467AX53pgjUmTzxCMK5KaAJM5zIBNoQ,14442
+osm2geojson/parse_xml.py,sha256=sasdtyAUrmdrUD8ZSC0P6F6Vj43zlWb0yK9EyTaVUzA,6107
+osm2geojson/polygon-features.json,sha256=z4EBi6ggVXxZwsJ95-prMUAJq-0EDNESSelO0aOhBYM,2753

@@ -60,7 +60,6 @@ def getFreeCADGISData(self):
 	self.CRS = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(self.sitename).CRS_EPSG_SRID)
 	self.CRSDescription = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(self.sitename).CRS_EPSG_Description)
 	self.bboxString = GIS2BIM.CreateBoundingBox(GIS2BIM_FreeCAD.ArchSiteCreateCheck(self.sitename).CRS_x,GIS2BIM_FreeCAD.ArchSiteCreateCheck(self.sitename).CRS_y,self.bboxWidthStart,self.bboxHeightStart,0)
-	
 
 def CreateTempFolder(Name):
 #Create a temporary subfolder in the folder of the projectfile to store temporary GIS-files
@@ -191,7 +190,20 @@ def PlaceText(textData,fontSize, upper):
         Text1.Placement = Place1
         Texts.append(Text1)
     return Texts
-	
+
+#def PlaceText2(text,x,y,rot,fontSize,upper):
+#    Texts = []
+#	ZAxis = FreeCAD.Vector(0, 0, 1)
+#	p1 = FreeCAD.Vector(x, y, 0)
+#	Place1 = FreeCAD.Placement(p1, FreeCAD.Rotation(ZAxis, -float(rot)))
+#	if upper:
+#	   k = k.upper()
+#	else: k
+#	Text1 = Draft.makeText(k, point=p1)
+#	Text1.ViewObject.FontSize = fontSize
+#	Text1.Placement = Place1
+ #   return Texts
+
 def CreateLayer(layerName):
 	layerName = layerName.replace(" ","_")
 	lstObjects = []

@@ -98,6 +98,19 @@ def downloadUnzip(downloadURL,filepathZIP,folderUNZIP):
 	
 #GIS2BIM functions
 
+def mortonCode(X,Y,Xmod,Ymod,TileDim):
+	#
+	x = bin(int(math.floor(((X - Xmod)/TileDim))))
+	y = bin(int(math.floor(((Y - Ymod)/TileDim))))
+	x = str(x[2:])
+	y = str(y[2:])
+
+	res = "".join(i + j for i, j in zip(y, x))
+	z=(res)
+
+	z = int(z, 2)
+	return z
+
 def checkIfCoordIsInsideBoundingBox(coord, bounding_box):
 	#check if coordinate is inside rectangle boundingbox
     min_x = bounding_box[0] - (bounding_box[2] / 2)
@@ -478,6 +491,7 @@ class GeoLocation:
             deg_lon
     ):
         self.rad_lat = float(rad_lat)
+		
         self.rad_lon = float(rad_lon)
         self.deg_lat = float(deg_lat)
         self.deg_lon = float(deg_lon)

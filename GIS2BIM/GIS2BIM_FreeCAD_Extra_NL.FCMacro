@@ -1,0 +1,58 @@
+from PyPackages import GIS2BIM
+from PyPackages import GIS2BIM_FreeCAD
+
+import importlib
+
+import urllib
+from PIL import Image
+
+import Draft
+import FreeCAD
+
+def makeImageTransparant(oldPath, newPath):
+	img = Image.open(oldPath)
+	img = img.convert("RGBA")
+	datas = img.getdata()
+	
+	newData = []
+	for item in datas:
+	    if item[0] == 255 and item[1] == 255 and item[2] == 255:
+	        newData.append((255, 255, 255, 0))
+	    else:
+	        if item[0] > 255:
+	            newData.append((0, 0, 0, 255))
+	        else:
+	            newData.append(item)
+	            print(item)
+	
+	img.putdata(newData)
+	img.save(newPath, "PNG")
+
+#Location Data & Temp Folders
+sitename = "GIS-Sitedata"
+tempFolderName = "GIStemp/NL/"
+X = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(sitename).CRS_x)
+Y = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(sitename).CRS_y)
+width = 50000 # boundingbox in meters
+height = 50000
+tempFolder = GIS2BIM_FreeCAD.CreateTempFolder(tempFolderName)
+folderName = tempFolder
+
+filename = folderName + "Natura2000.png"
+filenameNew = folderName + "Natura2000_merged.png"
+
+Bbox = GIS2BIM.CreateBoundingBox(float(X),float(Y),width,height,2)
+
+wms = "https://geodata.nationaalgeoregister.nl/natura2000/wms?service=WMS&request=GetMap&VERSION=1.3.0&STYLES=&layers=Natura2000&width=3000&height=3000&format=image/png&crs=EPSG:28992&bbox="
+
+GIS2BIM.WMSRequest(wms,Bbox,filename,3000,3000)
+makeImageTransparant(filename,filenameNew)
+
+fileLocationAerial = tempFolder + ".Aerial.png"
+backgroundAerial = GIS2BIM.WMSRequest(GIS2BIM.GetWebServerData("NL_PDOK_Luchtfoto_2020_28992", "webserverRequests", "serverrequestprefix"),Bbox,fileLocationAerial,3000,3000)
+
+img1 = Image.open(filename)
+img2 = Image.open(fileLocationAerial)
+img2.paste(img1, (0,0), img1)
+imgLocation = tempFolder + "merged.png"	
+img2.save(imgLocation,"PNG")

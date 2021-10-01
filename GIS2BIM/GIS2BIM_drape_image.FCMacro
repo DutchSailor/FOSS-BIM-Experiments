@@ -1,0 +1,7 @@
+import Mesh
+facets = []
+facets.append(((0,0,0),(1000,0,0),(1000,1000,0),(800,2000,0)))
+m = Mesh.Mesh(facets)
+f = FreeCAD.activeDocument().addObject("Mesh::Feature", "test")
+f.Mesh = m
+FreeCAD.activeDocument().getObject("CityJSON").addObject(f)
