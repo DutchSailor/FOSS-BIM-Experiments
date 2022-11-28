@@ -34,13 +34,20 @@ from PySide2.QtWebEngineWidgets import QWebEnginePage
 from PySide2 import QtCore, QtWidgets
 from PySide2.QtCore import QUrl
 
+#import sys
+#%appdata%/FreeCAD/Mod/trails/freecad/trails/geomatics/geoimport
+#sys.path.insert(0, "%appdata%/FreeCAD/Mod/trails/freecad/trails/geomatics/geoimport/")
+#import PyPackages
+
 import importlib
-from PyPackages import GIS2BIM
-from PyPackages import GIS2BIM_FreeCAD
-from PyPackages import GIS2BIM_CRS 
-from PyPackages import GIS2BIM_GUI
+import GIS2BIM
+import GIS2BIM_FreeCAD
+import GIS2BIM_CRS
+import GIS2BIM_GUI
 import FreeCAD
-#importlib.reload(GIS2BIM_GUI)
+importlib.reload(GIS2BIM_GUI)
+importlib.reload(GIS2BIM_FreeCAD)
+importlib.reload(GIS2BIM)
 
 import os
 import time
@@ -68,10 +75,10 @@ class GISLocation_Dialog(QtWidgets.QDialog):
 		self.URLmap = GIS2BIM.GetWebServerData("HTMLLocationData", "Other", "URL")
 		self.URLSearch = GIS2BIM.GetWebServerData("HTMLLocationDataJSmapfilesearch", "Other", "URL")
 		self.URLUpdate = GIS2BIM.GetWebServerData("HTMLLocationDataJSmapbboxupdate", "Other", "URL")
-		#self.filepathBaseMap = GIS2BIM.DownloadURL(GIS2BIM_FreeCAD.CreateTempFolder(self.tempFolderName),self.URLmap,"basemap.html")
+		self.filepathBaseMap = GIS2BIM.DownloadURL(GIS2BIM_FreeCAD.CreateTempFolder(self.tempFolderName),self.URLmap,"basemap.html")
 		self.filepathJSSearch = GIS2BIM.DownloadURL(GIS2BIM_FreeCAD.CreateTempFolder(self.tempFolderName),self.URLSearch,"map_filesearch.js")
 		self.filepathJSUpdate = GIS2BIM.DownloadURL(GIS2BIM_FreeCAD.CreateTempFolder(self.tempFolderName),self.URLUpdate,"map_bboxupdate.js")
-		self.filepathBaseMap = "C:/Users/mikev/OneDrive/Bureaublad/TEMP/GIStemp/basemapNewVersion.html"	
+		#self.filepathBaseMap = "C:/Users/mikev/OneDrive/Bureaublad/TEMP/GIStemp/basemapNewVersion.html"	
 		self.tempFolderPath = GIS2BIM_FreeCAD.CreateTempFolder(self.tempFolderName)	
 		self.filepathNewMap = self.tempFolderPath +"/map.html"	
 		self.temptxtPath = self.tempFolderPath + "/temp.txt"
@@ -97,7 +104,8 @@ class GISLocation_Dialog(QtWidgets.QDialog):
 		self.resize(920, 900)
 
 		#Download map.html from GIS2BIM Repository and set projectlocation
-		os.remove(self.filepathNewMap)
+		try: os.remove(self.filepathNewMap)
+		except: test = "test" 
 		BaseMap = open(self.filepathBaseMap,"r")
 		BaseMapstr = BaseMap.read()
 		Newstr = BaseMapstr.replace("51LAT",self.lat)
