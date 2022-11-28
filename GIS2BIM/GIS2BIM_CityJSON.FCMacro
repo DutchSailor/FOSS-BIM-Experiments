@@ -1,4 +1,7 @@
 #BAG 3D V2 
+import sys
+sys.path.append("C:/Users/mikev/Documents/GitHub/FOSS-BIM-Experiments/GIS2BIM/PyPackages")
+sys.path.append("C:/Users/mikev/Documents/GitHub/FOSS-BIM-Experiments/GIS2BIM")
 
 import importlib
 from PyPackages import GIS2BIM
@@ -26,7 +29,7 @@ bboxHeightStart = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(sitename).BoundingboxH
 
 bboxString = GIS2BIM.CreateBoundingBox(float(GIS2BIM_FreeCAD.ArchSiteCreateCheck(sitename).CRS_x),float(GIS2BIM_FreeCAD.ArchSiteCreateCheck(sitename).CRS_y),float(bboxWidthStart),float(bboxHeightStart),0)
 
-jsonFile = "C:/Users/mikev/Downloads/64gz1_2019_volledig/64gz1_03_2019_volledig.json"
+jsonFile = "C:\Users\mikev\Desktop\TEMP\GIStemp\BAG3D\3dbag_v210908_fd2cee53_3432.json"
 
 def CityJSONImport(jsonFile,dX,dY,LODnumber,bboxWidth,bboxHeight):
 	#Import CityJSON File, jsonfilename, dx and dy in string/meters. Proof of Concept, very buggy and incomplete.

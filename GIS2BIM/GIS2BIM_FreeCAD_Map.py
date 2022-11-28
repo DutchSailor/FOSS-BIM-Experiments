@@ -46,7 +46,7 @@ import os
 import time
 import re
 
-from freecad.trails import geo_origin
+#from freecad.trails import geo_origin
 
 class GISLocation_Dialog(QtWidgets.QDialog):
 
@@ -68,10 +68,10 @@ class GISLocation_Dialog(QtWidgets.QDialog):
 		self.URLmap = GIS2BIM.GetWebServerData("HTMLLocationData", "Other", "URL")
 		self.URLSearch = GIS2BIM.GetWebServerData("HTMLLocationDataJSmapfilesearch", "Other", "URL")
 		self.URLUpdate = GIS2BIM.GetWebServerData("HTMLLocationDataJSmapbboxupdate", "Other", "URL")
-		#self.filepathBaseMap = GIS2BIM.DownloadURL(GIS2BIM_FreeCAD.CreateTempFolder(self.tempFolderName),self.URLmap,"basemap.html")
+		self.filepathBaseMap = GIS2BIM.DownloadURL(GIS2BIM_FreeCAD.CreateTempFolder(self.tempFolderName),self.URLmap,"basemap.html")
 		self.filepathJSSearch = GIS2BIM.DownloadURL(GIS2BIM_FreeCAD.CreateTempFolder(self.tempFolderName),self.URLSearch,"map_filesearch.js")
 		self.filepathJSUpdate = GIS2BIM.DownloadURL(GIS2BIM_FreeCAD.CreateTempFolder(self.tempFolderName),self.URLUpdate,"map_bboxupdate.js")
-		self.filepathBaseMap = "C:/Users/mikev/OneDrive/Bureaublad/TEMP/GIStemp/basemapNewVersion.html"	
+		#self.filepathBaseMap = "C:/Users/mikev/OneDrive/Bureaublad/TEMP/GIStemp/basemapNewVersion.html"	
 		self.tempFolderPath = GIS2BIM_FreeCAD.CreateTempFolder(self.tempFolderName)	
 		self.filepathNewMap = self.tempFolderPath +"/map.html"	
 		self.temptxtPath = self.tempFolderPath + "/temp.txt"
@@ -251,8 +251,8 @@ class GISLocation_Dialog(QtWidgets.QDialog):
 		SiteObject.CRS_EPSG_Description = GIS2BIM_CRS.getCRSdata(CRS_EPSG_SRID)
 		#Set GeoOrigin
 		if self.CBGeoOrigin.isChecked() is True:
-			obj = geo_origin.get()	
-			obj.Origin = FreeCAD.Vector(float(Transformation[0])*1000, float(Transformation[1])*1000, 0)
+			a = 1 #obj = geo_origin.get()	
+			#obj.Origin = FreeCAD.Vector(float(Transformation[0])*1000, float(Transformation[1])*1000, 0)
 		if self.CBAerialphoto.isChecked() is True:
 			fileLocationTMS = self.tempFolderPath + 'ESRI_aerialphoto.jpg'
 			TMS = GIS2BIM.TMS_WMTSCombinedMapFromLatLonBbox(float(self.lat),float(self.lon),float(self.bboxWidth.text()),float(self.bboxHeight.text()),17,256,0,"http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png")
