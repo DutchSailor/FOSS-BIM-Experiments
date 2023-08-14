@@ -1,0 +1,646 @@
+{
+  "Uuid": "e84bc720-e917-48db-b069-3686380f35fd",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Test",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Speckle.ConnectorDynamo.SendNode.Send, SpeckleConnectorDynamo",
+      "AutoUpdate": true,
+      "ExpiredCount": "",
+      "NodeType": "ExtensionNode",
+      "Id": "828eb7ce54dd4b8fb62ed4a4f4991059",
+      "Inputs": [
+        {
+          "Id": "41dab6529d4e453184056ac30582eef7",
+          "Name": "data",
+          "Description": "The data to send",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8222084c19da43d4b6d05b7492ca8744",
+          "Name": "stream",
+          "Description": "The stream or streams to send to",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5706e187086c4c05950dd065fc1d2641",
+          "Name": "message",
+          "Description": "Commit message. If left blank, one will be generated for you.",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "28a38468158844458e1f9223c8011a71",
+          "Name": "stream",
+          "Description": "Stream or streams pointing to the created commit",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Send data to a Speckle server"
+    },
+    {
+      "ConcreteType": "Speckle.ConnectorDynamo.CreateStreamNode.CreateStream, SpeckleConnectorDynamo",
+      "SelectedUserId": "",
+      "Stream": null,
+      "CreateEnabled": true,
+      "NodeType": "ExtensionNode",
+      "Id": "fbb70d52f34b4089b19e4f556f48a9fb",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "393cc3c42ad24f349b611eada9338dc0",
+          "Name": "stream",
+          "Description": "The new Stream",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Create a new Speckle Stream"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Speckle.ConnectorDynamo.Functions.AAA.ASpeckleBrick.Brick",
+      "Id": "901bbb95cb414a6e87fd821104639516",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6d9e3a6941224692bd7d1bc384fc6255",
+          "Name": "Point[]",
+          "Description": "Point[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "ASpeckleBrick.Brick ( ): Point[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"https://speckle.xyz/streams/547b147012\";",
+      "Id": "4f52912de32646ff9cf0832fd57d0092",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "400a2a90f51e457eb185f927379f4390",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Cuboid.ByLengths@double,double,double",
+      "Id": "c91f181f405345fc960ff17eed55e49d",
+      "Inputs": [
+        {
+          "Id": "95de8a8b497c480091e511ed36944751",
+          "Name": "width",
+          "Description": "Width of cuboid\n\ndouble\nDefault value : 1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9000ee3089834fb59d1f46b515a68481",
+          "Name": "length",
+          "Description": "Length of cuboid\n\ndouble\nDefault value : 1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "61ade22c9a6f401eb2c2cdf7f5ffe078",
+          "Name": "height",
+          "Description": "Height of cuboid\n\ndouble\nDefault value : 1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "eb668fa5eb9c4c28912c9128a9839cf1",
+          "Name": "Cuboid",
+          "Description": "Cuboid created by lengths",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Create a Cuboid centered at WCS origin, with width, length, and height.\n\nCuboid.ByLengths (width: double = 1, length: double = 1, height: double = 1): Cuboid"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "2000;",
+      "Id": "ce6cba2011da483ca83f7700be1ef935",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "55b8ddde4823451f8a1a78fa676c00d9",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementsSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "e60a7cec-482c-48be-b729-cbfc5e046498-00068a5f",
+        "e60a7cec-482c-48be-b729-cbfc5e046498-00068a6b",
+        "e60a7cec-482c-48be-b729-cbfc5e046498-00068a6d",
+        "e60a7cec-482c-48be-b729-cbfc5e046498-00068a6e",
+        "e60a7cec-482c-48be-b729-cbfc5e046498-00068a70",
+        "e60a7cec-482c-48be-b729-cbfc5e046498-00068a73",
+        "e60a7cec-482c-48be-b729-cbfc5e046498-00068a76",
+        "e60a7cec-482c-48be-b729-cbfc5e046498-00068a7c",
+        "e60a7cec-482c-48be-b729-cbfc5e046498-00068a80",
+        "e60a7cec-482c-48be-b729-cbfc5e046498-00068a81",
+        "e60a7cec-482c-48be-b729-cbfc5e046498-00068a83",
+        "e60a7cec-482c-48be-b729-cbfc5e046498-00068a84",
+        "e60a7cec-482c-48be-b729-cbfc5e046498-00068a85",
+        "e60a7cec-482c-48be-b729-cbfc5e046498-00068a86",
+        "e60a7cec-482c-48be-b729-cbfc5e046498-00068a87",
+        "e60a7cec-482c-48be-b729-cbfc5e046498-00068a88",
+        "e60a7cec-482c-48be-b729-cbfc5e046498-00068a8c",
+        "e60a7cec-482c-48be-b729-cbfc5e046498-00068a8d",
+        "e60a7cec-482c-48be-b729-cbfc5e046498-00068ab9",
+        "e60a7cec-482c-48be-b729-cbfc5e046498-00068ac9",
+        "e60a7cec-482c-48be-b729-cbfc5e046498-00068b09",
+        "e60a7cec-482c-48be-b729-cbfc5e046498-00068b39",
+        "9db2beb3-0e04-4336-8c06-af9425abdd6f-00068f7d",
+        "9db2beb3-0e04-4336-8c06-af9425abdd6f-00069019",
+        "f5edb82c-d4ad-4622-ad46-f4cbce7d323d-00069e21",
+        "f5edb82c-d4ad-4622-ad46-f4cbce7d323d-00069f93",
+        "f5edb82c-d4ad-4622-ad46-f4cbce7d323d-00069f9e",
+        "f5edb82c-d4ad-4622-ad46-f4cbce7d323d-00069fa7",
+        "f5edb82c-d4ad-4622-ad46-f4cbce7d323d-00069faf",
+        "f5edb82c-d4ad-4622-ad46-f4cbce7d323d-00069fb7",
+        "f7c68590-2403-47f1-bb75-5d57a77f5a52-0006b0a3",
+        "de454ad4-83dc-415b-979f-70e3212fce32-0006b50e",
+        "de454ad4-83dc-415b-979f-70e3212fce32-0006b5e1",
+        "de454ad4-83dc-415b-979f-70e3212fce32-0006b601",
+        "de454ad4-83dc-415b-979f-70e3212fce32-0006b621",
+        "de454ad4-83dc-415b-979f-70e3212fce32-0006b641",
+        "de454ad4-83dc-415b-979f-70e3212fce32-0006b767",
+        "de454ad4-83dc-415b-979f-70e3212fce32-0006b8a1",
+        "de454ad4-83dc-415b-979f-70e3212fce32-0006bc03",
+        "5ea2fc2a-6559-40fc-a670-8afdecc8a763-0006d23f",
+        "5ea2fc2a-6559-40fc-a670-8afdecc8a763-0006d40e",
+        "2d2f59d5-ad41-4f46-8048-a767fa3e939d-0006d75d",
+        "2d2f59d5-ad41-4f46-8048-a767fa3e939d-0006db69",
+        "2d2f59d5-ad41-4f46-8048-a767fa3e939d-0006f20b",
+        "2d2f59d5-ad41-4f46-8048-a767fa3e939d-0006ff0e",
+        "2d2f59d5-ad41-4f46-8048-a767fa3e939d-00070329"
+      ],
+      "Id": "54bc09868e564bbb8848c5f9e09f3a32",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "31b9370d485140ec9df7f0f6003f1911",
+          "Name": "Elements",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.Geometry",
+      "Id": "824109bb71a842fd82679d944ca8df73",
+      "Inputs": [
+        {
+          "Id": "a7ebe301aa104de594734f2eea8bc5a8",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "06969aee92344ceeaaa729b94a015f54",
+          "Name": "var[]",
+          "Description": "var[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get all of the Geometry associated with this object\n\nElement.Geometry ( ): var[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.List.Flatten@var[]..[],int",
+      "Id": "67fb834bff494b6e9cb681aacecb9585",
+      "Inputs": [
+        {
+          "Id": "f8a567d211e1406999972170c24c4d0e",
+          "Name": "list",
+          "Description": "List to flatten.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1a0268e18083408486c31058d016923e",
+          "Name": "amount",
+          "Description": "Layers of list nesting to remove (-1 will remove all list nestings)\n\nint\nDefault value : -1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "58eaa41a2fc84373825628b9ac7cfe96",
+          "Name": "list",
+          "Description": "Flattened list by amount",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Flattens a nested list of lists by a certain amount.\n\nList.Flatten (list: var[]..[], amount: int = -1): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.Dynamo.MeshToolkit.Mesh.ByGeometry@Autodesk.DesignScript.Geometry.Geometry,double,int",
+      "Id": "2950e797a269465a928b9adb89b997ac",
+      "Inputs": [
+        {
+          "Id": "6dc3ac633d5e45d1ad38ccde4bacd030",
+          "Name": "inputGeometry",
+          "Description": "Geometry",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "de6d870631c44000b46613674645337f",
+          "Name": "tolerance",
+          "Description": "double\nDefault value : -1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "bad957728be342fb829b97963ec64ab8",
+          "Name": "maxGridLines",
+          "Description": "int\nDefault value : 512",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "24183a0fb9784d0caa050ccb57d8bcb2",
+          "Name": "Mesh",
+          "Description": "Mesh",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Convert a Geometry object such as a Solid or Surface into a Mesh. The resolution of the mesh is determined by the Dynamo render precision\n\nMesh.ByGeometry (inputGeometry: Geometry, tolerance: double = -1, maxGridLines: int = 512): Mesh"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "d5628e40-52de-47c9-b35b-c201d87344e0",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "080181d0b81842f0920d628de68fa1e5",
+      "Inputs": [
+        {
+          "Id": "1bb26cd8b9334872a0a9a5dbeeab8382",
+          "Name": "tkMesh",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "73bb248f621b4c6eb30ce8d844971eab",
+          "Name": "mesh",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Attempts to convert a toolkit mesh to a Dynamo mesh. You obviously need to have the appropriate version of the mesh toolkit package downloaded first."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "400a2a90f51e457eb185f927379f4390",
+      "End": "8222084c19da43d4b6d05b7492ca8744",
+      "Id": "441d8dd2edd046a69e857d59bc630774"
+    },
+    {
+      "Start": "55b8ddde4823451f8a1a78fa676c00d9",
+      "End": "95de8a8b497c480091e511ed36944751",
+      "Id": "86674169316e4afe9403299daa39f919"
+    },
+    {
+      "Start": "55b8ddde4823451f8a1a78fa676c00d9",
+      "End": "9000ee3089834fb59d1f46b515a68481",
+      "Id": "929989682add461cb0a3de90b7b9aca7"
+    },
+    {
+      "Start": "55b8ddde4823451f8a1a78fa676c00d9",
+      "End": "61ade22c9a6f401eb2c2cdf7f5ffe078",
+      "Id": "8598e77fe5ca4cd4a6e1eb4ecf41a7da"
+    },
+    {
+      "Start": "31b9370d485140ec9df7f0f6003f1911",
+      "End": "a7ebe301aa104de594734f2eea8bc5a8",
+      "Id": "b369971b407d4f2993f75ee69146b9b8"
+    },
+    {
+      "Start": "06969aee92344ceeaaa729b94a015f54",
+      "End": "f8a567d211e1406999972170c24c4d0e",
+      "Id": "8ff37ee62c344300a2b08ec92d5a1971"
+    },
+    {
+      "Start": "58eaa41a2fc84373825628b9ac7cfe96",
+      "End": "6dc3ac633d5e45d1ad38ccde4bacd030",
+      "Id": "331f87b776a24da9a51991445e327197"
+    },
+    {
+      "Start": "24183a0fb9784d0caa050ccb57d8bcb2",
+      "End": "1bb26cd8b9334872a0a9a5dbeeab8382",
+      "Id": "c6ea503ec83b42dfabc315e282c88cf8"
+    },
+    {
+      "Start": "73bb248f621b4c6eb30ce8d844971eab",
+      "End": "41dab6529d4e453184056ac30582eef7",
+      "Id": "440222b3e51f49cbad57ee8b95e3023b"
+    }
+  ],
+  "Dependencies": [
+    "d5628e40-52de-47c9-b35b-c201d87344e0"
+  ],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "SpeckleDynamo2",
+      "Version": "2.0.0",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "828eb7ce54dd4b8fb62ed4a4f4991059",
+        "fbb70d52f34b4089b19e4f556f48a9fb",
+        "901bbb95cb414a6e87fd821104639516"
+      ]
+    },
+    {
+      "Name": "MeshToolkit",
+      "Version": "3.0.0",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "2950e797a269465a928b9adb89b997ac"
+      ]
+    },
+    {
+      "Name": "spring nodes",
+      "Version": "210.1.1",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "080181d0b81842f0920d628de68fa1e5"
+      ]
+    }
+  ],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.12",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "1.10",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.12.1.8246",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -1361.9169921875,
+      "EyeY": 1480.9930419921875,
+      "EyeZ": 6550.4365234375,
+      "LookX": 1356.9169921875,
+      "LookY": -1469.9930419921875,
+      "LookZ": -6558.4365234375,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Send",
+        "Id": "828eb7ce54dd4b8fb62ed4a4f4991059",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1818.630721591401,
+        "Y": 232.80471458980367
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Create Stream",
+        "Id": "fbb70d52f34b4089b19e4f556f48a9fb",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -80.585954965184726,
+        "Y": 95.919758994982672
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "ASpeckleBrick.Brick",
+        "Id": "901bbb95cb414a6e87fd821104639516",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 401.89654257800038,
+        "Y": 10.249068733203856
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "4f52912de32646ff9cf0832fd57d0092",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 256.0,
+        "Y": 339.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Cuboid.ByLengths",
+        "Id": "c91f181f405345fc960ff17eed55e49d",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 464.44101248101003,
+        "Y": -201.73571542034182
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "ce6cba2011da483ca83f7700be1ef935",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 245.48703470656096,
+        "Y": -199.09280037087234
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Elements",
+        "Id": "54bc09868e564bbb8848c5f9e09f3a32",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 327.40590087901,
+        "Y": 671.90551789000824
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element.Geometry",
+        "Id": "824109bb71a842fd82679d944ca8df73",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 802.001101632086,
+        "Y": 715.45215200166012
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List.Flatten",
+        "Id": "67fb834bff494b6e9cb681aacecb9585",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1070.2466035492439,
+        "Y": 679.26389286502854
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Mesh.ByGeometry",
+        "Id": "2950e797a269465a928b9adb89b997ac",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1441.4202168836207,
+        "Y": 741.64328057417447
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "ꟿ TkMesh.ToMesh",
+        "Id": "080181d0b81842f0920d628de68fa1e5",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1511.9220700207202,
+        "Y": 621.77078315248843
+      }
+    ],
+    "Annotations": [],
+    "X": -292.28543591989728,
+    "Y": -237.06088389162147,
+    "Zoom": 1.0064686878467246
+  }
+}
