@@ -1,0 +1,52 @@
+from PyPackages import GIS2BIM
+from PyPackages import GIS2BIM_FreeCAD
+import json
+
+sitename = "GIS-Sitedata"
+tempFolderName = "GIStemp/"
+X = GIS2BIM_FreeCAD.ArchSiteCreateCheck( sitename).CRS_x
+Y = GIS2BIM_FreeCAD.ArchSiteCreateCheck( sitename).CRS_y
+lat = float(GIS2BIM_FreeCAD.ArchSiteCreateCheck( sitename).WGS84_Latitude)
+lon = float(GIS2BIM_FreeCAD.ArchSiteCreateCheck( sitename).WGS84_Longitude)
+bboxWidthStart = GIS2BIM_FreeCAD.ArchSiteCreateCheck( sitename).BoundingboxWidth
+bboxHeightStart = GIS2BIM_FreeCAD.ArchSiteCreateCheck( sitename).BoundingboxHeight
+CRS = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck( sitename).CRS_EPSG_SRID)
+CRSDescription = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck( sitename).CRS_EPSG_Description)
+bboxString = GIS2BIM.CreateBoundingBox(GIS2BIM_FreeCAD.ArchSiteCreateCheck( sitename).CRS_x,GIS2BIM_FreeCAD.ArchSiteCreateCheck( sitename).CRS_y, bboxWidthStart, bboxHeightStart,0)
+
+loc = GIS2BIM.GeoLocation.from_degrees(lat, lon)
+
+SW_loc, NE_loc2 = loc.bounding_locations(bboxWidthStart/1000)
+SW_loc2, NE_loc = loc.bounding_locations(bboxHeightStart/1000)
+
+downloadlink = "https://overpass-api.de/api/map?bbox=" + str(SW_loc[1]) + "," + str(SW_loc[0]) + "," + str(NE_loc[1]) + "," + str(NE_loc[0])
+
+geoJSON = "C:/Users/mikev/OneDrive/Documenten/GitHub/FOSS-BIM-Experiments/GIS2BIM/OLD/GeoJSONtest.json"
+fle = open(geoJSON)
+
+data = json.loads(fle.read())
+data2 = data["features"]
+test = []
+for i in data["features"]:
+	test.append(i["geometry"]["coordinates"])
+	
+def xyLatLon(latOrigin,lonOrigin, lat, lon):
+	origin = GIS2BIM.GeoLocation.from_degrees(latOrigin,lonOrigin)
+	pntY = GIS2BIM.GeoLocation.from_degrees(lat,lonOrigin)
+	pntX = GIS2BIM.GeoLocation.from_degrees(latOrigin,lon)
+	xm = origin.distance_to(pntX)*1000
+	ym = origin.distance_to(pntY)*1000
+	return xm,ym
+
+res = xyLatLon(lat,lon,52,4.769676)
+
+test2 = []
+for i in test:
+	for j in i:
+		j = str(j)
+		j = j.replace("[","")
+		j = j.replace("]","")
+		j = j.split(", ")
+		#res = xyLatLon(lat,lon,float(j[1]),float(j[0]))
+		test2.append(j)
+print(test2)

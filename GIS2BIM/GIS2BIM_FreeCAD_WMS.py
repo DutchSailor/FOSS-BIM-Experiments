@@ -107,6 +107,11 @@ class GISWMS_Dialog(QtWidgets.QDialog):
 	def freeCADGroup(self):
 		groupBox = QtWidgets.QGroupBox("FreeCAD Import Settings")
 		
+		#Scale 
+		scaleLab = QtWidgets.QLabel("Scale 1/ ", self)
+		self.scale= QtWidgets.QLineEdit(self)		
+		self.scale.setText("1")
+				
 		#Name of Image
 		imageNameLab = QtWidgets.QLabel("Image Name", self)
 		self.imageName= QtWidgets.QLineEdit(self)		
@@ -135,7 +140,9 @@ class GISWMS_Dialog(QtWidgets.QDialog):
 
 		grid = QtWidgets.QGridLayout()
 		grid.addWidget(imageNameLab,0,0)
-		grid.addWidget(self.imageName,0,1,1,2)
+		grid.addWidget(self.imageName,0,1)
+		grid.addWidget(scaleLab,0,2)
+		grid.addWidget(self.scale,0,3)
 		grid.addWidget(pixelwidthLab,1,0)
 		grid.addWidget(self.pixelwidth,1,1)
 		grid.addWidget(cbGrayscaleLab,1,2)
@@ -259,7 +266,7 @@ class GISWMS_Dialog(QtWidgets.QDialog):
 			gray_image = ImageOps.grayscale(img)
 			gray_image.save(fileLocationWMS2)
 		else: fileLocationWMS2 = fileLocationWMS
-		ImageAerialPhoto = GIS2BIM_FreeCAD.ImportImage(fileLocationWMS2,width,height,1000, str(self.imageName.text()), dx,dy)
+		ImageAerialPhoto = GIS2BIM_FreeCAD.ImportImage(fileLocationWMS2,width/float(self.scale.text()),height/float(self.scale.text()),1000, str(self.imageName.text()), dx,dy)
 		ImageAerialPhoto.addProperty("App::PropertyString","WMSRequestURL")
 		ImageAerialPhoto.WMSRequestURL = result[2]
 		GIS2BIM_FreeCAD.CreateLayer("GIS_Raster")

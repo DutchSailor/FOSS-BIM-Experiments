@@ -1,0 +1,152 @@
+from PyPackages import GIS2BIM
+from PyPackages import GIS2BIM_FreeCAD
+
+import importlib
+
+import urllib
+from PIL import Image
+
+import Draft
+import FreeCAD
+
+#URLData
+URL = "https://geodata.nationaalgeoregister.nl/cbsvierkanten100mv2/wms?request=GetCapabilities"
+
+URLCBS1 = "http://geodata.nationaalgeoregister.nl/cbsvierkanten100mv2/wms?&request=GetMap&VERSION=1.3.0&STYLES=cbsvierkanten100mv2:"
+
+Styles = (
+"cbsvierkanten100m_woz_waarde_woning",
+"cbsvierkanten100m_aantal_inwoners",
+"cbsvierkanten100m_aantal_man",
+"cbsvierkanten100m_aantal_vrouw",
+"cbsvierkanten100m_aantal_woning",
+"cbsvierkanten100m_aant_inw_0_tot_15",
+"cbsvierkanten100m_aant_inw_15_tot_25",
+"cbsvierkanten100m_aant_inw_25_tot_45",
+"cbsvierkanten100m_aant_inw_45_tot_65",
+"cbsvierkanten100m_aant_inw_65_en_ouder",
+"cbsvierkanten100m_perc10_nl_achtergrv",
+"cbsvierkanten100m_perc10_westerse_migr_achtergr",
+"cbsvierkanten100m_perc10_niet_westerse_migr_achtergr",
+"cbsvierkanten100m_aant_part_hh",
+"cbsvierkanten100m_hh_eenpersoon",
+"cbsvierkanten100m_hh_meerpers_zond_kind",
+"cbsvierkanten100m_hh_tweeouder",
+"cbsvierkanten100m_gem_hh_grootte",
+"cbsvierkanten100m_aantal_woning",
+"cbsvierkanten100m_aant_won_voor_1945",
+#"cbsvierkanten100m_aant_won_1945_tot_1965",
+#"cbsvierkanten100m_aant_won_1965_tot_1975",
+#"cbsvierkanten100m_aant_won_1975_tot_1985",
+#"cbsvierkanten100m_aant_won_1985_tot_1995",
+#"cbsvierkanten100m_aant_won_1995_tot_2005",
+#"cbsvierkanten100m_aant_won_2005_tot_2015",
+#"cbsvierkanten100m_aant_won_2015_tot_2025",
+"cbsvierkanten100m_aant_meergezins_won",
+"cbsvierkanten100m_perc_koopwon",
+"cbsvierkanten100m_perc_huurwon",
+"cbsvierkanten100m_aant_huur_won_corporatie",
+"cbsvierkanten100m_woz_waarde_woning",
+"cbsvierkanten100m_aant_inw_uitk_min_aow")
+
+URLCBS3 = "&layers=vierkant100m2020"
+URLCBS4 = "&width=3000&height=3000&format=image/png&crs=EPSG:28992&bbox="
+
+URLLegend1 = "https://geodata.nationaalgeoregister.nl/cbsvierkanten100mv2/ows?service=WMS&request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer="
+URLLegend2 = "vierkant100m2020"
+URLLegend3 = "&style="
+
+#Location Data & Temp Folders
+sitename = "GIS-Sitedata"
+tempFolderName = "GIStemp/CBS/"
+X = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(sitename).CRS_x)
+Y = str(GIS2BIM_FreeCAD.ArchSiteCreateCheck(sitename).CRS_y)
+width = 5000 # boundingbox in meters
+height = 5000 
+tempFolder = GIS2BIM_FreeCAD.CreateTempFolder(tempFolderName)
+folderName = tempFolder
+
+Bbox = GIS2BIM.CreateBoundingBox(float(X),float(Y),width,height,2)
+
+pix = 3000
+
+URLS = []
+x = 250000
+scale = 100 #resize in FreeCAD
+spac = (width*1000*1.6)/scale # Spacing between images
+widthImg = width/scale
+heightImg = height/scale
+
+fileLocationAerial = tempFolder + ".Aerial.png"
+backgroundAerial = GIS2BIM.WMSRequest(GIS2BIM.GetWebServerData("NL_PDOK_Luchtfoto_2020_28992", "webserverRequests", "serverrequestprefix"),Bbox,fileLocationAerial,3000,3000)
+
+def makeImageTransparant(path):
+	img = Image.open(path)
+	img = img.convert("RGBA")
+	datas = img.getdata()
+	
+	newData = []
+	for item in datas:
+	    if item[0] == 255 and item[1] == 255 and item[2] == 255:
+	        newData.append((255, 255, 255, 0))
+	    else:
+	        if item[0] > 255:
+	            newData.append((0, 0, 0, 255))
+	        else:
+	            newData.append(item)
+	           # print(item)
+	
+	img.putdata(newData)
+	img.save(path, "PNG")
+
+def PlaceText2(text,x,y,rot,fontSize,upper):
+	Texts = []
+	ZAxis = FreeCAD.Vector(0, 0, 1)
+	p1 = FreeCAD.Vector(x, y, 0)
+	Place1 = FreeCAD.Placement(p1, FreeCAD.Rotation(ZAxis, -float(rot)))
+	if upper:
+		text = text.upper()
+	else: text
+	Text1 = Draft.makeText(text, point=p1)
+	Text1.ViewObject.FontSize = fontSize
+	Text1.Placement = Place1
+	return Texts
+
+GIS2BIM_FreeCAD.CreateLayer("NL_PDOK_CBS")
+
+for i in Styles:
+	URL = URLCBS1 + i + URLCBS3 + URLCBS4 + Bbox
+	URLLegend = URLLegend1 + URLLegend2 + URLLegend3 + i
+	fileLocationWMS = tempFolder + i + ".png"
+	fileLocationLegend = tempFolder + i + "_legend.png"
+	req = urllib.request.urlopen(URL)
+	output1 = open(fileLocationWMS, "wb")
+	output1.write(req.read())
+	output1.close()
+	try: 
+		makeImageTransparant(fileLocationWMS)
+		img1 = Image.open(fileLocationWMS)
+		img2 = Image.open(fileLocationAerial)
+		img2.paste(img1, (0,0), img1)
+		imgLocation = tempFolder + i + "merged.png"	
+		img2.save(imgLocation,"PNG")
+	except: 
+		fileLocationWMS = fileLocationWMS
+	reqLegend = urllib.request.urlopen(URLLegend)
+	output2 = open(fileLocationLegend, "wb")
+	output2.write(reqLegend.read())
+	output2.close()
+	imgWidthLegend, imgHeightLegend = Image.open(fileLocationLegend).size
+	URLS.append(URL)
+	GIS2BIM_FreeCAD.ImportImage(fileLocationWMS,widthImg,heightImg,1000, i, x,0)
+	GIS2BIM_FreeCAD.ImportImage(fileLocationLegend,imgWidthLegend,imgHeightLegend,100, i + "legend", x+0.5*spac,0)
+	txt = PlaceText2(i,x,-0.5*spac,0,2000,1)
+	#FreeCAD.activeDocument().getObject("NL_PDOK_CBS").addObjects(i)	
+	#FreeCAD.activeDocument().getObject("NL_PDOK_CBS").addObjects(i + "legend")
+	#FreeCAD.activeDocument().getObject("NL_PDOK_CBS").addObjects(txt)
+	x = x + spac # dx in mm
+	print(URL)
+	FreeCAD.ActiveDocument.recompute()
+
+print(fileLocationWMS)
+#ImageAerialPhoto.addProperty("App::PropertyString","WMSRequestURL")

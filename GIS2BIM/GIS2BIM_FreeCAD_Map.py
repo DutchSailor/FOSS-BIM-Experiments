@@ -34,10 +34,6 @@ from PySide2.QtWebEngineWidgets import QWebEnginePage
 from PySide2 import QtCore, QtWidgets
 from PySide2.QtCore import QUrl
 
-#import sys
-#%appdata%/FreeCAD/Mod/trails/freecad/trails/geomatics/geoimport
-#sys.path.insert(0, "%appdata%/FreeCAD/Mod/trails/freecad/trails/geomatics/geoimport/")
-#import PyPackages
 
 import importlib
 import GIS2BIM
@@ -45,6 +41,7 @@ import GIS2BIM_FreeCAD
 import GIS2BIM_CRS
 import GIS2BIM_GUI
 import FreeCAD
+
 importlib.reload(GIS2BIM_GUI)
 importlib.reload(GIS2BIM_FreeCAD)
 importlib.reload(GIS2BIM)
@@ -53,7 +50,7 @@ import os
 import time
 import re
 
-from freecad.trails import geo_origin
+#from freecad.trails import geo_origin
 
 class GISLocation_Dialog(QtWidgets.QDialog):
 
@@ -259,8 +256,8 @@ class GISLocation_Dialog(QtWidgets.QDialog):
 		SiteObject.CRS_EPSG_Description = GIS2BIM_CRS.getCRSdata(CRS_EPSG_SRID)
 		#Set GeoOrigin
 		if self.CBGeoOrigin.isChecked() is True:
-			obj = geo_origin.get()	
-			obj.Origin = FreeCAD.Vector(float(Transformation[0])*1000, float(Transformation[1])*1000, 0)
+			a = 1 #obj = geo_origin.get()	
+			#obj.Origin = FreeCAD.Vector(float(Transformation[0])*1000, float(Transformation[1])*1000, 0)
 		if self.CBAerialphoto.isChecked() is True:
 			fileLocationTMS = self.tempFolderPath + 'ESRI_aerialphoto.jpg'
 			TMS = GIS2BIM.TMS_WMTSCombinedMapFromLatLonBbox(float(self.lat),float(self.lon),float(self.bboxWidth.text()),float(self.bboxHeight.text()),17,256,0,"http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png")
