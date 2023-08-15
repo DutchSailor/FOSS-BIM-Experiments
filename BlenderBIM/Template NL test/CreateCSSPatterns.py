@@ -14,18 +14,18 @@ NEN47_1_metselwerk_baksteen = '<pattern id="NEN47_1_metselwerk_baksteen" width="
 NEN47_2_speciale_steenachtige_materialen = '<pattern id="NEN47_2_speciale_steenachtige_materialen" width="2" height="2" patternTransform="rotate(45 0 0) scale(1 1)" patternUnits="userSpaceOnUse">\n' \
 '    NEN47_2_speciale_steenachtige_materialen_background\n' \
 '	<line x1="0" y1="0" x2="2" y2="0" style="stroke:black; stroke-width:0.2" />\n' \
-'    <line x1="0" y1="0" x2="0" y2="2" style="stroke:black; stroke-width:0.2" />\n' \
+'   <line x1="0" y1="0" x2="0" y2="2" style="stroke:black; stroke-width:0.2" />\n' \
 '</pattern>\n' \
 
 NEN47_3_metselwerk_niet_gebakken_kunststeen = '<pattern id="NEN47_3_metselwerk_niet_gebakken_kunststeen" width="1.5" height="1.5" patternTransform="rotate(45 0 0) scale(1 1)" patternUnits="userSpaceOnUse">\n' \
 '	NEN47_3_metselwerk_niet_gebakken_kunststeen_background\n' \
-'    <line x1="0" y1="0" x2="0" y2="1.5" style="stroke:black; stroke-width:0.25" />\n' \
+'   <line x1="0" y1="0" x2="0" y2="1.5" style="stroke:black; stroke-width:0.25" />\n' \
 '</pattern>\n' \
 
 NEN47_4_niet_dragende_lichte_scheidingswanden = '<pattern id="NEN47_4_niet_dragende_lichte_scheidingswanden" width="6" height="3" patternTransform="rotate(0 0 0) scale(1 1)" patternUnits="userSpaceOnUse">\n' \
 '	NEN47_4_niet_dragende_lichte_scheidingswanden_background\n' \
-'    <line x1="0" y1="0" x2="0" y2="3" style="stroke:black; stroke-width:0.2" />\n' \
-'    <line x1="0.5" y1="0" x2="0.5" y2="3" style="stroke:black; stroke-width:0.2" />\n' \
+'   <line x1="0" y1="0" x2="0" y2="3" style="stroke:black; stroke-width:0.2" />\n' \
+'   <line x1="0.5" y1="0" x2="0.5" y2="3" style="stroke:black; stroke-width:0.2" />\n' \
 '	<line x1="1" y1="0" x2="1" y2="3" style="stroke:black; stroke-width:0.2" />\n' \
 '	<line x1="1.5" y1="0" x2="1.5" y2="3" style="stroke:black; stroke-width:0.2" />\n' \
 '	<line x1="1.5" y1="0" x2="1.5" y2="3" style="stroke:black; stroke-width:0.2" />\n' \
@@ -180,43 +180,70 @@ NEN47_29_glas = '<pattern id="NEN47_29_glas" width="3" height="3" patternTransfo
 '	<line x1="0" y1="1" x2="3" y2="0" style="stroke:black; stroke-width:0.15" />\n' \
 '</pattern>\n' \
 
-lst_patterns = [
-NEN47_1_metselwerk_baksteen,
-NEN47_2_speciale_steenachtige_materialen,
-NEN47_3_metselwerk_niet_gebakken_kunststeen,
-NEN47_4_niet_dragende_lichte_scheidingswanden,
-NEN47_5_gewapend_beton_tpg,
-NEN47_6_gewapend_beton_prefab,
-NEN47_7_ongewapend_beton,
-NEN47_8_sierbeton,
-NEN47_9_natuursteen,
-NEN47_10_enkele_wand_vloer_afwerking,
-NEN47_11_samengestelde_wand_vloer_afwerking,
-NEN47_12_naaldhout,
-NEN47_13_loofhout,
-NEN47_14_naald_loofhout_langsarcering,
-NEN47_16_bekledingsplaat,
-NEN47_17_isolatie,
-NEN47_18_staal,
-NEN47_19_aluminium_brons_koper,
-NEN47_20_lood,
-NEN47_21_zink,
-NEN47_22_kunststof,
-NEN47_23_afdichtingsmiddel,
-NEN47_24_bitumen,
-NEN47_25_maaiveld,
-NEN47_26_zand,
-NEN47_27_grind,
-NEN47_28_water,
-NEN47_29_glas
-]
-path_patterns = "C:/Users/mikev/Documents/GitHub/FOSS-BIM-Experiments/BlenderBIM/Template NL test/patterns/patterns.svg"
-f = open(path_patterns, "x")
+patterns_var = {
+"NEN47_1_metselwerk_baksteen":NEN47_1_metselwerk_baksteen,
+"NEN47_2_speciale_steenachtige_materialen":NEN47_2_speciale_steenachtige_materialen,
+"NEN47_3_metselwerk_niet_gebakken_kunststeen":NEN47_3_metselwerk_niet_gebakken_kunststeen,
+"NEN47_4_niet_dragende_lichte_scheidingswanden":NEN47_4_niet_dragende_lichte_scheidingswanden,
+"NEN47_5_gewapend_beton_tpg":NEN47_5_gewapend_beton_tpg,
+"NEN47_6_gewapend_beton_prefab":NEN47_6_gewapend_beton_prefab,
+"NEN47_7_ongewapend_beton":NEN47_7_ongewapend_beton,
+"NEN47_8_sierbeton":NEN47_8_sierbeton,
+"NEN47_9_natuursteen":NEN47_9_natuursteen,
+"NEN47_10_enkele_wand_vloer_afwerking":NEN47_10_enkele_wand_vloer_afwerking,
+"NEN47_11_samengestelde_wand_vloer_afwerking":NEN47_11_samengestelde_wand_vloer_afwerking,
+"NEN47_12_naaldhout":NEN47_12_naaldhout,
+"NEN47_13_loofhout":NEN47_13_loofhout,
+"NEN47_14_naald_loofhout_langsarcering":NEN47_14_naald_loofhout_langsarcering,
+"NEN47_16_bekledingsplaat":NEN47_16_bekledingsplaat,
+"NEN47_17_isolatie":NEN47_17_isolatie,
+"NEN47_18_staal":NEN47_18_staal,
+"NEN47_19_aluminium_brons_koper":NEN47_19_aluminium_brons_koper,
+"NEN47_20_lood":NEN47_20_lood,
+"NEN47_21_zink":NEN47_21_zink,
+"NEN47_22_kunststof":NEN47_22_kunststof,
+"NEN47_23_afdichtingsmiddel":NEN47_23_afdichtingsmiddel,
+"NEN47_24_bitumen":NEN47_24_bitumen,
+"NEN47_25_maaiveld":NEN47_25_maaiveld,
+"NEN47_26_zand":NEN47_26_zand,
+"NEN47_27_grind":NEN47_27_grind,
+"NEN47_28_water":NEN47_28_water,
+"NEN47_29_glas":NEN47_29_glas
+}
+
+from pandas_ods_reader import read_ods
+import os
+
+path_library = "C:/Users/mikev/Documents/GitHub/FOSS-BIM-Experiments/BlenderBIM/Template NL test/Library.ods"
+new_path_patterns = "C:/Users/mikev/Documents/GitHub/FOSS-BIM-Experiments/BlenderBIM/Template NL test/patterns/patterns.svg"
+
+try:
+    os.remove(new_path_patterns)
+except:
+    pass
+sheet_name = "cut_patterns_cust"
+library_mat = read_ods(path_library, sheet_name)
+
+
+f = open(new_path_patterns, "x")
 f.write(PREFIX)
-for i in lst_patterns:
-    f.write(i)
+
+for ind in library_mat.index:
+    new_pattern_name = library_mat["NewName"][ind] #new pattern name
+    base_pattern = library_mat["Basepattern"][ind] #pattern which is used as the base for the new pattern
+    background_addition_string_to_replace = library_mat["background_str"][ind] #string to replace from the base pattern
+    svg_background_string = library_mat["HEXBackground"][ind] #to replace with this string which coveres the background of the pattern
+    base_pattern_string = patterns_var[base_pattern] #get svg string of base pattern
+    try:
+        base_pattern_string = base_pattern_string.replace(background_addition_string_to_replace, svg_background_string) # get background_color
+        base_pattern_string = base_pattern_string.replace(base_pattern, new_pattern_name)
+    except:
+        base_pattern_string = base_pattern_string.replace(background_addition_string_to_replace, "")  # empty string
+        base_pattern_string = base_pattern_string.replace(base_pattern, new_pattern_name)
+
+    print(base_pattern_string)
+    f.write(base_pattern_string)
+
 f.write(SUFFIX)
 f.close()
-
-#for i in lst_patterns:
 
