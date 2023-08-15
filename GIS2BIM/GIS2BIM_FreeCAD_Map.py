@@ -34,13 +34,17 @@ from PySide2.QtWebEngineWidgets import QWebEnginePage
 from PySide2 import QtCore, QtWidgets
 from PySide2.QtCore import QUrl
 
+
 import importlib
-from PyPackages import GIS2BIM
-from PyPackages import GIS2BIM_FreeCAD
-from PyPackages import GIS2BIM_CRS 
-from PyPackages import GIS2BIM_GUI
+import GIS2BIM
+import GIS2BIM_FreeCAD
+import GIS2BIM_CRS
+import GIS2BIM_GUI
 import FreeCAD
+
+importlib.reload(GIS2BIM_GUI)
 importlib.reload(GIS2BIM_FreeCAD)
+importlib.reload(GIS2BIM)
 
 import os
 import time
@@ -97,7 +101,8 @@ class GISLocation_Dialog(QtWidgets.QDialog):
 		self.resize(920, 900)
 
 		#Download map.html from GIS2BIM Repository and set projectlocation
-		os.remove(self.filepathNewMap)
+		try: os.remove(self.filepathNewMap)
+		except: test = "test" 
 		BaseMap = open(self.filepathBaseMap,"r")
 		BaseMapstr = BaseMap.read()
 		Newstr = BaseMapstr.replace("51LAT",self.lat)

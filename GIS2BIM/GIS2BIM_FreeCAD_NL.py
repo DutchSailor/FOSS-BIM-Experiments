@@ -40,15 +40,17 @@ import FreeCAD
 
 import xml.etree.ElementTree as ET
 
-from PyPackages import GIS2BIM
-from PyPackages import GIS2BIM_FreeCAD
-from PyPackages import GIS2BIM_CRS
-from PyPackages import GIS2BIM_NL 
-from PyPackages import GIS2BIM_GUI
 
-#import importlib
-#importlib.reload(GIS2BIM_GUI)
-#importlib.reload(GIS2BIM_FreeCAD)
+import GIS2BIM
+import GIS2BIM_FreeCAD
+import GIS2BIM_CRS
+import GIS2BIM_NL 
+import GIS2BIM_GUI
+
+import importlib
+importlib.reload(GIS2BIM_GUI)
+importlib.reload(GIS2BIM_FreeCAD)
+importlib.reload(GIS2BIM_NL)
 
 class GIS_NL_Dialog(QtWidgets.QDialog):
 	def __init__(self, parent=None):

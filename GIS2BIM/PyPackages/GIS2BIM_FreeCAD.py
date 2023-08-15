@@ -27,7 +27,7 @@ __title__= "GIS2BIM_FreeCAD"
 __author__ = "Maarten Vroegindeweij"
 __url__ = "https://github.com/DutchSailor/GIS2BIM"
 
-from . import GIS2BIM
+import GIS2BIM
 import importlib
 importlib.reload(GIS2BIM)
 
