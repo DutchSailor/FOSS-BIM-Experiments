@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>GIS2BIM map</title>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+   
+	<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<style type="text/css">
+	</style>
+</head>
+<body>
+
+<div id="mymap"></div>
+
+<script type="text/javascript">
+	
+	var osmLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>',
+		ESRIaerialLink = '<a href="http://www.esri.com/">Esri</a>';
+	
+	var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+		osmAttrib = '&copy; ' + osmLink + ' Contributors',
+		ESRIworldstreetmapUrl = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}.png',
+		ESRIworldstreetmapAttrib = 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012',
+		ESRIworldtopoUrl = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}.png',
+		ESRIworldtopoAttrib = 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community',
+		ESRIaerialUrl = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png',
+		ESRIaerialAttrib = 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community';
+
+	var osmMap = L.tileLayer(osmUrl, {attribution: osmAttrib}),
+		ESRIworldstreetmapMap = L.tileLayer(ESRIworldstreetmapUrl, {attribution: ESRIworldstreetmapAttrib}),
+		ESRIworldtopoMap = L.tileLayer(ESRIworldtopoUrl, {attribution: ESRIworldtopoAttrib}),
+		ESRIaerialMap = L.tileLayer(ESRIaerialUrl, {attribution: ESRIaerialAttrib});
+		
+	var mymap = L.map('mymap', {
+			layers: [ESRIworldstreetmapMap] 
+		})
+		.setView([51.814213, 4.659201], 16);
+
+	var baseLayers = {
+		"OSM Mapnik": osmMap,
+		"ESRI World Street Map": ESRIworldstreetmapMap,
+		"ESRI World Topo Map": ESRIworldtopoMap,
+		"ESRI World Imagery": ESRIaerialMap
+	};
+
+	var boundingboxwidth = 500.0;
+	var boundingboxheight = 500.0;
+
+	var marker1 = new L.marker([51.814213, 4.659201],{draggable: false, riseOnHover: true, autoPan: true}).addTo(mymap)
+//		.bindPopup('Center of Boundingbox:(WGS-84)' + mymap.getCenter().lat + ',' + mymap.getCenter().lng)
+	//	.openPopup();
+//	var marker = L.layerGroup([marker1]);
+
+	var center = L.latLng([51.814213,4.659201]);
+	boundsW = center.toBounds(boundingboxwidth);
+	boundsH = center.toBounds(boundingboxheight);	
+	bounds = [[boundsH.getSouth(),boundsW.getWest()],[boundsH.getNorth(),boundsW.getEast()]]
+	rect = L.rectangle(bounds).addTo(mymap)
+	rect.addTo(mymap)
+//	var boundingbox = L.layerGroup([rect]);
+	
+//	var overlayMaps = { 
+//  "Marker Geolocation": marker,
+//	"Boundingbox Area": boundingbox
+//	};
+
+	L.control.layers(baseLayers).addTo(mymap);
+	
+	function onMapClick(e) {
+		boundsW = e.latlng.toBounds(boundingboxwidth);
+		boundsH = e.latlng.toBounds(boundingboxheight);	
+		bounds1 = [[boundsH.getSouth(),boundsW.getWest()],[boundsH.getNorth(),boundsW.getEast()]]
+		rect.setBounds(bounds1)
+		marker1.setLatLng(e.latlng)
+		var textToSave = e.latlng.toString()
+		hiddenElement = document.createElement('a')
+		hiddenElement.href = 'data:attachment/text,' + encodeURI(textToSave)
+		hiddenElement.target = '_blank'
+		hiddenElement.download = 'C:/Users/mikev/Documents/GitHub/FOSS-BIM-Experiments/FreeCAD/GIStemp//temp.txt'
+		hiddenElement.click()
+		mymap.setView(e.latlng)
+	}
+	
+	function clickZoom(e) {
+    map.setView(e.target.getLatLng(),5);
+	}
+	
+	mymap.on('click', onMapClick);
+
+	var textToSave = "LatLng(51.814213, 4.659201)"
+	hiddenElement = document.createElement('a')
+	hiddenElement.href = 'data:attachment/text,' + encodeURI(textToSave)
+	hiddenElement.target = '_blank'
+	hiddenElement.download = 'C:/Users/mikev/Documents/GitHub/FOSS-BIM-Experiments/FreeCAD/GIStemp//temp.txt'
+	hiddenElement.click()	
+	
+	//Resize map to size of window
+	$(window).on("resize", function() {
+    $("#mymap").height($(window).height()).width($(window).width());
+    mymap.invalidateSize();
+	}).trigger("resize");
+	mymap.setView([51.814213, 4.659201], 17);
+	
+</script>
+
+</body>
+</html>

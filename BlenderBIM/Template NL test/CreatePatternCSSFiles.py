@@ -416,8 +416,8 @@ patterns_file_1.write(PREFIX_PATTERNS)
 sheet_name = "cut_patterns_cust" # TAB FROM EXCELSHEET WITH DATA OF PATTERNS
 library_mat = read_ods(path_library, sheet_name)
 
+#FOR LOOP FOR PATTERN FILES AND CSS MATERIAL
 for ind in library_mat.index:
-    link_material = library_mat["link_material"][ind] # BOOLEAN FOR CREATE A MATERIAL LINK IN CSS
     link_predefined_type = library_mat["link_predefined_type"][ind] # BOOLEAN FOR CREATE A PREDIFINED TYPE IN CSS FOR FILLED REGION
     blender_name = library_mat["blender_name"][ind] #name in Blender for material/link_predefined_type
     scales = []
@@ -472,11 +472,6 @@ for ind in library_mat.index:
         base_pattern_string = base_pattern_string.replace(base_pattern, new_pattern_name) #add new patternname in svg-string
         base_pattern_string = base_pattern_string.replace("scale(1 1)", scale_str) #change scale of pattern in svg-string
 
-        if link_material:
-            material_str = ".material-" + blender_name + "{ fill: url(  #" + new_pattern_name + "); }\n"
-            i[3].write(material_str)
-        else:
-            pass
         if link_predefined_type:
             predefined_type_str = ".PredefinedType-" + blender_name + "{ fill: url(  #" + new_pattern_name + "); }\n"
             i[3].write(predefined_type_str)
@@ -484,6 +479,57 @@ for ind in library_mat.index:
             pass
         i[4].write(base_pattern_string)
 
+#FOR LOOP FOR PATTERN FILES AND CSS PREDIFINED TYPE
+for ind in library_mat.index:
+    link_material = library_mat["link_material"][ind] # BOOLEAN FOR CREATE A MATERIAL LINK IN CSS
+    blender_name = library_mat["blender_name"][ind] #name in Blender for material/link_predefined_type
+    scales = []
+    scale_independent = library_mat["scale_independent"][ind]
+    scale_1_200 = library_mat["1_200"][ind]
+    if scale_1_200:
+        scales.append(["1:200", 2, "_200", css_file_200, patterns_file_200])
+
+    scale_1_100 = library_mat["1_100"][ind]
+    if scale_1_100:
+        scales.append(["1:100", 1, "_100", css_file_100, patterns_file_100])
+
+    scale_1_50 = library_mat["1_50"][ind]
+    if scale_1_50:
+        scales.append(["1:50", 0.5, "_50", css_file_50, patterns_file_50])
+
+    scale_1_20 = library_mat["1_20"][ind]
+    if scale_1_20:
+        scales.append(["1:20", 0.2, "_20", css_file_20, patterns_file_20])
+
+    scale_1_10 = library_mat["1_10"][ind]
+    if scale_1_10:
+        scales.append(["1:10", 0.1, "_10", css_file_10, patterns_file_10])
+
+    scale_1_5 = library_mat["1_5"][ind]
+    if scale_1_5:
+        scales.append(["1:5", 0.05, "_5", css_file_5, patterns_file_5])
+
+    scale_1_2 = library_mat["1_2"][ind]
+    if scale_1_2:
+        scales.append(["1:2", 0.02, "_2", css_file_2, patterns_file_2])
+
+    scale_1_1 = library_mat["1_1"][ind]
+    if scale_1_1:
+        scales.append(["1:1", 0.01, "_1", css_file_1, patterns_file_1])
+    #list created with applicable scales of this pattern
+
+    for i in scales:
+        scale_suffix = i[2]
+        scale_factor = str(i[1])
+        scale_str = "scale(" + scale_factor + " " + scale_factor + ")" #scale string to use in svg
+        new_pattern_name = library_mat["NewName"][ind]
+        new_pattern_name =  new_pattern_name + scale_suffix #new pattern name with scale addition
+
+        if link_material:
+            material_str = ".material-" + blender_name + "{ fill: url(  #" + new_pattern_name + "); }\n"
+            i[3].write(material_str)
+        else:
+            pass
 
 #write and close pattern-files
 patterns_file_200.write(SUFFIX_PATTERNS)

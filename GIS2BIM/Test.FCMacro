@@ -1,0 +1,23 @@
+import urllib
+import urllib.request
+from urllib.request import urlopen
+
+URL = "https://service.pdok.nl/hwh/luchtfotorgb/wms/v1_0?&request=GetMap&VERSION=1.3.0&STYLES=&layers=2016_ortho25&width=3000&height=3000&format=image/png&crs=EPSG:28992&bbox=" 
+
+bbox = "101841,426725,102341,427225" 
+
+filoc = "C:/Users/mikev/Desktop/TEMP/GIStemp/test.jpg" 
+
+
+def WMSRequest(serverName,boundingBoxString,fileLocation,pixWidth,pixHeight):
+    # perform a WMS OGC webrequest( Web Map Service). This is loading images.
+    myrequestURL = serverName + boundingBoxString
+    myrequestURL = myrequestURL.replace("width=3000", "width=" + str(pixWidth))
+    myrequestURL = myrequestURL.replace("height=3000", "height=" + str(pixHeight))
+    resource = urllib.request.urlopen(myrequestURL)
+    output1 = open(fileLocation, "wb")
+    output1.write(resource.read())
+    output1.close()
+    return fileLocation, resource, myrequestURL
+
+test = WMSRequest(URL,bbox,filoc,3000,3000)

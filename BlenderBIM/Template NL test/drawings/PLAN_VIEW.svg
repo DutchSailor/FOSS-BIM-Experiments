@@ -1,4 +1,4 @@
-<svg baseProfile="full" data-scale="1:50" height="300.0mm" id="root" version="1.1" viewBox="0 0 300.0 300.0" width="300.0mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:ifc="http://www.ifcopenshell.org/ns" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style type="text/css"><![CDATA[/*
+<svg baseProfile="full" data-scale="1:100" height="150.0mm" id="root" version="1.1" viewBox="0 0 150.0 150.0" width="150.0mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:ifc="http://www.ifcopenshell.org/ns" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style type="text/css"><![CDATA[/*
  * BlenderBIM Add-on - OpenBIM Blender Add-on
  * Copyright (C) 2020, 2021 Dion Moult <dion@thinkmoult.com>
  *
@@ -65,85 +65,103 @@ text, tspan { /* 2.5mm */ fill: black; stroke: none; font-family: 'OpenGost Type
 /*
  NL PredefinedTypes
  */
-.PredefinedType-metselwerkbaksteen { fill: url(#NEN47_1_metselwerk_baksteen); }
-.PredefinedType-specialesteenachtigematerialen { fill: url(#NEN47_2_speciale_steenachtige_materialen); }
-.PredefinedType-metselwerknietgebakkenkunststeen { fill: url(#NEN47_3_metselwerk_niet_gebakken_kunststeen); }
-.PredefinedType-nietdragendelichtescheidingswanden { fill: url(#NEN47_4_niet_dragende_lichte_scheidingswanden); }
-.PredefinedType-gewapendbetontpg { fill: url(#NEN47_5_gewapend_beton_tpg); }
-.PredefinedType-gewapendbetonprefab { fill: url(#NEN47_6_gewapend_beton_prefab); }
-.PredefinedType-ongewapendbeton { fill: url(#NEN47_7_ongewapend_beton); }
-.PredefinedType-sierbeton { fill: url(#NEN47_8_sierbeton); }
-.PredefinedType-natuursteen { fill: url(#NEN47_9_natuursteen); }
-.PredefinedType-enkelewandvloerafwerking { fill: url(#NEN47_10_enkele_wand_vloer_afwerking); }
-.PredefinedType-samengesteldewandvloerafwerking { fill: url(#NEN47_11_samengestelde_wand_vloer_afwerking); }
-.PredefinedType-naaldhout { fill: url(#NEN47_12_naaldhout); }
-.PredefinedType-loofhout { fill: url(#NEN47_13_loofhout); }
-.PredefinedType-naaldloofhoutlangsarcering { fill: url(#NEN47_14_naald_loofhout_langsarcering); }
-.PredefinedType-bekledingsplaat { fill: url(#NEN47_16_bekledingsplaat); }
-.PredefinedType-isolatie { fill: url(#NEN47_17_isolatie); }
-.PredefinedType-staal { fill: url(#NEN47_18_staal); }
-.PredefinedType-aluminiumbronskoper { fill: url(#NEN47_19_aluminium_brons_koper); }
-.PredefinedType-lood { fill: url(#NEN47_20_lood); }
-.PredefinedType-zink { fill: url(#NEN47_21_zink); }
-.PredefinedType-kunststof { fill: url(#NEN47_22_kunststof); }
-.PredefinedType-afdichtingsmiddel { fill: url(#NEN47_23_afdichtingsmiddel); }
-.PredefinedType-bitumen { fill: url(#NEN47_24_bitumen); }
-.PredefinedType-maaiveld { fill: url(#NEN47_25_maaiveld); }
-.PredefinedType-zand { fill: url(#NEN47_26_zand); }
-.PredefinedType-grind { fill: url(#NEN47_27_grind); }
-.PredefinedType-water { fill: url(#NEN47_28_water); }
-.PredefinedType-glas { fill: url(#NEN47_29_glas); }
-.PredefinedType-onbekend { fill: url(#CUSTOM_0_onbekend); }
-.PredefinedType-generiek { fill: url(#CUSTOM_0_generiek); }
-.PredefinedType-keramiek { fill: url(#CUSTOM_0_keramiek); }
-.PredefinedType-riet { fill: url(#CUSTOM_0_riet); }
-.PredefinedType-gips { fill: url(#CUSTOM_0_gips); }
-.PredefinedType-fermacell { fill: url(#CUSTOM_0_fermacell); }
-.PredefinedType-mortel { fill: url(#CUSTOM_0_mortel); }
-.PredefinedType-grond { fill: url(#CUSTOM_0_grond); }
-.PredefinedType-asfalt { fill: url(#CUSTOM_0_asfalt); }
-.PredefinedType-klei { fill: url(#CUSTOM_0_klei); }
-.PredefinedType-veen { fill: url(#CUSTOM_0_veen); }
-.PredefinedType-bestaand { fill: url(#CUSTOM_0_bestaand); }
-.PredefinedType-grijs060 { fill: url(#GIS_0_grijs_060); }
-.PredefinedType-grijs128 { fill: url(#GIS_0_grijs_128); }
-.PredefinedType-grijs153 { fill: url(#GIS_0_grijs_153); }
-.PredefinedType-GISmagenta { fill: url(#GIS_0_GIS_magenta); }
-.PredefinedType-GISgroen1 { fill: url(#GIS_0_GIS_groen_1); }
-.PredefinedType-GISgroen2 { fill: url(#GIS_0_GIS_groen_2); }
-.PredefinedType-GISpand { fill: url(#GIS_0_GIS_pand); }
-.PredefinedType-GISwater { fill: url(#GIS_0_GIS_water); }
-.PredefinedType-GISweg1 { fill: url(#GIS_0_GIS_weg_1); }
-.PredefinedType-GISweg2 { fill: url(#GIS_0_GIS_weg_2); }
-.PredefinedType-bruinkool { fill: url(#NEN5104_0_bruinkool); }
-.PredefinedType-grind { fill: url(#NEN5104_1_grind); }
-.PredefinedType-houtresten { fill: url(#NEN5104_2_houtresten); }
-.PredefinedType-huisvuil { fill: url(#NEN5104_3_huisvuil); }
-.PredefinedType-klei { fill: url(#NEN5104_4_klei); }
-.PredefinedType-leem { fill: url(#NEN5104_5_leem); }
-.PredefinedType-mergel { fill: url(#NEN5104_6_mergel); }
-.PredefinedType-mijnsteen { fill: url(#NEN5104_7_mijnsteen); }
-.PredefinedType-oer { fill: url(#NEN5104_8_oer); }
-.PredefinedType-puinpuinhout { fill: url(#NEN5104_9_puin_puinhout); }
-.PredefinedType-schelpen { fill: url(#NEN5104_10_schelpen); }
-.PredefinedType-slakken { fill: url(#NEN5104_11_slakken); }
-.PredefinedType-veen { fill: url(#NEN5104_12_veen); }
-.PredefinedType-veenresten { fill: url(#NEN5104_13_veenresten); }
-.PredefinedType-zand { fill: url(#NEN5104_14_zand); }
-.PredefinedType-grondfijnkorrelig { fill: url(#Robertsen_1990_NL_1_grond_fijn_korrelig); }
-.PredefinedType-veenorganischmateriaal { fill: url(#Robertsen_1990_NL_2_veen_organisch_materiaal); }
-.PredefinedType-kleiweinigtotmatigsilthoudend { fill: url(#Robertsen_1990_NL_3_klei_weinig_tot_matig_silthoudend); }
-.PredefinedType-kleisilthoudendleem { fill: url(#Robertsen_1990_NL_4_klei_silthoudend_leem); }
-.PredefinedType-zandsilthoudendoflosgepakttotleem { fill: url(#Robertsen_1990_NL_5_zand_silthoudend_of_losgepakt_tot_leem); }
-.PredefinedType-zandweinigsilthoudendtotsilthoudend { fill: url(#Robertsen_1990_NL_6_zand_weinig_silthoudend_tot_silthoudend); }
-.PredefinedType-zandtotzandgrindhoudend { fill: url(#Robertsen_1990_NL_7_zand_tot_zand_grindhoudend); }
-.PredefinedType-zandvastzandkleihoudend { fill: url(#Robertsen_1990_NL_8_zand_vast_zand_kleihoudend); }
-.PredefinedType-grondzeerstijffijnkorrelig { fill: url(#Robertsen_1990_NL_9_grond_zeer_stijf_fijn_korrelig); }
-.PredefinedType-veen { fill: url(#ONBEKEND_A_veen); }
-.PredefinedType-potklei { fill: url(#ONBEKEND_B_potklei); }
-.PredefinedType-boomseklei { fill: url(#ONBEKEND_C_boomse_klei); }
-.PredefinedType-overgeconsolideerdveen { fill: url(#ONBEKEND_D_overgeconsolideerd_veen); }
-.PredefinedType-glauconietzand { fill: url(#ONBEKEND_E_glauconiet_zand); }
+.PredefinedType-NEN471metselwerkbaksteen{ fill: url(  #NEN47_1_metselwerk_baksteen_50); }
+.PredefinedType-NEN472specialesteenachtigematerialen{ fill: url(  #NEN47_2_speciale_steenachtige_materialen_50); }
+.PredefinedType-NEN473metselwerknietgebakkenkunststeen{ fill: url(  #NEN47_3_metselwerk_niet_gebakken_kunststeen_50); }
+.PredefinedType-NEN474nietdragendelichtescheidingswanden{ fill: url(  #NEN47_4_niet_dragende_lichte_scheidingswanden_50); }
+.PredefinedType-NEN476gewapendbetonprefab{ fill: url(  #NEN47_6_gewapend_beton_prefab_50); }
+.PredefinedType-NEN477ongewapendbeton{ fill: url(  #NEN47_7_ongewapend_beton_50); }
+.PredefinedType-NEN478sierbeton{ fill: url(  #NEN47_8_sierbeton_50); }
+.PredefinedType-NEN479natuursteen{ fill: url(  #NEN47_9_natuursteen_50); }
+.PredefinedType-NEN4710enkelewandvloerafwerking{ fill: url(  #NEN47_10_enkele_wand_vloer_afwerking_50); }
+.PredefinedType-NEN4711samengesteldewandvloerafwerking{ fill: url(  #NEN47_11_samengestelde_wand_vloer_afwerking_50); }
+.PredefinedType-NEN4712naaldhout{ fill: url(  #NEN47_12_naaldhout_50); }
+.PredefinedType-NEN4713loofhout{ fill: url(  #NEN47_13_loofhout_50); }
+.PredefinedType-NEN4714naaldloofhoutlangsarcering{ fill: url(  #NEN47_14_naald_loofhout_langsarcering_50); }
+.PredefinedType-NEN4716bekledingsplaat{ fill: url(  #NEN47_16_bekledingsplaat_50); }
+.PredefinedType-NEN4717isolatie{ fill: url(  #NEN47_17_isolatie_50); }
+.PredefinedType-NEN4720lood{ fill: url(  #NEN47_20_lood_50); }
+.PredefinedType-NEN4722kunststof{ fill: url(  #NEN47_22_kunststof_50); }
+.PredefinedType-NEN4723afdichtingsmiddel{ fill: url(  #NEN47_23_afdichtingsmiddel_50); }
+.PredefinedType-NEN4725maaiveld{ fill: url(  #NEN47_25_maaiveld_50); }
+.PredefinedType-NEN4726zand{ fill: url(  #NEN47_26_zand_50); }
+.PredefinedType-NEN4727grind{ fill: url(  #NEN47_27_grind_50); }
+.PredefinedType-NEN4728water{ fill: url(  #NEN47_28_water_50); }
+.PredefinedType-NEN4729glas{ fill: url(  #NEN47_29_glas_50); }
+.PredefinedType-metselwerkbaksteen{ fill: url(  #CUST_NEN47_1_metselwerk_baksteen_50); }
+.PredefinedType-specialesteenachtigematerialen{ fill: url(  #CUST_NEN47_2_speciale_steenachtige_materialen_50); }
+.PredefinedType-metselwerknietgebakkenkunststeen{ fill: url(  #CUST_NEN47_3_metselwerk_niet_gebakken_kunststeen_50); }
+.PredefinedType-nietdragendelichtescheidingswanden{ fill: url(  #CUST_NEN47_4_niet_dragende_lichte_scheidingswanden_50); }
+.PredefinedType-gewapendbetonprefab{ fill: url(  #CUST_NEN47_6_gewapend_beton_prefab_50); }
+.PredefinedType-ongewapendbeton{ fill: url(  #CUST_NEN47_7_ongewapend_beton_50); }
+.PredefinedType-sierbeton{ fill: url(  #CUST_NEN47_8_sierbeton_50); }
+.PredefinedType-natuursteen{ fill: url(  #CUST_NEN47_9_natuursteen_50); }
+.PredefinedType-enkelewandvloerafwerking{ fill: url(  #CUST_NEN47_10_enkele_wand_vloer_afwerking_50); }
+.PredefinedType-samengesteldewandvloerafwerking{ fill: url(  #CUST_NEN47_11_samengestelde_wand_vloer_afwerking_50); }
+.PredefinedType-naaldhout{ fill: url(  #CUST_NEN47_12_naaldhout_50); }
+.PredefinedType-loofhout{ fill: url(  #CUST_NEN47_13_loofhout_50); }
+.PredefinedType-naaldloofhoutlangsarcering{ fill: url(  #CUST_NEN47_14_naald_loofhout_langsarcering_50); }
+.PredefinedType-bekledingsplaat{ fill: url(  #CUST_NEN47_16_bekledingsplaat_50); }
+.PredefinedType-isolatie{ fill: url(  #CUST_NEN47_17_isolatie_50); }
+.PredefinedType-lood{ fill: url(  #CUST_NEN47_20_lood_50); }
+.PredefinedType-kunststof{ fill: url(  #CUST_NEN47_22_kunststof_50); }
+.PredefinedType-afdichtingsmiddel{ fill: url(  #CUST_NEN47_23_afdichtingsmiddel_50); }
+.PredefinedType-maaiveld{ fill: url(  #CUST_NEN47_25_maaiveld_50); }
+.PredefinedType-zand{ fill: url(  #CUST_NEN47_26_zand_50); }
+.PredefinedType-grind{ fill: url(  #CUST_NEN47_27_grind_50); }
+.PredefinedType-water{ fill: url(  #CUST_NEN47_28_water_50); }
+.PredefinedType-glas{ fill: url(  #CUST_NEN47_29_glas_50); }
+.PredefinedType-metselwerkbaksteenporiso{ fill: url(  #CUST_NEN47_1_metselwerk_baksteen_poriso_50); }
+.PredefinedType-metselwerkbaksteenrood{ fill: url(  #CUST_NEN47_1_metselwerk_baksteen_rood_50); }
+.PredefinedType-metselwerkbaksteencement{ fill: url(  #CUST_NEN47_1_metselwerk_baksteen_cement_50); }
+.PredefinedType-metselwerkbaksteentras{ fill: url(  #CUST_NEN47_1_metselwerk_baksteen_tras_50); }
+.PredefinedType-metselwerkbaksteenkalk{ fill: url(  #CUST_NEN47_1_metselwerk_baksteen_kalk_50); }
+.PredefinedType-natuursteenhardsteen{ fill: url(  #CUST_NEN47_9_natuursteen_hardsteen_50); }
+.PredefinedType-natuursteenzandsteen{ fill: url(  #CUST_NEN47_9_natuursteen_zandsteen_50); }
+.PredefinedType-natuursteenkalksteen{ fill: url(  #CUST_NEN47_9_natuursteen_kalksteen_50); }
+.PredefinedType-natuursteentuf{ fill: url(  #CUST_NEN47_9_natuursteen_tuf_50); }
+.PredefinedType-natuursteenmergel{ fill: url(  #CUST_NEN47_9_natuursteen_mergel_50); }
+.PredefinedType-naaldhoutvuren{ fill: url(  #CUST_NEN47_12_naaldhout_vuren_50); }
+.PredefinedType-naaldhoutvurengewolmaniseerd{ fill: url(  #CUST_NEN47_12_naaldhout_vuren_gewolmaniseerd_50); }
+.PredefinedType-naaldhouteiken{ fill: url(  #CUST_NEN47_12_naaldhout_eiken_50); }
+.PredefinedType-naaldhoutlariks{ fill: url(  #CUST_NEN47_12_naaldhout_lariks_50); }
+.PredefinedType-naaldhoutmerbau{ fill: url(  #CUST_NEN47_12_naaldhout_merbau_50); }
+.PredefinedType-naaldhoutmeranti{ fill: url(  #CUST_NEN47_12_naaldhout_meranti_50); }
+.PredefinedType-naaldhoutjatoba{ fill: url(  #CUST_NEN47_12_naaldhout_jatoba_50); }
+.PredefinedType-naaldhoutmahonie{ fill: url(  #CUST_NEN47_12_naaldhout_mahonie_50); }
+.PredefinedType-naaldhoutdouglas{ fill: url(  #CUST_NEN47_12_naaldhout_douglas_50); }
+.PredefinedType-naaldhoutgrenen{ fill: url(  #CUST_NEN47_12_naaldhout_grenen_50); }
+.PredefinedType-naaldhoutredcedar{ fill: url(  #CUST_NEN47_12_naaldhout_red_cedar_50); }
+.PredefinedType-naaldhoutiroko{ fill: url(  #CUST_NEN47_12_naaldhout_iroko_50); }
+.PredefinedType-naaldhoutniove{ fill: url(  #CUST_NEN47_12_naaldhout_niove_50); }
+.PredefinedType-naaldhoutbangkirai{ fill: url(  #CUST_NEN47_12_naaldhout_bangkirai_50); }
+.PredefinedType-naaldhoutazobe{ fill: url(  #CUST_NEN47_12_naaldhout_azobe_50); }
+.PredefinedType-naaldhoutbamboe{ fill: url(  #CUST_NEN47_12_naaldhout_bamboe_50); }
+.PredefinedType-naaldhoutvurenCLT{ fill: url(  #CUST_NEN47_12_naaldhout_vuren_CLT_50); }
+.PredefinedType-bekledingsplaatmultiplex{ fill: url(  #CUST_NEN47_16_bekledingsplaat_multiplex_50); }
+.PredefinedType-bekledingsplaatOSB{ fill: url(  #CUST_NEN47_16_bekledingsplaat_OSB_50); }
+.PredefinedType-bekledingsplaatMDF{ fill: url(  #CUST_NEN47_16_bekledingsplaat_MDF_50); }
+.PredefinedType-bekledingsplaatwatervast{ fill: url(  #CUST_NEN47_16_bekledingsplaat_watervast_50); }
+.PredefinedType-bekledingsplaatokoume{ fill: url(  #CUST_NEN47_16_bekledingsplaat_okoume_50); }
+.PredefinedType-bekledingsplaatrodespaan{ fill: url(  #CUST_NEN47_16_bekledingsplaat_rode_spaan_50); }
+.PredefinedType-bekledingsplaatgroenespaan{ fill: url(  #CUST_NEN47_16_bekledingsplaat_groene_spaan_50); }
+.PredefinedType-bekledingsplaatunderlayment{ fill: url(  #CUST_NEN47_16_bekledingsplaat_underlayment_50); }
+.PredefinedType-isolatieglaswol{ fill: url(  #CUST_NEN47_17_isolatie_glaswol_50); }
+.PredefinedType-isolatiesteenwol{ fill: url(  #CUST_NEN47_17_isolatie_steenwol_50); }
+.PredefinedType-isolatiePIR{ fill: url(  #CUST_NEN47_17_isolatie_PIR_50); }
+.PredefinedType-isolatiekooltherm{ fill: url(  #CUST_NEN47_17_isolatie_kooltherm_50); }
+.PredefinedType-isolatiePUR{ fill: url(  #CUST_NEN47_17_isolatie_PUR_50); }
+.PredefinedType-isolatieEPS{ fill: url(  #CUST_NEN47_17_isolatie_EPS_50); }
+.PredefinedType-isolatieEPS00{ fill: url(  #CUST_NEN47_17_isolatie_EPS100_50); }
+.PredefinedType-maaiveldgrond{ fill: url(  #CUST_NEN47_25_maaiveld_grond_50); }
+.PredefinedType-maaiveldasfalt{ fill: url(  #CUST_NEN47_25_maaiveld_asfalt_50); }
+.PredefinedType-maaiveldklei{ fill: url(  #CUST_NEN47_25_maaiveld_klei_50); }
+.PredefinedType-maaiveldveen{ fill: url(  #CUST_NEN47_25_maaiveld_veen_50); }
+.PredefinedType-zandzand{ fill: url(  #CUST_NEN47_26_zand_zand_50); }
+.PredefinedType-waterwater{ fill: url(  #CUST_NEN47_28_water_water_50); }
+.PredefinedType-glashelder{ fill: url(  #CUST_NEN47_29_glas_helder_50); }
+.PredefinedType-glasmat{ fill: url(  #CUST_NEN47_29_glas_mat_50); }
+.PredefinedType-glashelder{ fill: url(  #CUST_NEN47_29_glas_helder_50); }
 /*
  NL Materials
  */
@@ -560,146 +578,8 @@ text.DIMENSION, tspan.DIMENSION { /* 1.8mm */ font-size: 2.97px; }
 	<line x1="0" y1="0" x2="3" y2="0" style="stroke:black; stroke-width:0.15" />
 	<line x1="0" y1="1" x2="3" y2="0" style="stroke:black; stroke-width:0.15" />
 </pattern>
-</defs>    <g ifc:name="Elevation PLAN_VIEW" class="section" ifc:plane="[[1.000000,0.000000,0.000000,0.000000],[0.000000,1.000000,0.000000,0.000000],[0.000000,0.000000,1.000000,2.288814],[0.000000,0.000000,0.000000,1.000000]]" ifc:matrix3="[[20.000000,0.000000,50.000001],[0.000000,20.000000,30.000001],[0.000000,0.000000,1.000000]]">
+</defs>    <g ifc:name="Elevation PLAN_VIEW" class="section" ifc:plane="[[1.000000,0.000000,0.000000,0.000000],[0.000000,1.000000,0.000000,0.000000],[0.000000,0.000000,1.000000,0.000000],[0.000000,0.000000,0.000000,1.000000]]" ifc:matrix3="[[10.000000,0.000000,22.916694],[0.000000,10.000000,21.759286],[0.000000,0.000000,1.000000]]">
     </g>
   <defs/>
-  <path class="GlobalId-1h1L_DSQL43uJsl0mJK7gd IfcAnnotation PredefinedType-naaldloofhoutlangsarcering" d="M 118.8759994506836 105.0 L 98.25304985046387 105.0 L 98.25304985046387 107.99999713897705 L 118.8759994506836 107.99999713897705 L 118.8759994506836 105.0"/>
-  <path class="GlobalId-0YkXXiMeL5U8N4k39hNlQx IfcAnnotation PredefinedType-naaldhout" d="M 118.8759994506836 93.00000190734863 L 98.25304985046387 93.00000190734863 L 98.25304985046387 95.99999904632568 L 118.8759994506836 95.99999904632568 L 118.8759994506836 93.00000190734863"/>
-  <path class="GlobalId-2UQfw6Bz1EthKFv_oFDk17 IfcAnnotation PredefinedType-metselwerknietgebakkenkunststeen" d="M 118.8759994506836 38.999996185302734 L 98.25304985046387 38.999996185302734 L 98.25304985046387 41.99999809265137 L 118.8759994506836 41.99999809265137 L 118.8759994506836 38.999996185302734"/>
-  <path class="GlobalId-0jD3Ye8qP5fhfDsNChTaU2 IfcAnnotation PredefinedType-gewapendbetontpg" d="M 118.8759994506836 51.000003814697266 L 98.25304985046387 51.000003814697266 L 98.25304985046387 53.999996185302734 L 118.8759994506836 53.999996185302734 L 118.8759994506836 51.000003814697266"/>
-  <path class="GlobalId-2DgjPn3B95Ng2SMLsWroGL IfcAnnotation PredefinedType-nietdragendelichtescheidingswanden" d="M 118.8759994506836 45.0 L 98.25304985046387 45.0 L 98.25304985046387 48.00000190734863 L 118.8759994506836 48.00000190734863 L 118.8759994506836 45.0"/>
-  <path class="GlobalId-2eSI_ad0T8HfrSkIcqT1pk IfcAnnotation PredefinedType-gewapendbetonprefab" d="M 118.8759994506836 57.00000762939453 L 98.25304985046387 57.00000762939453 L 98.25304985046387 60.0 L 118.8759994506836 60.0 L 118.8759994506836 57.00000762939453"/>
-  <path class="GlobalId-01w_2HCpv2DPIDVsv01m_Q IfcAnnotation PredefinedType-ongewapendbeton" d="M 118.8759994506836 63.00000190734863 L 98.25304985046387 63.00000190734863 L 98.25304985046387 66.00000381469727 L 118.8759994506836 66.00000381469727 L 118.8759994506836 63.00000190734863"/>
-  <path class="GlobalId-2IPxsI53j7eurn84bkU8IC IfcAnnotation PredefinedType-natuursteen" d="M 118.8759994506836 75.0 L 98.25304985046387 75.0 L 98.25304985046387 78.00000190734863 L 118.8759994506836 78.00000190734863 L 118.8759994506836 75.0"/>
-  <path class="GlobalId-33sy1snzL66uQCK8dpTQxn IfcAnnotation PredefinedType-sierbeton" d="M 118.8759994506836 69.0000057220459 L 98.25304985046387 69.0000057220459 L 98.25304985046387 72.00000286102295 L 118.8759994506836 72.00000286102295 L 118.8759994506836 69.0000057220459"/>
-  <path class="GlobalId-2mP0MXm5X3ShcbMcKsh3P8 IfcAnnotation PredefinedType-lood" d="M 118.8759994506836 147.0000171661377 L 98.25304985046387 147.0000171661377 L 98.25304985046387 150.00001907348633 L 118.8759994506836 150.00001907348633 L 118.8759994506836 147.0000171661377"/>
-  <path class="GlobalId-3WMDNDJynACRPs_sSmIdZx IfcAnnotation PredefinedType-bekledingsplaat" d="M 118.8759994506836 110.9999942779541 L 98.25304985046387 110.9999942779541 L 98.25304985046387 113.99999618530273 L 118.8759994506836 113.99999618530273 L 118.8759994506836 110.9999942779541"/>
-  <path class="GlobalId-1evnU3BD55sea2oG0EJKy6 IfcAnnotation PredefinedType-zand" d="M 118.8759994506836 183.0000400543213 L 98.25304985046387 183.0000400543213 L 98.25304985046387 186.00004196166992 L 118.8759994506836 186.00004196166992 L 118.8759994506836 183.0000400543213"/>
-  <path class="GlobalId-34Bh5__z9D0hMeOfSIcaDy IfcAnnotation PredefinedType-zink" d="M 118.8759994506836 153.00002098083496 L 98.25304985046387 153.00002098083496 L 98.25304985046387 156.0000228881836 L 118.8759994506836 156.0000228881836 L 118.8759994506836 153.00002098083496"/>
-  <path class="GlobalId-2Iy8dfWfbBYg_1gX0ZTY7o IfcAnnotation PredefinedType-afdichtingsmiddel" d="M 118.8759994506836 165.0000286102295 L 98.25304985046387 165.0000286102295 L 98.25304985046387 168.00003051757812 L 118.8759994506836 168.00003051757812 L 118.8759994506836 165.0000286102295"/>
-  <path class="GlobalId-2meT0whVP5uAOdbDNosjWZ IfcAnnotation PredefinedType-bitumen" d="M 118.8759994506836 171.00003242492676 L 98.25304985046387 171.00003242492676 L 98.25304985046387 174.0000343322754 L 118.8759994506836 174.0000343322754 L 118.8759994506836 171.00003242492676"/>
-  <path class="GlobalId-2ZW$qeF991Zf_5j9kO42V$ IfcAnnotation PredefinedType-isolatie" d="M 118.8759994506836 116.99999809265137 L 98.25304985046387 116.99999809265137 L 98.25304985046387 120.0 L 118.8759994506836 120.0 L 118.8759994506836 116.99999809265137"/>
-  <path class="GlobalId-1UZMLDtt18BPue_jXCbauC IfcAnnotation PredefinedType-staal" d="M 118.8759994506836 123.00000190734863 L 98.25304985046387 123.00000190734863 L 98.25304985046387 126.00000381469727 L 118.8759994506836 126.00000381469727 L 118.8759994506836 123.00000190734863"/>
-  <path class="GlobalId-1XpB2UwqX7Lerr8qh0wkoN IfcAnnotation PredefinedType-aluminium" d="M 118.8759994506836 129.0000057220459 L 98.25304985046387 129.0000057220459 L 98.25304985046387 132.00000762939453 L 118.8759994506836 132.00000762939453 L 118.8759994506836 129.0000057220459"/>
-  <path class="GlobalId-3caIXK4TbEgeJI2alqHoTi IfcAnnotation PredefinedType-brons" d="M 118.8759994506836 135.00000953674316 L 98.25304985046387 135.00000953674316 L 98.25304985046387 138.0000114440918 L 118.8759994506836 138.0000114440918 L 118.8759994506836 135.00000953674316"/>
-  <path class="GlobalId-3R9da5tzP7N9DRYKBQzhWg IfcAnnotation PredefinedType-grind" d="M 118.8759994506836 189.00004386901855 L 98.25304985046387 189.00004386901855 L 98.25304985046387 192.0000457763672 L 118.8759994506836 192.0000457763672 L 118.8759994506836 189.00004386901855"/>
-  <path class="GlobalId-0XazL$TZvCJA699z4H9NIe IfcAnnotation PredefinedType-koper" d="M 118.8759994506836 141.00001335144043 L 98.25304985046387 141.00001335144043 L 98.25304985046387 144.00001525878906 L 118.8759994506836 144.00001525878906 L 118.8759994506836 141.00001335144043"/>
-  <path class="GlobalId-0IfZ$HSHnELQkunhe84dih IfcAnnotation PredefinedType-kunststof" d="M 118.8759994506836 159.00002479553223 L 98.25304985046387 159.00002479553223 L 98.25304985046387 162.00002670288086 L 118.8759994506836 162.00002670288086 L 118.8759994506836 159.00002479553223"/>
-  <path class="GlobalId-3dztr_gX97V8Ifms9x1iqK IfcAnnotation PredefinedType-specialesteenachtigematerialen" d="M 118.8759994506836 33.00000190734863 L 98.25304985046387 33.00000190734863 L 98.25304985046387 36.000003814697266 L 118.8759994506836 36.000003814697266 L 118.8759994506836 33.00000190734863"/>
-  <path class="GlobalId-1w3ZpOQnP8sQR6JJTwrvlc IfcAnnotation PredefinedType-maaiveld" d="M 118.8759994506836 177.00003623962402 L 98.25304985046387 177.00003623962402 L 98.25304985046387 180.00003814697266 L 118.8759994506836 180.00003814697266 L 118.8759994506836 177.00003623962402"/>
-  <path class="GlobalId-2Cu_CjQQv4hgzqrjaGE746 IfcAnnotation PredefinedType-concrete" d="M 158.8759994506836 38.999996185302734 L 138.25304985046387 38.999996185302734 L 138.25304985046387 41.99999809265137 L 158.8759994506836 41.99999809265137 L 158.8759994506836 38.999996185302734"/>
-  <path class="GlobalId-1wHjj9EmX0FuTkj6rGk1WZ IfcAnnotation PredefinedType-metselwerkbaksteen" d="M 118.8759994506836 26.999998092651367 L 98.25304985046387 26.999998092651367 L 98.25304985046387 30.0 L 118.8759994506836 30.0 L 118.8759994506836 26.999998092651367"/>
-  <path class="GlobalId-1uQJqLKtbCrQCCkhEDCkgt IfcAnnotation PredefinedType-sand" d="M 158.8759994506836 33.00000190734863 L 138.25304985046387 33.00000190734863 L 138.25304985046387 36.000003814697266 L 158.8759994506836 36.000003814697266 L 158.8759994506836 33.00000190734863"/>
-  <path class="GlobalId-01hS9KT4D3e8bfkcR$3gQr IfcAnnotation PredefinedType-enkelewandvloerafwerking" d="M 118.8759994506836 81.00000381469727 L 98.25304985046387 81.00000381469727 L 98.25304985046387 84.00000095367432 L 118.8759994506836 84.00000095367432 L 118.8759994506836 81.00000381469727"/>
-  <path class="GlobalId-3NuMJiC7P8GREt$pFBvXOK IfcAnnotation PredefinedType-samengesteldewandvloerafwerking" d="M 118.8759994506836 86.99999809265137 L 98.25304985046387 86.99999809265137 L 98.25304985046387 90.0 L 118.8759994506836 90.0 L 118.8759994506836 86.99999809265137"/>
-  <path class="GlobalId-3sMFK5Y9n27fG8wttIunnc IfcAnnotation PredefinedType-loofhout" d="M 118.8759994506836 98.99999618530273 L 98.25304985046387 98.99999618530273 L 98.25304985046387 101.99999809265137 L 118.8759994506836 101.99999809265137 L 118.8759994506836 98.99999618530273"/>
-  <path class="GlobalId-1wHjj9EmX0FuTkj6rGk1WZ IfcAnnotation PredefinedType-earth" d="M 158.8759994506836 26.999998092651367 L 138.25304985046387 26.999998092651367 L 138.25304985046387 30.0 L 158.8759994506836 30.0 L 158.8759994506836 26.999998092651367"/>
-  <path class="GlobalId-2NWTdJ2y58ZfVwoOfuroC7 IfcAnnotation PredefinedType-metselwerknietgebakkenkunststeen" d="M 118.8759994506836 38.999996185302734 L 98.25304985046387 38.999996185302734 L 98.25304985046387 41.99999809265137 L 118.8759994506836 41.99999809265137 L 118.8759994506836 38.999996185302734"/>
-  <path class="GlobalId-2QLoU09Yv26Osd3Vjr78Cq IfcAnnotation PredefinedType-metselwerknietgebakkenkunststeen" d="M 118.8759994506836 38.999996185302734 L 98.25304985046387 38.999996185302734 L 98.25304985046387 41.99999809265137 L 118.8759994506836 41.99999809265137 L 118.8759994506836 38.999996185302734"/>
-  <path class="GlobalId-39U92qQdrA3Bjl302ldGiJ IfcAnnotation PredefinedType-sand" d="M 158.8759994506836 45.0 L 138.25304985046387 45.0 L 138.25304985046387 48.00000190734863 L 158.8759994506836 48.00000190734863 L 158.8759994506836 45.0"/>
-  <path class="GlobalId-0sV2uu0G16BwDXOTfYl0Uv IfcAnnotation PredefinedType-grass" d="M 158.8759994506836 51.000003814697266 L 138.25304985046387 51.000003814697266 L 138.25304985046387 53.999996185302734 L 158.8759994506836 53.999996185302734 L 158.8759994506836 51.000003814697266"/>
-  <path class="GlobalId-1KCr_X0Vr5_hQ0M6he5MB9 IfcAnnotation PredefinedType-water" d="M 118.8759994506836 195.00005722045898 L 98.25304985046387 195.00005722045898 L 98.25304985046387 198.00004959106445 L 118.8759994506836 198.00004959106445 L 118.8759994506836 195.00005722045898"/>
-  <path class="GlobalId-19SZJV4g1DoA$YqsDz7adp IfcAnnotation PredefinedType-grind" d="M 109.97180461883545 218.60427856445312 L 60.0 218.60427856445312 L 60.0 234.03152465820312 L 109.97180461883545 234.03152465820312 L 109.97180461883545 218.60427856445312"/>
-  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(12.18297004699707, 29.001684188842773) rotate(-0.0)">
-    <tspan class="GlobalId-34PgiujS52aB6GaaSTPuLJ IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">NEN47_1_metselwerk_baksteen</tspan>
-  </text>
-  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(12.18297004699707, 35.001686096191406) rotate(-0.0)">
-    <tspan class="GlobalId-32oNFNrPr0RQLrNP3Ni6by IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">NEN47_2_speciale_steenachtige_materialen</tspan>
-  </text>
-  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(12.18297004699707, 41.00169372558594) rotate(-0.0)">
-    <tspan class="GlobalId-0or$4v$u1Cvf3MiP7VOrrX IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">NEN47_3_metselwerk_niet_gebakken_kunststeen</tspan>
-  </text>
-  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(12.18297004699707, 41.00169372558594) rotate(-0.0)">
-    <tspan class="GlobalId-0s7cCRHaD5NODHA2rQAEVK IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">NEN47_3_metselwerk_niet_gebakken_kunststeen</tspan>
-  </text>
-  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(12.18297004699707, 41.00169372558594) rotate(-0.0)">
-    <tspan class="GlobalId-3j5pwrYyH9dfPjLyp0v16p IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">NEN47_3_metselwerk_niet_gebakken_kunststeen</tspan>
-  </text>
-  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(12.18297004699707, 47.001686096191406) rotate(-0.0)">
-    <tspan class="GlobalId-3N$5BRv2z29BbjgPiIpxqt IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">NEN47_3_metselwerk_niet_gebakken_kunststeen</tspan>
-  </text>
-  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(12.18297004699707, 53.00168991088867) rotate(-0.0)">
-    <tspan class="GlobalId-0$tz0y2kP8W9y70TT9Q8VD IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">NEN47_3_metselwerk_niet_gebakken_kunststeen</tspan>
-  </text>
-  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(12.18297004699707, 59.00169372558594) rotate(-0.0)">
-    <tspan class="GlobalId-3vUshLqCj2weRVzbb0_TbM IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">NEN47_3_metselwerk_niet_gebakken_kunststeen</tspan>
-  </text>
-  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(12.18297004699707, 65.0016860961914) rotate(-0.0)">
-    <tspan class="GlobalId-242gXvIVL0Lx0vc0dgaHE9 IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">NEN47_3_metselwerk_niet_gebakken_kunststeen</tspan>
-  </text>
-  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(12.18297004699707, 71.0016860961914) rotate(-0.0)">
-    <tspan class="GlobalId-0$zHdpo9j0XhxIgDJQEKdd IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">NEN47_3_metselwerk_niet_gebakken_kunststeen</tspan>
-  </text>
-  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(12.18297004699707, 77.0016860961914) rotate(-0.0)">
-    <tspan class="GlobalId-2k4496yi14EwqGny3bHQUk IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">NEN47_3_metselwerk_niet_gebakken_kunststeen</tspan>
-  </text>
-  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(12.18297004699707, 83.00169372558594) rotate(-0.0)">
-    <tspan class="GlobalId-1XKv5u7JvD1fpy8PxKBHH_ IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">NEN47_3_metselwerk_niet_gebakken_kunststeen</tspan>
-  </text>
-  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(12.18297004699707, 89.0016860961914) rotate(-0.0)">
-    <tspan class="GlobalId-2Agi$G8Uf2Zu7ZVd9RVw2A IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">NEN47_3_metselwerk_niet_gebakken_kunststeen</tspan>
-  </text>
-  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(12.18297004699707, 95.00167846679688) rotate(-0.0)">
-    <tspan class="GlobalId-2cCxF7tgrFzffLnBdYpiD0 IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">NEN47_3_metselwerk_niet_gebakken_kunststeen</tspan>
-  </text>
-  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(12.18297004699707, 101.00167846679688) rotate(-0.0)">
-    <tspan class="GlobalId-0S05CeeCjBjeBKijeWUOb3 IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">NEN47_3_metselwerk_niet_gebakken_kunststeen</tspan>
-  </text>
-  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(12.18297004699707, 107.0016860961914) rotate(-0.0)">
-    <tspan class="GlobalId-0fbkrpS1f9muz6u9ETSg44 IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">NEN47_3_metselwerk_niet_gebakken_kunststeen</tspan>
-  </text>
-  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(12.18297004699707, 113.00167846679688) rotate(-0.0)">
-    <tspan class="GlobalId-1CbRjc5n5ENgKeaRrLbKEv IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">NEN47_3_metselwerk_niet_gebakken_kunststeen</tspan>
-  </text>
-  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(12.18297004699707, 119.0016860961914) rotate(-0.0)">
-    <tspan class="GlobalId-3dmHGAUCf4m9KvwiD3o7Zp IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">NEN47_3_metselwerk_niet_gebakken_kunststeen</tspan>
-  </text>
-  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(12.18297004699707, 125.0016860961914) rotate(-0.0)">
-    <tspan class="GlobalId-0PNqIUkeb7kP5o3R_CFWrj IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">NEN47_3_metselwerk_niet_gebakken_kunststeen</tspan>
-  </text>
-  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(12.18297004699707, 131.00169372558594) rotate(-0.0)">
-    <tspan class="GlobalId-3i3HmdkGf53RkPCNMNgg7c IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">NEN47_3_metselwerk_niet_gebakken_kunststeen</tspan>
-  </text>
-  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(12.18297004699707, 137.00169372558594) rotate(-0.0)">
-    <tspan class="GlobalId-3gL$gkTPL2ZwZ98AS8MnUs IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">NEN47_3_metselwerk_niet_gebakken_kunststeen</tspan>
-  </text>
-  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(12.18297004699707, 143.00169372558594) rotate(-0.0)">
-    <tspan class="GlobalId-3uwlrknU551AU9Dnd8jlmp IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">NEN47_3_metselwerk_niet_gebakken_kunststeen</tspan>
-  </text>
-  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(12.18297004699707, 149.001708984375) rotate(-0.0)">
-    <tspan class="GlobalId-1NLajYdqXAlQfD62KeyuBr IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">NEN47_3_metselwerk_niet_gebakken_kunststeen</tspan>
-  </text>
-  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(12.18297004699707, 155.001708984375) rotate(-0.0)">
-    <tspan class="GlobalId-3UuvBfaEf53wbp2TK5uHEY IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">NEN47_3_metselwerk_niet_gebakken_kunststeen</tspan>
-  </text>
-  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(12.18297004699707, 161.001708984375) rotate(-0.0)">
-    <tspan class="GlobalId-1zMcaukyD3BP4JfSskakP5 IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">NEN47_3_metselwerk_niet_gebakken_kunststeen</tspan>
-  </text>
-  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(12.18297004699707, 167.00172424316406) rotate(-0.0)">
-    <tspan class="GlobalId-2h1ai85IbAfvabfyOgZRFX IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">NEN47_3_metselwerk_niet_gebakken_kunststeen</tspan>
-  </text>
-  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(12.18297004699707, 173.001708984375) rotate(-0.0)">
-    <tspan class="GlobalId-3Qcj6bayXFyRG2YClaYAcH IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">NEN47_3_metselwerk_niet_gebakken_kunststeen</tspan>
-  </text>
-  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(12.18297004699707, 179.00173950195312) rotate(-0.0)">
-    <tspan class="GlobalId-0yeTBNTRb4kvGvnqWU5OPs IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">NEN47_3_metselwerk_niet_gebakken_kunststeen</tspan>
-  </text>
-  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(12.18297004699707, 185.001708984375) rotate(-0.0)">
-    <tspan class="GlobalId-3d9NPqkI5EUwTncXcMg$Sb IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">NEN47_3_metselwerk_niet_gebakken_kunststeen</tspan>
-  </text>
-  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(12.18297004699707, 191.00172424316406) rotate(-0.0)">
-    <tspan class="GlobalId-2s4F1sihb7JPa9sCTwHwQN IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">NEN47_3_metselwerk_niet_gebakken_kunststeen</tspan>
-  </text>
-  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(12.18297004699707, 197.00172424316406) rotate(-0.0)">
-    <tspan class="GlobalId-2gb$onAZ59CfNMKEYwpVvo IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">NEN47_28_water</tspan>
-  </text>
-  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(12.18297004699707, 20.655384063720703) rotate(-0.0)">
-    <tspan class="GlobalId-1886q1mBj5lfICb0beEVZP IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">svg werkt niet om onduidelijke redenen</tspan>
-  </text>
-  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(35.16950607299805, 190.4195556640625) rotate(-0.0)">
-    <tspan class="GlobalId-0xQmDMqErEOAAwv0COexge IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">ARCERINGEN NEN47</tspan>
-  </text>
-  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(35.16950607299805, 184.8297882080078) rotate(-0.0)">
-    <tspan class="GlobalId-26SwCICMDBPPpyNiaDb6pP IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">ARCERINGEN NEN47</tspan>
-  </text>
+  <path class="GlobalId-0fRzrVLtT5eBz7cMUp$1Vt IfcAnnotation PredefinedType-metselwerkbaksteen" d="M 22.916693687438965 60.62793016433716 L 41.666693687438965 60.62793016433716 L 41.666693687438965 23.127927780151367 L 22.916693687438965 23.127927780151367 L 22.916693687438965 60.62793016433716"/>
 </svg>

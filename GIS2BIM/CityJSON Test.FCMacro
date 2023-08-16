@@ -1,0 +1,39 @@
+import json
+import FreeCAD
+import Mesh
+
+jsonFile = "C:/TEMP/test.json"
+dX ="104969"
+dY ="425360"
+LODNumber = "1.2"
+bboxWidth = 500;
+bboxHeight = 500;
+
+#Import CityJSON File, jsonfilename, dx and dy in string/meters. Proof of Concept, very buggy and incomplete.
+#layer = FreeCAD.CreateLayer("CityJSON")
+data = json.load(open(jsonFile,))
+vert = data['vertices']
+cityobj = data['CityObjects']
+translate = data['transform']['translate']
+scaleX = data['transform']['scale'][0]
+scaleY = data['transform']['scale'][1]
+scaleZ = data['transform']['scale'][2]
+translatex = (translate[0] -float(dX))/scaleX
+translatey = (translate[1] -float(dY))/scaleY
+translatez = -translate[2]/scaleZ
+
+meshes = []
+for i in cityobj:
+	objName = i
+	try:
+		for j in data['CityObjects'][objName]['geometry'][2]['boundaries']:
+			facets = []
+			for k in j:
+	                	#coord = (str(vert[k[0][0]]+translatex), str(vert[k[0][1]]+translatey))
+	                	facets.append(((vert[k[0][0]][0]+translatex, vert[k[0][0]][1]+translatey, vert[k[0][0]][2]+translatez),(vert[k[0][1]][0]+translatex, vert[k[0][1]][1]+translatey, vert[k[0][1]][2]+translatez),(vert[k[0][2]][0]+translatex, vert[k[0][2]][1]+translatey, vert[k[0][2]][2]+translatez)))
+			m = Mesh.Mesh(facets)
+			f = FreeCAD.activeDocument().addObject("Mesh::Feature", objName)
+			f.Mesh = m
+			meshes.append(f)
+			FreeCAD.activeDocument().getObject("CityJSON").addObject(f)
+	except: pass
