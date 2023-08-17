@@ -50,10 +50,10 @@
 	<line x1="3" y1="3" x2="6" y2="0" style="stroke:black; stroke-width:0.15" />
 	<line x1="0" y1="2" x2="6" y2="2" style="stroke:black; stroke-width:0.15" />
 </pattern>
-<pattern id="NEN47_17_isolatie_200" width="3.64" height="3" patternTransform="rotate(0 0 0) scale(2 2)" patternUnits="userSpaceOnUse">
+<pattern id="NEN47_17_isolatie_200" width="1.5" height="1.5" patternTransform="rotate(0 0 0) scale(2 2)" patternUnits="userSpaceOnUse">
     no_background
-	<line x1="0" y1="0" x2="1.82" y2="3" style="stroke:black; stroke-width:0.15" />
-	<line x1="1.82" y1="3" x2="3.64" y2="0" style="stroke:black; stroke-width:0.15" />
+	<line x1="0" y1="0" x2="1.5" y2="1.5" style="stroke:black; stroke-width:0.15" />
+	<line x1="0" y1="1.5" x2="1.5" y2="0" style="stroke:black; stroke-width:0.15" />
 </pattern>
 <pattern id="NEN47_25_maaiveld_200" width="20" height="10" patternTransform="rotate(0 0 0) scale(2 2)" patternUnits="userSpaceOnUse">
     no_background
@@ -98,7 +98,7 @@
    <line x1="0" y1="0" x2="0" y2="2" style="stroke:black; stroke-width:0.2" />
 </pattern>
 <pattern id="CUST_NEN47_3_metselwerk_niet_gebakken_kunststeen_200" width="1.5" height="1.5" patternTransform="rotate(45 0 0) scale(2 2)" patternUnits="userSpaceOnUse">
-	<path style="fill: #515151;" d="M 0 0 1.5 0 1.5 1.5 0 1.5" />
+	<path style="fill: #C0C0C0;" d="M 0 0 1.5 0 1.5 1.5 0 1.5" />
    <line x1="0" y1="0" x2="0" y2="1.5" style="stroke:black; stroke-width:0.25" />
 </pattern>
 <pattern id="CUST_NEN47_4_niet_dragende_lichte_scheidingswanden_200" width="6" height="3" patternTransform="rotate(0 0 0) scale(2 2)" patternUnits="userSpaceOnUse">
@@ -142,10 +142,10 @@
 	<line x1="3" y1="3" x2="6" y2="0" style="stroke:black; stroke-width:0.15" />
 	<line x1="0" y1="2" x2="6" y2="2" style="stroke:black; stroke-width:0.15" />
 </pattern>
-<pattern id="CUST_NEN47_17_isolatie_200" width="3.64" height="3" patternTransform="rotate(0 0 0) scale(2 2)" patternUnits="userSpaceOnUse">
+<pattern id="CUST_NEN47_17_isolatie_200" width="1.5" height="1.5" patternTransform="rotate(0 0 0) scale(2 2)" patternUnits="userSpaceOnUse">
     <path style="fill: #FFF0A0;" d="M 0 0 3.64 0 3.64 3.64 0 3.64" />
-	<line x1="0" y1="0" x2="1.82" y2="3" style="stroke:black; stroke-width:0.15" />
-	<line x1="1.82" y1="3" x2="3.64" y2="0" style="stroke:black; stroke-width:0.15" />
+	<line x1="0" y1="0" x2="1.5" y2="1.5" style="stroke:black; stroke-width:0.15" />
+	<line x1="0" y1="1.5" x2="1.5" y2="0" style="stroke:black; stroke-width:0.15" />
 </pattern>
 <pattern id="CUST_NEN47_25_maaiveld_200" width="20" height="10" patternTransform="rotate(0 0 0) scale(2 2)" patternUnits="userSpaceOnUse">
     <path style="fill: #DFE6D0;" d="M 0 0 20 0 20 20 0 20" />
@@ -184,6 +184,10 @@
 	<path d="M0 2.5 A1.25 1 0 0 0 2.5 2.5" style="fill: #CDE6ED; stroke:black; stroke-width:0.15"/>
 	<path d="M2.5 2.5 A1.25 1 0 1 1 5 2.5" style="fill: #CDE6ED; stroke:black; stroke-width:0.15"/>
 </pattern>
+<pattern id="CUST_NEN47_3_metselwerk_niet_gebakken_kunststeen_200" width="1.5" height="1.5" patternTransform="rotate(45 0 0) scale(2 2)" patternUnits="userSpaceOnUse">
+	<path style="fill: #C0C0C0;" d="M 0 0 1.5 0 1.5 1.5 0 1.5" />
+   <line x1="0" y1="0" x2="0" y2="1.5" style="stroke:black; stroke-width:0.25" />
+</pattern>
 <pattern id="CUST_NEN47_9_natuursteen_hardsteen_200" width="1.5" height="1.5" patternTransform="rotate(135 0 0) scale(2 2)" patternUnits="userSpaceOnUse">
     <path style="fill: #403E48;" d="M 0 0 1.5 0 1.5 1.5 0 1.5" />
 	<line x1="0" y1="0" x2="1.5" y2="0" style="stroke:black; stroke-width:0.15" />
@@ -209,40 +213,40 @@
 	<line x1="0" y1="0" x2="1.5" y2="0" style="stroke:black; stroke-width:0.15" />
 	<line x1="0" y1="0.75" x2="0.75" y2="0.75" style="stroke:black; stroke-width:0.15" />
 </pattern>
-<pattern id="CUST_NEN47_17_isolatie_glaswol_200" width="3.64" height="3" patternTransform="rotate(0 0 0) scale(2 2)" patternUnits="userSpaceOnUse">
+<pattern id="CUST_NEN47_17_isolatie_glaswol_200" width="1.5" height="1.5" patternTransform="rotate(0 0 0) scale(2 2)" patternUnits="userSpaceOnUse">
     <path style="fill: #FFF0A0;" d="M 0 0 3.64 0 3.64 3.64 0 3.64" />
-	<line x1="0" y1="0" x2="1.82" y2="3" style="stroke:black; stroke-width:0.15" />
-	<line x1="1.82" y1="3" x2="3.64" y2="0" style="stroke:black; stroke-width:0.15" />
+	<line x1="0" y1="0" x2="1.5" y2="1.5" style="stroke:black; stroke-width:0.15" />
+	<line x1="0" y1="1.5" x2="1.5" y2="0" style="stroke:black; stroke-width:0.15" />
 </pattern>
-<pattern id="CUST_NEN47_17_isolatie_steenwol_200" width="3.64" height="3" patternTransform="rotate(0 0 0) scale(2 2)" patternUnits="userSpaceOnUse">
+<pattern id="CUST_NEN47_17_isolatie_steenwol_200" width="1.5" height="1.5" patternTransform="rotate(0 0 0) scale(2 2)" patternUnits="userSpaceOnUse">
     <path style="fill: #BE6B69;" d="M 0 0 3.64 0 3.64 3.64 0 3.64" />
-	<line x1="0" y1="0" x2="1.82" y2="3" style="stroke:black; stroke-width:0.15" />
-	<line x1="1.82" y1="3" x2="3.64" y2="0" style="stroke:black; stroke-width:0.15" />
+	<line x1="0" y1="0" x2="1.5" y2="1.5" style="stroke:black; stroke-width:0.15" />
+	<line x1="0" y1="1.5" x2="1.5" y2="0" style="stroke:black; stroke-width:0.15" />
 </pattern>
-<pattern id="CUST_NEN47_17_isolatie_PIR_200" width="3.64" height="3" patternTransform="rotate(0 0 0) scale(2 2)" patternUnits="userSpaceOnUse">
+<pattern id="CUST_NEN47_17_isolatie_PIR_200" width="1.5" height="1.5" patternTransform="rotate(0 0 0) scale(2 2)" patternUnits="userSpaceOnUse">
     <path style="fill: #F5EBC3;" d="M 0 0 3.64 0 3.64 3.64 0 3.64" />
-	<line x1="0" y1="0" x2="1.82" y2="3" style="stroke:black; stroke-width:0.15" />
-	<line x1="1.82" y1="3" x2="3.64" y2="0" style="stroke:black; stroke-width:0.15" />
+	<line x1="0" y1="0" x2="1.5" y2="1.5" style="stroke:black; stroke-width:0.15" />
+	<line x1="0" y1="1.5" x2="1.5" y2="0" style="stroke:black; stroke-width:0.15" />
 </pattern>
-<pattern id="CUST_NEN47_17_isolatie_kooltherm_200" width="3.64" height="3" patternTransform="rotate(0 0 0) scale(2 2)" patternUnits="userSpaceOnUse">
+<pattern id="CUST_NEN47_17_isolatie_kooltherm_200" width="1.5" height="1.5" patternTransform="rotate(0 0 0) scale(2 2)" patternUnits="userSpaceOnUse">
     <path style="fill: #DC9B8C;" d="M 0 0 3.64 0 3.64 3.64 0 3.64" />
-	<line x1="0" y1="0" x2="1.82" y2="3" style="stroke:black; stroke-width:0.15" />
-	<line x1="1.82" y1="3" x2="3.64" y2="0" style="stroke:black; stroke-width:0.15" />
+	<line x1="0" y1="0" x2="1.5" y2="1.5" style="stroke:black; stroke-width:0.15" />
+	<line x1="0" y1="1.5" x2="1.5" y2="0" style="stroke:black; stroke-width:0.15" />
 </pattern>
-<pattern id="CUST_NEN47_17_isolatie_PUR_200" width="3.64" height="3" patternTransform="rotate(0 0 0) scale(2 2)" patternUnits="userSpaceOnUse">
+<pattern id="CUST_NEN47_17_isolatie_PUR_200" width="1.5" height="1.5" patternTransform="rotate(0 0 0) scale(2 2)" patternUnits="userSpaceOnUse">
     <path style="fill: #D9D3B4;" d="M 0 0 3.64 0 3.64 3.64 0 3.64" />
-	<line x1="0" y1="0" x2="1.82" y2="3" style="stroke:black; stroke-width:0.15" />
-	<line x1="1.82" y1="3" x2="3.64" y2="0" style="stroke:black; stroke-width:0.15" />
+	<line x1="0" y1="0" x2="1.5" y2="1.5" style="stroke:black; stroke-width:0.15" />
+	<line x1="0" y1="1.5" x2="1.5" y2="0" style="stroke:black; stroke-width:0.15" />
 </pattern>
-<pattern id="CUST_NEN47_17_isolatie_EPS_200" width="3.64" height="3" patternTransform="rotate(0 0 0) scale(2 2)" patternUnits="userSpaceOnUse">
+<pattern id="CUST_NEN47_17_isolatie_EPS_200" width="1.5" height="1.5" patternTransform="rotate(0 0 0) scale(2 2)" patternUnits="userSpaceOnUse">
     <path style="fill: #DCDCE1;" d="M 0 0 3.64 0 3.64 3.64 0 3.64" />
-	<line x1="0" y1="0" x2="1.82" y2="3" style="stroke:black; stroke-width:0.15" />
-	<line x1="1.82" y1="3" x2="3.64" y2="0" style="stroke:black; stroke-width:0.15" />
+	<line x1="0" y1="0" x2="1.5" y2="1.5" style="stroke:black; stroke-width:0.15" />
+	<line x1="0" y1="1.5" x2="1.5" y2="0" style="stroke:black; stroke-width:0.15" />
 </pattern>
-<pattern id="CUST_NEN47_17_isolatie_EPS100_200" width="3.64" height="3" patternTransform="rotate(0 0 0) scale(2 2)" patternUnits="userSpaceOnUse">
+<pattern id="CUST_NEN47_17_isolatie_EPS100_200" width="1.5" height="1.5" patternTransform="rotate(0 0 0) scale(2 2)" patternUnits="userSpaceOnUse">
     <path style="fill: #DCDCE1;" d="M 0 0 3.64 0 3.64 3.64 0 3.64" />
-	<line x1="0" y1="0" x2="1.82" y2="3" style="stroke:black; stroke-width:0.15" />
-	<line x1="1.82" y1="3" x2="3.64" y2="0" style="stroke:black; stroke-width:0.15" />
+	<line x1="0" y1="0" x2="1.5" y2="1.5" style="stroke:black; stroke-width:0.15" />
+	<line x1="0" y1="1.5" x2="1.5" y2="0" style="stroke:black; stroke-width:0.15" />
 </pattern>
 <pattern id="CUST_NEN47_25_maaiveld_grond_200" width="20" height="10" patternTransform="rotate(0 0 0) scale(2 2)" patternUnits="userSpaceOnUse">
     <path style="fill: #3E393D;" d="M 0 0 20 0 20 20 0 20" />

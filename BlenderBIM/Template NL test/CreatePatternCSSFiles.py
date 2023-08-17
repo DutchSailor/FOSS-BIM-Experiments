@@ -95,10 +95,16 @@ NEN47_16_bekledingsplaat = '<pattern id="NEN47_16_bekledingsplaat" width="1.5" h
 '	<line x1="0" y1="0" x2="1.5" y2="0" style="stroke:black; stroke-width:0.15" />\n' \
 '</pattern>\n' \
 
-NEN47_17_isolatie = '<pattern id="NEN47_17_isolatie" width="3.64" height="3" patternTransform="rotate(0 0 0) scale(1 1)" patternUnits="userSpaceOnUse">\n' \
+NEN47_17_isolatie_60_GRADEN = '<pattern id="NEN47_17_isolatie" width="3.64" height="3" patternTransform="rotate(0 0 0) scale(1 1)" patternUnits="userSpaceOnUse">\n' \
 '    NEN47_17_isolatie_background\n' \
 '	<line x1="0" y1="0" x2="1.82" y2="3" style="stroke:black; stroke-width:0.15" />\n' \
 '	<line x1="1.82" y1="3" x2="3.64" y2="0" style="stroke:black; stroke-width:0.15" />\n' \
+'</pattern>\n' \
+
+NEN47_17_isolatie = '<pattern id="NEN47_17_isolatie" width="1.5" height="1.5" patternTransform="rotate(0 0 0) scale(1 1)" patternUnits="userSpaceOnUse">\n' \
+'    NEN47_17_isolatie_background\n' \
+'	<line x1="0" y1="0" x2="1.5" y2="1.5" style="stroke:black; stroke-width:0.15" />\n' \
+'	<line x1="0" y1="1.5" x2="1.5" y2="0" style="stroke:black; stroke-width:0.15" />\n' \
 '</pattern>\n' \
 
 NEN47_18_staal = '<pattern id="NEN47_18_staal" width="3" height="3" patternTransform="rotate(0 0 0) scale(1 1)" patternUnits="userSpaceOnUse">\n' \
@@ -314,27 +320,28 @@ from pandas_ods_reader import read_ods
 import os
 import sys
 
-basepath = "C:/Users/mikev/Documents/GitHub/FOSS-BIM-Experiments/BlenderBIM/Template NL test/"
+basepath = "C:/Users/mikev/Documents/GitHub/FOSS-BIM-Experiments/BlenderBIM/Template NL test/drawings/assets/"
+basepath_library = "C:/Users/mikev/Documents/GitHub/FOSS-BIM-Experiments/BlenderBIM/Template NL test/"
 
-path_library = basepath + "Library.ods"
+path_library = basepath_library + "Library.ods"
 
-new_path_patterns_200 = basepath + "patterns/patterns_BWK_200.svg"
-new_path_patterns_100 = basepath + "patterns/patterns_BWK_100.svg"
-new_path_patterns_50 = basepath + "patterns/patterns_BWK_50.svg"
-new_path_patterns_20 = basepath + "patterns/patterns_BWK_20.svg"
-new_path_patterns_10 = basepath + "patterns/patterns_BWK_10.svg"
-new_path_patterns_5 = basepath + "patterns/patterns_BWK_5.svg"
-new_path_patterns_2 = basepath + "patterns/patterns_BWK_2.svg"
-new_path_patterns_1 = basepath + "patterns/patterns_BWK_1.svg"
+new_path_patterns_200 = basepath + "patterns_BWK_200.svg"
+new_path_patterns_100 = basepath + "patterns_BWK_100.svg"
+new_path_patterns_50 = basepath + "patterns_BWK_50.svg"
+new_path_patterns_20 = basepath + "patterns_BWK_20.svg"
+new_path_patterns_10 = basepath + "patterns_BWK_10.svg"
+new_path_patterns_5 = basepath + "patterns_BWK_5.svg"
+new_path_patterns_2 = basepath + "patterns_BWK_2.svg"
+new_path_patterns_1 = basepath + "patterns_BWK_1.svg"
 
-new_path_css_200 = basepath + "css/NL_stylesheet_BWK_1_200.css"
-new_path_css_100 = basepath + "css/NL_stylesheet_BWK_1_100.css"
-new_path_css_50 = basepath + "css/NL_stylesheet_BWK_1_50.css"
-new_path_css_20 = basepath + "css/NL_stylesheet_BWK_1_20.css"
-new_path_css_10 = basepath + "css/NL_stylesheet_BWK_1_10.css"
-new_path_css_5 = basepath + "css/NL_stylesheet_BWK_1_5.css"
-new_path_css_2 = basepath + "css/NL_stylesheet_BWK_1_2.css"
-new_path_css_1 = basepath + "css/NL_stylesheet_BWK_1_1.css"
+new_path_css_200 = basepath + "NL_stylesheet_BWK_1_200.css"
+new_path_css_100 = basepath + "NL_stylesheet_BWK_1_100.css"
+new_path_css_50 = basepath + "NL_stylesheet_BWK_1_50.css"
+new_path_css_20 = basepath + "NL_stylesheet_BWK_1_20.css"
+new_path_css_10 = basepath + "NL_stylesheet_BWK_1_10.css"
+new_path_css_5 = basepath + "NL_stylesheet_BWK_1_5.css"
+new_path_css_2 = basepath + "NL_stylesheet_BWK_1_2.css"
+new_path_css_1 = basepath + "NL_stylesheet_BWK_1_1.css"
 
 paths = [
 new_path_patterns_200,
@@ -432,27 +439,27 @@ for ind in library_mat.index:
 
     scale_1_50 = library_mat["1_50"][ind]
     if scale_1_50:
-        scales.append(["1:50", 0.5, "_50", css_file_50, patterns_file_50])
+        scales.append(["1:50", 0.75, "_50", css_file_50, patterns_file_50])
 
     scale_1_20 = library_mat["1_20"][ind]
     if scale_1_20:
-        scales.append(["1:20", 0.2, "_20", css_file_20, patterns_file_20])
+        scales.append(["1:20", 0.5, "_20", css_file_20, patterns_file_20])
 
     scale_1_10 = library_mat["1_10"][ind]
     if scale_1_10:
-        scales.append(["1:10", 0.1, "_10", css_file_10, patterns_file_10])
+        scales.append(["1:10", 0.4, "_10", css_file_10, patterns_file_10])
 
     scale_1_5 = library_mat["1_5"][ind]
     if scale_1_5:
-        scales.append(["1:5", 0.05, "_5", css_file_5, patterns_file_5])
+        scales.append(["1:5", 0.3, "_5", css_file_5, patterns_file_5])
 
     scale_1_2 = library_mat["1_2"][ind]
     if scale_1_2:
-        scales.append(["1:2", 0.02, "_2", css_file_2, patterns_file_2])
+        scales.append(["1:2", 0.2, "_2", css_file_2, patterns_file_2])
 
     scale_1_1 = library_mat["1_1"][ind]
     if scale_1_1:
-        scales.append(["1:1", 0.01, "_1", css_file_1, patterns_file_1])
+        scales.append(["1:1", 0.1, "_1", css_file_1, patterns_file_1])
     #list created with applicable scales of this pattern
 
     for i in scales:

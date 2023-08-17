@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ifc="http://www.ifcopenshell.org/ns" width="200mm" height="200mm" viewBox="0 0 200 200">
+    <defs>
+        <marker id="arrowend" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+          <polygon points="0 0, 10 3.5, 0 7"/>
+        </marker>
+        <marker id="arrowstart" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+          <polygon points="10 0, 0 3.5, 10 7"/>
+        </marker>
+    </defs>
+    <g ifc:name="Elevation MY STOREY PLAN" class="section" ifc:plane="[[1.000000,0.000000,0.000000,0.000000],[0.000000,1.000000,0.000000,0.000000],[0.000000,0.000000,1.000000,1.600000],[0.000000,0.000000,0.000000,1.000000]]" ifc:matrix3="[[20.000000,0.000000,87.549496],[0.000000,20.000000,120.212330],[0.000000,0.000000,1.000000]]">
+        <g class="projection">
+            <path d="M141.852,115.412 L94.7495,115.412"/>
+            <path d="M141.852,113.012 L141.852,115.412"/>
+            <path d="M94.7495,113.012 L141.852,113.012"/>
+            <path d="M94.7495,115.412 L94.7495,113.012"/>
+            <path d="M94.7495,60 L94.7495,115.412"/>
+            <path d="M92.3495,60 L94.7495,60"/>
+            <path d="M92.3495,115.412 L92.3495,60"/>
+            <path d="M94.7495,115.412 L92.3495,115.412"/>
+            <path d="M92.3495,60 L92.3495,115.412"/>
+            <path d="M90.3495,60 L92.3495,60"/>
+            <path d="M90.3495,115.412 L90.3495,60"/>
+            <path d="M92.3495,115.412 L90.3495,115.412"/>
+            <path d="M141.852,117.412 L90.3495,117.412"/>
+            <path d="M141.852,115.412 L141.852,117.412"/>
+            <path d="M90.3495,115.412 L141.852,115.412"/>
+            <path d="M90.3495,117.412 L90.3495,115.412"/>
+            <path d="M89.5495,60 L89.5495,118.212"/>
+            <path d="M87.5495,60 L89.5495,60"/>
+            <path d="M87.5495,118.212 L87.5495,60"/>
+            <path d="M89.5495,118.212 L87.5495,118.212"/>
+            <path d="M141.852,120.212 L87.5495,120.212"/>
+            <path d="M141.852,118.212 L141.852,120.212"/>
+            <path d="M87.5495,118.212 L141.852,118.212"/>
+            <path d="M87.5495,120.212 L87.5495,118.212"/>
+        </g>
+    <g class="material-metselwerkbaksteenporiso 2yS2Ny2d5FW9s_PJveCj2M IfcWall 3tkZnE1sDCAP8iOzTp6h7o cut"><path d="M89.5,60.0 L87.5,60.0 L87.5,118.2 L87.5,120.2 L141.9,120.2 L141.9,118.2 L89.5,118.2 Z"/></g><g class="1WvAMavkj1ihmENPnov18r IfcWall material-isolatie cut 1hGZ4lkX56e9KH9v6rj9OD"><path d="M92.3,60.0 L90.3,60.0 L90.3,115.4 L90.3,117.4 L141.9,117.4 L141.9,115.4 L92.3,115.4 Z"/></g><g class="3eTTsTnzL0iuCgeeL_voN4 IfcWall 02ljVwucL9hOUhiYpEzwHn cut material-metselwerknietgebakkenkunststeen"><path d="M94.7,60.0 L92.3,60.0 L92.3,115.4 L94.7,115.4 L141.9,115.4 L141.9,113.0 L94.7,113.0 Z"/></g></g>
+</svg>

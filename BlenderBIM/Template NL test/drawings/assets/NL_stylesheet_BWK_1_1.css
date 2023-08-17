@@ -113,6 +113,7 @@ text, tspan { /* 2.5mm */ fill: black; stroke: none; font-family: 'OpenGost Type
 .PredefinedType-metselwerkbaksteencement{ fill: url(  #CUST_NEN47_1_metselwerk_baksteen_cement_1); }
 .PredefinedType-metselwerkbaksteentras{ fill: url(  #CUST_NEN47_1_metselwerk_baksteen_tras_1); }
 .PredefinedType-metselwerkbaksteenkalk{ fill: url(  #CUST_NEN47_1_metselwerk_baksteen_kalk_1); }
+.PredefinedType-kalkzandsteen{ fill: url(  #CUST_NEN47_3_metselwerk_niet_gebakken_kunststeen_1); }
 .PredefinedType-natuursteenhardsteen{ fill: url(  #CUST_NEN47_9_natuursteen_hardsteen_1); }
 .PredefinedType-natuursteenzandsteen{ fill: url(  #CUST_NEN47_9_natuursteen_zandsteen_1); }
 .PredefinedType-natuursteenkalksteen{ fill: url(  #CUST_NEN47_9_natuursteen_kalksteen_1); }
@@ -210,6 +211,7 @@ text, tspan { /* 2.5mm */ fill: black; stroke: none; font-family: 'OpenGost Type
 .material-metselwerkbaksteencement{ fill: url(  #CUST_NEN47_1_metselwerk_baksteen_cement_1); }
 .material-metselwerkbaksteentras{ fill: url(  #CUST_NEN47_1_metselwerk_baksteen_tras_1); }
 .material-metselwerkbaksteenkalk{ fill: url(  #CUST_NEN47_1_metselwerk_baksteen_kalk_1); }
+.material-kalkzandsteen{ fill: url(  #CUST_NEN47_3_metselwerk_niet_gebakken_kunststeen_1); }
 .material-natuursteenhardsteen{ fill: url(  #CUST_NEN47_9_natuursteen_hardsteen_1); }
 .material-natuursteenzandsteen{ fill: url(  #CUST_NEN47_9_natuursteen_zandsteen_1); }
 .material-natuursteenkalksteen{ fill: url(  #CUST_NEN47_9_natuursteen_kalksteen_1); }

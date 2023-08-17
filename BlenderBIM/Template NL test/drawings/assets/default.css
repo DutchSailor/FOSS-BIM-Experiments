@@ -165,9 +165,9 @@ text, tspan { /* 2.5mm */ fill: black; stroke: none; font-family: 'OpenGost Type
 /*
  NL Materials
  */
-.material-metselwerkbaksteen { fill: url(#NEN47_1_metselwerk_baksteen); }
+.material-metselwerk { fill: url(#CUST_NEN47_1_metselwerk_baksteen_50); }
 .material-specialesteenachtigematerialen { fill: url(#NEN47_2_speciale_steenachtige_materialen); }
-.material-metselwerknietgebakkenkunststeen { fill: url(#NEN47_3_metselwerk_niet_gebakken_kunststeen); }
+.material-kalkzandsteen { fill: url(#CUST_NEN47_3_metselwerk_niet_gebakken_kunststeen_50); }
 .material-nietdragendelichtescheidingswanden { fill: url(#NEN47_4_niet_dragende_lichte_scheidingswanden); }
 .material-gewapendbetontpg { fill: url(#NEN47_5_gewapend_beton_tpg); }
 .material-gewapendbetonprefab { fill: url(#NEN47_6_gewapend_beton_prefab); }
@@ -180,7 +180,7 @@ text, tspan { /* 2.5mm */ fill: black; stroke: none; font-family: 'OpenGost Type
 .material-loofhout { fill: url(#NEN47_13_loofhout); }
 .material-naaldloofhoutlangsarcering { fill: url(#NEN47_14_naald_loofhout_langsarcering); }
 .material-bekledingsplaat { fill: url(#NEN47_16_bekledingsplaat); }
-.material-isolatie { fill: url(#NEN47_17_isolatie); }
+.material-isolatie { fill: url(#CUST_NEN47_17_isolatie_50); }
 .material-staal { fill: url(#NEN47_18_staal); }
 .material-aluminiumbronskoper { fill: url(#NEN47_19_aluminium_brons_koper); }
 .material-lood { fill: url(#NEN47_20_lood); }

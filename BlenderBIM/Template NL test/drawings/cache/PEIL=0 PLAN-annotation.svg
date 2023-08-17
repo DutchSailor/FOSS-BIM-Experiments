@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:ifc="http://www.ifcopenshell.org/ns" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" data-scale="1:100" height="500.0mm" id="root" version="1.1" viewBox="0 0 500.0 500.0" width="500.0mm">
+  <defs/>
+  <use transform="translate(255.0, 208.95001220703125) rotate(-0.0) scale(1.0)" xlink:href="#wall-tag"/>
+  <text dominant-baseline="middle" style="font-size: 0;" text-anchor="middle" transform="translate(255.0, 208.95001220703125) rotate(-0.0)">
+    <tspan class="GlobalId-1w8HlUp09AIwNW6ssovuAu IfcAnnotation PredefinedType-TEXT" dy="0em" x="0" y="0">mw_210</tspan>
+  </text>
+  <text dominant-baseline="middle" style="font-size: 0;" text-anchor="middle" transform="translate(255.0, 208.95001220703125) rotate(-0.0)">
+    <tspan class="GlobalId-1w8HlUp09AIwNW6ssovuAu IfcAnnotation PredefinedType-TEXT" dy="1em" x="0" y="0">mw_210</tspan>
+  </text>
+  <use transform="translate(223.2186737060547, 179.4499969482422) rotate(-0.0) scale(1.0)" xlink:href="#wall-tag"/>
+  <text dominant-baseline="middle" style="font-size: 0;" text-anchor="middle" transform="translate(223.2186737060547, 179.4499969482422) rotate(-0.0)">
+    <tspan class="GlobalId-2OFaTa1WX0VO6sMZRt7xU5 IfcAnnotation PredefinedType-TEXT" dy="0em" x="0" y="0">isolatie_pir_110</tspan>
+  </text>
+  <text dominant-baseline="middle" style="font-size: 0;" text-anchor="middle" transform="translate(223.2186737060547, 179.4499969482422) rotate(-0.0)">
+    <tspan class="GlobalId-2OFaTa1WX0VO6sMZRt7xU5 IfcAnnotation PredefinedType-TEXT" dy="1em" x="0" y="0">isolatie_pir_110</tspan>
+  </text>
+  <use transform="translate(223.2186737060547, 199.5) rotate(-0.0) scale(1.0)" xlink:href="#wall-tag"/>
+  <text dominant-baseline="middle" style="font-size: 0;" text-anchor="middle" transform="translate(223.2186737060547, 199.5) rotate(-0.0)">
+    <tspan class="GlobalId-2FUw1DwVjEfxinggz0Vp5V IfcAnnotation PredefinedType-TEXT" dy="0em" x="0" y="0">isolatie_100</tspan>
+  </text>
+  <text dominant-baseline="middle" style="font-size: 0;" text-anchor="middle" transform="translate(223.2186737060547, 199.5) rotate(-0.0)">
+    <tspan class="GlobalId-2FUw1DwVjEfxinggz0Vp5V IfcAnnotation PredefinedType-TEXT" dy="1em" x="0" y="0">isolatie_100</tspan>
+  </text>
+  <use transform="translate(223.2186737060547, 189.5) rotate(-0.0) scale(1.0)" xlink:href="#wall-tag"/>
+  <text dominant-baseline="middle" style="font-size: 0;" text-anchor="middle" transform="translate(223.2186737060547, 189.5) rotate(-0.0)">
+    <tspan class="GlobalId-0DlnEJdO9DZBPwXga4RlQx IfcAnnotation PredefinedType-TEXT" dy="0em" x="0" y="0">isolatie_pir_100</tspan>
+  </text>
+  <text dominant-baseline="middle" style="font-size: 0;" text-anchor="middle" transform="translate(223.2186737060547, 189.5) rotate(-0.0)">
+    <tspan class="GlobalId-0DlnEJdO9DZBPwXga4RlQx IfcAnnotation PredefinedType-TEXT" dy="1em" x="0" y="0">isolatie_pir_100</tspan>
+  </text>
+</svg>

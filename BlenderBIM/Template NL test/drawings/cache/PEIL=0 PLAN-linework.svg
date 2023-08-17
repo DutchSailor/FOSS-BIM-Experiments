@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ifc="http://www.ifcopenshell.org/ns" width="500mm" height="500mm" viewBox="0 0 500 500">
+    <defs>
+        <marker id="arrowend" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+          <polygon points="0 0, 10 3.5, 0 7"/>
+        </marker>
+        <marker id="arrowstart" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+          <polygon points="10 0, 0 3.5, 10 7"/>
+        </marker>
+    </defs>
+    <g ifc:name="Elevation PEIL=0 PLAN" class="section" ifc:plane="[[1.000000,0.000000,0.000000,0.000000],[0.000000,1.000000,0.000000,0.000000],[0.000000,0.000000,1.000000,1.600000],[0.000000,0.000000,0.000000,1.000000]]" ifc:matrix3="[[10.000000,0.000000,249.999995],[0.000000,10.000000,249.999995],[0.000000,0.000000,1.000000]]">
+        <g class="projection">
+            <path d="M260,40 L250,40"/>
+            <path d="M260,37.5 L260,40"/>
+            <path d="M250,37.5 L260,37.5"/>
+            <path d="M250,40 L250,37.5"/>
+            <path d="M260,120 L250,120"/>
+            <path d="M260,117.86 L260,120"/>
+            <path d="M250,117.86 L260,117.86"/>
+            <path d="M250,120 L250,117.86"/>
+            <path d="M260,10 L250,10"/>
+            <path d="M260,9 L260,10"/>
+            <path d="M250,9 L260,9"/>
+            <path d="M250,10 L250,9"/>
+            <path d="M260,140 L250,140"/>
+            <path d="M260,138.8 L260,140"/>
+            <path d="M250,138.8 L260,138.8"/>
+            <path d="M250,140 L250,138.8"/>
+            <path d="M260,60 L250,60"/>
+            <path d="M260,58.2 L260,60"/>
+            <path d="M250,58.2 L260,58.2"/>
+            <path d="M250,60 L250,58.2"/>
+            <path d="M260,160 L250,160"/>
+            <path d="M260,158.16 L260,160"/>
+            <path d="M250,158.16 L260,158.16"/>
+            <path d="M250,160 L250,158.16"/>
+            <path d="M260,170 L250,170"/>
+            <path d="M260,169 L260,170"/>
+            <path d="M250,169 L260,169"/>
+            <path d="M250,170 L250,169"/>
+            <path d="M260,180 L250,180"/>
+            <path d="M260,178.9 L260,180"/>
+            <path d="M250,178.9 L260,178.9"/>
+            <path d="M250,180 L250,178.9"/>
+            <path d="M260,190 L250,190"/>
+            <path d="M260,189 L260,190"/>
+            <path d="M250,189 L260,189"/>
+            <path d="M250,190 L250,189"/>
+            <path d="M260,200 L250,200"/>
+            <path d="M260,199 L260,200"/>
+            <path d="M250,199 L260,199"/>
+            <path d="M250,200 L250,199"/>
+            <path d="M260,20 L250,20"/>
+            <path d="M260,19.1 L260,20"/>
+            <path d="M250,19.1 L260,19.1"/>
+            <path d="M250,20 L250,19.1"/>
+            <path d="M260,80 L250,80"/>
+            <path d="M260,79.82 L260,80"/>
+            <path d="M250,79.82 L260,79.82"/>
+            <path d="M250,80 L250,79.82"/>
+            <path d="M260,30 L250,30"/>
+            <path d="M260,29.3 L260,30"/>
+            <path d="M250,29.3 L260,29.3"/>
+            <path d="M250,30 L250,29.3"/>
+            <path d="M260,240 L250,240"/>
+            <path d="M260,238 L260,240"/>
+            <path d="M250,238 L260,238"/>
+            <path d="M250,240 L250,238"/>
+            <path d="M260,100 L250,100"/>
+            <path d="M260,99.88 L260,100"/>
+            <path d="M250,99.88 L260,99.88"/>
+            <path d="M250,100 L250,99.88"/>
+            <path d="M260,50 L250,50"/>
+            <path d="M260,47.5 L260,50"/>
+            <path d="M250,47.5 L260,47.5"/>
+            <path d="M250,50 L250,47.5"/>
+            <path d="M260,70 L250,70"/>
+            <path d="M260,69 L260,70"/>
+            <path d="M250,69 L260,69"/>
+            <path d="M250,70 L250,69"/>
+            <path d="M260,90 L250,90"/>
+            <path d="M260,89.85 L260,90"/>
+            <path d="M250,89.85 L260,89.85"/>
+            <path d="M250,90 L250,89.85"/>
+            <path d="M260,110 L250,110"/>
+            <path d="M260,109.9 L260,110"/>
+            <path d="M250,109.9 L260,109.9"/>
+            <path d="M250,110 L250,109.9"/>
+            <path d="M260,130 L250,130"/>
+            <path d="M260,128.5 L260,130"/>
+            <path d="M250,128.5 L260,128.5"/>
+            <path d="M250,130 L250,128.5"/>
+            <path d="M260,150 L250,150"/>
+            <path d="M260,149 L260,150"/>
+            <path d="M250,149 L260,149"/>
+            <path d="M250,150 L250,149"/>
+            <path d="M260,210 L250,210"/>
+            <path d="M260,207.9 L260,210"/>
+            <path d="M250,207.9 L260,207.9"/>
+            <path d="M250,210 L250,207.9"/>
+            <path d="M260,220 L250,220"/>
+            <path d="M260,219 L260,220"/>
+            <path d="M250,219 L260,219"/>
+            <path d="M250,220 L250,219"/>
+            <path d="M260,230 L250,230"/>
+            <path d="M260,227 L260,230"/>
+            <path d="M250,227 L260,227"/>
+            <path d="M250,230 L250,227"/>
+            <path d="M260,250 L250,250"/>
+            <path d="M260,249 L260,250"/>
+            <path d="M250,249 L260,249"/>
+            <path d="M250,250 L250,249"/>
+        </g>
+    <g class="1Rn5AIBK90ePyp4hZVF$hD 0xvk40i$T2l8lwmJn2Wx2J IfcWall material-generiek 0LWiFq0AfEWA9abGp3PWLs cut"><path d="M260.0,230.0 L260.0,227.0 L250.0,227.0 L250.0,230.0 Z"/></g><g class="1Rn5AIBK90ePyp4hZVF$hD 0xvk40i$T2l8lwmJn2Wx2J IfcWall material-generiek 0LWiFq0AfEWA9abGp3PWLs cut"><path d="M260.0,238.0 L250.0,238.0 L250.0,240.0 L260.0,240.0 Z"/></g><g class="1Rn5AIBK90ePyp4hZVF$hD 0xvk40i$T2l8lwmJn2Wx2J IfcWall material-generiek 0LWiFq0AfEWA9abGp3PWLs cut"><path d="M260.0,249.0 L250.0,249.0 L250.0,250.0 L260.0,250.0 Z"/></g><g class="material-metselwerk IfcWall 0E_vomZwT09u0aAb3HsbhF cut 25seGrrqn1pQKT1I6D6vif"><path d="M260.0,210.0 L260.0,207.9 L250.0,207.9 L250.0,210.0 Z"/></g><g class="material-metselwerk IfcWall 0E_vomZwT09u0aAb3HsbhF cut 25seGrrqn1pQKT1I6D6vif"><path d="M260.0,220.0 L260.0,219.0 L250.0,219.0 L250.0,220.0 Z"/></g><g class="IfcWall 2smcRzuj5628HywaYwKKb9 2kMChvLU95ZBft7Lapq94y 1gGlWNvK1EUB_3rYYHcmgN material-kalkzandsteen cut 3eVm2PwOn4T9JSI_PsnEGn"><path d="M260.0,117.9 L250.0,117.9 L250.0,120.0 L260.0,120.0 Z"/></g><g class="IfcWall 2smcRzuj5628HywaYwKKb9 2kMChvLU95ZBft7Lapq94y 1gGlWNvK1EUB_3rYYHcmgN material-kalkzandsteen cut 3eVm2PwOn4T9JSI_PsnEGn"><path d="M260.0,128.5 L250.0,128.5 L250.0,130.0 L260.0,130.0 Z"/></g><g class="IfcWall 2smcRzuj5628HywaYwKKb9 2kMChvLU95ZBft7Lapq94y 1gGlWNvK1EUB_3rYYHcmgN material-kalkzandsteen cut 3eVm2PwOn4T9JSI_PsnEGn"><path d="M260.0,138.8 L250.0,138.8 L250.0,140.0 L260.0,140.0 Z"/></g><g class="IfcWall 2smcRzuj5628HywaYwKKb9 2kMChvLU95ZBft7Lapq94y 1gGlWNvK1EUB_3rYYHcmgN material-kalkzandsteen cut 3eVm2PwOn4T9JSI_PsnEGn"><path d="M260.0,149.0 L250.0,149.0 L250.0,150.0 L260.0,150.0 Z"/></g><g class="2bTBkqIU5CBhUrnz6rJL4o IfcWall 2UHwEjGQvEH8E3APcdx$bk material-houtplaatmateriaal cut 0vN3ozrfL3KAkZ4VxIi_Fv 3Np7HH__r4GRtHpIDq6_oR"><path d="M260.0,79.8 L250.0,79.8 L250.0,80.0 L260.0,80.0 Z"/></g><g class="2bTBkqIU5CBhUrnz6rJL4o IfcWall 2UHwEjGQvEH8E3APcdx$bk material-houtplaatmateriaal cut 0vN3ozrfL3KAkZ4VxIi_Fv 3Np7HH__r4GRtHpIDq6_oR"><path d="M260.0,89.8 L250.0,89.8 L250.0,90.0 L260.0,90.0 Z"/></g><g class="2bTBkqIU5CBhUrnz6rJL4o IfcWall 2UHwEjGQvEH8E3APcdx$bk material-houtplaatmateriaal cut 0vN3ozrfL3KAkZ4VxIi_Fv 3Np7HH__r4GRtHpIDq6_oR"><path d="M260.0,99.9 L250.0,99.9 L250.0,100.0 L260.0,100.0 Z"/></g><g class="2bTBkqIU5CBhUrnz6rJL4o IfcWall 2UHwEjGQvEH8E3APcdx$bk material-houtplaatmateriaal cut 0vN3ozrfL3KAkZ4VxIi_Fv 3Np7HH__r4GRtHpIDq6_oR"><path d="M260.0,109.9 L250.0,109.9 L250.0,110.0 L260.0,110.0 Z"/></g><g class="material-betonprefab IfcWall 1yqHLmlof3O8xJVH9trb2J 0bIhoVJ0X7DOzRrnIka$jN cut 3xCCVPgBr17PDZnzdWk8xf"><path d="M260.0,50.0 L260.0,47.5 L250.0,47.5 L250.0,50.0 Z"/></g><g class="material-betonprefab IfcWall 1yqHLmlof3O8xJVH9trb2J 0bIhoVJ0X7DOzRrnIka$jN cut 3xCCVPgBr17PDZnzdWk8xf"><path d="M260.0,58.2 L250.0,58.2 L250.0,60.0 L260.0,60.0 Z"/></g><g class="material-betonprefab IfcWall 1yqHLmlof3O8xJVH9trb2J 0bIhoVJ0X7DOzRrnIka$jN cut 3xCCVPgBr17PDZnzdWk8xf"><path d="M260.0,69.0 L250.0,69.0 L250.0,70.0 L260.0,70.0 Z"/></g><g class="22CroW9gL5zArrq9fH6Eua material-houtvurenCLT IfcWall cut 1r1LeYrw1FJOepc6lAYWGz 1JbwIK7sP44R5k1dTE_7CL"><path d="M260.0,10.0 L260.0,9.0 L250.0,9.0 L250.0,10.0 Z"/></g><g class="22CroW9gL5zArrq9fH6Eua material-houtvurenCLT IfcWall cut 1r1LeYrw1FJOepc6lAYWGz 1JbwIK7sP44R5k1dTE_7CL"><path d="M260.0,19.1 L250.0,19.1 L250.0,20.0 L260.0,20.0 Z"/></g><g class="22CroW9gL5zArrq9fH6Eua material-houtvurenCLT IfcWall cut 1r1LeYrw1FJOepc6lAYWGz 1JbwIK7sP44R5k1dTE_7CL"><path d="M260.0,29.3 L250.0,29.3 L250.0,30.0 L260.0,30.0 Z"/></g><g class="material-isolatie IfcWall cut 2Fz2PwjET2j8KSx2t_qZ5E"><path d="M250.0,200.0 L250.0,199.0 L260.0,199.0 L260.0,200.0 Z"/></g><g class="IfcWall 20K6xbclT5n88JS7F0xz$X material-isolatiePIR cut 36toQGUPPFeQA94MprxqXf"><path d="M260.0,180.0 L260.0,178.9 L250.0,178.9 L250.0,180.0 Z"/></g><g class="IfcWall 20K6xbclT5n88JS7F0xz$X material-isolatiePIR cut 36toQGUPPFeQA94MprxqXf"><path d="M260.0,190.0 L260.0,189.0 L250.0,189.0 L250.0,190.0 Z"/></g><g class="1P$XGVR4b7bAdoVB4h8R6o IfcWall cut material-isolatiePUR"><path d="M250.0,170.0 L250.0,169.0 L260.0,169.0 L260.0,170.0 Z"/></g><g class="2lkoa5PUT5GRtRWeiHIrly IfcWall cut material-isolatieglaswol"><path d="M250.0,160.0 L250.0,158.2 L260.0,158.2 L260.0,160.0 Z"/></g><g class="material-betontpg IfcWall cut 1WJfWLlkDFCQY2y60QlfD2"><path d="M250.0,40.0 L250.0,37.5 L260.0,37.5 L260.0,40.0 Z"/></g></g>
+</svg>
