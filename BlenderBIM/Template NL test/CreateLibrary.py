@@ -31,13 +31,30 @@ create_guid = lambda: ifcopenshell.guid.compress(uuid.uuid1().hex)
 path = "C:/Users/mikev/Documents/GitHub/FOSS-BIM-Experiments/BlenderBIM/Template NL test/Library.ods"
 library_path = "C:/Users/mikev/Documents/GitHub/FOSS-BIM-Experiments/BlenderBIM/Template NL test/IFC4 NL Demo Library 0.2.ifc"
 
-building_storeys_lst = [
-    ["ok fundering", -800],
-    ["bk fundering", -400],
-    ["peil=00",0],
-    ["BWK_01",2840],
-    ["BWK_02",5680]
-    ]
+# BUILDING STOREY
+building_storeys_lst = []
+
+sheet_name = "building_storey"
+library_building_storey = read_ods(path, sheet_name)
+
+for ind in library_building_storey.index:
+    storey_name = library_building_storey["StoreyName"][ind]
+    elevation = library_building_storey["Elevation"][ind]
+    include = library_building_storey["IncludeInIFC"][ind]
+    if include:
+        building_storeys_lst.append([storey_name, float(elevation)])
+
+#GRIDS
+
+sheet_name = "grids"
+library_grids = read_ods(path, sheet_name)
+
+for ind in library_grids.index:
+    x_distance = float(library_grids["Xdistance"][ind])
+    x_number = int(library_grids["Xnumber"][ind])
+    y_distance = float(library_grids["Ydistance"][ind])
+    y_number = int(library_grids["Ynumber"][ind])
+    extend = float(library_grids["Extend"][ind])
 
 class LibraryGenerator:
     def generate(self):
@@ -142,7 +159,7 @@ class LibraryGenerator:
         ifcopenshell.api.run("aggregate.assign_object", self.file, relating_object=self.building, product=storey)
 
         # CREATE GRID
-        self.create_grid(5400,6000,5,5,2000)
+        self.create_grid(x_distance,y_distance,x_number,y_number,extend)
 
         # 0 MATERIALS
 
@@ -262,7 +279,7 @@ class LibraryGenerator:
         y = 0
         z = 0
         spacing = 0.7
-        x2 = 11
+        x2 = 8
         y2 = 0
 
         for ind in library_roundprofile.index:
@@ -282,6 +299,187 @@ class LibraryGenerator:
                 beam_type_obj = self.create_profile_type("IfcBeamType", profile_name, profile_type_obj, profile_material_var)
                 self.place_beam(storey, beam_type_obj, profile_type_obj, x2, y2, z, model_body, profile_name, beam_length)
                 y2 = y2 + spacing
+
+            # 5 IfcIShapeProfileDef
+        sheet_name = "IfcIShapeProfileDef"
+        library_IfcIShapeProfileDef = read_ods(path, sheet_name)
+
+        x = 10
+        y = 0
+        z = 0
+        spacing = 0.7
+        x2 = 12
+        y2 = 0
+
+        for ind in library_IfcIShapeProfileDef.index:
+            profile_name = library_IfcIShapeProfileDef["Name"][ind]
+            profile_OverallDepth = float(library_IfcIShapeProfileDef["h"][ind])
+            profile_OverallWidth = float(library_IfcIShapeProfileDef["bf"][ind])
+            profile_WebThickness = float(library_IfcIShapeProfileDef["tw"][ind])
+            profile_FlangeThickness = float(library_IfcIShapeProfileDef["tf"][ind])
+            profile_FilletRadius = float(library_IfcIShapeProfileDef["r"][ind])
+            profile_material = library_IfcIShapeProfileDef["Material"][ind]
+            profile_material_var = globals()[profile_material]
+            make_column = library_IfcIShapeProfileDef["MakeIfcColumnType"][ind]
+            make_beam = library_IfcIShapeProfileDef["MakeIfcBeamType"][ind]
+            profile_type_obj = self.file.create_entity("IfcIShapeProfileDef", ProfileName=profile_name,
+                                                       ProfileType="AREA",
+                                                       WebThickness=profile_WebThickness,
+                                                       FlangeThickness=profile_FlangeThickness,
+                                                       OverallDepth=profile_OverallDepth,
+                                                       OverallWidth=profile_OverallWidth,
+                                                       FilletRadius=profile_FilletRadius
+                                                       )  # profile
+            if make_column is True:
+                column_type_obj = self.create_profile_type("IfcColumnType", profile_name, profile_type_obj,
+                                                           profile_material_var)
+                # self.place_column(storey, column_type_obj, profile_type_obj, x, y, z, model_body, profile_name,
+                #                  column_height)
+                y = y + spacing
+            if make_beam is True:
+                beam_type_obj = self.create_profile_type("IfcBeamType", profile_name, profile_type_obj,
+                                                         profile_material_var)
+                # self.place_beam(storey, beam_type_obj, profile_type_obj, x2, y2, z, model_body, profile_name,
+                #                beam_length)
+                y2 = y2 + spacing
+
+
+        # 6 IfcRectangleHollowProfileDef
+        sheet_name = "IfcRectangleHollowProfileDef"
+        library_IfcRectangleHollowProfileDef = read_ods(path, sheet_name)
+
+        x = 12
+        y = 0
+        z = 0
+        spacing = 0.7
+        x2 = 14
+        y2 = 0
+
+        for ind in library_IfcRectangleHollowProfileDef.index:
+            profile_name = library_IfcRectangleHollowProfileDef["Name"][ind]
+            profile_XDim = float(library_IfcRectangleHollowProfileDef["b"][ind])
+            profile_YDim = float(library_IfcRectangleHollowProfileDef["h"][ind])
+            profile_WallThickness = float(library_IfcRectangleHollowProfileDef["t"][ind])
+            profile_OuterFilletRadius = float(library_IfcRectangleHollowProfileDef["r"][ind])
+            profile_InnerFilletRadius = float(library_IfcRectangleHollowProfileDef["r1"][ind])
+            profile_material = library_IfcRectangleHollowProfileDef["Material"][ind]
+            profile_material_var = globals()[profile_material]
+            make_column = library_IfcRectangleHollowProfileDef["MakeIfcColumnType"][ind]
+            make_beam = library_IfcRectangleHollowProfileDef["MakeIfcBeamType"][ind]
+            profile_type_obj = self.file.create_entity("IfcRectangleHollowProfileDef", ProfileName=profile_name,
+                                                       ProfileType="AREA",
+                                                       XDim=profile_XDim,
+                                                       YDim=profile_YDim,
+                                                       WallThickness=profile_WallThickness,
+                                                       InnerFilletRadius=profile_OuterFilletRadius,
+                                                       OuterFilletRadius=profile_InnerFilletRadius
+                                                       )  # profile
+            if make_column is True:
+                column_type_obj = self.create_profile_type("IfcColumnType", profile_name, profile_type_obj,
+                                                           profile_material_var)
+                #self.place_column(storey, column_type_obj, profile_type_obj, x, y, z, model_body, profile_name,
+               #                   column_height)
+                y = y + spacing
+            if make_beam is True:
+                beam_type_obj = self.create_profile_type("IfcBeamType", profile_name, profile_type_obj,
+                                                         profile_material_var)
+               # self.place_beam(storey, beam_type_obj, profile_type_obj, x2, y2, z, model_body, profile_name,
+                #                beam_length)
+                y2 = y2 + spacing
+
+
+            # 8 IfcTShapeProfileDef
+            sheet_name = "IfcTShapeProfileDef"
+            library_IfcTShapeProfileDef = read_ods(path, sheet_name)
+
+            x = 14
+            y = 0
+            z = 0
+            spacing = 0.7
+            x2 = 16
+            y2 = 0
+
+        for ind in library_IfcTShapeProfileDef.index:
+            profile_name = library_IfcTShapeProfileDef["Name"][ind]
+            profile_WebThickness = float(library_IfcTShapeProfileDef["tw"][ind])
+            profile_FlangeThickness = float(library_IfcTShapeProfileDef["tf"][ind])
+            profile_Depth = float(library_IfcTShapeProfileDef["h"][ind])
+            profile_FlangeWidth = float(library_IfcTShapeProfileDef["b"][ind])
+            profile_FilletRadius = float(library_IfcTShapeProfileDef["r"][ind])
+            profile_FlangeEdgeRadius = float(library_IfcTShapeProfileDef["r1"][ind])
+            profile_WebEdgeRadius = float(library_IfcTShapeProfileDef["r2"][ind])
+            profile_WebSlope = float(library_IfcTShapeProfileDef["WebSlopeRAD"][ind])*-1  #BUG IN IfcOpenShell?
+            profile_FlangeSlope = float(library_IfcTShapeProfileDef["FlangeSlopeRAD"][ind])*-1 #BUG IN IfcOpenShell?
+            profile_material = library_IfcTShapeProfileDef["Material"][ind]
+            profile_material_var = globals()[profile_material]
+            make_column = library_IfcTShapeProfileDef["MakeIfcColumnType"][ind]
+            make_beam = library_IfcTShapeProfileDef["MakeIfcBeamType"][ind]
+            profile_type_obj = self.file.create_entity("IfcTShapeProfileDef", ProfileName=profile_name,
+                                                       ProfileType="AREA",
+                                                       Depth=profile_Depth,
+                                                       FlangeWidth=profile_FlangeWidth,
+                                                       WebThickness=profile_WebThickness,
+                                                       FlangeThickness=profile_FlangeThickness,
+                                                       FilletRadius=profile_FilletRadius,
+                                                       FlangeEdgeRadius=profile_FlangeEdgeRadius,
+                                                       WebEdgeRadius=profile_WebEdgeRadius,
+                                                       WebSlope=profile_WebSlope,
+                                                       FlangeSlope=profile_FlangeSlope
+                                                       )  # profile
+            if make_column is True:
+                column_type_obj = self.create_profile_type("IfcColumnType", profile_name, profile_type_obj,
+                                                           profile_material_var)
+                self.place_column(storey, column_type_obj, profile_type_obj, x, y, z, model_body, profile_name,
+                                   column_height)
+                y = y + spacing
+            if make_beam is True:
+                beam_type_obj = self.create_profile_type("IfcBeamType", profile_name, profile_type_obj,
+                                                         profile_material_var)
+                # self.place_beam(storey, beam_type_obj, profile_type_obj, x2, y2, z, model_body, profile_name,
+                #                beam_length)
+                y2 = y2 + spacing
+
+
+            # 9 IfcLShapeProfileDef
+            sheet_name = "IfcLShapeProfileDef"
+            library_IfcLShapeProfileDef = read_ods(path, sheet_name)
+
+            x = 16
+            y = 0
+            z = 0
+            spacing = 0.7
+            x2 = 18
+            y2 = 0
+
+        for ind in library_IfcLShapeProfileDef.index:
+            profile_name = library_IfcLShapeProfileDef["Name"][ind]
+            profile_Thickness = float(library_IfcLShapeProfileDef["tw"][ind])
+            profile_Depth = float(library_IfcLShapeProfileDef["h"][ind])
+            profile_Width = float(library_IfcLShapeProfileDef["b"][ind])
+            profile_FilletRadius = float(library_IfcLShapeProfileDef["r1"][ind])
+            profile_material = library_IfcLShapeProfileDef["Material"][ind]
+            profile_material_var = globals()[profile_material]
+            make_column = library_IfcLShapeProfileDef["MakeIfcColumnType"][ind]
+            make_beam = library_IfcLShapeProfileDef["MakeIfcBeamType"][ind]
+            profile_type_obj = self.file.create_entity("IfcLShapeProfileDef", ProfileName=profile_name,
+                                                       ProfileType="AREA",
+                                                       Depth=profile_Depth,
+                                                       Width=profile_Width,
+                                                       Thickness=profile_Thickness,
+                                                       FilletRadius=profile_FilletRadius
+                                                       )  # profile
+            if make_column is True:
+                column_type_obj = self.create_profile_type("IfcColumnType", profile_name, profile_type_obj,
+                                                           profile_material_var)
+                self.place_column(storey, column_type_obj, profile_type_obj, x, y, z, model_body, profile_name, column_height)
+                y = y + spacing
+            if make_beam is True:
+                beam_type_obj = self.create_profile_type("IfcBeamType", profile_name, profile_type_obj,
+                                                         profile_material_var)
+                # self.place_beam(storey, beam_type_obj, profile_type_obj, x2, y2, z, model_body, profile_name,
+                #                beam_length)
+                y2 = y2 + spacing
+
 
         self.create_line_type("DASHED", "dashed")
         self.create_line_type("FINE", "fine")
