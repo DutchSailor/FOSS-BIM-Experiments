@@ -7,32 +7,42 @@
           <polygon points="10 0, 0 3.5, 10 7"/>
         </marker>
     </defs>
-    <g ifc:name="Elevation MY STOREY PLAN" class="section" ifc:plane="[[1.000000,0.000000,0.000000,0.000000],[0.000000,1.000000,0.000000,0.000000],[0.000000,0.000000,1.000000,1.600000],[0.000000,0.000000,0.000000,1.000000]]" ifc:matrix3="[[50.000001,0.000000,218.873748],[0.000000,50.000001,400.530838],[0.000000,0.000000,1.000000]]">
-        <g class="projection">
+    <g ifc:name="Elevation plattegrond schaal 20" class="section" ifc:plane="[[1.000000,0.000000,0.000000,0.000000],[0.000000,1.000000,0.000000,0.000000],[0.000000,0.000000,1.000000,1.600000],[0.000000,0.000000,0.000000,1.000000]]" ifc:matrix3="[[50.000001,0.000000,218.873748],[0.000000,50.000001,400.530838],[0.000000,0.000000,1.000000]]">
+        <g id="product-02bed7fa-e265-49ad-87ab-b22ccef7a471" class="IfcWall material-metselwerknietgebakkenkunststeen projection" ifc:name="Wall" ifc:guid="02ljVwucL9hOUhiYpEzwHn">
             <path d="M354.63,388.531 L236.874,388.531"/>
             <path d="M354.63,382.531 L354.63,388.531"/>
             <path d="M236.874,382.531 L354.63,382.531"/>
             <path d="M236.874,388.531 L236.874,382.531"/>
+        </g>
+    <g id="product-e875dd9d-c7d5-40b3-832a-a2857ee725c4" class="IfcWall material-metselwerknietgebakkenkunststeen projection" ifc:name="Wall" ifc:guid="3eTTsTnzL0iuCgeeL_voN4">
             <path d="M236.874,250 L236.874,388.531"/>
             <path d="M230.874,250 L236.874,250"/>
             <path d="M230.874,388.531 L230.874,250"/>
             <path d="M236.874,388.531 L230.874,388.531"/>
+        </g>
+        <g id="product-6b42312f-ba11-46a0-9511-2791b5b4960d" class="IfcWall material-isolatie projection" ifc:name="Wall" ifc:guid="1hGZ4lkX56e9KH9v6rj9OD">
             <path d="M230.874,250 L230.874,388.531"/>
             <path d="M225.874,250 L230.874,250"/>
             <path d="M225.874,388.531 L225.874,250"/>
             <path d="M230.874,388.531 L225.874,388.531"/>
+        </g>
+        <g id="product-60e4a5a4-e6eb-41b2-bc0e-5d9c72e41235" class="IfcWall material-isolatie projection" ifc:name="Wall" ifc:guid="1WvAMavkj1ihmENPnov18r">
             <path d="M354.63,393.531 L225.874,393.531"/>
             <path d="M354.63,388.531 L354.63,393.531"/>
             <path d="M225.874,388.531 L354.63,388.531"/>
             <path d="M225.874,393.531 L225.874,388.531"/>
+        </g>
+        <g id="product-bc7025fc-0a71-4f80-9dbe-653e6832d096" class="IfcWall material-metselwerkbaksteenporiso projection" ifc:name="Wall" ifc:guid="2yS2Ny2d5FW9s_PJveCj2M">
             <path d="M223.874,250 L223.874,395.531"/>
             <path d="M218.874,250 L223.874,250"/>
             <path d="M218.874,395.531 L218.874,250"/>
             <path d="M223.874,395.531 L218.874,395.531"/>
+        </g>
+        <g id="product-f7ba3c4e-0763-4c29-922c-63d7731ab1f2" class="IfcWall material-metselwerkbaksteenporiso projection" ifc:name="Wall" ifc:guid="3tkZnE1sDCAP8iOzTp6h7o">
             <path d="M354.63,400.531 L218.874,400.531"/>
             <path d="M354.63,395.531 L354.63,400.531"/>
             <path d="M218.874,395.531 L354.63,395.531"/>
             <path d="M218.874,400.531 L218.874,395.531"/>
         </g>
-    <g class="material-metselwerkbaksteenporiso 2yS2Ny2d5FW9s_PJveCj2M IfcWall 3tkZnE1sDCAP8iOzTp6h7o cut"><path d="M223.9,250.0 L218.9,250.0 L218.9,395.5 L218.9,400.5 L354.6,400.5 L354.6,395.5 L223.9,395.5 Z"/></g><g class="1WvAMavkj1ihmENPnov18r IfcWall material-isolatie cut 1hGZ4lkX56e9KH9v6rj9OD"><path d="M230.9,250.0 L225.9,250.0 L225.9,388.5 L225.9,393.5 L354.6,393.5 L354.6,388.5 L230.9,388.5 Z"/></g><g class="3eTTsTnzL0iuCgeeL_voN4 IfcWall 02ljVwucL9hOUhiYpEzwHn cut material-metselwerknietgebakkenkunststeen"><path d="M236.9,250.0 L230.9,250.0 L230.9,388.5 L236.9,388.5 L354.6,388.5 L354.6,382.5 L236.9,382.5 Z"/></g></g>
+        <g class="3tkZnE1sDCAP8iOzTp6h7o 2yS2Ny2d5FW9s_PJveCj2M material-metselwerkbaksteenporiso cut IfcWall"><path d="M223.9,250.0 L218.9,250.0 L218.9,395.5 L218.9,400.5 L354.6,400.5 L354.6,395.5 L223.9,395.5 Z"/></g><g class="material-isolatie 1WvAMavkj1ihmENPnov18r 1hGZ4lkX56e9KH9v6rj9OD cut IfcWall"><path d="M230.9,250.0 L225.9,250.0 L225.9,388.5 L225.9,393.5 L354.6,393.5 L354.6,388.5 L230.9,388.5 Z"/></g><g class="3eTTsTnzL0iuCgeeL_voN4 cut IfcWall material-metselwerknietgebakkenkunststeen 02ljVwucL9hOUhiYpEzwHn"><path d="M236.9,250.0 L230.9,250.0 L230.9,388.5 L236.9,388.5 L354.6,388.5 L354.6,382.5 L236.9,382.5 Z"/></g></g>
 </svg>

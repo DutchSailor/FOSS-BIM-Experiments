@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ifc="http://www.ifcopenshell.org/ns" width="50mm" height="50mm" viewBox="0 0 50 50">
+    <defs>
+        <marker id="arrowend" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+          <polygon points="0 0, 10 3.5, 0 7"/>
+        </marker>
+        <marker id="arrowstart" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+          <polygon points="10 0, 0 3.5, 10 7"/>
+        </marker>
+    </defs>
+    <g ifc:name="Elevation PLAN_VIEW" class="section" ifc:plane="[[1.000000,0.000000,0.000000,0.000000],[0.000000,1.000000,0.000000,0.000000],[0.000000,0.000000,1.000000,1.493717],[0.000000,0.000000,0.000000,1.000000]]" ifc:matrix3="[[10.000000,0.000000,25.000003],[0.000000,10.000000,25.000003],[0.000000,0.000000,1.000000]]">
+        <g id="product-1db3daa3-87b2-417e-8108-666f6adff6aa" class="IfcWall material-null projection" ifc:name="Wall" ifc:guid="0TizgZXx91Ve48Pczgt$Qg">
+            <path d="M35,25 L25,25"/>
+            <path d="M35,24 L35,25"/>
+            <path d="M25,24 L35,24"/>
+            <path d="M25,25 L25,24"/>
+        </g>
+    <g class="0TizgZXx91Ve48Pczgt$Qg IfcWall cut material-null"><path d="M25.0,25.0 L25.0,24.0 L35.0,24.0 L35.0,25.0 Z"/></g></g>
+</svg>

@@ -1,5 +1,123 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:ifc="http://www.ifcopenshell.org/ns" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" data-scale="1:100" height="150.0mm" id="root" version="1.1" viewBox="0 0 150.0 150.0" width="150.0mm">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:ifc="http://www.ifcopenshell.org/ns" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" data-scale="1:50" height="1000.0000762939453mm" id="root" version="1.1" viewBox="0 0 299.7967708401564 1000.0000762939453" width="299.7967708401564mm">
   <defs/>
-  <path class="GlobalId-0fRzrVLtT5eBz7cMUp$1Vt IfcAnnotation PredefinedType-metselwerkbaksteen" d="M 22.916693687438965 60.62793016433716 L 41.666693687438965 60.62793016433716 L 41.666693687438965 23.127927780151367 L 22.916693687438965 23.127927780151367 L 22.916693687438965 60.62793016433716"/>
+  <path class="GlobalId-3Cg3eSWbrFifP6OXK3Rpl1 IfcAnnotation PredefinedType-aluminiumbronskoper" d="M 81.11159266495123 431.07669830322266 L 41.11159266495123 431.07669830322266 L 41.11159266495123 441.07669830322266 L 81.11159266495123 441.07669830322266 L 81.11159266495123 431.07669830322266"/>
+  <path class="GlobalId-0yTVKalbX0vgpfyeQw_HNB IfcAnnotation PredefinedType-zand" d="M 81.11159266495123 571.0766983032227 L 41.11159266495123 571.0766983032227 L 41.11159266495123 581.0766983032227 L 81.11159266495123 581.0766983032227 L 81.11159266495123 571.0766983032227"/>
+  <path class="GlobalId-3A5HUpa1T3aPiMAD2RO_QM IfcAnnotation PredefinedType-naaldhout" d="M 81.11159266495123 311.07669830322266 L 41.11159266495123 311.07669830322266 L 41.11159266495123 321.07669830322266 L 81.11159266495123 321.07669830322266 L 81.11159266495123 311.07669830322266"/>
+  <path class="GlobalId-1py1g1wHD2tf6Vn3JewxYQ IfcAnnotation PredefinedType-staal" d="M 81.11159266495123 411.07669830322266 L 41.11159266495123 411.07669830322266 L 41.11159266495123 421.07669830322266 L 81.11159266495123 421.07669830322266 L 81.11159266495123 411.07669830322266"/>
+  <path class="GlobalId-3UXOzvYJf9I8LSkwy_jtJT IfcAnnotation PredefinedType-ongewapendbeton" d="M 81.11159266495123 211.07669830322266 L 41.11159266495123 211.07669830322266 L 41.11159266495123 221.07669830322266 L 81.11159266495123 221.07669830322266 L 81.11159266495123 211.07669830322266"/>
+  <path class="GlobalId-3ACGdYIXXBnh3r_RMT50Yi IfcAnnotation PredefinedType-metselwerkbaksteen" d="M 81.11159266495123 91.07669830322266 L 41.11159266495123 91.07669830322266 L 41.11159266495123 101.07669830322266 L 81.11159266495123 101.07669830322266 L 81.11159266495123 91.07669830322266"/>
+  <path class="GlobalId-3x5FI_FYjEAh2NpH0FdWSu IfcAnnotation PredefinedType-maaiveld" d="M 81.11159266495123 551.0766983032227 L 41.11159266495123 551.0766983032227 L 41.11159266495123 561.0766983032227 L 81.11159266495123 561.0766983032227 L 81.11159266495123 551.0766983032227"/>
+  <path class="GlobalId-0_Z2I8Puf9V9SH6M5Q3$06 IfcAnnotation PredefinedType-samengesteldewandvloerafwerking" d="M 81.11159266495123 291.07669830322266 L 41.11159266495123 291.07669830322266 L 41.11159266495123 301.07669830322266 L 81.11159266495123 301.07669830322266 L 81.11159266495123 291.07669830322266"/>
+  <path class="GlobalId-07mvWEwjj16gpaPN2bLFfn IfcAnnotation PredefinedType-isolatie" d="M 81.11159266495123 391.07669830322266 L 41.11159266495123 391.07669830322266 L 41.11159266495123 401.07669830322266 L 81.11159266495123 401.07669830322266 L 81.11159266495123 391.07669830322266"/>
+  <path class="GlobalId-3rtjb2M4fBWBsPqShqwwG2 IfcAnnotation PredefinedType-water" d="M 81.11159266495123 611.0766983032227 L 41.11159266495123 611.0766983032227 L 41.11159266495123 621.0766983032227 L 81.11159266495123 621.0766983032227 L 81.11159266495123 611.0766983032227"/>
+  <path class="GlobalId-2nMzYHj$zDcwQ9TEvl5gWp IfcAnnotation PredefinedType-nietdragendelichtescheidingswanden" d="M 81.11159266495123 151.07669830322266 L 41.11159266495123 151.07669830322266 L 41.11159266495123 161.07669830322266 L 81.11159266495123 161.07669830322266 L 81.11159266495123 151.07669830322266"/>
+  <path class="GlobalId-3EYwmr8Oz5Be8vAcyrKqpP IfcAnnotation PredefinedType-gewapendbetonprefab" d="M 81.11159266495123 191.07669830322266 L 41.11159266495123 191.07669830322266 L 41.11159266495123 201.07669830322266 L 81.11159266495123 201.07669830322266 L 81.11159266495123 191.07669830322266"/>
+  <path class="GlobalId-1gpclUMyHC1f9tWH3uasEC IfcAnnotation PredefinedType-metselwerknietgebakkenkunststeen" d="M 81.11159266495123 131.07669830322266 L 41.11159266495123 131.07669830322266 L 41.11159266495123 141.07669830322266 L 81.11159266495123 141.07669830322266 L 81.11159266495123 131.07669830322266"/>
+  <path class="GlobalId-0olg1RrJf9ZRRwGbV4JDwC IfcAnnotation PredefinedType-enkelewandvloerafwerking" d="M 81.11159266495123 271.07669830322266 L 41.11159266495123 271.07669830322266 L 41.11159266495123 281.07669830322266 L 81.11159266495123 281.07669830322266 L 81.11159266495123 271.07669830322266"/>
+  <path class="GlobalId-2ONkzQgIf8e8grPBUmBYfl IfcAnnotation PredefinedType-bekledingsplaat" d="M 81.11159266495123 371.07669830322266 L 41.11159266495123 371.07669830322266 L 41.11159266495123 381.07669830322266 L 81.11159266495123 381.07669830322266 L 81.11159266495123 371.07669830322266"/>
+  <path class="GlobalId-1oO7vWNsz4F8d$26rBaIJ0 IfcAnnotation PredefinedType-gewapendbetontpg" d="M 81.11159266495123 171.07669830322266 L 41.11159266495123 171.07669830322266 L 41.11159266495123 181.07669830322266 L 81.11159266495123 181.07669830322266 L 81.11159266495123 171.07669830322266"/>
+  <path class="GlobalId-10oi6CYBn9EBAW7RvG$tok IfcAnnotation PredefinedType-naaldloofhoutlangsarcering" d="M 81.11159266495123 351.07669830322266 L 41.11159266495123 351.07669830322266 L 41.11159266495123 361.07669830322266 L 81.11159266495123 361.07669830322266 L 81.11159266495123 351.07669830322266"/>
+  <path class="GlobalId-2UJOOJkgP25htbJ9Et8Wim IfcAnnotation PredefinedType-afdichtingsmiddel" d="M 81.11159266495123 511.07669830322266 L 41.11159266495123 511.07669830322266 L 41.11159266495123 521.0766983032227 L 81.11159266495123 521.0766983032227 L 81.11159266495123 511.07669830322266"/>
+  <path class="GlobalId-2JKC$yaznB2vwX_r4dYS1n IfcAnnotation PredefinedType-natuursteen" d="M 81.11159266495123 251.07669830322266 L 41.11159266495123 251.07669830322266 L 41.11159266495123 261.07669830322266 L 81.11159266495123 261.07669830322266 L 81.11159266495123 251.07669830322266"/>
+  <path class="GlobalId-3dk96Y5D13mfsc1APOTvzP IfcAnnotation PredefinedType-kunststof" d="M 81.11159266495123 491.07669830322266 L 41.11159266495123 491.07669830322266 L 41.11159266495123 501.07669830322266 L 81.11159266495123 501.07669830322266 L 81.11159266495123 491.07669830322266"/>
+  <path class="GlobalId-3kXYG8XvfDsBvg18N0gpvx IfcAnnotation PredefinedType-specialesteenachtigematerialen" d="M 81.11159266495123 111.07669830322266 L 41.11159266495123 111.07669830322266 L 41.11159266495123 121.07669830322266 L 81.11159266495123 121.07669830322266 L 81.11159266495123 111.07669830322266"/>
+  <path class="GlobalId-2oydm8R51E9xPM06brHCBy IfcAnnotation PredefinedType-sierbeton" d="M 81.11159266495123 231.07669830322266 L 41.11159266495123 231.07669830322266 L 41.11159266495123 241.07669830322266 L 81.11159266495123 241.07669830322266 L 81.11159266495123 231.07669830322266"/>
+  <path class="GlobalId-14MODPZiP0fRKJsLRV3T7v IfcAnnotation PredefinedType-BREAKLINE" d="M 309.62166728042973 136.42074584960938 L 309.62166728042973 110.43804168701172 L 309.62166728042973 84.45537567138672"/>
+  <path class="GlobalId-1bqvt6g0f5EfL89MB9FZ$A IfcAnnotation PredefinedType-zink" d="M 81.11159266495123 471.07669830322266 L 41.11159266495123 471.07669830322266 L 41.11159266495123 481.07669830322266 L 81.11159266495123 481.07669830322266 L 81.11159266495123 471.07669830322266"/>
+  <path class="GlobalId-2YmQ7AVVz3sgx4hJK8CvnJ IfcAnnotation PredefinedType-bitumen" d="M 81.11159266495123 531.0766983032227 L 41.11159266495123 531.0766983032227 L 41.11159266495123 541.0766983032227 L 81.11159266495123 541.0766983032227 L 81.11159266495123 531.0766983032227"/>
+  <path class="GlobalId-2uGrB651P1dPDpRoc92fDF IfcAnnotation PredefinedType-lood" d="M 81.11159266495123 451.07669830322266 L 41.11159266495123 451.07669830322266 L 41.11159266495123 461.07669830322266 L 81.11159266495123 461.07669830322266 L 81.11159266495123 451.07669830322266"/>
+  <path class="GlobalId-00d2yvw0P8Cx258l$Po_5i IfcAnnotation PredefinedType-glas" d="M 81.11159266495123 631.0766983032227 L 41.11159266495123 631.0766983032227 L 41.11159266495123 641.0766983032227 L 81.11159266495123 641.0766983032227 L 81.11159266495123 631.0766983032227"/>
+  <path class="GlobalId-3jB2XEewT4vvTTyaduUSLA IfcAnnotation PredefinedType-grind" d="M 81.11159266495123 591.0766983032227 L 41.11159266495123 591.0766983032227 L 41.11159266495123 601.0766983032227 L 81.11159266495123 601.0766983032227 L 81.11159266495123 591.0766983032227"/>
+  <path class="GlobalId-25uYg67Df4QQwD2_t_99EQ IfcAnnotation PredefinedType-loofhout" d="M 81.11159266495123 331.07669830322266 L 41.11159266495123 331.07669830322266 L 41.11159266495123 341.07669830322266 L 81.11159266495123 341.07669830322266 L 81.11159266495123 331.07669830322266"/>
+  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(101.1115951538086, 116.07669830322266) rotate(-0.0)">
+    <tspan class="GlobalId-3M6Noq3117MP5bjiCvmdyj IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">speciale steenachtige materialen</tspan>
+  </text>
+  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(101.1115951538086, 216.07669067382812) rotate(-0.0)">
+    <tspan class="GlobalId-0LOTS0oJfClwjiAGvLv49L IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">ongewapend beton</tspan>
+  </text>
+  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(101.1115951538086, 236.07669067382812) rotate(-0.0)">
+    <tspan class="GlobalId-1AGLtB0mLExOzpqXyhtE3p IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">sierbeton</tspan>
+  </text>
+  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(101.1115951538086, 256.0766906738281) rotate(-0.0)">
+    <tspan class="GlobalId-3qSwgnxdPDnfYDhVi2cQsb IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">natuursteen</tspan>
+  </text>
+  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(101.1115951538086, 276.0766906738281) rotate(-0.0)">
+    <tspan class="GlobalId-1B4nl9pSr7FehJKit0UeIz IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">enkele wand- vloerafwerking</tspan>
+  </text>
+  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(101.1115951538086, 336.0766906738281) rotate(-0.0)">
+    <tspan class="GlobalId-0BEaUkrBvAuxXIIuM92Fn5 IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">loofhout</tspan>
+  </text>
+  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(101.1115951538086, 356.0766906738281) rotate(-0.0)">
+    <tspan class="GlobalId-2KTNNnTVv5_9NM_EV83Nci IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">naald loofhout langsarcering</tspan>
+  </text>
+  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(101.1115951538086, 636.0767211914062) rotate(-0.0)">
+    <tspan class="GlobalId-2KIc3$3tvENPW3QYuHAQAT IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">glas</tspan>
+  </text>
+  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(101.1115951538086, 136.07669067382812) rotate(-0.0)">
+    <tspan class="GlobalId-1azO6nbK9ADxmYssJQn0v0 IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">metselwerk niet gebakken kunststeen</tspan>
+  </text>
+  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(101.1115951538086, 156.07669067382812) rotate(-0.0)">
+    <tspan class="GlobalId-2x3gxpHezEjP52iNEx9lUf IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">niet dragende lichte scheidingswanden</tspan>
+  </text>
+  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(101.1115951538086, 196.07669067382812) rotate(-0.0)">
+    <tspan class="GlobalId-3KCszsIVTA$AvMm3x71Q4n IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">gewapend beton prefab</tspan>
+  </text>
+  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(101.1115951538086, 436.0766906738281) rotate(-0.0)">
+    <tspan class="GlobalId-33snqd0Yf6wQU$2hVHsaqK IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">aluminium brons koper</tspan>
+  </text>
+  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(101.1115951538086, 96.07669830322266) rotate(-0.0)">
+    <tspan class="GlobalId-3SOMEjr6T41gzlXLVaCQ1G IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">metselwerk</tspan>
+  </text>
+  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(101.1115951538086, 556.0767211914062) rotate(-0.0)">
+    <tspan class="GlobalId-0OAg8HtwjBVOViJgyvVrDh IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">maaiveld</tspan>
+  </text>
+  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(101.1115951538086, 576.0767211914062) rotate(-0.0)">
+    <tspan class="GlobalId-04$iERPYn078cLnaphNQ1C IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">zand</tspan>
+  </text>
+  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(41.111595153808594, 71.07669830322266) rotate(-0.0)">
+    <tspan class="GlobalId-3jikzdAzn4oguLTUxQGirk IfcAnnotation PredefinedType-TEXT" dy="0em" x="0" y="0">Arceringen volgens NEN47</tspan>
+  </text>
+  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(101.1115951538086, 376.0766906738281) rotate(-0.0)">
+    <tspan class="GlobalId-3$F1u_uVzBUgqez6HnTXBW IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">bekledingsplaat</tspan>
+  </text>
+  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(101.1115951538086, 396.0766906738281) rotate(-0.0)">
+    <tspan class="GlobalId-1mVsJjGRLEMP8$hKC3xdE0 IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">isolatie</tspan>
+  </text>
+  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(101.1115951538086, 456.0766906738281) rotate(-0.0)">
+    <tspan class="GlobalId-2Ee2uj97nAwfDpe_gLFCLK IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">lood</tspan>
+  </text>
+  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(101.1115951538086, 476.0766906738281) rotate(-0.0)">
+    <tspan class="GlobalId-2TxhAJvGL8lwqzYegBMDJ5 IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">zink</tspan>
+  </text>
+  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(101.1115951538086, 516.0767211914062) rotate(-0.0)">
+    <tspan class="GlobalId-2iHDXrOUv7mAb3OFKAbZLE IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">afdichtingsmiddel</tspan>
+  </text>
+  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(101.1115951538086, 536.0767211914062) rotate(-0.0)">
+    <tspan class="GlobalId-2JxmDN0Df7oQPodP$sysj8 IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">bitumen</tspan>
+  </text>
+  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(101.1115951538086, 596.0767211914062) rotate(-0.0)">
+    <tspan class="GlobalId-2S_bFOb0z5pAakR3KqRncX IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">grind</tspan>
+  </text>
+  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(101.1115951538086, 296.0766906738281) rotate(-0.0)">
+    <tspan class="GlobalId-3IMIn6RibEFho8rIFvOCZJ IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">samengestelde wand- vloerafwerking</tspan>
+  </text>
+  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(101.1115951538086, 176.07669067382812) rotate(-0.0)">
+    <tspan class="GlobalId-0$mGZfp412a90zyxLwBjNX IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">gewapend beton tpg</tspan>
+  </text>
+  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(101.1115951538086, 316.0766906738281) rotate(-0.0)">
+    <tspan class="GlobalId-1hDxXSC0j6EgJuGt_vTcRw IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">naaldhout</tspan>
+  </text>
+  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(101.1115951538086, 617.2785034179688) rotate(-0.0)">
+    <tspan class="GlobalId-1g8U43ks51CAyQdAPHSsu0 IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">water</tspan>
+  </text>
+  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(41.111595153808594, 51.076698303222656) rotate(-0.0)">
+    <tspan class="GlobalId-3lXN5tcWP7H9NghkMViFSn IfcAnnotation PredefinedType-TEXT header" dy="0em" x="0" y="0">BOUWKUNDIGE TEKENINGEN</tspan>
+  </text>
+  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(101.1115951538086, 416.0766906738281) rotate(-0.0)">
+    <tspan class="GlobalId-0lTZ$B_3zCe96XZtHxc4g0 IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">staal</tspan>
+  </text>
+  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="start" transform="translate(101.1115951538086, 496.0766906738281) rotate(-0.0)">
+    <tspan class="GlobalId-1PcvQ4v4f60PRTtdQ95bpv IfcAnnotation PredefinedType-TEXT small" dy="0em" x="0" y="0">kunststof</tspan>
+  </text>
 </svg>

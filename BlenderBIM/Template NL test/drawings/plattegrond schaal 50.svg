@@ -1005,32 +1005,42 @@ text.DIMENSION, tspan.DIMENSION { /* 1.8mm */ font-size: 2.97px; }
 	<line x1="0" y1="1" x2="3" y2="0" style="stroke:black; stroke-width:0.15" />
 </pattern>
 </defs>    <g ifc:name="Elevation plattegrond schaal 50" class="section" ifc:plane="[[1.000000,0.000000,0.000000,0.000000],[0.000000,1.000000,0.000000,0.000000],[0.000000,0.000000,1.000000,1.600000],[0.000000,0.000000,0.000000,1.000000]]" ifc:matrix3="[[20.000000,0.000000,187.549494],[0.000000,20.000000,260.212327],[0.000000,0.000000,1.000000]]">
-        <g class="projection">
+        <g id="product-02bed7fa-e265-49ad-87ab-b22ccef7a471" class="IfcWall material-metselwerknietgebakkenkunststeen projection" ifc:name="Wall" ifc:guid="02ljVwucL9hOUhiYpEzwHn">
             <path d="M241.852,255.412 L194.749,255.412"/>
             <path d="M241.852,253.012 L241.852,255.412"/>
             <path d="M194.749,253.012 L241.852,253.012"/>
             <path d="M194.749,255.412 L194.749,253.012"/>
+        </g>
+    <g id="product-e875dd9d-c7d5-40b3-832a-a2857ee725c4" class="IfcWall material-metselwerknietgebakkenkunststeen projection" ifc:name="Wall" ifc:guid="3eTTsTnzL0iuCgeeL_voN4">
             <path d="M194.75,200 L194.749,255.412"/>
             <path d="M192.35,200 L194.75,200"/>
             <path d="M192.349,255.412 L192.35,200"/>
             <path d="M194.749,255.412 L192.349,255.412"/>
+        </g>
+        <g id="product-6b42312f-ba11-46a0-9511-2791b5b4960d" class="IfcWall material-isolatie projection" ifc:name="Wall" ifc:guid="1hGZ4lkX56e9KH9v6rj9OD">
             <path d="M192.35,200 L192.349,255.412"/>
             <path d="M190.35,200 L192.35,200"/>
             <path d="M190.349,255.412 L190.35,200"/>
             <path d="M192.349,255.412 L190.349,255.412"/>
+        </g>
+        <g id="product-60e4a5a4-e6eb-41b2-bc0e-5d9c72e41235" class="IfcWall material-isolatie projection" ifc:name="Wall" ifc:guid="1WvAMavkj1ihmENPnov18r">
             <path d="M241.852,257.412 L190.349,257.412"/>
             <path d="M241.852,255.412 L241.852,257.412"/>
             <path d="M190.349,255.412 L241.852,255.412"/>
             <path d="M190.349,257.412 L190.349,255.412"/>
+        </g>
+        <g id="product-bc7025fc-0a71-4f80-9dbe-653e6832d096" class="IfcWall material-metselwerkbaksteenporiso projection" ifc:name="Wall" ifc:guid="2yS2Ny2d5FW9s_PJveCj2M">
             <path d="M189.549,200 L189.549,258.212"/>
             <path d="M187.549,200 L189.549,200"/>
             <path d="M187.549,258.212 L187.549,200"/>
             <path d="M189.549,258.212 L187.549,258.212"/>
+        </g>
+        <g id="product-f7ba3c4e-0763-4c29-922c-63d7731ab1f2" class="IfcWall material-metselwerkbaksteenporiso projection" ifc:name="Wall" ifc:guid="3tkZnE1sDCAP8iOzTp6h7o">
             <path d="M241.852,260.212 L187.549,260.212"/>
             <path d="M241.852,258.212 L241.852,260.212"/>
             <path d="M187.549,258.212 L241.852,258.212"/>
             <path d="M187.549,260.212 L187.549,258.212"/>
         </g>
-    <g class="material-metselwerkbaksteenporiso 2yS2Ny2d5FW9s_PJveCj2M IfcWall 3tkZnE1sDCAP8iOzTp6h7o cut"><path d="M189.5,200.0 L187.5,200.0 L187.5,258.2 L187.5,260.2 L241.9,260.2 L241.9,258.2 L189.5,258.2 Z"/></g><g class="1WvAMavkj1ihmENPnov18r IfcWall material-isolatie cut 1hGZ4lkX56e9KH9v6rj9OD"><path d="M192.3,200.0 L190.3,200.0 L190.3,255.4 L190.3,257.4 L241.9,257.4 L241.9,255.4 L192.3,255.4 Z"/></g><g class="3eTTsTnzL0iuCgeeL_voN4 IfcWall 02ljVwucL9hOUhiYpEzwHn cut material-metselwerknietgebakkenkunststeen"><path d="M194.8,200.0 L192.3,200.0 L192.3,255.4 L194.7,255.4 L241.9,255.4 L241.9,253.0 L194.7043321299639,253.0 Z"/></g></g>
+        <g class="3tkZnE1sDCAP8iOzTp6h7o 2yS2Ny2d5FW9s_PJveCj2M material-metselwerkbaksteenporiso cut IfcWall"><path d="M189.5,200.0 L187.5,200.0 L187.5,258.2 L187.5,260.2 L241.9,260.2 L241.9,258.2 L189.5,258.2 Z"/></g><g class="material-isolatie 1WvAMavkj1ihmENPnov18r 1hGZ4lkX56e9KH9v6rj9OD cut IfcWall"><path d="M192.3,200.0 L190.3,200.0 L190.3,255.4 L190.3,257.4 L241.9,257.4 L241.9,255.4 L192.3,255.4 Z"/></g><g class="3eTTsTnzL0iuCgeeL_voN4 cut IfcWall material-metselwerknietgebakkenkunststeen 02ljVwucL9hOUhiYpEzwHn"><path d="M194.8,200.0 L192.3,200.0 L192.3,255.4 L194.7,255.4 L241.9,255.4 L241.9,253.0 L194.7043321299639,253.0 Z"/></g></g>
   <defs/>
 </svg>

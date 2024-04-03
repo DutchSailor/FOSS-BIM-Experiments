@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:ifc="http://www.ifcopenshell.org/ns" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" data-scale="1:20" height="62.330623306233065mm" id="root" version="1.1" viewBox="0 0 500.0 62.330623306233065" width="500.0mm">
+  <defs/>
+  <line class="GlobalId-3RHgPtsLj7UgzqwQHSWjar IfcAnnotation PredefinedType-DIMENSION" x1="72.3835678100586" x2="72.3835678100586" y1="35.38868713378906" y2="26.18868637084961"/>
+  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="middle" transform="translate(71.3835678100586, 30.788686752319336) rotate(-90.00000250447816)">
+    <tspan class="DIMENSION" dy="0em" x="0" y="0">184</tspan>
+  </text>
+  <line class="GlobalId-2Tci$I6rbBFR7MARKg9xoE IfcAnnotation PredefinedType-DIMENSION" x1="85.64187622070312" x2="85.64187622070312" y1="35.98868942260742" y2="35.38868713378906"/>
+  <text dominant-baseline="baseline" style="font-size: 0;" text-anchor="middle" transform="translate(84.64187622070312, 32.38868713378906) rotate(-90.00000250447816)">
+    <tspan class="DIMENSION" dy="0em" x="0" y="0">12</tspan>
+  </text>
+</svg>

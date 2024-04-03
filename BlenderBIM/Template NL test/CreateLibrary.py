@@ -333,8 +333,8 @@ class LibraryGenerator:
             if make_column is True:
                 column_type_obj = self.create_profile_type("IfcColumnType", profile_name, profile_type_obj,
                                                            profile_material_var)
-                # self.place_column(storey, column_type_obj, profile_type_obj, x, y, z, model_body, profile_name,
-                #                  column_height)
+                self.place_column(storey, column_type_obj, profile_type_obj, x, y, z, model_body, profile_name,
+                                 column_height)
                 y = y + spacing
             if make_beam is True:
                 beam_type_obj = self.create_profile_type("IfcBeamType", profile_name, profile_type_obj,
@@ -377,15 +377,52 @@ class LibraryGenerator:
             if make_column is True:
                 column_type_obj = self.create_profile_type("IfcColumnType", profile_name, profile_type_obj,
                                                            profile_material_var)
-                #self.place_column(storey, column_type_obj, profile_type_obj, x, y, z, model_body, profile_name,
-               #                   column_height)
-                y = y + spacing
+                self.place_column(storey, column_type_obj, profile_type_obj, x, y, z, model_body, profile_name,
+                                  column_height)
+                y = y + 700
             if make_beam is True:
                 beam_type_obj = self.create_profile_type("IfcBeamType", profile_name, profile_type_obj,
                                                          profile_material_var)
                # self.place_beam(storey, beam_type_obj, profile_type_obj, x2, y2, z, model_body, profile_name,
                 #                beam_length)
                 y2 = y2 + spacing
+
+            # 7 IfcCircleHollowProfileDef
+            sheet_name = "IfcCircleHollowProfileDef"
+            library_IfcCircleHollowProfileDef = read_ods(path, sheet_name)
+
+            x = 13
+            y = 0
+            z = 0
+            spacing = 0.7
+            x2 = 15
+            y2 = 0
+
+            for ind in library_IfcCircleHollowProfileDef.index:
+                profile_name = library_IfcCircleHollowProfileDef["Name"][ind]
+                profile_Radius = float(library_IfcCircleHollowProfileDef["D"][ind])/2
+                profile_WallThickness = float(library_IfcCircleHollowProfileDef["T"][ind])
+                profile_material = library_IfcRectangleHollowProfileDef["Material"][ind]
+                profile_material_var = globals()[profile_material]
+                make_column = library_IfcRectangleHollowProfileDef["MakeIfcColumnType"][ind]
+                make_beam = library_IfcRectangleHollowProfileDef["MakeIfcBeamType"][ind]
+                profile_type_obj = self.file.create_entity("IfcCircleHollowProfileDef", ProfileName=profile_name,
+                                                           ProfileType="AREA",
+                                                           Radius=profile_Radius,
+                                                           WallThickness=profile_WallThickness
+                                                           )  # profile
+                if make_column is True:
+                    column_type_obj = self.create_profile_type("IfcColumnType", profile_name, profile_type_obj,
+                                                               profile_material_var)
+                    self.place_column(storey, column_type_obj, profile_type_obj, x, y, z, model_body, profile_name,
+                                      column_height)
+                    y = y + spacing
+                if make_beam is True:
+                    beam_type_obj = self.create_profile_type("IfcBeamType", profile_name, profile_type_obj,
+                                                             profile_material_var)
+                    # self.place_beam(storey, beam_type_obj, profile_type_obj, x2, y2, z, model_body, profile_name,
+                    #                beam_length)
+                    y2 = y2 + spacing
 
 
             # 8 IfcTShapeProfileDef
@@ -431,7 +468,7 @@ class LibraryGenerator:
                                                            profile_material_var)
                 self.place_column(storey, column_type_obj, profile_type_obj, x, y, z, model_body, profile_name,
                                    column_height)
-                y = y + spacing
+                y = y + 700
             if make_beam is True:
                 beam_type_obj = self.create_profile_type("IfcBeamType", profile_name, profile_type_obj,
                                                          profile_material_var)
@@ -444,11 +481,11 @@ class LibraryGenerator:
             sheet_name = "IfcLShapeProfileDef"
             library_IfcLShapeProfileDef = read_ods(path, sheet_name)
 
-            x = 16
+            x = 18
             y = 0
             z = 0
             spacing = 0.7
-            x2 = 18
+            x2 = 20
             y2 = 0
 
         for ind in library_IfcLShapeProfileDef.index:
